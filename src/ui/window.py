@@ -142,9 +142,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _remove_pages(self, page_names):
         for page_name in page_names:
-            child = self.main_stack.get_child_by_name(page_name)
-            self.main_stack.remove(child)
-            del child
+            if page_name is not None: # skip already deleted pages
+                child = self.main_stack.get_child_by_name(page_name)
+                self.main_stack.remove(child)
+                del child
 
     def _load_page(self, page_number: int):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
@@ -248,7 +249,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._load_page(self.navigation.current + 1)
 
                     if cleanup:
-                        self._remove_pages(self.pages[:self.navigation.current - 1])
+                        self._remove_pages(
+                            self.pages[self.navigation.earliest:self.navigation.current - 1])
 
     def load_translated_pages(self):
         with self.navigation_lock:
