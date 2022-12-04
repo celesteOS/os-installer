@@ -129,7 +129,7 @@ class DiskProvider:
         if not self.flip:
             return []
         smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
-        smol_disk = Disk("Dummy", 10000, "/dev/null", "10 KB", ([smol_partition], None))
+        smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", ([smol_partition], None))
 
         efi_partition = DeviceInfo("EFI", 200000000, "20 GB", "/dev/sda_efi")
         unnamed_partition_1 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed")
