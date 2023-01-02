@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-11 03:09+0100\n"
-"PO-Revision-Date: 2022-10-28 17:14+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2023-01-02 20:47+0000\n"
+"Last-Translator: two <two@envs.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -71,9 +71,8 @@ msgstr "Використати весь диск"
 msgid "Partitions"
 msgstr "Розділи"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Диск не має розділів."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -146,22 +145,18 @@ msgstr "Шукайте допомогу в Інтернеті"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
-#, fuzzy
-#| msgid "Additional Software"
 msgid "Additional Features"
-msgstr "Додаткове програмне забезпечення"
+msgstr "Додаткові функції"
 
 #. Translators: Page title
 msgid "Select Region"
 msgstr "Виберіть регіон"
 
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "Фільтр"
 
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Немає результатів"
 
 #, fuzzy
 msgid "Try a different search"
