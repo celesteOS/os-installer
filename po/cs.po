@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-11 03:09+0100\n"
-"PO-Revision-Date: 2022-10-28 17:14+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/cs/>\n"
+"PO-Revision-Date: 2023-02-18 11:35+0000\n"
+"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -26,315 +26,255 @@ msgid "Install an Operating System"
 msgstr "Nainstalovat operační systém"
 
 #. Translators: Shown if user wants to close window with running installation
-#, fuzzy
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
+"Zastavení spuštěné instalace zanechá disk v nedefinovaném stavu, který může "
+"být potenciálně škodlivý"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
-#, fuzzy
 msgid "_Continue Installation"
-msgstr "_Continue Installation"
+msgstr "_Pokračovat v instalaci"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
-#, fuzzy
 msgid "_Stop Installation"
-msgstr "_Stop Installation"
+msgstr "_Zastavit instalaci"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Confirmation"
-msgstr "Confirmation"
+msgstr "Potvrzení"
 
 #. Translators: Followed by a disk or partition name
-#, fuzzy
 msgid "This will delete all data on"
-msgstr "This will delete all data on"
+msgstr "Tím se vymažou všechna data"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
-#, fuzzy
 msgid "_Confirm"
-msgstr "_Confirm"
+msgstr "_Potvrdit"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Disk Selection"
-msgstr "Disk Selection"
+msgstr "Výběr disku"
 
 #. Translators: Button label to open disk management tool.
-#, fuzzy
 msgid "_Manage Disks"
-msgstr "_Manage Disks"
+msgstr "_Spravovat disky"
 
 #. Translators: Label to use whole disk rather than a single partition.
-#, fuzzy
 msgid "Use Whole Disk"
-msgstr "Use Whole Disk"
+msgstr "Použít celý disk"
 
 #. Translators: Heading of list of partitions
-#, fuzzy
 msgid "Partitions"
-msgstr "Partitions"
+msgstr "Oddíly"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Disk nemá žádné oddíly."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#, fuzzy
 msgid "Selecting a partition is not possible."
-msgstr "Selecting a partition is not possible."
+msgstr "Výběr oddílu není možný."
 
 #. Translators: Followed by a list of requirements
-#, fuzzy
 msgid "The disk requires:"
-msgstr "The disk requires:"
+msgstr "Disk vyžaduje:"
 
 #. Translators: Bullet point listing.
-#, fuzzy
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
+"  • Rozdělení GPT\n"
+"  • Oddíl EFI"
 
 #. Translators: Bullet point listing.
-#, fuzzy
 msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partition"
+msgstr "  • Zaváděcí oddíl systému BIOS"
 
-#, fuzzy
 msgid "No Disks avaliable"
-msgstr "No Disks avaliable"
+msgstr "Nejsou k dispozici žádné disky"
 
-#, fuzzy
 msgid "Connect a disk and reload this page."
-msgstr "Connect a disk and reload this page."
+msgstr "Připojte disk a znovu načtěte tuto stránku."
 
 #. Translators: Page title
-#, fuzzy
 msgid "Installation Complete"
-msgstr "Installation Complete"
+msgstr "Instalace dokončena"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#, fuzzy
 msgid "_Restart System"
-msgstr "_Restart System"
+msgstr "_Restartovat systém"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#, fuzzy
 msgid "Restart _Later"
-msgstr "Restart _Later"
+msgstr "Restartovat _později"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Disk Encryption"
-msgstr "Disk Encryption"
+msgstr "Šifrování disku"
 
 #. Translators: Used with option to enable disk encryption
-#, fuzzy
 msgid "Encrypt Files"
-msgstr "Encrypt Files"
+msgstr "Šifrovat soubory"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
-#, fuzzy
 msgid "Encryption PIN"
-msgstr "Encryption PIN"
+msgstr "Šifrovací PIN"
 
 #. Translators: Hint for disk encryption
-#, fuzzy
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Memorize this PIN well. Without it you will not be able to access your files."
+"Tento PIN si dobře zapamatujte. Bez něj nebudete mít přístup ke svým "
+"souborům."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Continue"
-msgstr "_Continue"
+msgstr "_Pokračovat"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Installation Failed"
-msgstr "Installation Failed"
+msgstr "Instalace se nezdařila"
 
 #. Translators: Shown if installation fails.
-#, fuzzy
 msgid "Search for Help on the Internet"
-msgstr "Search for Help on the Internet"
+msgstr "Vyhledat nápovědu na internetu"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
-#, fuzzy
 msgid "Additional Features"
-msgstr "Additional Software"
+msgstr "Další funkce"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Select Region"
-msgstr "Select Region"
+msgstr "Zvolte region"
 
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtrovat"
 
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Žádné výsledky"
 
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Zkuste jiné vyhledávání"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Installing"
-msgstr "Installing"
+msgstr "Instaluje se"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
-#, fuzzy
 msgid "Show Terminal Output"
-msgstr "Show Terminal Output"
+msgstr "Zobrazit výstup terminálu"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Internet Connection Check"
-msgstr "Internet Connection Check"
+msgstr "Kontrola připojení k internetu"
 
-#, fuzzy
 msgid "No connection."
-msgstr "No connection."
+msgstr "Žádné připojení."
 
 #. Translators: On button for opening wifi settings.
-#, fuzzy
 msgid "_Open Settings"
-msgstr "_Open Settings"
+msgstr "_Otevřít nastavení"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Keyboard Layout Selection"
-msgstr "Keyboard Layout Selection"
+msgstr "Výběr rozvržení klávesnice"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#, fuzzy
 msgid "Test the Keyboard Layout Here"
-msgstr "Test the Keyboard Layout Here"
+msgstr "Zde vyzkoušejte rozvržení klávesnice"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
-#, fuzzy
 msgid "Keyboard Language"
-msgstr "Keyboard Language"
+msgstr "Jazyk klávesnice"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Adapt to Location"
-msgstr "Adapt to Location"
+msgstr "Přizpůsobení podle umístění"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
-#, fuzzy
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "Časové pásmo"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
-#, fuzzy
 msgid "Formats"
-msgstr "Formats"
+msgstr "Formáty"
 
 #. Translators: Description of what is covered by formats.
-#, fuzzy
 msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Defines the default format used for dates, times, numbers, etc."
+msgstr "Definuje výchozí formát používaný pro data, časy, čísla atd."
 
 #. Translators: Page title
-#, fuzzy
 msgid "Restarting"
-msgstr "Restarting"
+msgstr "Restartování"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
-#, fuzzy
 msgid "Additional Software"
-msgstr "Additional Software"
+msgstr "Další software"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Shrnutí"
 
 #. Translators: Description of selected language.
-#, fuzzy
 msgid "Language"
-msgstr "Keyboard Language"
+msgstr "Jazyk"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
 msgid "Keyboard Layout"
-msgstr "Keyboard Layout Selection"
+msgstr "Výběr rozvržení klávesnice"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
-#, fuzzy
 msgid "User Account"
-msgstr "User Account"
+msgstr "Uživatelský účet"
 
 #. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
-#, fuzzy
 msgid "Automatic Login"
-msgstr "Automatic Login"
+msgstr "Automaticky přihlašovat"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Žádné"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Select Location"
-msgstr "Select Location"
+msgstr "Vybrat umístění"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
 msgid "_Name"
-msgstr "Name"
+msgstr "_Jméno"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
 msgid "_Password"
-msgstr "Password"
+msgstr "_Heslo"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Vítejte"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "Tato aplikace vás provede instalací operačního systému {}."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#, fuzzy
 msgid "Unnamed Partition"
-msgstr "Unnamed Partition"
+msgstr "Nepojmenovaný oddíl"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
-#, fuzzy
 msgid "Not enough space for installation"
-msgstr "Not enough space for installation"
+msgstr "Nedostatek místa pro instalaci"
 
 #, fuzzy
 #~ msgid "PIN"
