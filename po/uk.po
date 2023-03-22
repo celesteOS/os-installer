@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-11 03:09+0100\n"
-"PO-Revision-Date: 2023-01-02 20:47+0000\n"
-"Last-Translator: two <two@envs.net>\n"
+"PO-Revision-Date: 2023-03-22 00:49+0000\n"
+"Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -128,7 +128,7 @@ msgstr "PIN-код шифрування"
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"«Добре запам’ятайте цей PIN-код.  Без нього ви не зможете отримати доступ до "
+"«Добре запам’ятайте цей PIN-код. Без нього ви не зможете отримати доступ до "
 "своїх файлів»."
 
 #. Translators: On button.
@@ -158,9 +158,8 @@ msgstr "Фільтр"
 msgid "No Results"
 msgstr "Немає результатів"
 
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Спробуйте інший пошук"
 
 #. Translators: Page title
 msgid "Installing"
@@ -175,7 +174,7 @@ msgid "Internet Connection Check"
 msgstr "Перевірка підключення до Інтернету"
 
 msgid "No connection."
-msgstr "Немає підключення"
+msgstr "Немає підключення."
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
@@ -224,21 +223,16 @@ msgid "Additional Software"
 msgstr "Додаткове програмне забезпечення"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Резюме"
 
 #. Translators: Description of selected language.
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "Language"
-msgstr "Мова клавіатури"
+msgstr "Мова"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
 msgid "Keyboard Layout"
-msgstr "Вибір розкладки клавіатури"
+msgstr "Розкладка клавіатури"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -252,39 +246,30 @@ msgstr "Автоматичний вхід"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Немає"
 
 #. Translators: Page title
 msgid "Select Location"
 msgstr "Виберіть місцезнаходження"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
-#| msgid "Name"
 msgid "_Name"
-msgstr "Ім'я"
+msgstr "_Ім'я"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
-#| msgid "Password"
 msgid "_Password"
-msgstr "Пароль"
+msgstr "_Пароль"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Ласкаво просимо"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "Цей застосунок допоможе вам встановити {} у вашу систему."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
