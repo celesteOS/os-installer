@@ -69,7 +69,7 @@ Similarly `systemd` is expected to be available, i.e. `localectl` and `timedatec
 ## Examples
 Example configurations of distributions (experimenting) with using OS-Installer:
 * https://github.com/snowflakelinux/os-installer-snowflake-config (NixOS-based)
-* https://github.com/arkanelinux/pkgbuild/tree/main/os-installer-config (Arch-based)
+* https://github.com/arkanelinux/os-installer-config (Arch-based)
 
 # Contact
 There is a matrix room https://matrix.to/#/#os-installer:matrix.org in which you can ask questions.
