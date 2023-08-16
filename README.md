@@ -26,7 +26,7 @@ Then clone and install OS-Installer:
 ```
 git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
 cd os-installer
-meson build
+meson setup build
 sudo meson install -C build
 ```
 
