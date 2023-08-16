@@ -66,17 +66,18 @@ class DiskProvider:
         efi_partition = ''
         for partition_name in partition_table.props.partitions:
             partition_object = self.udisks_client.get_object(partition_name)
-            if partition_object:
-                block = partition_object.get_block()
-                partition = partition_object.get_partition()
-                if block and partition:
-                    partition_info, is_efi_partition = self._get_one_partition(partition, block)
+            if not partition_object:
+                continue
+            block = partition_object.get_block()
+            partition = partition_object.get_partition()
+            if block and partition:
+                partition_info, is_efi_partition = self._get_one_partition(partition, block)
 
-                    partitions.append(partition_info)
-                    if is_efi_partition:
-                        efi_partition = partition_info.device_path
-                else:
-                    print('Unhandled partiton in partition table, ignoring.')
+                partitions.append(partition_info)
+                if is_efi_partition:
+                    efi_partition = partition_info.device_path
+            else:
+                print('Unhandled partiton in partition table, ignoring.')
 
         return (partitions, efi_partition)
 
@@ -109,18 +110,23 @@ class DiskProvider:
         # get device information
         for device in devices:
             udisks_object = self.udisks_client.get_object(device)
-            if udisks_object:
-                partition = udisks_object.get_partition()
-                if partition:
-                    continue  # skip partitions
+            if not udisks_object:
+                continue
 
-                block = udisks_object.get_block()
-                partition_table = udisks_object.get_partition_table()
-                if block:
-                    drive = self.udisks_client.get_drive_for_block(block)
-                    if drive and drive.props.size > 0 and not drive.props.optical:
-                        disk_info = self._get_disk_info(block, drive, partition_table)
-                        disks.append(disk_info)
+            # skip partitions
+            partition = udisks_object.get_partition()
+            if partition:
+                continue
+
+            block = udisks_object.get_block()
+            if not block:
+                continue
+
+            partition_table = udisks_object.get_partition_table()
+            drive = self.udisks_client.get_drive_for_block(block)
+            if drive and drive.props.size > 0 and not drive.props.optical:
+                disk_info = self._get_disk_info(block, drive, partition_table)
+                disks.append(disk_info)
 
         return disks
 
