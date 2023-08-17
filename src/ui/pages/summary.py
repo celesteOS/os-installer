@@ -43,9 +43,11 @@ class SummaryPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
-            self.software_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path))
+            self.software_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path,
+                                                        'application-x-executable-symbolic'))
         self.feature_list.bind_model(
-            self.feature_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path))
+            self.feature_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path,
+                                                       'puzzle-piece-symbolic'))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
         self.software_row.set_visible(global_state.get_config('additional_software'))
         self.feature_row.set_visible(global_state.get_config('additional_features'))

@@ -100,10 +100,10 @@ class SummaryRow(Gtk.ListBoxRow):
     icon = Gtk.Template.Child()
     name = Gtk.Template.Child()
 
-    def __init__(self, name, icon_path, **kwargs):
+    def __init__(self, name, icon_path, icon_name, **kwargs):
         super().__init__(**kwargs)
         self.name.set_label(name)
         if not icon_path:
-            self.icon.set_from_icon_name('application-x-executable-symbolic')
+            self.icon.set_from_icon_name(icon_name)
         else:
             self.icon.set_from_file(icon_path)
