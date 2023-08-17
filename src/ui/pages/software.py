@@ -21,7 +21,7 @@ class SoftwarePage(Gtk.Box, Page):
         self.software_list.bind_model(
             self.software_model,
             lambda pkg: SelectionRow(pkg.name, pkg.description, pkg.icon_path,
-                                     pkg.suggested, pkg, 'application-x-executable-symbolic'))
+                                     'application-x-executable-symbolic', pkg.suggested, pkg))
 
     def _setup_software(self):
         suggestions = get_software_suggestions()

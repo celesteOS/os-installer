@@ -21,7 +21,7 @@ class FeaturePage(Gtk.Box, Page):
         self.list.bind_model(
             self.list_model,
             lambda feat: SelectionRow(feat.name, feat.description, feat.icon_path,
-                                      feat.suggested, feat, 'puzzle-piece-symbolic'))
+                                      'puzzle-piece-symbolic', feat.suggested, feat))
 
     ### callbacks ###
 

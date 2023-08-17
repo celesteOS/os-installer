@@ -72,8 +72,8 @@ class SelectionRow(Adw.ActionRow):
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, title, description, icon_path, default_state, info,
-                 fallback_icon, **kwargs):
+    def __init__(self, title, description, icon_path, fallback_icon,
+                 default_state, info, **kwargs):
         super().__init__(**kwargs)
         self.set_title(title)
         self.set_subtitle(description)
