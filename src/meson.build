@@ -54,6 +54,7 @@ os_installer_sources = [
   'ui/window.py',
   'util/installation_scripting.py',
   'util/system_calls.py',
+  'util/util.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)

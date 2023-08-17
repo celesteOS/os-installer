@@ -2,19 +2,25 @@
 
 from gi.repository import GObject
 from .global_state import global_state
+from .util import Option
 
 
 class Package(GObject.GObject):
     __gtype_name__ = __qualname__
 
-    def __init__(self, package, suggested, name, description, icon_path):
+    def __init__(self, name, description, icon_path, suggested=False, package=None, options=[]):
         super().__init__()
 
-        self.package = package
-        self.suggested = suggested
         self.name = name
         self.description = description
         self.icon_path = icon_path
+
+        if options:
+            self.options=options
+        else:
+            self.options=None
+            self.package = package
+            self.suggested = suggested
 
 
 ### public methods ###
@@ -25,7 +31,7 @@ def get_software_suggestions():
 
     suggestions = []
     for package in software:
-        if not 'package' in package:
+        if not 'package' and not 'options' in package:
             print(f'Package {package} not correctly configured!')
             continue
 
@@ -36,7 +42,6 @@ def get_software_suggestions():
                 print(f'Package {package} not correctly configured!')
             continue
 
-        suggested = package['suggested'] if 'suggested' in package else False
         name = package[name_key]
         if ((description_key := f'description_{language_code}') in package or
                 (description_key := 'description') in package):
@@ -45,7 +50,32 @@ def get_software_suggestions():
             description = ''
 
         icon_path = package['icon_path'] if 'icon_path' in package else ''
-        suggestions.append(
-            Package(package['package'], suggested, name, description, icon_path))
+
+        # Package can be multi-option or simple binary choice
+        if 'options' in package:
+            options = []
+            for option in package['options']:
+                if not 'option' in option:
+                    print(f'Option {package} not correctly configured!')
+                    continue
+                if (not ((name_key := f'name_{language_code}') in option or
+                         (name_key := 'name') in option)):
+                    # no error if package is only suggested for specific translations
+                    if not any(key.startswith('name') for key in option.keys()):
+                        print(f'Option {option} not correctly configured!')
+                    continue
+                options.append(Option(display=option[name_key], info=option['option']))
+
+            if len(options) == 0:
+                print(
+                    f'Package {name} uses options but does not contain any valid options!')
+            else:
+                suggestions.append(
+                    Package(name, description, icon_path, options=options))
+        else:
+            suggested = package['suggested'] if 'suggested' in package else False
+            suggestions.append(
+                Package(name, description, icon_path, suggested=suggested,
+                        package=package['package']))
 
     return suggestions

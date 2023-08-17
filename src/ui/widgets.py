@@ -34,6 +34,34 @@ class DeviceRow(Adw.ActionRow):
             self.stack.set_visible_child_name('too_small')
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')
+class MultiSelectionRow(Adw.ComboRow):
+    __gtype_name__ = 'MultiSelectionRow'
+
+    icon = Gtk.Template.Child()
+    list = Gtk.StringList()
+
+    def __init__(self, title, description, icon_path, fallback_icon,
+                 options, **kwargs):
+        super().__init__(**kwargs)
+        self.set_title(title)
+        self.set_subtitle(description)
+        if not icon_path:
+            self.icon.set_from_icon_name(fallback_icon)
+            self.icon.set_icon_size(Gtk.IconSize.LARGE)
+        else:
+            self.icon.set_from_file(icon_path)
+
+        self.icon_path = icon_path
+        self.options = options
+
+        self.list.splice(0, 0, [option.display for option in options])
+        self.set_model(self.list)
+
+    def get_chosen_option(self):
+        return self.options[self.get_selected()]
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
 class PageWrapper(Gtk.Box):
     __gtype_name__ = 'PageWrapper'
@@ -84,6 +112,7 @@ class SelectionRow(Adw.ActionRow):
         else:
             self.icon.set_from_file(icon_path)
 
+        self.icon_path = icon_path
         self.info = info
 
     def is_activated(self):

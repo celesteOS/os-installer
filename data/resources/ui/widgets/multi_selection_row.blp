@@ -1,0 +1,17 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $MultiSelectionRow : Adw.ComboRow {
+  activatable: true;
+  focusable: true;
+  height-request: 84;
+  subtitle-lines: 3;
+
+  [prefix]
+  Image icon {
+    width-request: 32;
+    height-request: 32;
+    valign: center;
+    styles ["icon-dropshadow"]
+  }
+}

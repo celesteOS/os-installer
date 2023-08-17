@@ -5,7 +5,8 @@ from gi.repository import Gio, Gtk
 from .global_state import global_state
 from .page import Page
 from .software_provider import get_software_suggestions
-from .widgets import reset_model, SelectionRow
+from .util import SummaryEntry
+from .widgets import MultiSelectionRow, reset_model, SelectionRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/software.ui')
@@ -20,8 +21,15 @@ class SoftwarePage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
             self.software_model,
-            lambda pkg: SelectionRow(pkg.name, pkg.description, pkg.icon_path,
-                                     'application-x-executable-symbolic', pkg.suggested, pkg))
+            self._create_row)
+
+    def _create_row(self, pkg):
+        if pkg.options:
+            return MultiSelectionRow(pkg.name, pkg.description, pkg.icon_path,
+                                     'application-x-executable-symbolic', pkg.options)
+        else:
+            return SelectionRow(pkg.name, pkg.description, pkg.icon_path,
+                                'application-x-executable-symbolic', pkg.suggested, pkg.package)
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
@@ -35,7 +43,8 @@ class SoftwarePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('software_row_activated')
     def _software_row_activated(self, list_box, row):
-        row.flip_switch()
+        if type(row) == SelectionRow:
+            row.flip_switch()
 
     ### public methods ###
 
@@ -43,7 +52,16 @@ class SoftwarePage(Gtk.Box, Page):
         self._setup_software()
 
     def unload(self):
-        choices = [row.info for row in self.software_list if row.is_activated()]
-        packages = ' '.join([choice.package for choice in choices])
+        summary = []
+        packages = []
+        for row in self.software_list:
+            if type(row) == MultiSelectionRow:
+                option = row.get_chosen_option()
+                packages.append(option.info)
+                summary.append(SummaryEntry(option.display, row.icon_path))
+            elif type(row) == SelectionRow and row.is_activated():
+                packages.append(row.info)
+                summary.append(SummaryEntry(row.get_title(), row.icon_path))
+        packages = ' '.join(packages)
         global_state.set_config('chosen_software_packages', packages)
-        global_state.set_config('chosen_software', choices)
+        global_state.set_config('chosen_software', summary)
