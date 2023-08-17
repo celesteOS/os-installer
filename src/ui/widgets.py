@@ -93,9 +93,9 @@ class SelectionRow(Adw.ActionRow):
         return self.switch.set_active(not self.switch.get_active())
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_summary_row.ui')
-class SoftwareSummaryRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'SoftwareSummaryRow'
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/summary_row.ui')
+class SummaryRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'SummaryRow'
 
     icon = Gtk.Template.Child()
     name = Gtk.Template.Child()

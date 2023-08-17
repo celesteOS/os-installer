@@ -5,7 +5,7 @@ from gi.repository import Gio, Gtk
 from .global_state import global_state
 from .installation_scripting import installation_scripting, Step
 from .page import Page
-from .widgets import reset_model, SoftwareSummaryRow
+from .widgets import reset_model, SummaryRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
@@ -43,9 +43,9 @@ class SummaryPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
-            self.software_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
+            self.software_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path))
         self.feature_list.bind_model(
-            self.feature_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
+            self.feature_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
         self.software_row.set_visible(global_state.get_config('additional_software'))
         self.feature_row.set_visible(global_state.get_config('additional_features'))
