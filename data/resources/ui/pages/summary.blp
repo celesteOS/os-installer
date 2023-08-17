@@ -54,28 +54,35 @@ template $SummaryPage : Box {
         Adw.ActionRow user_row {
           name: "user";
           activatable: true;
-          /* Translators: Description of defined user account name and autologin status. */
-          title: _("User Account");
 
+          [prefix]
           Box {
             orientation: vertical;
-            valign: center;
-            styles ["row-content"]
+            halign: start;
+            spacing: 3;
 
-            Label user_label {
-              hexpand: true;
-              wrap: true;
-              xalign: 1;
+            Label {
+              /* Translators: Description of defined user account name and autologin status. */
+              label: _("User Account");
+              xalign: 0;
+              styles ["dim-label", "caption"]
             }
 
-            Label user_autologin {
-              /* Translators: Gets shown when autologin is enabled. */
-              label: _("Automatic Login");
-              margin-top: 6;
-              hexpand: true;
-              wrap: true;
-              xalign: 1;
-              styles ["dim-label"]
+            Box {
+              spacing: 3;
+
+              Label user_label {
+                wrap: true;
+              }
+
+              Label user_autologin {
+                halign: end;
+                /* Translators: Gets shown when autologin is enabled. */
+                label: _("(Automatic Login)");
+                wrap: true;
+                xalign: 0;
+                styles ["dim-label"]
+              }
             }
           }
 
@@ -111,35 +118,42 @@ template $SummaryPage : Box {
         Adw.ActionRow software_row {
           name: "software";
           activatable: true;
-          /* Translators: Description of selected additional software. */
-          title: _("Additional Software");
 
-          Stack software_stack {
-            vhomogeneous: false;
-            transition-type: crossfade;
-            styles ["row-content"]
+          [prefix]
+          Box {
+            orientation: vertical;
+            halign: start;
+            spacing: 3;
 
-            StackPage {
-              name: "used";
-              child: ListBox software_list {
-                halign: end;
-                valign: center;
-                selection-mode: none;
-                styles ["nested-list"]
-              };
+            Label {
+              /* Translators: Description of selected additional software. */
+              label: _("Additional Software");
+              xalign: 0;
+              styles ["dim-label", "caption"]
             }
 
-            StackPage {
-              name: "none";
-              child: Label {
-                /* Translators: Shown when list of selected software is empty. */
-                label: _("None");
-                hexpand: true;
-                valign: center;
-                wrap: true;
-                xalign: 1;
-                styles ["dim-label"]
-              };
+            Stack software_stack {
+              vhomogeneous: false;
+              transition-type: crossfade;
+
+              StackPage {
+                name: "used";
+                child: ListBox software_list {
+                  halign: start;
+                  selection-mode: none;
+                  styles ["nested-list"]
+                };
+              }
+
+              StackPage {
+                name: "none";
+                child: Label {
+                  /* Translators: Shown when list of selected software is empty. */
+                  label: _("None");
+                  xalign: 0;
+                  styles ["dim-label"]
+                };
+              }
             }
           }
 
@@ -152,34 +166,44 @@ template $SummaryPage : Box {
           name: "feature";
           activatable: true;
           /* Translators: Description of selected additional software. */
-          title: _("Additional Features");
 
-          Stack feature_stack {
-            vhomogeneous: false;
-            transition-type: crossfade;
-            styles ["row-content"]
+          [prefix]
+          Box {
+            orientation: vertical;
+            halign: start;
+            spacing: 3;
 
-            StackPage {
-              name: "used";
-              child: ListBox feature_list {
-                halign: end;
-                valign: center;
-                selection-mode: none;
-                styles ["nested-list"]
-              };
+            Label {
+              /* Translators: Description of selected additional software. */
+              label: _("Additional Features");
+              xalign: 0;
+              styles ["dim-label", "caption"]
             }
 
-            StackPage {
-              name: "none";
-              child: Label {
-                /* Translators: Shown when list of selected features is empty. */
-                label: _("None");
-                hexpand: true;
-                valign: center;
-                wrap: true;
-                xalign: 1;
-                styles ["dim-label"]
-              };
+
+            Stack feature_stack {
+              vhomogeneous: false;
+              transition-type: crossfade;
+
+              StackPage {
+                name: "used";
+                child: ListBox feature_list {
+                  halign: start;
+                  selection-mode: none;
+                  styles ["nested-list"]
+                };
+              }
+
+              StackPage {
+                name: "none";
+                child: Label {
+                  /* Translators: Shown when list of selected features is empty. */
+                  label: _("None");
+                  hexpand: true;
+                  xalign: 0;
+                  styles ["dim-label"]
+                };
+              }
             }
           }
 
