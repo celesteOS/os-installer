@@ -105,7 +105,7 @@ class SelectionRow(Adw.ActionRow):
         super().__init__(**kwargs)
         self.set_title(title)
         self.set_subtitle(description)
-        self.switch.set_state(default_state)
+        self.switch.set_active(default_state)
         if not icon_path:
             self.icon.set_from_icon_name(fallback_icon)
             self.icon.set_icon_size(Gtk.IconSize.LARGE)
