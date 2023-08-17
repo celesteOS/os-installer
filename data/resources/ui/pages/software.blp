@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template SoftwarePage : Box {
+template $SoftwarePage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -18,7 +18,7 @@ template SoftwarePage : Box {
     child: ListBox software_list {
       hexpand: true;
       selection-mode: none;
-      row-activated => software_row_activated();
+      row-activated => $software_row_activated();
       styles ["boxed-list"]
     };
   }
@@ -29,7 +29,7 @@ template SoftwarePage : Box {
     focusable: true;
     halign: center;
     use-underline: true;
-    clicked => continue();
+    clicked => $continue();
     styles ["suggested-action", "pill", "bottom-button"]
   }
 }

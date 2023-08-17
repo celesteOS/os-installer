@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template InternetPage : Box {
+template $InternetPage : Box {
   orientation: vertical;
   margin-top: 12;
   spacing: 18;
@@ -24,7 +24,7 @@ template InternetPage : Box {
     halign: center;
     valign: center;
     use-underline: true;
-    clicked => clicked_settings_button();
+    clicked => $clicked_settings_button();
     styles ["suggested-action", "pill", "bottom-button"]
 
     Label {

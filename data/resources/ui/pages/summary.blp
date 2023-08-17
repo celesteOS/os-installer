@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template SummaryPage : Box {
+template $SummaryPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -24,7 +24,7 @@ template SummaryPage : Box {
       ListBox {
         hexpand: true;
         selection-mode: none;
-        row-activated => summary_row_activated();
+        row-activated => $summary_row_activated();
         styles ["boxed-list"]
 
         Adw.ActionRow language_row {
@@ -220,7 +220,7 @@ template SummaryPage : Box {
         receives-default: true;
         halign: center;
         use-underline: true;
-        clicked => continue();
+        clicked => $continue();
         styles ["suggested-action", "pill", "bottom-button"]
       }
     };

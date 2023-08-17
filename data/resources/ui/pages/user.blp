@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template UserPage : Box {
+template $UserPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -22,21 +22,21 @@ template UserPage : Box {
       /* Translators: Used with entry field for User's name */
       title: _("_Name");
       use-underline: true;
-      entry-activated => focus_password();
-      changed => entry_changed();
+      entry-activated => $focus_password();
+      changed => $entry_changed();
     }
 
     Adw.ActionRow {
       activatable: true;
       /* Translators: Used with option to enable automatic login of user upon booting */
       title: _("Automatic Login");
-      activated => autologin_row_clicked();
+      activated => $autologin_row_clicked();
 
       Switch autologin_switch {
         valign: center;
         focusable: false;
         active: true;
-        state-set => autologin_switch_flipped();
+        state-set => $autologin_switch_flipped();
       }
     }
 
@@ -46,8 +46,8 @@ template UserPage : Box {
       use-underline: true;
       /* Translators: Used with entry field for setting a password for new user */
       title: _("_Password");
-      changed => entry_changed();
-      entry-activated => continue();
+      changed => $entry_changed();
+      entry-activated => $continue();
     }
   }
 
@@ -59,7 +59,7 @@ template UserPage : Box {
     receives-default: true;
     halign: center;
     use-underline: true;
-    clicked => continue();
+    clicked => $continue();
     styles ["suggested-action", "pill", "bottom-button"]
   }
 }

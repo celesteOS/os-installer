@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template LanguagePage : Stack
+template $LanguagePage : Stack
 {
   vhomogeneous: false;
   transition-type: crossfade;
@@ -22,14 +22,14 @@ template LanguagePage : Stack
             hexpand: true;
             /* In case there is no show all button */
             margin-bottom: 6;
-            row-activated => language_row_activated();
+            row-activated => $language_row_activated();
             styles ["boxed-list"]
           }
 
           Button show_all_button {
             focusable: true;
             halign: center;
-            clicked => show_all_button_clicked();
+            clicked => $show_all_button_clicked();
             styles ["pill", "bottom-button"]
 
             Image {
@@ -50,7 +50,7 @@ template LanguagePage : Stack
       child: ListBox all_list {
         hexpand: true;
         valign: start;
-        row-activated => language_row_activated();
+        row-activated => $language_row_activated();
         styles ["boxed-list", "bottom-spacing"]
       };
     };

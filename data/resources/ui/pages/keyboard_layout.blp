@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template KeyboardLayoutPage : Box {
+template $KeyboardLayoutPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -35,7 +35,7 @@ template KeyboardLayoutPage : Box {
               activatable: true;
               focusable: true;
               /*selectable: false; */
-              activated => show_layout_selection();
+              activated => $show_layout_selection();
 
               Image {
                 icon-name: "emblem-system-symbolic";
@@ -52,7 +52,7 @@ template KeyboardLayoutPage : Box {
               activatable: true;
               /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
               title: _("Test the Keyboard Layout Here");
-              entry-activated => continue();
+              entry-activated => $continue();
             }
           }
 
@@ -62,7 +62,7 @@ template KeyboardLayoutPage : Box {
             halign: center;
             receives-default: true;
             use-underline: true;
-            clicked => continue();
+            clicked => $continue();
             styles ["suggested-action", "pill", "bottom-button"]
           }
         };
@@ -85,7 +85,7 @@ template KeyboardLayoutPage : Box {
             /*selectable: false;*/
             /* Translators: Followed by a language name. */
             title: _("Keyboard Language");
-            activated => show_language_selection();
+            activated => $show_language_selection();
 
             Box {
               spacing: 12;
@@ -109,7 +109,7 @@ template KeyboardLayoutPage : Box {
           child: ListBox layout_list {
             valign: start;
             selection-mode: none;
-            row-activated => layout_row_activated();
+            row-activated => $layout_row_activated();
             styles ["boxed-list", "bottom-spacing"]
           };
         }
@@ -126,7 +126,7 @@ template KeyboardLayoutPage : Box {
         ListBox language_list {
           hexpand: true;
           selection-mode: none;
-          row-activated => language_row_activated();
+          row-activated => $language_row_activated();
           styles ["boxed-list", "bottom-spacing"]
         };
       };

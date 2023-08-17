@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template DonePage : Box {
+template $DonePage : Box {
   orientation: vertical;
   halign: center;
   spacing: 12;
@@ -19,7 +19,7 @@ template DonePage : Box {
     focusable: true;
     receives-default: true;
     use-underline: true;
-    clicked => restart_button_clicked();
+    clicked => $restart_button_clicked();
     styles ["suggested-action", "pill"]
   }
 

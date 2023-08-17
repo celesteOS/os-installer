@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template ConfirmPage : Box {
+template $ConfirmPage : Box {
   orientation: vertical;
   spacing: 18;
 
@@ -43,7 +43,7 @@ template ConfirmPage : Box {
     receives-default: true;
     halign: center;
     use-underline: true;
-    clicked => confirmed();
+    clicked => $confirmed();
     styles ["destructive-action", "pill", "bottom-button"]
   }
 }

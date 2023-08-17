@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template LocalePage : Box {
+template $LocalePage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -15,7 +15,7 @@ template LocalePage : Box {
 
   ListBox {
     selection-mode: none;
-    row-activated => overview_row_activated();
+    row-activated => $overview_row_activated();
     styles ["boxed-list"]
 
     Adw.ActionRow {
@@ -77,7 +77,7 @@ template LocalePage : Box {
     focusable: true;
     halign: center;
     use-underline: true;
-    clicked => continue();
+    clicked => $continue();
     styles ["suggested-action", "pill", "bottom-button"]
   }
 }

@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template InstallPage : Box {
+template $InstallPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -44,7 +44,7 @@ template InstallPage : Box {
     /* Translators: Hover information on toggle button that shows terminal output during installation. */
     tooltip-text: _("Show Terminal Output");
     halign: center;
-    clicked => terminal_button_toggled();
+    clicked => $terminal_button_toggled();
     styles ["pill", "bottom-button"]
 
     Image {

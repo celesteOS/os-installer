@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template DiskPage : Stack {
+template $DiskPage : Stack {
   hexpand: true;
   vhomogeneous: false;
   transition-type: crossfade;
@@ -31,7 +31,7 @@ template DiskPage : Stack {
             selection-mode: none;
             receives-default: true;
             valign: start;
-            row-activated => disk_selected();
+            row-activated => $disk_selected();
             styles ["boxed-list"]
           }
 
@@ -42,7 +42,7 @@ template DiskPage : Stack {
             halign: center;
             valign: end;
             use-underline: true;
-            clicked => clicked_disks_button();
+            clicked => $clicked_disks_button();
             styles ["pill", "bottom-button"]
           }
         };
@@ -71,7 +71,7 @@ template DiskPage : Stack {
 
           ListBox {
             selection-mode: none;
-            row-activated => use_whole_disk();
+            row-activated => $use_whole_disk();
             styles ["boxed-list"]
 
             Adw.ActionRow whole_disk_row {
@@ -116,7 +116,7 @@ template DiskPage : Stack {
                 ListBox partition_list {
                   receives-default: true;
                   valign: start;
-                  row-activated => use_partition();
+                  row-activated => $use_partition();
                   styles ["boxed-list", "bottom-spacing"]
                 }
               };

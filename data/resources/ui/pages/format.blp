@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 using Gio 2.0;
 
-template FormatPage : Box {
+template $FormatPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -40,7 +40,7 @@ template FormatPage : Box {
         propagate-natural-height: true;
         styles ["embedded"]
         child: ListBox list {
-          row-activated => formats_selected();
+          row-activated => $formats_selected();
           styles ["boxed-list", "bottom-spacing"]
         };
       };

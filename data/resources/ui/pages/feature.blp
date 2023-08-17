@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template FeaturePage : Box {
+template $FeaturePage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -18,7 +18,7 @@ template FeaturePage : Box {
     child: ListBox list {
       hexpand: true;
       selection-mode: none;
-      row-activated => row_activated();
+      row-activated => $row_activated();
       styles ["boxed-list"]
     };
   }
@@ -29,7 +29,7 @@ template FeaturePage : Box {
     focusable: true;
     halign: center;
     use-underline: true;
-    clicked => continue();
+    clicked => $continue();
     styles ["suggested-action", "pill", "bottom-button"]
   }
 }

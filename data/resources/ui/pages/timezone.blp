@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 using Gio 2.0;
 
-template TimezonePage : Box {
+template $TimezonePage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -40,7 +40,7 @@ template TimezonePage : Box {
         propagate-natural-height: true;
         styles ["embedded"]
         child: ListBox list {
-          row-activated => row_selected();
+          row-activated => $row_selected();
           styles ["boxed-list", "bottom-spacing"]
         };
       };

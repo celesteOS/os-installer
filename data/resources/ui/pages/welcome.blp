@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template WelcomePage : Box {
+template $WelcomePage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -42,7 +42,7 @@ template WelcomePage : Box {
       valign: start;
       receives-default: true;
       use-underline: true;
-      clicked => continue();
+      clicked => $continue();
       styles ["suggested-action", "pill", "bottom-button"]
     }
 
