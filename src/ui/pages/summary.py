@@ -23,12 +23,8 @@ class SummaryPage(Gtk.Box, Page):
     feature_row = Gtk.Template.Child()
 
     # row content
-    language_label = Gtk.Template.Child()
-    keyboard_label = Gtk.Template.Child()
     user_label = Gtk.Template.Child()
     user_autologin = Gtk.Template.Child()
-    format_label = Gtk.Template.Child()
-    timezone_label = Gtk.Template.Child()
 
     # software list
     software_stack = Gtk.Template.Child()
@@ -69,14 +65,14 @@ class SummaryPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        self.language_label.set_label(global_state.get_config('language'))
-        self.keyboard_label.set_label(
+        self.language_row.set_subtitle(global_state.get_config('language'))
+        self.keyboard_row.set_subtitle(
             global_state.get_config('keyboard_layout_ui'))
         self.user_label.set_label(global_state.get_config('user_name'))
         self.user_autologin.set_visible(
             global_state.get_config('user_autologin'))
-        self.format_label.set_label(global_state.get_config('formats_ui'))
-        self.timezone_label.set_label(global_state.get_config('timezone'))
+        self.format_row.set_subtitle(global_state.get_config('formats_ui'))
+        self.timezone_row.set_subtitle(global_state.get_config('timezone'))
 
         software = global_state.get_config('chosen_software')
         if len(software) > 0:
