@@ -23,7 +23,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     primary_layout_row = Gtk.Template.Child()
 
     # layouts
-    language_label = Gtk.Template.Child()
+    language_row = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
 
     # languages
@@ -59,7 +59,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
             return
 
         self.loaded_language = language_code
-        self.language_label.set_label(language)
+        self.language_row.set_subtitle(language)
 
         # fill list with all keyboard layouts for given language
         layouts = get_layouts_for(language_code, language)

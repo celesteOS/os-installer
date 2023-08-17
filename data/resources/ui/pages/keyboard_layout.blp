@@ -79,26 +79,17 @@ template $KeyboardLayoutPage : Box {
           selection-mode: none;
           styles ["boxed-list"]
 
-          Adw.ActionRow {
+          Adw.ActionRow language_row {
             activatable: true;
             focusable: true;
             /*selectable: false;*/
             /* Translators: Followed by a language name. */
             title: _("Keyboard Language");
             activated => $show_language_selection();
+            styles ["property"]
 
-            Box {
-              spacing: 12;
-
-              Label language_label {
-                hexpand: true;
-                wrap: true;
-                xalign: 1;
-              }
-
-              Image {
-                icon-name: "emblem-system-symbolic";
-              }
+            Image {
+              icon-name: "emblem-system-symbolic";
             }
           }
         }
