@@ -15,17 +15,11 @@ template $TimezonePage : Box {
     styles ["heading"]
   }
 
-  ListBox {
-    selection-mode: none;
-    styles ["boxed-list"]
-    ListBoxRow {
-      child: SearchEntry search_entry {
+  SearchEntry search_entry {
         hexpand: true;
         placeholder-text: _("Filter");
         receives-default: true;
-        styles ["nested-list"]
-      };
-    }
+    styles ["standalone-search"]
   }
 
   Stack stack {

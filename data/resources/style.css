@@ -22,6 +22,12 @@ headerbar, .nested-list {
   margin: 12px;
 }
 
+.standalone-search
+{
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
 scrolledwindow.embedded undershoot.top {
   border: 1px @borders;
   border-style: solid none none none;
