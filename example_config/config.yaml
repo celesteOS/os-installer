@@ -2,11 +2,11 @@
 ---
 # This is an example config file for OS-Installer.
 # Place your config under /etc/os-installer/config.yaml for it to be used.
-# If a value is not defined, it's default will be used.
+# If a value is not defined, its default will be used.
 
-# Some strings can have translations by appending an underscore followed by a
-# language code, e.g. "name_fr" or "description_pt_BR". These parameters have
-# the _LC suffix in their description. No suffix is needed for English.
+# Some strings can have translations. Use the config_to_pot.py script to
+# extract them into a .pot file, from which translations can be created.
+# Place the translation .po files in /etc/os-installer/po/.
 
 # Name of the distribution.
 # Default: 'Untitled'
@@ -48,7 +48,6 @@ suggested_languages:
 welcome_page:
     logo    : '/your/distribution/logo.png'
     text    : 'A welcoming text to inform about the installation.'
-    text_de : 'Ein Begrüßungstext, um die Installation zu erklären.'
     usage   : yes
 
 # Minimum disk size needed for the installation (in Gigabyte)
@@ -69,72 +68,49 @@ skip_locale: no
 # List of software that can additionally be selected for installation.
 # Each packages requires all fields to be set.
 #
-# package         string  Forwarded to the installation script as is.
-# suggested       bool    Optional. Whether installation defaults to yes.
-# name_LC         string  Name presented to user. Translatable.
-#                         If no (English) name is available, it will only
-#                         be shown for translated languages.
-# description_LC  string  Optional. Description presented to user. Translatable.
+# name            string  Name presented to user. Translatable.
+# description     string  Optional. Description presented to user. Translatable.
 # icon_path       string  Optional. Absolute path to icon to be displayed.
+# keyword         string  Forwarded to the installation script as is.
+# suggested       bool    Optional. Whether installation defaults to yes.
 #
 # Default: [], suggested: False, description: '', icon_path: fallback icon
 additional_software:
-    - package        : 'firefox'
-      suggested      : yes
-      name           : 'Firefox'
-      name_de        : 'Firefox'
+    - name           : 'Firefox'
       description    : 'Popular Web Browser from Mozilla'
-      description_de : 'Beliebter Internet-Browser von Mozilla'
       icon_path      : '/etc/os-installer/icons/firefox.png'
-    - package        : 'nautilus'
+      keyword        : 'firefox'
       suggested      : yes
-      name           : 'Files'
-      name_de        : 'Dateien'
+    - name           : 'Files'
       description    : 'Access and organize files'
-      description_de : 'Auf Dateien zugreifen und diese organisieren'
       icon_path      : '/etc/os-installer/icons/nautilus.svg'
+      keyword        : 'nautilus'
+      suggested      : yes
     - name           : 'Optional Option'
       description    : 'Select your favorite option'
       icon_path      : '/etc/os-installer/icons/options-symbolic.svg'
       options        :
-        - option     : 'package_1'
-          name       : 'Option 1' 
-          name_es    : 'Opción 1'
-        - option     : 'package_2'
-          name       : 'Option 2' 
-          name_es    : 'Opción 2'
-        - option     : 'package_3'
-          name       : 'Option 3' 
-          name_es    : 'Opción 3'
-    - package        : 'japanese-input-program'
-      suggested      : yes
-      name_jp        : '入力プログラム'
-      icon_path      : '/etc/os-installer/icons/jp-symbol.svg'
+        - name       : 'Option 1'
+          option     : 'package_1'
+        - name       : 'Option 2'
+          option     : 'package_2'
+        - name       : 'Option 3'
+          option     : 'package_3'
 
 # List of features that can additionally be selected. Very similar
 # to `additional_software`, but meant for more generic features. Can
 # be used instead of or in combination with `additional_software`.
 #
-# feature         string  Forwarded to the installation script as is.
-# suggested       bool    Optional. Whether installation defaults to yes.
-# name_LC         string  Name presented to user. Translatable.
-#                         If no (English) name is available, it will only
-#                         be shown for translated languages.
-# description_LC  string  Optional. Description presented to user. Translatable.
-# icon_path       string  Optional. Absolute path to icon to be displayed.
-#
-# Default: [], suggested: False, description: '', icon_path: no icon
+# See `additional_software` for syntax description.
 additional_features:
-    - feature        : 'snapshots'
-      suggested      : yes
-      name           : 'Snapshots'
-      name_et        : 'Vahepildid'
+    - name           : 'Dummy Feature'
+      description    : 'Does not do anything'
+      keyword        : 'dummy'
+    - name           : 'Snapshots'
       description    : 'Snapshots allow restoring a previous state of your system'
-      description_et : 'Vahepildid võimaldavad taastada teie süsteemi eelmise seisundi'
       icon_path      : '/etc/os-installer/icons/snapshot.svg'
-    - feature        : 'dummy'
-      name           : 'Dummy'
-      description    : 'This does not do anything'
+      keyword        : 'snapshots'
+      suggested      : yes
 
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are
