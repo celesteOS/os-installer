@@ -66,13 +66,19 @@ skip_user: no
 skip_locale: no
 
 # List of software that can additionally be selected for installation.
-# Each packages requires all fields to be set.
+# Each package requires a 'name' and one of either
+#   * 'keyword' with optional 'suggested'
+#   * 'options'
+#
 #
 # name            string  Name presented to user. Translatable.
 # description     string  Optional. Description presented to user. Translatable.
 # icon_path       string  Optional. Absolute path to icon to be displayed.
 # keyword         string  Forwarded to the installation script as is.
 # suggested       bool    Optional. Whether installation defaults to yes.
+# options         list    A list of options, with each option having:
+#     name        string  Option name presented to user. Translatable.
+#     option      string  Like 'keyword' for non-options, forwarded as-is when chosen.
 #
 # Default: [], suggested: False, description: '', icon_path: fallback icon
 additional_software:
