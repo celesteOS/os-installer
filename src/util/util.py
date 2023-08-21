@@ -3,12 +3,6 @@
 from gi.repository import GObject
 
 
-class Option:
-    def __init__(self, display, info):
-        self.display = display
-        self.info = info
-
-
 class SummaryEntry(GObject.GObject):
     __gtype_name__ = __qualname__
 

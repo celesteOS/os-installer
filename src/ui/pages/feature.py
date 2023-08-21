@@ -2,9 +2,9 @@
 
 from gi.repository import Gio, Gtk
 
+from .choices_provider import get_feature_suggestions
 from .global_state import global_state
 from .page import Page
-from .feature_provider import get_feature_suggestions
 from .widgets import reset_model, SelectionRow
 
 
@@ -41,6 +41,6 @@ class FeaturePage(Gtk.Box, Page):
 
     def unload(self):
         choices = [row.info for row in self.list if row.is_activated()]
-        features = ' '.join([choice.feature for choice in choices])
+        features = ' '.join([choice.keyword for choice in choices])
         global_state.set_config('chosen_feature_names', choices)
         global_state.set_config('chosen_features', features)

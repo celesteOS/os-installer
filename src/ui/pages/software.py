@@ -2,9 +2,9 @@
 
 from gi.repository import Gio, Gtk
 
+from .choices_provider import get_software_suggestions
 from .global_state import global_state
 from .page import Page
-from .software_provider import get_software_suggestions
 from .util import SummaryEntry
 from .widgets import MultiSelectionRow, reset_model, SelectionRow
 
@@ -29,7 +29,7 @@ class SoftwarePage(Gtk.Box, Page):
                                      'application-x-executable-symbolic', pkg.options)
         else:
             return SelectionRow(pkg.name, pkg.description, pkg.icon_path,
-                                'application-x-executable-symbolic', pkg.suggested, pkg.package)
+                                'application-x-executable-symbolic', pkg.suggested, pkg.keyword)
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
@@ -57,7 +57,7 @@ class SoftwarePage(Gtk.Box, Page):
         for row in self.software_list:
             if type(row) == MultiSelectionRow:
                 option = row.get_chosen_option()
-                packages.append(option.info)
+                packages.append(option.keyword)
                 summary.append(SummaryEntry(option.display, row.icon_path))
             elif type(row) == SelectionRow and row.is_activated():
                 packages.append(row.info)
