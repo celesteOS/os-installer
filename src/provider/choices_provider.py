@@ -58,10 +58,19 @@ def handle_choice(choice):
             print(f'No keyword found for {name}')
             return None
 
+def handle_legacy(choice):
+    if 'package' in choice:
+        print("Syntax changed! Use 'keyword' instead of 'package'")
+        choice['keyword'] = choice['package']
+    if 'feature' in choice:
+        print("Syntax changed! Use 'keyword' instead of 'feature'")
+        choice['keyword'] = choice['feature']
+
 
 def handle_choices(config_entries):
     choices : list = []
     for choice in config_entries:
+        handle_legacy(choice)
         if (not 'name' in choice or not
                 ('options' in choice or 'keyword' in choice)):
             print(f'Choice not correctly configured: {choice}')
