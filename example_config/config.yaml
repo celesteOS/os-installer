@@ -117,6 +117,14 @@ additional_features:
       icon_path      : '/etc/os-installer/icons/snapshot.svg'
       keyword        : 'snapshots'
       suggested      : yes
+    - name           : 'Display Server Protocol'
+      options        :
+        - name       : 'Wayland'
+          option     : 'wayland-protocols'
+        - name       : 'X11'
+          option     : 'xorgproto'
+        - name       : 'Mir (lol)'
+          option     : 'mir'
 
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are
