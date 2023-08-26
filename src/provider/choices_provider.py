@@ -84,13 +84,14 @@ def handle_choices(config_entries):
 
 ### public methods ###
 
+@staticmethod
 def get_software_suggestions():
     if software := global_state.get_config('additional_software'):
         return handle_choices(software)
     else:
         return []
 
-
+@staticmethod
 def get_feature_suggestions():
     if features := global_state.get_config('additional_features'):
         return handle_choices(features)

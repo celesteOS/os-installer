@@ -8,6 +8,7 @@ from gi.repository import Gtk, Adw
 
 from .global_state import global_state
 
+from .choices import SoftwarePage
 from .confirm import ConfirmPage
 from .disk import DiskPage
 from .done import DonePage
@@ -21,7 +22,6 @@ from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
 from .locale import LocalePage
 from .restart import RestartPage
-from .software import SoftwarePage
 from .summary import SummaryPage
 from .timezone import TimezonePage
 from .user import UserPage

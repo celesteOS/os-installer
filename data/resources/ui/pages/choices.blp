@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Gio 2.0;
 
-template $SoftwarePage : Box {
+template $ChoicesPage : Box {
   orientation: vertical;
   spacing: 12;
 
@@ -15,10 +16,10 @@ template $SoftwarePage : Box {
   ScrolledWindow {
     propagate-natural-height: true;
     styles ["embedded", "separate-bottom"]
-    child: ListBox software_list {
+    child: ListBox choices_list {
       hexpand: true;
       selection-mode: none;
-      row-activated => $software_row_activated();
+      row-activated => $row_activated();
       styles ["boxed-list"]
     };
   }
@@ -33,3 +34,5 @@ template $SoftwarePage : Box {
     styles ["suggested-action", "pill", "bottom-button"]
   }
 }
+
+Gio.ListStore model {}
