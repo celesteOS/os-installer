@@ -39,7 +39,7 @@ class MultiSelectionRow(Adw.ComboRow):
     __gtype_name__ = 'MultiSelectionRow'
 
     icon = Gtk.Template.Child()
-    list = Gtk.StringList()
+    list = Gtk.Template.Child()
 
     def __init__(self, title, description, icon_path, fallback_icon,
                  options, **kwargs):
