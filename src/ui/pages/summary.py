@@ -46,7 +46,7 @@ class SummaryPage(Gtk.Box, Page):
             self.software_model, lambda summary: SummaryRow(summary.name, summary.icon_path,
                                                             'application-x-executable-symbolic'))
         self.feature_list.bind_model(
-            self.feature_model, lambda pkg: SummaryRow(pkg.name, pkg.icon_path,
+            self.feature_model, lambda summary: SummaryRow(summary.name, summary.icon_path,
                                                        'puzzle-piece-symbolic'))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
         self.software_row.set_visible(global_state.get_config('additional_software'))
@@ -85,7 +85,7 @@ class SummaryPage(Gtk.Box, Page):
         else:
             self.software_stack.set_visible_child_name('none')
 
-        features = global_state.get_config('chosen_feature_names')
+        features = global_state.get_config('chosen_features')
         if len(features) > 0:
             self.feature_stack.set_visible_child_name('used')
             reset_model(self.feature_model, features)

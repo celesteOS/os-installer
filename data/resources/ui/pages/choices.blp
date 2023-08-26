@@ -5,10 +5,20 @@ template $ChoicesPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Label {
+  Label software_header {
     /* Translators: Page title */
     label: _("Additional Software");
     justify: center;
+    visible: false;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  Label feature_header {
+    /* Translators: Page title */
+    label: _("Additional Features");
+    justify: center;
+    visible: false;
     wrap: true;
     styles ["heading"]
   }

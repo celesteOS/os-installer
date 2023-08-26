@@ -8,13 +8,12 @@ from gi.repository import Gtk, Adw
 
 from .global_state import global_state
 
-from .choices import SoftwarePage
+from .choices import FeaturePage, SoftwarePage
 from .confirm import ConfirmPage
 from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
 from .failed import FailedPage
-from .feature import FeaturePage
 from .format import FormatPage
 from .install import InstallPage
 from .internet import InternetPage

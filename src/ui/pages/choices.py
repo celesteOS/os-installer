@@ -3,7 +3,7 @@
 from enum import Enum
 from gi.repository import Gio, Gtk
 
-from .choices_provider import get_software_suggestions
+from .choices_provider import get_feature_suggestions, get_software_suggestions
 from .global_state import global_state
 from .page import Page
 from .util import SummaryEntry
@@ -20,6 +20,8 @@ class ChoicesPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
 
     choices_list = Gtk.Template.Child()
+    software_header = Gtk.Template.Child()
+    feature_header = Gtk.Template.Child()
     model = Gio.ListStore()
 
     def __init__(self, choice_type, **kwargs):
@@ -27,6 +29,10 @@ class ChoicesPage(Gtk.Box, Page):
 
         self.type = choice_type
         match self.type:
+            case ChoiceType.feature:
+                self.image = 'puzzle-piece-symbolic'
+                self.feature_header.set_visible(True)
+                self.list_provider = get_feature_suggestions
             case ChoiceType.software:
                 self.image = 'system-software-install-symbolic'
                 self.software_header.set_visible(True)
@@ -78,9 +84,13 @@ class ChoicesPage(Gtk.Box, Page):
                 summary.append(SummaryEntry(row.get_title(), row.icon_path))
         keywords = ' '.join(keywords)
         match self.type:
+            case ChoiceType.feature:
+                global_state.set_config('chosen_feature_names', keywords)
+                global_state.set_config('chosen_features', summary)
             case ChoiceType.software:
                 global_state.set_config('chosen_software_packages', keywords)
                 global_state.set_config('chosen_software', summary)
 
 
+FeaturePage = lambda **args: ChoicesPage(ChoiceType.feature, **args)
 SoftwarePage = lambda **args: ChoicesPage(ChoiceType.software, **args)

@@ -37,7 +37,6 @@ os_installer_sources = [
   'ui/pages/done.py',
   'ui/pages/encrypt.py',
   'ui/pages/failed.py',
-  'ui/pages/feature.py',
   'ui/pages/format.py',
   'ui/pages/install.py',
   'ui/pages/internet.py',
