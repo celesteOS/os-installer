@@ -14,7 +14,7 @@ from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
 from .failed import FailedPage
-from .format import FormatPage
+from .filter import FormatPage, TimezonePage
 from .install import InstallPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
@@ -22,7 +22,6 @@ from .language import LanguagePage
 from .locale import LocalePage
 from .restart import RestartPage
 from .summary import SummaryPage
-from .timezone import TimezonePage
 from .user import UserPage
 from .welcome import WelcomePage
 from .widgets import PageWrapper
