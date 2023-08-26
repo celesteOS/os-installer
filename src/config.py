@@ -30,7 +30,8 @@ def _install_variables_set(config):
 
 def _configure_variables_set(config):
     configure_variables = ['user_name', 'user_autologin', 'user_password',
-                           'formats_locale', 'timezone', 'chosen_software_packages']
+                           'formats_locale', 'timezone', 'chosen_software_packages', 
+                           'chosen_feature_names']
     return all([var in config for var in configure_variables])
 
 
@@ -79,8 +80,8 @@ def _load_optional_defaults(config):
     config['timezone'] = 'UTC'
     config['chosen_software_packages'] = ''
     config['chosen_software'] = []
-    config['chosen_features'] = ''
-    config['chosen_feature_names'] = []
+    config['chosen_feature_names'] = ''
+    config['chosen_features'] = []
 
 
 def _set_testing_defaults(config):
@@ -160,6 +161,6 @@ def create_envs(config, with_install_envs, with_configure_envs):
             f'OSI_FORMATS={config["formats_locale"]}',
             f'OSI_TIMEZONE={config["timezone"]}',
             f'OSI_ADDITIONAL_SOFTWARE={config["chosen_software_packages"]}',
-            f'OSI_ADDITIONAL_FEATURES={config["chosen_features"]}',
+            f'OSI_ADDITIONAL_FEATURES={config["chosen_feature_names"]}',
         ]
     return envs + [None]
