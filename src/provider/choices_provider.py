@@ -85,16 +85,14 @@ def handle_choices(config_entries):
 ### public methods ###
 
 def get_software_suggestions():
-    if not (software := global_state.get_config('additional_software')):
+    if software := global_state.get_config('additional_software'):
+        return handle_choices(software)
+    else:
         return []
-    language_code = global_state.get_config('language_code')
-
-    return handle_choices(software)
 
 
 def get_feature_suggestions():
-    if not (features := global_state.get_config('additional_features')):
+    if features := global_state.get_config('additional_features'):
+        return handle_choices(features)
+    else:
         return []
-    language_code = global_state.get_config('language_code')
-
-    return handle_choices(features)
