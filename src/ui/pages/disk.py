@@ -103,6 +103,10 @@ class DiskPage(Gtk.Stack, Page):
             self._setup_partition_list(row.info)
             self.can_navigate_backward = True
 
+    @Gtk.Template.Callback('reload')
+    def _reload(self, button):
+        global_state.reload_page()
+
     @Gtk.Template.Callback('use_partition')
     def _use_partition(self, list_box, row):
         info = row.info

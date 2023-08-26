@@ -76,6 +76,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.advance = self.advance
         global_state.load_translated_pages = self.load_translated_pages
         global_state.navigate_to_page = self.navigate_to_page
+        global_state.reload_page = self.reload_page
         global_state.reload_title_image = self._reload_title_image
         global_state.installation_failed = self.show_failed_page
 

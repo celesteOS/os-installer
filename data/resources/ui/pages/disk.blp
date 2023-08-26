@@ -207,6 +207,17 @@ template $DiskPage : Stack {
     child: Adw.StatusPage {
       title: _("No Disks avaliable");
       description: _("Connect a disk and reload this page.");
+      valign: start;
+      child: Button {
+        /* Translators: On button. */
+        label: _("_Reload");
+        focusable: true;
+        receives-default: true;
+        halign: center;
+        use-underline: true;
+        clicked => $reload();
+        styles ["suggested-action", "pill"]
+      };
     };
   }
 }
