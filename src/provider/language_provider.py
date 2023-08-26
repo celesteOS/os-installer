@@ -109,16 +109,6 @@ class LanguageProvider:
                             existing_translations.add(language)
         return existing_translations
 
-    def _get_language_info(self, language_code):
-        locale = self._get_default_locale(language_code)
-    
-        name = self._get_language_name_localized(locale, locale, language_code)
-        if not name:
-            print(f'Distribution developer hint: {language_code} '
-                  'is not available as a locale in current system.')
-        else:
-            return LanguageInfo(name, language_code, locale)
-
     def _get_language_name_localized(self, lang_locale, localization, lang_code):
         if name := GnomeDesktop.get_language_from_locale(lang_locale, localization):
             return name
@@ -129,10 +119,19 @@ class LanguageProvider:
         translations = self._get_existing_translations(localedir)
 
         all_languages = []
+        unavailable_languages = []
         for language_code in translations:
-            language_info = self._get_language_info(language_code)
-            if language_info:
+            locale = self._get_default_locale(language_code)
+
+            if name := self._get_language_name_localized(locale, locale, language_code):
+                language_info =  LanguageInfo(name, language_code, locale)
                 all_languages.append(language_info)
+            else:
+                unavailable_languages.append(language_code)
+
+        if unavailable_languages:
+            print('The following locales are not available on the current system: ',
+                  unavailable_languages)
         all_languages.sort(key=lambda k: k.name)
 
         suggested_languages = []
