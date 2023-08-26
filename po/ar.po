@@ -1,19 +1,22 @@
 # GNOME OS Installer Translated to Arabic by the Nabatean Project. https://gitlab.gnome.org/p3732/os-installer
 # https://codeberg.org/contractover/Nabatean-Translations
 # Done by ContractOver.
-
 msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-7-3 03:09+0100\n"
-"PO-Revision-Date: 2023-08-25 1:45+0100\n"
-"Last-Translator: Contract <o7saab93@tutanota.com>\n"
-"Language-Team: Arabic <https://codeberg.org/contractover/Nabatean-Translations>\n"
+"PO-Revision-Date: 2023-08-26 09:07+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Arabic <https://codeberg.org/contractover/Nabatean-"
+"Translations>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
@@ -202,8 +205,9 @@ msgstr "إظهار إخراج المحطة الطرفية"
 
 #. Translators: Page title
 #: data/resources/ui/pages/internet.blp
+#, fuzzy
 msgid "Internet Connection Check"
-msgstr ""
+msgstr "Internet Connection Check"
 
 #: data/resources/ui/pages/internet.blp
 msgid "No connection."
