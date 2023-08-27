@@ -29,7 +29,6 @@ os_installer_sources = [
   'provider/keyboard_layout_provider.py',
   'provider/language_provider.py',
   'provider/timezone_provider.py',
-  'ui/confirm_quit_popup.py',
   'ui/page.py',
   'ui/pages/choices.py',
   'ui/pages/confirm.py',

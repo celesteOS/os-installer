@@ -1,60 +1,14 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $ConfirmQuitPopup : Adw.Window {
-  destroy-with-parent: true;
-  content:
-  WindowHandle {
-    Box {
-      orientation: vertical;
-      spacing: 18;
-      styles ["marginalized"]
-
-      Image {
-        pixel-size: 128;
-        icon-name: "dialog-warning-symbolic";
-      }
-
-      Adw.Clamp {
-        maximum-size: 280;
-
-        Label {
-          halign: center;
-          valign: center;
-
-          /* Translators: Shown if user wants to close window with running installation */
-          label: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
-          justify: center;
-          wrap: true;
-          max-width-chars: 45;
-          styles ["heading"]
-        }
-      }
-
-      Box {
-        orientation: vertical;
-        halign: center;
-        spacing: 6;
-
-        Button continue_button {
-          /* Translators: Underscore can not be the same as for 'Stop Installation'. */
-          label: _("_Continue Installation");
-          focusable: true;
-          receives-default: true;
-          use-underline: true;
-          clicked => $continue_button_clicked();
-          styles ["suggested-action", "pill"]
-        }
-
-        Button stop_button {
-          /* Translators: Underscore can not be the same as for 'Continue Installation'. */
-          label: _("_Stop Installation");
-          focusable: true;
-          use-underline: true;
-          clicked => $stop_button_clicked();
-          styles ["destructive-action", "pill"]
-        }
-      }
-    }
-  };
+Adw.MessageDialog popup {
+  heading: _("Installation Running");
+  /* Translators: Shown if user wants to close window with running installation */
+  body: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
+  responses [
+    /* Translators: Underscore can not be the same as for 'Stop Installation'. */
+    close: _("_Continue Installation"),
+    /* Translators: Underscore can not be the same as for 'Continue Installation'. */
+    stop: _("_Stop Installation"),
+  ]
 }

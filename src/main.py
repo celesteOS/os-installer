@@ -79,7 +79,7 @@ class Application(Adw.Application):
         if window := self.props.active_window:
             window.present()
         else:
-            self.window = OsInstallerWindow(self.quit, application=self)
+            self.window = OsInstallerWindow(application=self)
             self._setup_icons()
             self.window.present()
 
@@ -108,7 +108,7 @@ class Application(Adw.Application):
     def _on_quit(self, action, param=None):
         if global_state.installation_running:
             # show confirm dialog
-            self.window.show_confirm_quit_dialog()
+            self.window.show_confirm_quit_dialog(self.quit)
             # return True to avoid further processing of event
             return True
         else:

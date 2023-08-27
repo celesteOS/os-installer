@@ -26,8 +26,6 @@ from .user import UserPage
 from .welcome import WelcomePage
 from .widgets import PageWrapper
 
-from .confirm_quit_popup import ConfirmQuitPopup
-
 from .language_provider import language_provider
 from .system_calls import set_system_language
 
@@ -66,10 +64,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     navigation = Navigation()
     pages = []
 
-    def __init__(self, quit_callback, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-        self.quit_callback = quit_callback
 
         # set advancing functions in global state
         global_state.advance = self.advance
@@ -289,9 +285,13 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if popup:
                 self._show_dialog(popup)
 
-    def show_confirm_quit_dialog(self):
-        popup = ConfirmQuitPopup(self.quit_callback)
-        self._show_dialog(popup)
+    def show_confirm_quit_dialog(self, quit_callback):
+        with self.navigation_lock:
+            builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_popup.ui')
+            popup = builder.get_object('popup')
+            popup.connect('response',
+                          lambda _, response: quit_callback() if response == "stop" else None)
+            self._show_dialog(popup)
 
     def show_failed_page(self):
         with self.navigation_lock:
