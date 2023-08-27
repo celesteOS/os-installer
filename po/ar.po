@@ -323,9 +323,9 @@ msgstr "مرحباً"
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
 msgid ""
-"This application will guide you through the installation of Nabatean onto your "
+"This application will guide you through the installation of {} onto your "
 "system."
-msgstr "سيرشدك هذا التطبيق خلال عملية تثبيت الأنباط على"
+msgstr "سيرشدك هذا التطبيق خلال عملية تثبيت {} على"
 "جهازك."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
