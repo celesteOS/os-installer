@@ -22,7 +22,7 @@ class ChoicesPage(Gtk.Box, Page):
     choices_list = Gtk.Template.Child()
     software_header = Gtk.Template.Child()
     feature_header = Gtk.Template.Child()
-    model = Gio.ListStore()
+    model = Gtk.Template.Child()
 
     def __init__(self, choice_type, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
