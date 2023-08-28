@@ -75,7 +75,7 @@ class LanguageProvider:
     def _assert_languages_loaded(self):
         with self.languages_loading_lock:
             if not self.languages_loaded:
-                self.suggested_languages, self.all_languages = self.languages.result()
+                self.all_languages, self.suggested, self.other = self.languages.result()
                 self.languages = None
                 self.languages_loaded = True
 
@@ -134,14 +134,17 @@ class LanguageProvider:
                   unavailable_languages)
         all_languages.sort(key=lambda k: k.name)
 
-        suggested_languages = []
+        suggested = []
+        other = []
         suggested_codes = global_state.get_config('suggested_languages')
         if suggested_codes and len(suggested_codes) > 0:
             for language_info in all_languages:
                 if language_info.language_code in suggested_codes:
-                    suggested_languages.append(language_info)
+                    suggested.append(language_info)
+                else:
+                    other.append(language_info)
 
-        return (suggested_languages, all_languages)
+        return (all_languages, suggested, other)
 
     ### public methods ###
 
@@ -169,7 +172,11 @@ class LanguageProvider:
 
     def get_suggested_languages(self):
         self._assert_languages_loaded()
-        return self.suggested_languages
+        return self.suggested
+
+    def get_other_languages(self):
+        self._assert_languages_loaded()
+        return self.other
 
     def has_additional_languages(self):
         self._assert_languages_loaded()
