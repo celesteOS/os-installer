@@ -82,6 +82,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     def _layout_row_activated(self, list_box, row):
         # use selected keyboard layout
         keyboard_info = row.info
+        global_state.set_config('keyboard_layout', keyboard_info)
         self._load_overview(keyboard_info)
         self.can_navigate_backward = False
 

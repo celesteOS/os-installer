@@ -14,6 +14,7 @@
 
 # sanity check that all variables were set
 if [ -z ${OSI_LOCALE+x} ] || \
+   [ -z ${OSI_KEYBOARD_LAYOUT+x} ] || \
    [ -z ${OSI_DEVICE_PATH+x} ] || \
    [ -z ${OSI_DEVICE_IS_PARTITION+x} ] || \
    [ -z ${OSI_DEVICE_EFI_PARTITION+x} ] || \
@@ -35,6 +36,7 @@ echo 'Configuration started.'
 echo ''
 echo 'Variables set to:'
 echo 'OSI_LOCALE               ' $OSI_LOCALE
+echo 'OSI_KEYBOARD_LAYOUT      ' $OSI_KEYBOARD_LAYOUT
 echo 'OSI_DEVICE_PATH          ' $OSI_DEVICE_PATH
 echo 'OSI_DEVICE_IS_PARTITION  ' $OSI_DEVICE_IS_PARTITION
 echo 'OSI_DEVICE_EFI_PARTITION ' $OSI_DEVICE_EFI_PARTITION

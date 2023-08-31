@@ -47,6 +47,8 @@ def _load_default_config():
         'fixed_language': False,
         # welcome
         'welcome_page': {'usage': True, 'logo': None, 'text': None},
+        # keyboard
+        'keyboard_layout' : 'us',
         # disk
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
@@ -147,6 +149,7 @@ def create_envs(config, with_install_envs, with_configure_envs):
     if with_install_envs:
         envs += [
             f'OSI_LOCALE={config["locale"]}',
+            f'OSI_KEYBOARD_LAYOUT={config["keyboard_layout"]}',
             f'OSI_DEVICE_PATH={config["disk_device_path"]}',
             f'OSI_DEVICE_IS_PARTITION={_bool_to_int(config["disk_is_partition"])}',
             f'OSI_DEVICE_EFI_PARTITION={config["disk_efi_partition"]}',
