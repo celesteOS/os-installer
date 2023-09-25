@@ -20,26 +20,33 @@ language_codes = [
 
 def handle_results(func, language_code, storage, duplicates):
     results = func(languageId=language_code)
-    if len(results) > 0:
-        storage[language_code] = results[0]
-        for result in results[1:]:
-            duplicates.add((language_code, result))
-        return True
-    return False
+    if len(results) == 0:
+        return False
+
+    storage[language_code] = results[0]
+    for result in results[1:]:
+        duplicates.add((language_code, result))
+    return True
 
 
 def language_2_x(func):
     duplicates_set = set()
     results = {}
     for language_code in language_codes:
-        if not handle_results(func, language_code, results, duplicates_set):
-            long_language_code = language_code + '_' + language_code.upper()
-            if not handle_results(func, long_language_code, results, duplicates_set):
-                print(f"Can't convert country code '{language_code}' nor"
-                      f"'{long_language_code}' to locale")
-                if not GnomeDesktop.language_has_translations(language_code) \
-                   and not GnomeDesktop.language_has_translations(language_code):
-                    print('No translations exist.')
+        if handle_results(func, language_code, results, duplicates_set):
+            continue
+
+        long_language_code = language_code + '_' + language_code.upper()
+        if handle_results(func, long_language_code, results, duplicates_set):
+            continue
+
+        print(f"Can't convert country code '{language_code}' nor "
+              f"'{long_language_code}' to locale")
+
+        if (not GnomeDesktop.language_has_translations(language_code) and
+                not GnomeDesktop.language_has_translations(language_code)):
+            print('No translations exist.')
+
     return results, duplicates_set
 
 
