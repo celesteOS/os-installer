@@ -81,6 +81,7 @@ class Application(Adw.Application):
         else:
             self.window = OsInstallerWindow(application=self)
             self._setup_icons()
+            self.window.connect("close-request", self._on_quit)
             self.window.present()
 
             # load initial page
