@@ -11,8 +11,7 @@ class EncryptPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image = 'dialog-password-symbolic'
 
-    switch = Gtk.Template.Child()
-
+    switch_row = Gtk.Template.Child()
     pin_row = Gtk.Template.Child()
     info_revealer = Gtk.Template.Child()
 
@@ -21,30 +20,26 @@ class EncryptPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-    def _set_continue_button(self, needs_pin, pin):
-        can_continue = not needs_pin or len(pin) > 0
-        self.continue_button.set_sensitive(can_continue)
+    def _set_continue_button(self):
+        needs_pin = self.switch_row.get_active()
+        has_pin = len(self.pin_row.get_text()) > 0
+        self.continue_button.set_sensitive(not needs_pin or has_pin)
 
     ### callbacks ###
 
     @Gtk.Template.Callback('encryption_row_clicked')
-    def _encryption_row_clicked(self, row):
-        self.switch.activate()
-
-    @Gtk.Template.Callback('switch_flipped')
-    def _switch_flipped(self, switch, state):
+    def _encryption_row_clicked(self, row, state):
+        state = self.switch_row.get_active()
         self.pin_row.set_sensitive(state)
         self.info_revealer.set_reveal_child(state)
+        self._set_continue_button()
 
         if state:
             self.pin_row.grab_focus()
-        self._set_continue_button(
-            needs_pin=state, pin=self.pin_row.get_text())
 
     @Gtk.Template.Callback('pin_changed')
     def _pin_changed(self, editable):
-        self._set_continue_button(
-            needs_pin=self.switch.get_state(), pin=editable.get_text())
+        self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
@@ -54,7 +49,7 @@ class EncryptPage(Gtk.Box, Page):
     ### public methods ###
 
     def unload(self):
-        use_encryption = self.switch.get_state()
+        use_encryption = self.switch_row.get_active()
         pin = self.pin_row.get_text()
         global_state.set_config('use_encryption', use_encryption)
         global_state.set_config('encryption_pin', pin)

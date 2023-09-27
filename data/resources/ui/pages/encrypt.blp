@@ -17,18 +17,11 @@ template $EncryptPage : Box {
     selection-mode: none;
     styles ["boxed-list"]
 
-    Adw.ActionRow {
+    Adw.SwitchRow switch_row {
       activatable: true;
       /* Translators: Used with option to enable disk encryption */
       title: _("Encrypt Files");
-      activated => $encryption_row_clicked();
-
-      Switch switch {
-        focusable: false;
-        halign: center;
-        valign: center;
-        state-set => $switch_flipped();
-      }
+      notify::active => $encryption_row_clicked();
     }
 
     Adw.PasswordEntryRow pin_row {
