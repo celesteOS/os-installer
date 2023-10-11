@@ -79,15 +79,6 @@ class LanguageProvider:
                 self.languages = None
                 self.languages_loaded = True
 
-    def _get_all_languages(self, locale):
-        translated = []
-        for info in self.all_languages:
-            info.name = self._get_language_name_localized(
-                info.locale, locale, info.language_code)
-            if info.name:
-                translated.append(info)
-        return translated
-
     def _get_default_locale(self, language):
         if language in language_to_default_locale:
             return language_to_default_locale[language]
@@ -152,11 +143,6 @@ class LanguageProvider:
         self._assert_languages_loaded()
         return self.all_languages
 
-    def get_all_languages_translated(self):
-        self._assert_languages_loaded()
-        locale = global_state.get_config('locale')
-        return self._get_all_languages(locale)
-
     def get_fixed_language(self, fixed_language):
         self._assert_languages_loaded()
 
@@ -177,10 +163,5 @@ class LanguageProvider:
     def get_other_languages(self):
         self._assert_languages_loaded()
         return self.other
-
-    def has_additional_languages(self):
-        self._assert_languages_loaded()
-        return len(self.suggested_languages) < len(self.all_languages)
-
 
 language_provider = LanguageProvider()
