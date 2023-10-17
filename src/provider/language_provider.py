@@ -122,7 +122,7 @@ class LanguageProvider:
 
         if unavailable_languages:
             print('The following locales are not available on the current system: ',
-                  unavailable_languages)
+                  sorted(unavailable_languages))
         all_languages.sort(key=lambda k: k.name)
 
         suggested = []
