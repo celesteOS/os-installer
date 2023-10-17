@@ -3,7 +3,7 @@
 from enum import Enum
 from gi.repository import Gio, Gtk
 
-from .choices_provider import get_feature_suggestions, get_software_suggestions
+from .choices_provider import choices_provider
 from .global_state import global_state
 from .page import Page
 from .util import SummaryEntry
@@ -32,11 +32,11 @@ class ChoicesPage(Gtk.Box, Page):
             case ChoiceType.feature:
                 self.image = 'puzzle-piece-symbolic'
                 self.feature_header.set_visible(True)
-                self.list_provider = get_feature_suggestions
+                self.list_provider = choices_provider.get_feature_suggestions
             case ChoiceType.software:
                 self.image = 'system-software-install-symbolic'
                 self.software_header.set_visible(True)
-                self.list_provider = get_software_suggestions
+                self.list_provider = choices_provider.get_software_suggestions
             case _:
                 print("Unknown choice type!")
                 exit(0)

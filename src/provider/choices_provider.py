@@ -4,6 +4,8 @@ from gi.repository import GObject
 from typing import NamedTuple
 
 from .global_state import global_state
+from .preloadable import Preloadable
+
 
 class Option(NamedTuple):
     display : str
@@ -69,7 +71,10 @@ def handle_legacy(choice):
 
 
 def handle_choices(config_entries):
-    choices : list = []
+    if not config_entries:
+        return []
+
+    choices: list = []
     for choice in config_entries:
         handle_legacy(choice)
         if (not 'name' in choice or not
@@ -82,18 +87,25 @@ def handle_choices(config_entries):
     return choices
 
 
-### public methods ###
+class ChoicesProvider(Preloadable):
+    def __init__(self):
+        Preloadable.__init__(self, self._get_choices)
 
-@staticmethod
-def get_software_suggestions():
-    if software := global_state.get_config('additional_software'):
-        return handle_choices(software)
-    else:
-        return []
+    def _get_choices(self):
+        self.features = handle_choices(
+            global_state.get_config('additional_features'))
+        self.software = handle_choices(
+            global_state.get_config('additional_software'))
 
-@staticmethod
-def get_feature_suggestions():
-    if features := global_state.get_config('additional_features'):
-        return handle_choices(features)
-    else:
-        return []
+    ### public methods ###
+
+    def get_software_suggestions(self):
+        self.assert_preloaded()
+        return self.software
+
+    def get_feature_suggestions(self):
+        self.assert_preloaded()
+        return self.features
+
+
+choices_provider = ChoicesProvider()
