@@ -16,6 +16,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 # local, import order is important
 from .global_state import global_state
+from .preload_manager import preload_manager
 from .window import OsInstallerWindow
 
 APP_ID = 'com.github.p3732.OS-Installer'
@@ -42,6 +43,7 @@ class Application(Adw.Application):
 
         global_state.set_config('version', version)
         global_state.send_notification = self._send_notification
+        preload_manager.start()
 
     def _setup_actions(self):
         actions = [

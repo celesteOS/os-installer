@@ -28,6 +28,7 @@ os_installer_sources = [
   'provider/internet_provider.py',
   'provider/keyboard_layout_provider.py',
   'provider/language_provider.py',
+  'provider/preload_manager.py',
   'provider/timezone_provider.py',
   'ui/page.py',
   'ui/pages/choices.py',
@@ -49,6 +50,7 @@ os_installer_sources = [
   'ui/widgets.py',
   'ui/window.py',
   'util/installation_scripting.py',
+  'util/preloadable.py',
   'util/system_calls.py',
   'util/util.py',
 ]

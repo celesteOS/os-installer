@@ -6,6 +6,7 @@ import os
 from gi.repository import GObject, GnomeDesktop
 
 from .global_state import global_state
+from .preloadable import Preloadable
 
 
 # generated via language_codes_to_x_generator.py
@@ -61,23 +62,9 @@ class LanguageInfo(GObject.GObject):
         self.locale = locale
 
 
-class LanguageProvider:
-    languages_loaded = False
-    languages_loading_lock = Lock()
-
-    def __init__(self, **kwargs):
-        # async load all languages from existing translations
-        localedir = global_state.get_config('localedir')
-        self.languages = global_state.thread_pool.submit(
-            self._get_languages, localedir=localedir)
-
-
-    def _assert_languages_loaded(self):
-        with self.languages_loading_lock:
-            if not self.languages_loaded:
-                self.all_languages, self.suggested, self.other = self.languages.result()
-                self.languages = None
-                self.languages_loaded = True
+class LanguageProvider(Preloadable) :
+    def __init__(self):
+        Preloadable.__init__(self, self._get_languages)
 
     def _get_default_locale(self, language):
         if language in language_to_default_locale:
@@ -106,45 +93,44 @@ class LanguageProvider:
         elif lang := GnomeDesktop.get_language_from_code(lang_code.split('_')[0], localization):
             return f'{lang} ({lang_code})'
 
-    def _get_languages(self, localedir):
+    def _get_languages(self):
+        localedir = global_state.get_config('localedir')
         translations = self._get_existing_translations(localedir)
 
-        all_languages = []
+        self.all_languages = []
         unavailable_languages = []
         for language_code in translations:
             locale = self._get_default_locale(language_code)
 
             if name := self._get_language_name_localized(locale, locale, language_code):
                 language_info =  LanguageInfo(name, language_code, locale)
-                all_languages.append(language_info)
+                self.all_languages.append(language_info)
             else:
                 unavailable_languages.append(language_code)
 
         if unavailable_languages:
             print('The following locales are not available on the current system: ',
                   sorted(unavailable_languages))
-        all_languages.sort(key=lambda k: k.name)
+        self.all_languages.sort(key=lambda k: k.name)
 
-        suggested = []
-        other = []
+        self.suggested = []
+        self.other = []
         suggested_codes = global_state.get_config('suggested_languages')
         if suggested_codes and len(suggested_codes) > 0:
-            for language_info in all_languages:
+            for language_info in self.all_languages:
                 if language_info.language_code in suggested_codes:
-                    suggested.append(language_info)
+                    self.suggested.append(language_info)
                 else:
-                    other.append(language_info)
-
-        return (all_languages, suggested, other)
+                    self.other.append(language_info)
 
     ### public methods ###
 
     def get_all_languages(self):
-        self._assert_languages_loaded()
+        self.assert_preloaded()
         return self.all_languages
 
     def get_fixed_language(self, fixed_language):
-        self._assert_languages_loaded()
+        self.assert_preloaded()
 
         fixed = [info for info in self.all_languages
                  if info.language_code == fixed_language]
@@ -157,11 +143,11 @@ class LanguageProvider:
             return None
 
     def get_suggested_languages(self):
-        self._assert_languages_loaded()
+        self.assert_preloaded()
         return self.suggested
 
     def get_other_languages(self):
-        self._assert_languages_loaded()
+        self.assert_preloaded()
         return self.other
 
 language_provider = LanguageProvider()
