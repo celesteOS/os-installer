@@ -9,7 +9,7 @@ template $DeviceRow : Adw.ActionRow {
   title: _("Unnamed Partition");
 
   [prefix]
-  Label size {
+  Label size_label {
     width-chars: 5;
     max-width-chars: 7;
     xalign: 1;
@@ -32,10 +32,10 @@ template $DeviceRow : Adw.ActionRow {
 
     StackPage {
       name: "too_small";
-      child: 
-      Label {
-        /* Translators: Shown for partitions that are not big enough to be installed on */
-        label: _("Not enough space for installation");
+      child: Label too_small_label {
+        /* Translators: Shown for partitions that are not big enough to be installed on.
+        * "{}" is replaced by a disk size value, e.g. "21.3 GB". */
+        label: _("Not enough space for installation ({} required)");
         justify: center;
         wrap: true;
         styles ["dim-label"]

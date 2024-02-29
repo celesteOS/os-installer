@@ -46,8 +46,11 @@ class DiskPage(Gtk.Stack, Page):
         self.partition_list.bind_model(self.partition_list_model, self._create_device_row)
 
     def _create_device_row(self, info):
-        too_small = info.size < self.minimum_disk_size
-        return DeviceRow(info, too_small)
+        if info.size >= self.minimum_disk_size:
+            return DeviceRow(info)
+        else:
+            required_size_str = disk_provider.disk_size_to_str(self.minimum_disk_size)
+            return DeviceRow(info, required_size_str)
 
     def _setup_disk_list(self):
         if global_state.demo_mode:

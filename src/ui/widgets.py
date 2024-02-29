@@ -16,19 +16,22 @@ class DeviceRow(Adw.ActionRow):
     __gtype_name__ = 'DeviceRow'
 
     stack = Gtk.Template.Child()
-    size = Gtk.Template.Child()
+    size_label = Gtk.Template.Child()
+    too_small_label = Gtk.Template.Child()
 
-    def __init__(self, info, too_small=False, **kwargs):
+    def __init__(self, info, required_size_str=None, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
-        self.size.set_label(info.size_text)
+        self.size_label.set_label(info.size_text)
         if info.name:
             self.set_title(info.name)
 
         self.set_subtitle(info.device_path)
 
-        if too_small:
+        if required_size_str:
+            smol = self.too_small_label.get_label()
+            self.too_small_label.set_label(smol.format(required_size_str))
             self.set_activatable(False)
             self.set_sensitive(False)
             self.stack.set_visible_child_name('too_small')
