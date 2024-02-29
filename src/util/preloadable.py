@@ -23,7 +23,7 @@ class Preloadable:
                 return
 
             if not self.preload_started:
-                print('Preloading for preloadable was never started')
+                print(f'Preloading for {self.__class__.__name__} was never started')
                 self.preload()
 
             # await result
