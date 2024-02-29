@@ -49,7 +49,7 @@ class DiskProvider:
         partition_info = DeviceInfo(
             name=block.props.id_label,
             size=block.props.size,
-            size_text=self._size_to_str(block.props.size),
+            size_text=self.disk_size_to_str(block.props.size),
             device_path=block.props.device)
 
         # check if EFI System Partiton
@@ -86,16 +86,18 @@ class DiskProvider:
         disk = Disk(
             name=drive.props.vendor + ' ' + drive.props.model,
             size=block.props.size,
-            size_text=self._size_to_str(block.props.size),
+            size_text=self.disk_size_to_str(block.props.size),
             device_path=block.props.device,
             partitions=self._get_partitions(partition_table))
 
         return disk
 
-    def _size_to_str(self, size):
-        return self.udisks_client.get_size_for_display(size, False, False)
-
     ### public methods ###
+
+    def disk_size_to_str(self, size):
+        if not self.udisks_client:
+            self._init_client()
+        return self.udisks_client.get_size_for_display(size, False, False)
 
     def get_disks(self):
         if not self.udisks_client:
