@@ -11,7 +11,7 @@ from .page import Page
 from .system_calls import is_booted_with_uefi, open_disks
 from .widgets import reset_model, DeviceRow
 
-GIGABYTE_FACTOR = 1024 * 1024 * 1024
+GIGABYTE_FACTOR = 1000 * 1000 * 1000
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
