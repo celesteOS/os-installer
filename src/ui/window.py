@@ -48,7 +48,7 @@ class Navigation:
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'OsInstallerWindow'
+    __gtype_name__ = __qualname__
 
     image_stack = Gtk.Template.Child()
     main_stack = Gtk.Template.Child()

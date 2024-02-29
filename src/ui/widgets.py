@@ -13,7 +13,7 @@ def reset_model(model, new_values):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
 class DeviceRow(Adw.ActionRow):
-    __gtype_name__ = 'DeviceRow'
+    __gtype_name__ = __qualname__
 
     stack = Gtk.Template.Child()
     size_label = Gtk.Template.Child()
@@ -39,7 +39,7 @@ class DeviceRow(Adw.ActionRow):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')
 class MultiSelectionRow(Adw.ComboRow):
-    __gtype_name__ = 'MultiSelectionRow'
+    __gtype_name__ = __qualname__
 
     icon = Gtk.Template.Child()
     list = Gtk.Template.Child()
@@ -67,7 +67,7 @@ class MultiSelectionRow(Adw.ComboRow):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
 class PageWrapper(Gtk.Box):
-    __gtype_name__ = 'PageWrapper'
+    __gtype_name__ = __qualname__
 
     content = Gtk.Template.Child()
 
@@ -81,7 +81,7 @@ class PageWrapper(Gtk.Box):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
 class ProgressRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'ProgressRow'
+    __gtype_name__ = __qualname__
 
     title = Gtk.Template.Child()
 
@@ -98,7 +98,7 @@ class ProgressRow(Gtk.ListBoxRow):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
 class SelectionRow(Adw.ActionRow):
-    __gtype_name__ = 'SelectionRow'
+    __gtype_name__ = __qualname__
 
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
@@ -127,7 +127,7 @@ class SelectionRow(Adw.ActionRow):
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/summary_row.ui')
 class SummaryRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'SummaryRow'
+    __gtype_name__ = __qualname__
 
     icon = Gtk.Template.Child()
     name = Gtk.Template.Child()
