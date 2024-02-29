@@ -24,7 +24,9 @@ class Preloadable:
 
             if not self.preload_started:
                 print(f'Preloading for {self.__class__.__name__} was never started')
+                self.preloading_lock.release()
                 self.preload()
+                self.preloading_lock.acquire()
 
             # await result
             self.future.result()
