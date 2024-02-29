@@ -2,6 +2,8 @@
 
 from gi.repository import GLib, GObject
 
+from .preloadable import Preloadable
+
 class DeviceInfo(GObject.GObject):
     __gtype_name__ = __qualname__
 
@@ -30,11 +32,14 @@ class Disk(DeviceInfo):
         if partitions:
             self.partitions, self.efi_partition = partitions
 
-class DiskProvider:
+class DiskProvider(Preloadable):
     udisks_client = None
 
     EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
     EFI_PARTITON_FLAGS = None
+
+    def __init__(self):
+        Preloadable.__init__(self, self._init_client)
 
     def _init_client(self):
         # avoids initializing udisks client in demo mode
@@ -95,13 +100,11 @@ class DiskProvider:
     ### public methods ###
 
     def disk_size_to_str(self, size):
-        if not self.udisks_client:
-            self._init_client()
+        self.assert_preloaded()
         return self.udisks_client.get_size_for_display(size, False, False)
 
     def get_disks(self):
-        if not self.udisks_client:
-            self._init_client()
+        self.assert_preloaded()
         
         disks = []
 
