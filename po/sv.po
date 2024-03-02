@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: 2024-02-05 04:02+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/sv/>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,11 @@ msgstr "Oprativsysteminstallatör"
 
 msgid "Install an Operating System"
 msgstr "Installera ett oprativsystem"
+
+#, fuzzy
+#| msgid "Installation Failed"
+msgid "Installation Running"
+msgstr "Installationen misslyckades"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -43,6 +48,20 @@ msgid "_Stop Installation"
 msgstr "_Avbryt installation"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Software"
+msgstr "Ytterligare programvara"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Features"
+msgstr "Ytterligare funktioner"
+
+#. Translators: On button.
+msgid "_Continue"
+msgstr "_Fortsätt"
+
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
@@ -50,7 +69,6 @@ msgstr "Bekräftelse"
 msgid "This will delete all data on"
 msgstr "Detta kommer att radera all data på"
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_Bekräfta"
@@ -100,6 +118,10 @@ msgstr "Inga diskar tillgängliga"
 msgid "Connect a disk and reload this page."
 msgstr "Anslut en disk och ladda om denna sidan."
 
+#. Translators: On button.
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 msgid "Installation Complete"
 msgstr "Installationen är klar"
@@ -131,10 +153,6 @@ msgstr ""
 "Memorera denna PIN-kod väl. Utan den kommer du inte att kunna komma åt dina "
 "filer."
 
-#. Translators: On button.
-msgid "_Continue"
-msgstr "_Fortsätt"
-
 #. Translators: Page title
 msgid "Installation Failed"
 msgstr "Installationen misslyckades"
@@ -144,20 +162,21 @@ msgid "Search for Help on the Internet"
 msgstr "Sök efter hjälp på Internet"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Features"
-msgstr "Ytterligare funktioner"
-
-#. Translators: Page title
 msgid "Select Region"
 msgstr "Välj region"
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Välj plats"
 
 msgid "Filter"
 msgstr "Filter"
 
+#. Translators: Empty result placeholder title
 msgid "No Results"
 msgstr "Inga resultat"
 
+#. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
 msgstr "Prova med en annan sökning"
 
@@ -217,11 +236,6 @@ msgid "Restarting"
 msgstr "Startar om"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "Ytterligare programvara"
-
-#. Translators: Page title
 msgid "Summary"
 msgstr "Sammanfattning"
 
@@ -239,8 +253,9 @@ msgid "User Account"
 msgstr "Användarkonto"
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-msgid "Automatic Login"
+#, fuzzy
+#| msgid "Automatic Login"
+msgid "(Automatic Login)"
 msgstr "Automatisk inloggning"
 
 #. Translators: Shown when list of selected software is empty.
@@ -248,13 +263,13 @@ msgstr "Automatisk inloggning"
 msgid "None"
 msgstr "Inga"
 
-#. Translators: Page title
-msgid "Select Location"
-msgstr "Välj plats"
-
 #. Translators: Used with entry field for User's name
 msgid "_Name"
 msgstr "_Namn"
+
+#. Translators: Used with option to enable automatic login of user upon booting
+msgid "Automatic Login"
+msgstr "Automatisk inloggning"
 
 #. Translators: Used with entry field for setting a password for new user
 msgid "_Password"
@@ -275,8 +290,11 @@ msgstr ""
 msgid "Unnamed Partition"
 msgstr "Namnlös partition"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-msgid "Not enough space for installation"
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#, fuzzy
+#| msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr "Inte tillräckligt med utrymme för installation"
 
 #~ msgid "PIN"

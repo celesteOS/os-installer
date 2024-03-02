@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: 2023-03-22 00:49+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
@@ -25,6 +25,11 @@ msgstr "Встановлення системи"
 
 msgid "Install an Operating System"
 msgstr "Встановіть операційну систему"
+
+#, fuzzy
+#| msgid "Installation Failed"
+msgid "Installation Running"
+msgstr "Не вдалося встановити"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -43,6 +48,20 @@ msgid "_Stop Installation"
 msgstr "_Зупинити встановлення"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Software"
+msgstr "Додаткове програмне забезпечення"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Features"
+msgstr "Додаткові функції"
+
+#. Translators: On button.
+msgid "_Continue"
+msgstr "_Продовжити"
+
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Підтвердження"
 
@@ -50,7 +69,6 @@ msgstr "Підтвердження"
 msgid "This will delete all data on"
 msgstr "Це призведе до видалення всіх даних на"
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_Підтвердити"
@@ -100,6 +118,10 @@ msgstr "Немає доступних дисків"
 msgid "Connect a disk and reload this page."
 msgstr "Підключіть диск і перезавантажте цю сторінку."
 
+#. Translators: On button.
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 msgid "Installation Complete"
 msgstr "Встановлення завершено"
@@ -131,10 +153,6 @@ msgstr ""
 "«Добре запам’ятайте цей PIN-код. Без нього ви не зможете отримати доступ до "
 "своїх файлів»."
 
-#. Translators: On button.
-msgid "_Continue"
-msgstr "_Продовжити"
-
 #. Translators: Page title
 msgid "Installation Failed"
 msgstr "Не вдалося встановити"
@@ -144,20 +162,21 @@ msgid "Search for Help on the Internet"
 msgstr "Шукайте допомогу в Інтернеті"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Features"
-msgstr "Додаткові функції"
-
-#. Translators: Page title
 msgid "Select Region"
 msgstr "Виберіть регіон"
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Виберіть місцезнаходження"
 
 msgid "Filter"
 msgstr "Фільтр"
 
+#. Translators: Empty result placeholder title
 msgid "No Results"
 msgstr "Немає результатів"
 
+#. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
 msgstr "Спробуйте інший пошук"
 
@@ -218,11 +237,6 @@ msgid "Restarting"
 msgstr "Перезапуск"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "Додаткове програмне забезпечення"
-
-#. Translators: Page title
 msgid "Summary"
 msgstr "Резюме"
 
@@ -240,8 +254,9 @@ msgid "User Account"
 msgstr "Обліковий запис користувача"
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-msgid "Automatic Login"
+#, fuzzy
+#| msgid "Automatic Login"
+msgid "(Automatic Login)"
 msgstr "Автоматичний вхід"
 
 #. Translators: Shown when list of selected software is empty.
@@ -249,13 +264,13 @@ msgstr "Автоматичний вхід"
 msgid "None"
 msgstr "Немає"
 
-#. Translators: Page title
-msgid "Select Location"
-msgstr "Виберіть місцезнаходження"
-
 #. Translators: Used with entry field for User's name
 msgid "_Name"
 msgstr "_Ім'я"
+
+#. Translators: Used with option to enable automatic login of user upon booting
+msgid "Automatic Login"
+msgstr "Автоматичний вхід"
 
 #. Translators: Used with entry field for setting a password for new user
 msgid "_Password"
@@ -275,8 +290,11 @@ msgstr "Цей застосунок допоможе вам встановити
 msgid "Unnamed Partition"
 msgstr "Безіменний розділ"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-msgid "Not enough space for installation"
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#, fuzzy
+#| msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr "Недостатньо місця для установки"
 
 #~ msgid "PIN"

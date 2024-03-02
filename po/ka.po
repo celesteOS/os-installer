@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: 2023-04-12 04:48+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/ka/>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,6 +24,11 @@ msgstr "OS-Installer"
 
 msgid "Install an Operating System"
 msgstr "ოპერაციული სისტემის დაყენება"
+
+#, fuzzy
+#| msgid "Installation Failed"
+msgid "Installation Running"
+msgstr "დაყენების შეცდომა"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -42,6 +47,20 @@ msgid "_Stop Installation"
 msgstr "დაყენების _შეწყვეტა"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Software"
+msgstr "დამატებითი პროგრამები"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Features"
+msgstr "დამატებითი ფუნქციები"
+
+#. Translators: On button.
+msgid "_Continue"
+msgstr "_გაგრძელება"
+
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "დადასტურება"
 
@@ -49,7 +68,6 @@ msgstr "დადასტურება"
 msgid "This will delete all data on"
 msgstr "ეს ყველაფერს წაშლის"
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_დადასტურება"
@@ -99,6 +117,10 @@ msgstr "დისკების გარეშე"
 msgid "Connect a disk and reload this page."
 msgstr "მიუერთეთ დისკი და განაახლეთ ეს გვერდი."
 
+#. Translators: On button.
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 msgid "Installation Complete"
 msgstr "დაყენება დასრულდა"
@@ -128,10 +150,6 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr "კარგად დაიმახსოვრეთ PIN კოდი. მის გარეშე ფაილებამდე ვერ მიხვალთ."
 
-#. Translators: On button.
-msgid "_Continue"
-msgstr "_გაგრძელება"
-
 #. Translators: Page title
 msgid "Installation Failed"
 msgstr "დაყენების შეცდომა"
@@ -141,20 +159,21 @@ msgid "Search for Help on the Internet"
 msgstr "დახმარების ინტერნეტში ძებნა"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Features"
-msgstr "დამატებითი ფუნქციები"
-
-#. Translators: Page title
 msgid "Select Region"
 msgstr "აირჩიეთ რეგიონი"
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "აირჩიეთ მდებარეობა"
 
 msgid "Filter"
 msgstr "ფილტრი"
 
+#. Translators: Empty result placeholder title
 msgid "No Results"
 msgstr "შედეგების გარეშე"
 
+#. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
 msgstr "სცადეთ, სხვანაირად მოძებნოთ"
 
@@ -213,11 +232,6 @@ msgid "Restarting"
 msgstr "გადატვირთვა"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "დამატებითი პროგრამები"
-
-#. Translators: Page title
 msgid "Summary"
 msgstr "შეჯამება"
 
@@ -235,8 +249,9 @@ msgid "User Account"
 msgstr "მომხმარებლის ანგარიში"
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-msgid "Automatic Login"
+#, fuzzy
+#| msgid "Automatic Login"
+msgid "(Automatic Login)"
 msgstr "ავტომატურად შესვლა"
 
 #. Translators: Shown when list of selected software is empty.
@@ -244,13 +259,13 @@ msgstr "ავტომატურად შესვლა"
 msgid "None"
 msgstr "არცერთი"
 
-#. Translators: Page title
-msgid "Select Location"
-msgstr "აირჩიეთ მდებარეობა"
-
 #. Translators: Used with entry field for User's name
 msgid "_Name"
 msgstr "_სახელი"
+
+#. Translators: Used with option to enable automatic login of user upon booting
+msgid "Automatic Login"
+msgstr "ავტომატურად შესვლა"
 
 #. Translators: Used with entry field for setting a password for new user
 msgid "_Password"
@@ -270,8 +285,11 @@ msgstr "აპლიკაცია {}-ის თქვენს სისტე
 msgid "Unnamed Partition"
 msgstr "უსახელო დანაყოფი"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-msgid "Not enough space for installation"
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#, fuzzy
+#| msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr "დასაყენებლად საჭირო ადგილის გარეშე"
 
 #~ msgid "PIN"

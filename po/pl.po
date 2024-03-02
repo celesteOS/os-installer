@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: 2022-11-13 14:47+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/pl/>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,6 +20,11 @@ msgstr "Instalator systemu operacyjnego"
 
 msgid "Install an Operating System"
 msgstr "Zainstaluj system operacyjny"
+
+#, fuzzy
+#| msgid "Installation Failed"
+msgid "Installation Running"
+msgstr "Instalacja nie przebiegła pomyślnie"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -38,6 +43,20 @@ msgid "_Stop Installation"
 msgstr "_Zatrzymaj Instalację"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Software"
+msgstr "Dodatkowe oprogramowanie"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Features"
+msgstr "Dodatkowe funkcje"
+
+#. Translators: On button.
+msgid "_Continue"
+msgstr "_Kontynuuj"
+
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
@@ -45,7 +64,6 @@ msgstr "Potwierdzenie"
 msgid "This will delete all data on"
 msgstr "To usunie wszystkie pliki"
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_Potwierdź"
@@ -95,6 +113,10 @@ msgstr "Nie znaleziono żadnych dysków"
 msgid "Connect a disk and reload this page."
 msgstr "Podłącz dysk i załaduj ponownie ten etap."
 
+#. Translators: On button.
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 msgid "Installation Complete"
 msgstr "Instalacja przebiegła pomyślnie"
@@ -126,10 +148,6 @@ msgstr ""
 "Zapamiętaj dobrze ten PIN. Bez niego nie będziesz mógł uzyskać dostępu do "
 "swoich plików."
 
-#. Translators: On button.
-msgid "_Continue"
-msgstr "_Kontynuuj"
-
 #. Translators: Page title
 msgid "Installation Failed"
 msgstr "Instalacja nie przebiegła pomyślnie"
@@ -139,20 +157,21 @@ msgid "Search for Help on the Internet"
 msgstr "Szukaj pomocy w Internecie"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Features"
-msgstr "Dodatkowe funkcje"
-
-#. Translators: Page title
 msgid "Select Region"
 msgstr "Wybierz region"
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Wybierz lokalizację"
 
 msgid "Filter"
 msgstr "Filtruj"
 
+#. Translators: Empty result placeholder title
 msgid "No Results"
 msgstr "Brak wyników"
 
+#. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
 msgstr "Wypróbuj inne wyszukiwanie"
 
@@ -211,11 +230,6 @@ msgid "Restarting"
 msgstr "Uruchamianie ponownie"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "Dodatkowe oprogramowanie"
-
-#. Translators: Page title
 msgid "Summary"
 msgstr "Podsumowanie"
 
@@ -233,8 +247,9 @@ msgid "User Account"
 msgstr "Konto użytkownika"
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-msgid "Automatic Login"
+#, fuzzy
+#| msgid "Automatic Login"
+msgid "(Automatic Login)"
 msgstr "Automatyczne logowanie"
 
 #. Translators: Shown when list of selected software is empty.
@@ -242,13 +257,13 @@ msgstr "Automatyczne logowanie"
 msgid "None"
 msgstr "Brak"
 
-#. Translators: Page title
-msgid "Select Location"
-msgstr "Wybierz lokalizację"
-
 #. Translators: Used with entry field for User's name
 msgid "_Name"
 msgstr "_Nazwa"
+
+#. Translators: Used with option to enable automatic login of user upon booting
+msgid "Automatic Login"
+msgstr "Automatyczne logowanie"
 
 #. Translators: Used with entry field for setting a password for new user
 msgid "_Password"
@@ -269,8 +284,11 @@ msgstr ""
 msgid "Unnamed Partition"
 msgstr "Nienazwana partycja"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-msgid "Not enough space for installation"
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#, fuzzy
+#| msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr "Za mało miejsca na instalację"
 
 #~ msgid "PIN"

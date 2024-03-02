@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: 2022-10-28 17:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/os-"
@@ -24,6 +24,11 @@ msgstr "OS-Installer"
 
 msgid "Install an Operating System"
 msgstr "Paigaldage opsüsteemi"
+
+#, fuzzy
+#| msgid "Installation Failed"
+msgid "Installation Running"
+msgstr "Paigaldamine ebaõnnestus"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -42,6 +47,22 @@ msgid "_Stop Installation"
 msgstr "_Peata paigaldamine"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+msgid "Additional Software"
+msgstr "Lisa tarkvara"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+#, fuzzy
+#| msgid "Additional Software"
+msgid "Additional Features"
+msgstr "Lisa tarkvara"
+
+#. Translators: On button.
+msgid "_Continue"
+msgstr "_Jätka"
+
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Kinnitus"
 
@@ -49,7 +70,6 @@ msgstr "Kinnitus"
 msgid "This will delete all data on"
 msgstr "See kustutab kõik andmed"
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_Kinnita"
@@ -100,6 +120,10 @@ msgstr "Ühtegi ketast ei ole saadaval"
 msgid "Connect a disk and reload this page."
 msgstr "Ühenda ketas ja värskenda see lehekülg."
 
+#. Translators: On button.
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 msgid "Installation Complete"
 msgstr "Paigaldamine lõpetatud"
@@ -130,10 +154,6 @@ msgid ""
 msgstr ""
 "Jäta see PIN-kood hästi meelde. Ilma selleta ei pääse oma failidele ligi."
 
-#. Translators: On button.
-msgid "_Continue"
-msgstr "_Jätka"
-
 #. Translators: Page title
 msgid "Installation Failed"
 msgstr "Paigaldamine ebaõnnestus"
@@ -143,24 +163,23 @@ msgid "Search for Help on the Internet"
 msgstr "Otsi abi internetist"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-#, fuzzy
-#| msgid "Additional Software"
-msgid "Additional Features"
-msgstr "Lisa tarkvara"
-
-#. Translators: Page title
 msgid "Select Region"
 msgstr "Vali piirkond"
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Vali asukoht"
 
 #, fuzzy
 msgid "Filter"
 msgstr "Filter"
 
+#. Translators: Empty result placeholder title
 #, fuzzy
 msgid "No Results"
 msgstr "No Results"
 
+#. Translators: Empty result placeholder, meant as a suggestion
 #, fuzzy
 msgid "Try a different search"
 msgstr "Try a different search"
@@ -220,11 +239,6 @@ msgid "Restarting"
 msgstr "Taaskäivitamine"
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "Lisa tarkvara"
-
-#. Translators: Page title
 #, fuzzy
 msgid "Summary"
 msgstr "Summary"
@@ -247,8 +261,9 @@ msgid "User Account"
 msgstr "Kasutajakonto"
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-msgid "Automatic Login"
+#, fuzzy
+#| msgid "Automatic Login"
+msgid "(Automatic Login)"
 msgstr "Automaatne sisselogimine"
 
 #. Translators: Shown when list of selected software is empty.
@@ -257,15 +272,15 @@ msgstr "Automaatne sisselogimine"
 msgid "None"
 msgstr "None"
 
-#. Translators: Page title
-msgid "Select Location"
-msgstr "Vali asukoht"
-
 #. Translators: Used with entry field for User's name
 #, fuzzy
 #| msgid "Name"
 msgid "_Name"
 msgstr "Nimi"
+
+#. Translators: Used with option to enable automatic login of user upon booting
+msgid "Automatic Login"
+msgstr "Automaatne sisselogimine"
 
 #. Translators: Used with entry field for setting a password for new user
 #, fuzzy
@@ -287,8 +302,11 @@ msgstr "See rakendus juhendab teid läbi {} paigaldamise."
 msgid "Unnamed Partition"
 msgstr "Nimetu partitsioon"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-msgid "Not enough space for installation"
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#, fuzzy
+#| msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr "Paigaldamiseks ei ole piisavalt ruumi"
 
 #~ msgid "PIN"
