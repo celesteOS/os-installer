@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2023-02-18 11:35+0000\n"
-"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/cs/>\n"
+"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -118,8 +118,9 @@ msgid "Connect a disk and reload this page."
 msgstr "Připojte disk a znovu načtěte tuto stránku."
 
 #. Translators: On button.
+#, fuzzy
 msgid "_Reload"
-msgstr ""
+msgstr "_Reload"
 
 #. Translators: Page title
 msgid "Installation Complete"

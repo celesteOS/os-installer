@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2022-10-29 10:05+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -119,8 +119,9 @@ msgid "Connect a disk and reload this page."
 msgstr "Schließen Sie ein Laufwerk an und laden Sie diese Seite neu."
 
 #. Translators: On button.
+#, fuzzy
 msgid "_Reload"
-msgstr ""
+msgstr "_Reload"
 
 #. Translators: Page title
 msgid "Installation Complete"
