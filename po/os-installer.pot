@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 03:09+0100\n"
+"POT-Creation-Date: 2024-03-02 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,10 @@ msgstr ""
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
+msgstr ""
+
+#: data/resources/ui/confirm_quit_popup.blp
+msgid "Installation Running"
 msgstr ""
 
 #. Translators: Shown if user wants to close window with running installation
@@ -44,6 +48,26 @@ msgid "_Stop Installation"
 msgstr ""
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
+msgid "Additional Software"
+msgstr ""
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
+msgid "Additional Features"
+msgstr ""
+
+#. Translators: On button.
+#: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/keyboard_layout.blp
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/welcome.blp
+msgid "_Continue"
+msgstr ""
+
+#. Translators: Page title
 #: data/resources/ui/pages/confirm.blp
 msgid "Confirmation"
 msgstr ""
@@ -53,7 +77,6 @@ msgstr ""
 msgid "This will delete all data on"
 msgstr ""
 
-#. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
@@ -113,6 +136,11 @@ msgstr ""
 msgid "Connect a disk and reload this page."
 msgstr ""
 
+#. Translators: On button.
+#: data/resources/ui/pages/disk.blp
+msgid "_Reload"
+msgstr ""
+
 #. Translators: Page title
 #: data/resources/ui/pages/done.blp
 msgid "Installation Complete"
@@ -149,14 +177,6 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 
-#. Translators: On button.
-#: data/resources/ui/pages/encrypt.blp data/resources/ui/pages/feature.blp
-#: data/resources/ui/pages/keyboard_layout.blp
-#: data/resources/ui/pages/locale.blp data/resources/ui/pages/software.blp
-#: data/resources/ui/pages/user.blp data/resources/ui/pages/welcome.blp
-msgid "_Continue"
-msgstr ""
-
 #. Translators: Page title
 #: data/resources/ui/pages/failed.blp
 msgid "Installation Failed"
@@ -168,25 +188,26 @@ msgid "Search for Help on the Internet"
 msgstr ""
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/feature.blp data/resources/ui/pages/summary.blp
-msgid "Additional Features"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/format.blp
+#: data/resources/ui/pages/filter.blp
 msgid "Select Region"
 msgstr ""
 
-#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+#. Translators: Page title
+#: data/resources/ui/pages/filter.blp
+msgid "Select Location"
+msgstr ""
+
+#: data/resources/ui/pages/filter.blp
 msgid "Filter"
 msgstr ""
 
-#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+#. Translators: Empty result placeholder title
+#: data/resources/ui/pages/filter.blp
 msgid "No Results"
 msgstr ""
 
-#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+#. Translators: Empty result placeholder, meant as a suggestion
+#: data/resources/ui/pages/filter.blp
 msgid "Try a different search"
 msgstr ""
 
@@ -258,12 +279,6 @@ msgid "Restarting"
 msgstr ""
 
 #. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/software.blp data/resources/ui/pages/summary.blp
-msgid "Additional Software"
-msgstr ""
-
-#. Translators: Page title
 #: data/resources/ui/pages/summary.blp
 msgid "Summary"
 msgstr ""
@@ -285,9 +300,8 @@ msgid "User Account"
 msgstr ""
 
 #. Translators: Gets shown when autologin is enabled.
-#. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/summary.blp data/resources/ui/pages/user.blp
-msgid "Automatic Login"
+#: data/resources/ui/pages/summary.blp
+msgid "(Automatic Login)"
 msgstr ""
 
 #. Translators: Shown when list of selected software is empty.
@@ -296,14 +310,14 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/timezone.blp
-msgid "Select Location"
-msgstr ""
-
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
 msgid "_Name"
+msgstr ""
+
+#. Translators: Used with option to enable automatic login of user upon booting
+#: data/resources/ui/pages/user.blp
+msgid "Automatic Login"
 msgstr ""
 
 #. Translators: Used with entry field for setting a password for new user
@@ -328,7 +342,8 @@ msgstr ""
 msgid "Unnamed Partition"
 msgstr ""
 
-#. Translators: Shown for partitions that are not big enough to be installed on
+#. Translators: Shown for partitions that are not big enough to be installed on.
+#. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 #: data/resources/ui/widgets/device_row.blp
-msgid "Not enough space for installation"
+msgid "Not enough space for installation ({} required)"
 msgstr ""
