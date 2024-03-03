@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-03-03 23:01+0000\n"
+"Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/pl/>\n"
 "Language: pl\n"
@@ -21,10 +21,8 @@ msgstr "Instalator systemu operacyjnego"
 msgid "Install an Operating System"
 msgstr "Zainstaluj system operacyjny"
 
-#, fuzzy
-#| msgid "Installation Failed"
 msgid "Installation Running"
-msgstr "Instalacja nie przebiegła pomyślnie"
+msgstr "Instalacja działa"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -114,9 +112,8 @@ msgid "Connect a disk and reload this page."
 msgstr "Podłącz dysk i załaduj ponownie ten etap."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_Przeładuj"
 
 #. Translators: Page title
 msgid "Installation Complete"
@@ -248,10 +245,8 @@ msgid "User Account"
 msgstr "Konto użytkownika"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
-#| msgid "Automatic Login"
 msgid "(Automatic Login)"
-msgstr "Automatyczne logowanie"
+msgstr "(Automatyczne logowanie)"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
@@ -287,10 +282,8 @@ msgstr "Nienazwana partycja"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
-#| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
-msgstr "Za mało miejsca na instalację"
+msgstr "Za mało miejsca na instalację (wymagane: {})"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"
