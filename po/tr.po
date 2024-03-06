@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-03-06 18:01+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -19,30 +19,29 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 msgid "OS-Installer"
-msgstr "Yükleyici"
+msgstr "İşletim Sistemi Kurucu"
 
 msgid "Install an Operating System"
-msgstr "Bir İşletim Sistemi Yükle"
+msgstr "Bir İşletim Sistemi Kurun"
 
-#, fuzzy
-#| msgid "Installation Failed"
 msgid "Installation Running"
-msgstr "Kurulum Başarısız Oldu"
+msgstr "Kurulum Devam Ediyor"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Yüklemeyi yarıda kesmek diskinizi zararlı, belirlenemez bir duruma sokabilir"
+"Devam eden bir kurulumu durdurmak diski zararlı olabilecek tanımsız bir "
+"durumda bırakacaktır"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 msgid "_Continue Installation"
-msgstr "_Yüklemeye Devam Et"
+msgstr "Kuruluma Devam _Et"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 msgid "_Stop Installation"
-msgstr "_Yüklemeyi Durdur"
+msgstr "Kurulumu _Durdur"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
@@ -60,11 +59,11 @@ msgstr "_Devam Et"
 
 #. Translators: Page title
 msgid "Confirmation"
-msgstr "Teyit"
+msgstr "Onayla"
 
 #. Translators: Followed by a disk or partition name
 msgid "This will delete all data on"
-msgstr "Bu şuradaki tüm veriyi silecek"
+msgstr "Bu şuradaki tüm verileri silecek"
 
 #. Translators: On button.
 msgid "_Confirm"
@@ -87,7 +86,7 @@ msgid "Partitions"
 msgstr "Bölümler"
 
 msgid "Disk has no partitions."
-msgstr "Bu diskte hiçbir bölüm yok."
+msgstr "Diskte bölüm yok."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -103,34 +102,33 @@ msgid ""
 "  • EFI partition"
 msgstr ""
 "  • GPT bölümleme\n"
-"  • EFI bölümleme"
+"  • EFI bölümü"
 
 #. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS önyükleme bölümü"
 
 msgid "No Disks avaliable"
-msgstr "Hiçbir Disk bulunamadı"
+msgstr "Kullanılabilir disk yok"
 
 msgid "Connect a disk and reload this page."
-msgstr "Bir disk bağla ve bu sayfayı yenile."
+msgstr "Bir disk bağlayın ve bu sayfayı yeniden yükleyin."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "Yeniden Yük_le"
 
 #. Translators: Page title
 msgid "Installation Complete"
-msgstr "Yükleme Tamamlandı"
+msgstr "Kurulum Tamamlandı"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 msgid "_Restart System"
-msgstr "_Yeniden Başlat"
+msgstr "Sistemi _Yeniden Başlat"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
-msgstr "Şimdi _Değil"
+msgstr "_Daha Sonra Yeniden Başlat"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -147,9 +145,7 @@ msgstr "Şifreleme PIN'i"
 #. Translators: Hint for disk encryption
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
-msgstr ""
-"Bu PIN'i iyi hatırlayın. Bu PIN olmadan dosyalarınıza erişim "
-"sağlayamayacaksınız."
+msgstr "Bu PIN kodunu iyi ezberleyin. Bu olmadan dosyalarınıza erişemezsiniz."
 
 #. Translators: Page title
 msgid "Installation Failed"
@@ -176,11 +172,11 @@ msgstr "Sonuç Yok"
 
 #. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
-msgstr "Başka bir arama dene"
+msgstr "Başka bir arama deneyin"
 
 #. Translators: Page title
 msgid "Installing"
-msgstr "Yükleniyor"
+msgstr "Kuruluyor"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 msgid "Show Terminal Output"
@@ -188,7 +184,7 @@ msgstr "Uçbirim Çıktısını Göster"
 
 #. Translators: Page title
 msgid "Internet Connection Check"
-msgstr "İnternet Bağlantısı Kontrolü"
+msgstr "İnternet Bağlantısı Denetimi"
 
 msgid "No connection."
 msgstr "Bağlantı yok."
@@ -203,7 +199,7 @@ msgstr "Klavye Düzeni Seçimi"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
-msgstr "Klavye Düzeninizi Burada Test Edin"
+msgstr "Klavye Düzenini Burada Test Edin"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -212,7 +208,7 @@ msgstr "Klavye Dili"
 
 #. Translators: Page title
 msgid "Adapt to Location"
-msgstr "Konuma Uyum Sağlayın"
+msgstr "Konuma Uyarla"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
@@ -226,7 +222,7 @@ msgstr "Biçimler"
 
 #. Translators: Description of what is covered by formats.
 msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Tarih, zaman, sayılar vs. gibi biçimleri belirler."
+msgstr "Tarih, saat, sayılar vb. için kullanılan öntanımlı biçimi tanımlar."
 
 #. Translators: Page title
 msgid "Restarting"
@@ -250,10 +246,8 @@ msgid "User Account"
 msgstr "Kullanıcı Hesabı"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
-#| msgid "Automatic Login"
 msgid "(Automatic Login)"
-msgstr "Otomatik Giriş"
+msgstr "(Otomatik Oturum Aç)"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
@@ -262,33 +256,31 @@ msgstr "Hiçbiri"
 
 #. Translators: Used with entry field for User's name
 msgid "_Name"
-msgstr "_İsim"
+msgstr "_Ad"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
-msgstr "Otomatik Giriş"
+msgstr "Otomatik Oturum Aç"
 
 #. Translators: Used with entry field for setting a password for new user
 msgid "_Password"
-msgstr "_Şifre"
+msgstr "_Parola"
 
 #. Translators: Page title
 msgid "Welcome"
-msgstr "Hoşgeldiniz"
+msgstr "Hoş Geldiniz"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr "Bu uygulama sisteminize {} kurmanızı sağlayacak."
+msgstr "Bu uygulama sisteminize {} kurulumu boyunca size rehberlik edecektir."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
-msgstr "İsimsiz Bölüm"
+msgstr "Adsız Bölüm"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
-#| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
-msgstr "Kurulum için yeterli alan yok"
+msgstr "Kurulum için yeterli alan yok ({} gerekli)"
