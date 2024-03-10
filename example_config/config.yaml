@@ -117,14 +117,14 @@ additional_features:
       icon_path      : '/etc/os-installer/icons/snapshot.svg'
       keyword        : 'snapshots'
       suggested      : yes
-    - name           : 'Display Server Protocol'
+    - name           : 'Background Image'
       options        :
-        - name       : 'Wayland'
-          option     : 'wayland-protocols'
-        - name       : 'X11'
-          option     : 'xorgproto'
-        - name       : 'Mir (lol)'
-          option     : 'mir'
+        - name       : 'Axolotls'
+          option     : 'bg-axolotl'
+        - name       : 'Cats'
+          option     : 'bg-cats'
+        - name       : 'Dogs'
+          option     : 'bg-dogs'
 
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are

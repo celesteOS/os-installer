@@ -43,9 +43,6 @@ msgstr ""
 msgid "Option 2"
 msgstr ""
 
-msgid "Option 3"
-msgstr ""
-
 msgid "Dummy Feature"
 msgstr ""
 
@@ -56,5 +53,17 @@ msgid "Snapshots"
 msgstr ""
 
 msgid "Snapshots allow restoring a previous state of your system"
+msgstr ""
+
+msgid "Background Image"
+msgstr ""
+
+msgid "Axolotls"
+msgstr ""
+
+msgid "Cats"
+msgstr ""
+
+msgid "Dogs"
 msgstr ""
 

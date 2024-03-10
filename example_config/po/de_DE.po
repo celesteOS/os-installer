@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-18 03:39+0100\n"
-"PO-Revision-Date: 2023-08-21 14:28+0200\n"
+"PO-Revision-Date: 2024-03-10 23:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -44,9 +44,6 @@ msgstr "Option 1"
 msgid "Option 2"
 msgstr "Option 2"
 
-msgid "Option 3"
-msgstr "Option 3"
-
 msgid "Dummy Feature"
 msgstr "Funktionsattrappe"
 
@@ -58,3 +55,15 @@ msgstr "Snapshots"
 
 msgid "Snapshots allow restoring a previous state of your system"
 msgstr "Snapshots ermöglichen es, vorherige Systemzustände wiederherzustellen"
+
+msgid "Background Image"
+msgstr "Hintergrundbild"
+
+msgid "Axolotls"
+msgstr "Axolotl"
+
+msgid "Cats"
+msgstr "Katzen"
+
+msgid "Dogs"
+msgstr "Hunde"
