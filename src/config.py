@@ -3,6 +3,7 @@
 import yaml
 
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
+GIGABYTE_FACTOR = 1000 * 1000 * 1000
 
 
 def _bool_to_int(b: bool):
@@ -86,6 +87,10 @@ def _load_optional_defaults(config):
     config['chosen_features'] = []
 
 
+def _preprocess_values(config):
+    config['minimum_disk_size'] *= GIGABYTE_FACTOR
+
+
 def _set_testing_defaults(config):
     '''Default values used when skipping pages during testing.'''
     config['language'] = 'English for Dummies'
@@ -138,6 +143,7 @@ def init_config():
         config = _load_default_config()
     _load_optional_defaults(config)
     _set_testing_defaults(config)
+    _preprocess_values(config)
     return config
 
 

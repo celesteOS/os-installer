@@ -11,8 +11,6 @@ from .page import Page
 from .system_calls import is_booted_with_uefi, open_disks
 from .widgets import reset_model, DeviceRow
 
-GIGABYTE_FACTOR = 1000 * 1000 * 1000
-
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
 class DiskPage(Gtk.Stack, Page):
@@ -39,7 +37,7 @@ class DiskPage(Gtk.Stack, Page):
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
 
-        self.minimum_disk_size = global_state.get_config('minimum_disk_size') * GIGABYTE_FACTOR
+        self.minimum_disk_size = global_state.get_config('minimum_disk_size')
 
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
