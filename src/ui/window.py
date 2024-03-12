@@ -156,6 +156,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.current_page = wrapper.get_page()
 
         match self.current_page.load():
+            case "load_prev":
+                self._load_page(page_number - 1)
+                return
             case "load_next":
                 self._load_page(page_number + 1)
                 return
@@ -278,6 +281,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if not self.current_page.can_reload:
                 return
             match self.current_page.load():
+                case "load_prev":
+                    self._load_page(self.navigation.current - 1)
                 case "load_next":
                     self._load_page(self.navigation.current + 1)
                 case "prevent_back_navigation":
