@@ -101,6 +101,21 @@ class DiskProvider(Preloadable):
 
     ### public methods ###
 
+    def disk_exists(self, dev_info: DeviceInfo):
+        self.assert_preloaded()
+
+        # check against all available devices
+        dummy_var = GLib.Variant('a{sv}', None)
+        manager = self.udisks_client.get_manager()
+        devices = manager.call_get_block_devices_sync(dummy_var, None)
+        for device in devices:
+            if ((udisks_object := self.udisks_client.get_object(device)) and
+                (block := udisks_object.get_block()) and
+                    block.props.device == dev_info.device_path):
+                return True
+
+        return False
+
     def disk_size_to_str(self, size):
         self.assert_preloaded()
         return self.udisks_client.get_size_for_display(size, False, False)
