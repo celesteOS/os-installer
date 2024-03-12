@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from random import getrandbits
+
 from gi.repository import GLib, GObject
 
 from .preloadable import Preloadable
@@ -136,8 +138,9 @@ class DiskProvider(Preloadable):
         return disks
 
     def get_testing_dummy_disks(self):
-        self.flip = not self.flip if hasattr(self, 'flip') and self.flip else True
-        if not self.flip:
+        # in 12.5% of all cases claim that no disks are found
+        if getrandbits(3) == 7:
+            print("demo-mode: randomly chose that no disks are available")
             return []
         smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
         smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", ([smol_partition], None))
