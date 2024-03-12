@@ -175,7 +175,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         wrapper = self.main_stack.get_child_by_name(page_name)
         if wrapper == None:
-            print(f'Page named {page_name} does not exist. Are you testing things and forget to comment it back in?')
+            print(f'Page named {page_name} does not exist. Are you testing things and forgot to comment it back in?')
             return
         self.current_page = wrapper.get_page()
         self.current_page.load()
