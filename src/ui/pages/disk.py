@@ -4,7 +4,7 @@ from threading import Lock
 
 from gi.repository import Gio, Gtk
 
-from .disk_provider import disk_provider
+from .disk_provider import DeviceInfo, disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting, Step
 from .page import Page
@@ -43,7 +43,7 @@ class DiskPage(Gtk.Stack, Page):
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
         self.partition_list.bind_model(self.partition_list_model, self._create_device_row)
 
-    def _create_device_row(self, info):
+    def _create_device_row(self, info: DeviceInfo):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
