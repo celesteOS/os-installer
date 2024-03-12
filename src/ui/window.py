@@ -275,8 +275,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def reload_page(self):
         with self.navigation_lock:
-            if self.current_page.can_reload:
-                self.current_page.load()
+            if not self.current_page.can_reload:
+                return
+            match self.current_page.load():
+                case "load_next":
+                    self._load_page(self.navigation.current + 1)
+                case "prevent_back_navigation":
+                    self.navigation.earliest = self.navigation.current
+                    self._update_navigation_buttons()
 
     def show_about_page(self):
         with self.navigation_lock:
