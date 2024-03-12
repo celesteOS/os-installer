@@ -16,6 +16,7 @@ data/resources/ui/pages/install.blp
 data/resources/ui/pages/internet.blp
 data/resources/ui/pages/keyboard_layout.blp
 data/resources/ui/pages/locale.blp
+data/resources/ui/pages/partition.blp
 data/resources/ui/pages/restart.blp
 data/resources/ui/pages/summary.blp
 data/resources/ui/pages/user.blp

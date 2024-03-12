@@ -43,6 +43,7 @@ os_installer_sources = [
   'ui/pages/keyboard_layout.py',
   'ui/pages/language.py',
   'ui/pages/locale.py',
+  'ui/pages/partition.py',
   'ui/pages/restart.py',
   'ui/pages/summary.py',
   'ui/pages/user.py',

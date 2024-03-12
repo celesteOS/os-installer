@@ -20,6 +20,7 @@ from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
 from .locale import LocalePage
+from .partition import PartitionPage
 from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
@@ -95,6 +96,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('internet', InternetPage, global_state.get_config(
                 'internet_connection_required')),
             ('disk', DiskPage, True),
+            ('partition', PartitionPage, True),
             ('encrypt', EncryptPage, global_state.get_config('offer_disk_encryption')),
             ('confirm', ConfirmPage, exists('/etc/os-installer/scripts/install.sh')),
             # configuration section

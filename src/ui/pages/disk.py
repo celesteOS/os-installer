@@ -20,16 +20,9 @@ class DiskPage(Gtk.Stack, Page):
     image = default_image_name
     can_reload = True
 
-    disk_label = Gtk.Template.Child()
-    disk_size = Gtk.Template.Child()
     disk_list = Gtk.Template.Child()
 
-    whole_disk_row = Gtk.Template.Child()
-    partition_stack = Gtk.Template.Child()
-    partition_list = Gtk.Template.Child()
-
     disk_list_model = Gio.ListStore()
-    partition_list_model = Gio.ListStore()
 
     current_disk = None
     lock = Lock()
@@ -41,7 +34,6 @@ class DiskPage(Gtk.Stack, Page):
 
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
-        self.partition_list.bind_model(self.partition_list_model, self._create_device_row)
 
     def _create_device_row(self, info: DeviceInfo):
         if info.size >= self.minimum_disk_size:
@@ -65,33 +57,6 @@ class DiskPage(Gtk.Stack, Page):
             self.image = self.default_image_name
         global_state.reload_title_image()
 
-    def _setup_partition_list(self, disk_info):
-        self.current_disk = disk_info
-
-        # set disk info
-        self.disk_label.set_label(disk_info.name)
-        self.whole_disk_row.set_subtitle(disk_info.device_path)
-        self.disk_size.set_label(disk_info.size_text)
-
-        # reset partition list
-        if len(disk_info.partitions) == 0:
-            reset_model(self.partition_list_model, [])
-            self.partition_stack.set_visible_child_name("no-partitions")
-        elif is_booted_with_uefi() and disk_info.efi_partition is None:
-            self.partition_stack.set_visible_child_name("no-boot-partition")
-        else:
-            reset_model(self.partition_list_model, disk_info.partitions)
-            self.partition_stack.set_visible_child_name("available")
-
-        # show
-        self.set_visible_child_name('partitions')
-
-    def _store_device_info(self, info):
-        global_state.set_config('disk_name', info.name)
-        global_state.set_config('disk_device_path', info.device_path)
-        global_state.set_config('disk_is_partition', not type(info) == type(self.current_disk))
-        global_state.set_config('disk_efi_partition', self.current_disk.efi_partition)
-
     ### callbacks ###
 
     @Gtk.Template.Callback('clicked_disks_button')
@@ -100,26 +65,12 @@ class DiskPage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('disk_selected')
     def _disk_selected(self, list_box, row):
-        with self.lock:
-            self._setup_partition_list(row.info)
-            self.can_navigate_backward = True
+        global_state.set_config('selected_disk', row.info)
+        global_state.advance(self)
 
     @Gtk.Template.Callback('reload')
     def _reload(self, button):
         global_state.reload_page()
-
-    @Gtk.Template.Callback('use_partition')
-    def _use_partition(self, list_box, row):
-        info = row.info
-        if not info.name:
-            info.name = row.get_title()
-        self._store_device_info(info)
-        global_state.advance(self)
-
-    @Gtk.Template.Callback('use_whole_disk')
-    def _use_whole_disk(self, list_box, row):
-        self._store_device_info(self.current_disk)
-        global_state.advance(self)
 
     ### public methods ###
 
@@ -131,11 +82,3 @@ class DiskPage(Gtk.Stack, Page):
 
         with self.lock:
             self._setup_disk_list()
-
-    def unload(self):
-        self.can_navigate_backward = False
-
-    def navigate_backward(self):
-        with self.lock:
-            self.can_navigate_backward = False
-            self.set_visible_child_name('disks')
