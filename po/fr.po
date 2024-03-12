@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-03-12 14:01+0000\n"
+"Last-Translator: xiorcale <quentin.vaucher@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/fr/>\n"
 "Language: fr\n"
@@ -26,10 +26,8 @@ msgstr "Installeur de systèmes"
 msgid "Install an Operating System"
 msgstr "Installer un système d'exploitation"
 
-#, fuzzy
-#| msgid "Installation Failed"
 msgid "Installation Running"
-msgstr "Installation échouée"
+msgstr "Installation en cours"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -54,10 +52,8 @@ msgstr "Programmes additionnels"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
-#, fuzzy
-#| msgid "Additional Software"
 msgid "Additional Features"
-msgstr "Programmes additionnels"
+msgstr "Fonctions additionnelles"
 
 #. Translators: On button.
 msgid "_Continue"
@@ -91,9 +87,8 @@ msgstr "Utiliser le disque entier"
 msgid "Partitions"
 msgstr "Partitions"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Le disque n'a pas de partitions."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -122,9 +117,8 @@ msgid "Connect a disk and reload this page."
 msgstr "Connectez un disque et rechargez cette page."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_Recharger"
 
 #. Translators: Page title
 msgid "Installation Complete"
@@ -173,19 +167,16 @@ msgstr "Sélectionner une langue"
 msgid "Select Location"
 msgstr "Sélectionner une région"
 
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtre"
 
 #. Translators: Empty result placeholder title
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Aucun résultat"
 
 #. Translators: Empty result placeholder, meant as a suggestion
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Essayez une autre recherche"
 
 #. Translators: Page title
 msgid "Installing"
@@ -242,21 +233,16 @@ msgid "Restarting"
 msgstr "Relancer"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Résumé"
 
 #. Translators: Description of selected language.
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "Language"
-msgstr "Langue du clavier"
+msgstr "Langue"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
 msgid "Keyboard Layout"
-msgstr "Sélection de l'agencement du clavier"
+msgstr "Disposition du clavier"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -264,32 +250,25 @@ msgid "User Account"
 msgstr "Compte utilisateur"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
-#| msgid "Automatic Login"
 msgid "(Automatic Login)"
-msgstr "Connexion automatique"
+msgstr "(Connexion automatique)"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Aucun"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
-#| msgid "Name"
 msgid "_Name"
-msgstr "Nom"
+msgstr "_Nom"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
 msgstr "Connexion automatique"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
-#| msgid "Password"
 msgid "_Password"
-msgstr "Mot de passe"
+msgstr "_Mot de passe"
 
 #. Translators: Page title
 msgid "Welcome"
@@ -309,10 +288,8 @@ msgstr "Partition sans nom"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
-#| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
-msgstr "Pas assez d'espace disque pour l'installation"
+msgstr "Pas assez d'espace disque pour l'installation ({} requis)"
 
 #~ msgid "PIN"
 #~ msgstr "Code PIN"
