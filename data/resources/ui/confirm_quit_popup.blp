@@ -2,8 +2,9 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.MessageDialog popup {
+  /* Translators: Dialog title */
   heading: _("Installation Running");
-  /* Translators: Shown if user wants to close window with running installation */
+  /* Translators: Text in dialog shown if user wants to close app with installation running */
   body: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
   responses [
     /* Translators: Underscore can not be the same as for 'Stop Installation'. */
