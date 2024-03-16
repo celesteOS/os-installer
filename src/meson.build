@@ -40,7 +40,7 @@ os_installer_sources = [
   'ui/pages/filter.py',
   'ui/pages/install.py',
   'ui/pages/internet.py',
-  'ui/pages/keyboard_layout.py',
+  'ui/pages/keyboard.py',
   'ui/pages/language.py',
   'ui/pages/locale.py',
   'ui/pages/partition.py',

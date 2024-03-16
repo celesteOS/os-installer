@@ -17,7 +17,7 @@ from .failed import FailedPage
 from .filter import FormatPage, TimezonePage
 from .install import InstallPage
 from .internet import InternetPage
-from .keyboard_layout import KeyboardLayoutPage
+from .keyboard import KeyboardLayoutPage
 from .language import LanguagePage
 from .locale import LocalePage
 from .partition import PartitionPage
