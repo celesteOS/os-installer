@@ -237,20 +237,22 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             return print('Logic Error: Combining of return and cleanup not possible!')
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
-            if not page or page == self.current_page:
-                if self.original_page_name:
-                    if not allow_return:
-                        return print('Logic Error: Returning unpreventable, page name mode')
-                    self._load_original_page()
-                else:
-                    if not allow_return:
-                        self.navigation.earliest = self.navigation.current + 1
+            if page != None and page != self.current_page:
+                return
 
-                    self._load_page(self.navigation.current + 1)
+            if self.original_page_name:
+                if not allow_return:
+                    return print('Logic Error: Returning unpreventable, page name mode')
+                self._load_original_page()
+            else:
+                if not allow_return:
+                    self.navigation.earliest = self.navigation.current + 1
 
-                    if cleanup:
-                        self._remove_pages(
-                            self.pages[self.navigation.earliest:self.navigation.current - 1])
+                self._load_page(self.navigation.current + 1)
+
+                if cleanup:
+                    self._remove_pages(
+                        self.pages[self.navigation.earliest:self.navigation.current - 1])
 
     def load_translated_pages(self):
         with self.navigation_lock:
