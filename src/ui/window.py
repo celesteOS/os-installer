@@ -60,10 +60,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     current_page = None
     # when changing pages by name return to this page on advancing
-    original_page_name: str = ''
     navigation_lock = Lock()
     navigation = Navigation()
     pages = []
+    previous_pages = []
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -188,14 +188,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.next_revealer.set_reveal_child(False)
         self.reload_revealer.set_reveal_child(self.current_page.can_reload)
 
-    def _load_original_page(self):
+    def _load_previous_page(self):
+        assert len(self.previous_pages) > 0, 'Logic Error: No previous pages to go to!'
+
         self.current_page.unload()
 
-        original_page = self.main_stack.get_child_by_name(self.original_page_name)
-        self.current_page = original_page.get_page()
+        page_name = self.previous_pages.pop()
+        previous_page = self.main_stack.get_child_by_name(page_name)
+        self.current_page = previous_page.get_page()
         self.current_page.load()
-        self.main_stack.set_visible_child(original_page)
-        self.original_page_name = None
+        self.main_stack.set_visible_child(previous_page)
 
         self._reload_title_image()
         self._update_navigation_buttons()
@@ -240,10 +242,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if page != None and page != self.current_page:
                 return
 
-            if self.original_page_name:
+            if self.previous_pages:
                 if not allow_return:
                     return print('Logic Error: Returning unpreventable, page name mode')
-                self._load_original_page()
+                self._load_previous_page()
             else:
                 if not allow_return:
                     self.navigation.earliest = self.navigation.current + 1
@@ -268,8 +270,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             if self.current_page.can_navigate_backward:
                 self.current_page.navigate_backward()
-            elif self.original_page_name:
-                self._load_original_page()
+            elif self.previous_pages:
+                self._load_previous_page()
             elif self.navigation.is_not_earliest():
                 self._load_page(self.navigation.current - 1)
 
@@ -318,7 +320,5 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
-            if self.original_page_name:
-                return print('Logic Error: can only navigate by page name once in a row')
-            self.original_page_name = self.main_stack.get_visible_child_name()
+            self.previous_pages.append(self.main_stack.get_visible_child_name())
             self._load_page_by_name(page_name)
