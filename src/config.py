@@ -96,6 +96,8 @@ def _set_testing_defaults(config):
     config['language'] = 'English for Dummies'
     config['language_code'] = 'en_US'
     config['locale'] = 'en_US.UTF-8'
+    config['keyboard_language_code'] = 'en_US'
+    config['keyboard_language_ui'] = 'English (US)'
     config['keyboard_layout_code'] = 'us'
     config['keyboard_layout_ui'] = 'English (US)'
     config['disk_device_path'] = '/dev/null'

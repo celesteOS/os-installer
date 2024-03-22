@@ -1,0 +1,64 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $KeyboardOverviewPage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    /* Translators: Page title */
+    label: _("Keyboard Layout");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  ScrolledWindow {
+    propagate-natural-height: true;
+    styles ["embedded"]
+    child: Box {
+      orientation: vertical;
+      spacing: 12;
+
+      /* selected layouts */
+      ListBox {
+        selection-mode: none;
+        styles ["boxed-list"]
+
+        Adw.ActionRow primary_layout_row {
+          activatable: true;
+          focusable: true;
+          /*selectable: false; */
+          activated => $show_layout_selection();
+
+          Image {
+            icon-name: "emblem-system-symbolic";
+          }
+        }
+      }
+
+      /* test entry */
+      ListBox {
+        selection-mode: none;
+        styles ["boxed-list"]
+
+        Adw.EntryRow {
+          activatable: true;
+          /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
+          title: _("Test the Keyboard Layout Here");
+          entry-activated => $continue();
+        }
+      }
+
+      Button continue_button {
+        /* Translators: On button. */
+        label: _("_Continue");
+        halign: center;
+        receives-default: true;
+        use-underline: true;
+        clicked => $continue();
+        styles ["suggested-action", "pill", "bottom-button"]
+      }
+    };
+  }
+}

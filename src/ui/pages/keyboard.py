@@ -10,61 +10,89 @@ from .system_calls import set_system_keyboard_layout
 from .widgets import reset_model, ProgressRow
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')
+class KeyboardLanguagePage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image = 'input-keyboard-symbolic'
+
+    list = Gtk.Template.Child()
+    model = Gtk.Template.Child()
+
+    def __init__(self, **kwargs):
+        Gtk.Box.__init__(self, **kwargs)
+
+        self.list.bind_model(self.model, lambda o: ProgressRow(o.name, o))
+
+    ### callbacks ###
+
+    @Gtk.Template.Callback('language_row_activated')
+    def _language_row_activated(self, list_box, row):
+        info = row.info
+        global_state.set_config('keyboard_language_code', info.language_code)
+        global_state.set_config('keyboard_language_ui', info.name)
+        global_state.advance(self)
+
+    ### public methods ###
+
+    def load_once(self):
+        languages = language_provider.get_all_languages()
+        reset_model(self.model, languages)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
 class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image = 'input-keyboard-symbolic'
 
-    stack = Gtk.Template.Child()
-
-    # overview
-    chosen_layouts = Gtk.Template.Child()
-    continue_button = Gtk.Template.Child()
-    primary_layout_row = Gtk.Template.Child()
-
-    # layouts
     language_row = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
-
-    # languages
-    language_list = Gtk.Template.Child()
-
-    languages_model = Gio.ListStore()
-    layouts_model = Gio.ListStore()
-
-    current_row = None
-    language_list_setup = False
-    loaded_language = ''
+    model = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # models
-        self.layout_list.bind_model(self.layouts_model, lambda o: ProgressRow(o.name, o))
-        self.language_list.bind_model(self.languages_model, lambda o: ProgressRow(o.name, o))
+        self.loaded_language = ''
+        self.layout_list.bind_model(
+            self.model, lambda o: ProgressRow(o.name, o))
 
-    def _setup_languages_list(self):
-        languages = language_provider.get_all_languages()
-        reset_model(self.languages_model, languages)
+    ### callbacks ###
 
-    def _load_overview(self, keyboard_info):
-        self.stack.set_visible_child_name('overview')
-        self.primary_layout_row.set_title(keyboard_info.name)
+    @Gtk.Template.Callback('layout_row_activated')
+    def _layout_row_activated(self, list_box, row):
+        # use selected keyboard layout
+        keyboard_info = row.info
         set_system_keyboard_layout(keyboard_info.name, keyboard_info.layout)
+        global_state.advance(self)
 
-    def _load_layout_list(self, language, language_code):
-        self.stack.set_visible_child_name('layouts')
+    @Gtk.Template.Callback('show_language_selection')
+    def _show_language_selection(self, row):
+        global_state.navigate_to_page("keyboard-language")
 
-        if self.loaded_language == language_code:
-            return
+    ### public methods ###
 
-        self.loaded_language = language_code
-        self.language_row.set_subtitle(language)
+    def load(self):
+        language_code = global_state.get_config('keyboard_language_code')
 
-        # fill list with all keyboard layouts for given language
-        layouts = get_layouts_for(language_code, language)
-        reset_model(self.layouts_model, layouts)
+        if self.loaded_language != language_code:
+            self.loaded_language = language_code
+            language = global_state.get_config('keyboard_language_ui')
+            print(f'keyboard_language {language}')
+            self.language_row.set_subtitle(language)
 
+            # fill list with all keyboard layouts for language
+            layouts = get_layouts_for(language_code, language)
+            reset_model(self.model, layouts)
+
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_overview.ui')
+class KeyboardOverviewPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image = 'input-keyboard-symbolic'
+
+    primary_layout_row = Gtk.Template.Child()
+
+    def __init__(self, **kwargs):
+        Gtk.Box.__init__(self, **kwargs)
 
     ### callbacks ###
 
@@ -72,50 +100,26 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     def _continue(self, button):
         global_state.advance(self)
 
-    @Gtk.Template.Callback('language_row_activated')
-    def _language_row_activated(self, list_box, row):
-        # show layouts for language
-        language_info = row.info
-        self._load_layout_list(language_info.name, language_info.language_code)
-
-    @Gtk.Template.Callback('layout_row_activated')
-    def _layout_row_activated(self, list_box, row):
-        # use selected keyboard layout
-        keyboard_info = row.info
-        self._load_overview(keyboard_info)
-        self.can_navigate_backward = False
-
-    @Gtk.Template.Callback('show_language_selection')
-    def _show_language_selection(self, row):
-        if not self.language_list_setup:
-            self.language_list_setup = True
-            self._setup_languages_list()
-
-        # show language selection
-        self.stack.set_visible_child_name('languages')
-        self.can_navigate_backward = True
-
     @Gtk.Template.Callback('show_layout_selection')
     def _show_layout_selection(self, row):
-        if self.loaded_language == '':
-            self._load_layout_list(self.default_language, self.default_language_code)
-        else:
-            self.stack.set_visible_child_name('layouts')
-        self.can_navigate_backward = True
+        global_state.navigate_to_page("keyboard-layout")
 
     ### public methods ###
 
-    def load_once(self):
-        # page gets reconstructed if different app language is chosen
-        self.default_language = global_state.get_config('language')
-        self.default_language_code = global_state.get_config('language_code')
-        keyboard_info = get_default_layout(self.default_language_code)
-        self._load_overview(keyboard_info)
+    def load(self):
+        if self.loaded:
+            layout_name = global_state.get_config('keyboard_layout_ui')
+            self.primary_layout_row.set_title(layout_name)
+        else:
+            self.loaded = True
+            # page gets reconstructed if different app language is chosen
+            language_code = global_state.get_config('language_code')
+            language = global_state.get_config('language')
+            keyboard_info = get_default_layout(language_code)
+            self.primary_layout_row.set_title(keyboard_info.name)
 
-    def navigate_backward(self):
-        match self.stack.get_visible_child_name():
-            case 'layouts':
-                self.stack.set_visible_child_name('overview')
-                self.can_navigate_backward = False
-            case 'languages':
-                self.stack.set_visible_child_name('layouts')
+            # TODO: do this in separate manager
+            global_state.set_config('keyboard_language_code', language_code)
+            global_state.set_config('keyboard_language_ui', language)
+            set_system_keyboard_layout(
+                keyboard_info.name, keyboard_info.layout)

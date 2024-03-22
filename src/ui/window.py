@@ -17,7 +17,7 @@ from .failed import FailedPage
 from .filter import FormatPage, TimezonePage
 from .install import InstallPage
 from .internet import InternetPage
-from .keyboard import KeyboardLayoutPage
+from .keyboard import KeyboardLanguagePage, KeyboardLayoutPage, KeyboardOverviewPage
 from .language import LanguagePage
 from .locale import LocalePage
 from .partition import PartitionPage
@@ -92,7 +92,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # pre-installation section
             ('language', LanguagePage, self._offer_language_selection()),
             ('welcome', WelcomePage, global_state.get_config('welcome_page')['usage']),
-            ('keyboard', KeyboardLayoutPage, True),
+            ('keyboard-overview', KeyboardOverviewPage, True),
             ('internet', InternetPage, global_state.get_config(
                 'internet_connection_required')),
             ('disk', DiskPage, True),
@@ -113,7 +113,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # post-installation
             ('done', DonePage, True),
             ('restart', RestartPage, True),
-            # failed installation
+            # pushable only
+            ('keyboard-layout', KeyboardLayoutPage, True),
+            ('keyboard-language', KeyboardLanguagePage, True),
             ('failed', FailedPage, True)
         ]
         # filter out nonexistent pages

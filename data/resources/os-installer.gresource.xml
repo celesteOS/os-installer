@@ -32,7 +32,9 @@
     <file preprocess="xml-stripblanks">ui/pages/filter.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/install.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/internet.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/keyboard_language.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/keyboard_layout.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/keyboard_overview.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/language.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/partition.ui</file>
