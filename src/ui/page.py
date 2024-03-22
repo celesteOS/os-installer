@@ -5,8 +5,6 @@ from  typing import Union
 
 class Page:
     image: Union[str, Path, None] = None
-    can_navigate_backward: bool = False
-    can_navigate_forward: bool = False
     can_reload: bool = False
 
     loaded: bool = False
@@ -15,18 +13,6 @@ class Page:
         return self.__gtype_name__
 
     ### dummy stubs ###
-
-    def navigate_backward(self):
-        '''
-        Called upon backward navigation if `can_navigate_backward` is True.
-        '''
-        return
-
-    def navigate_forward(self):
-        '''
-        Called upon forward navigation if `can_navigate_forward` is True.
-        '''
-        return
 
     def load(self):
         '''

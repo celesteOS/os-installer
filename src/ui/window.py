@@ -224,11 +224,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _update_navigation_buttons(self):
         # backward
-        show_backward = self.current_page.can_navigate_backward or self.navigation.is_not_earliest()
+        show_backward = self.navigation.is_not_earliest()
         self.previous_revealer.set_reveal_child(show_backward)
 
         # forward
-        show_forward = self.current_page.can_navigate_forward or self.navigation.is_not_furthest()
+        show_forward = self.navigation.is_not_furthest()
         self.next_revealer.set_reveal_child(show_forward)
 
         # reload
@@ -270,18 +270,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def navigate_backward(self):
         with self.navigation_lock:
-            if self.current_page.can_navigate_backward:
-                self.current_page.navigate_backward()
-            elif self.previous_pages:
+            if self.previous_pages:
                 self._load_previous_page()
             elif self.navigation.is_not_earliest():
                 self._load_page(self.navigation.current - 1)
 
     def navigate_forward(self):
         with self.navigation_lock:
-            if self.current_page.can_navigate_forward:
-                self.current_page.navigate_forward()
-            elif self.navigation.is_not_furthest():
+            if self.navigation.is_not_furthest():
                 self._load_page(self.navigation.current + 1)
 
     def reload_page(self):
