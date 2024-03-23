@@ -26,7 +26,7 @@ template $ChoicesPage : Box {
   ScrolledWindow {
     propagate-natural-height: true;
     styles ["embedded", "separate-bottom"]
-    child: ListBox choices_list {
+    child: ListBox list {
       hexpand: true;
       selection-mode: none;
       row-activated => $row_activated();

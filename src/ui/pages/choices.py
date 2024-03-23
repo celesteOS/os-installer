@@ -19,7 +19,7 @@ class ChoiceType(Enum):
 class ChoicesPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
 
-    choices_list = Gtk.Template.Child()
+    list = Gtk.Template.Child()
     software_header = Gtk.Template.Child()
     feature_header = Gtk.Template.Child()
     model = Gtk.Template.Child()
@@ -41,9 +41,7 @@ class ChoicesPage(Gtk.Box, Page):
                 print("Unknown choice type!")
                 exit(0)
 
-        self.choices_list.bind_model(
-            self.model,
-            self._create_row)
+        self.list.bind_model(self.model, self._create_row)
 
     def _create_row(self, choice):
         if choice.options:
@@ -74,7 +72,7 @@ class ChoicesPage(Gtk.Box, Page):
     def unload(self):
         summary = []
         keywords = []
-        for row in self.choices_list:
+        for row in self.list:
             if type(row) == MultiSelectionRow:
                 option = row.get_chosen_option()
                 keywords.append(option.keyword)
