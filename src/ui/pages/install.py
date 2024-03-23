@@ -19,8 +19,6 @@ class InstallPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        installation_scripting.install_page_name = self.__gtype_name__
-
         # UI element states
         self.stack.set_visible_child_name('spinner')
 

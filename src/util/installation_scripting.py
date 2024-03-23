@@ -33,9 +33,6 @@ class InstallationScripting():
     step_ready = Step.none
     script_running = False
 
-    # set by installation page
-    install_page_name = None
-
     def __init__(self):
         # setup terminal
         self.terminal.set_input_enabled(False)
