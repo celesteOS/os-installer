@@ -92,7 +92,6 @@ class FilterPage(Gtk.Box, Page):
                 case FilterType.timezone:
                     model = get_timezones()
             reset_model(self.list_model, model)
-        return "load_next"
 
 
 FormatPage = lambda **args: FilterPage(FilterType.format, **args)

@@ -102,8 +102,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # configuration section
             ('user', UserPage, not global_state.get_config('skip_user')),
             ('locale', LocalePage, not global_state.get_config('skip_locale')),
-            ('format', FormatPage, not global_state.get_config('skip_locale')),
-            ('timezone', TimezonePage, not global_state.get_config('skip_locale')),
             ('software', SoftwarePage, global_state.get_config('additional_software')),
             ('feature', FeaturePage, global_state.get_config('additional_features')),
             # summary
@@ -114,6 +112,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('done', DonePage, True),
             ('restart', RestartPage, True),
             # pushable only
+            ('format', FormatPage, not global_state.get_config('skip_locale')),
+            ('timezone', TimezonePage, not global_state.get_config('skip_locale')),
             ('keyboard-layout', KeyboardLayoutPage, True),
             ('keyboard-language', KeyboardLanguagePage, True),
             ('failed', FailedPage, True)
