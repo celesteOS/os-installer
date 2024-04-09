@@ -297,8 +297,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/about_dialog.ui')
             popup = builder.get_object('about_window')
-            if popup:
-                self._show_dialog(popup)
+            popup.present(self)
 
     def show_confirm_quit_dialog(self, quit_callback):
         with self.navigation_lock:
