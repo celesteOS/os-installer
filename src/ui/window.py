@@ -217,11 +217,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             return # ignoring
         self.image_stack.set_visible_child_name(next_image_name)
 
-    def _show_dialog(self, dialog):
-        dialog.set_transient_for(self)
-        dialog.set_modal(True)
-        dialog.present()
-
     def _update_navigation_buttons(self):
         # backward
         show_backward = self.navigation.is_not_earliest()
@@ -305,7 +300,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             popup = builder.get_object('popup')
             popup.connect('response',
                           lambda _, response: quit_callback() if response == "stop" else None)
-            self._show_dialog(popup)
+            popup.present(self)
 
     def show_failed_page(self):
         with self.navigation_lock:
