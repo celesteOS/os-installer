@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.p3732.OS-Installer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "44",
+    "runtime-version": "46",
     "sdk": "org.gnome.Sdk",
     "command": "os-installer-demo",
     "finish-args": [
@@ -36,7 +36,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/vte.git",
-                    "commit": "ae4a5d7df9e32ab40ceca5e06240561e819db148"
+                    "commit": "3c29bfef30c34afec4982ba5ec37f944cfacbba2"
                 }
             ]
         },
@@ -52,7 +52,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/geocode-glib.git",
-                    "commit": "11db75f37b77faa900255cc4835f4ab390e323bc"
+                    "commit": "210abe69d68e38947106f4680631c369b0c23189"
                 }
             ]
         },
@@ -67,8 +67,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.2.0/libgweather-4.2.0.tar.gz",
-                    "sha256": "37d4c41547df512a6a602df1b859c12b1bb77bf7e9075756fac2742ac298a459"
+                    "url": "https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.4.2/libgweather-4.4.2.tar.gz",
+                    "sha256": "e2890c2d0b587eae478e80a0de5f82e5514441733a0095974ff7825d804bd073"
                 }
             ]
         },
@@ -84,8 +84,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop/-/archive/43/gnome-desktop-43.tar.gz",
-                    "sha256": "f12300f57c9c886bf4a45b486d1168c18da7a03d6a8ae62697ae43637dfe184d"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop/-/archive/44.0/gnome-desktop-44.0.tar.gz",
+                    "sha256": "73a1fb85c617bf24ede4cf2d630d46e46b5b20ac8c11e06a7685a50c643aa748"
                 }
             ]
         },
@@ -98,8 +98,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/36/2b/61d51a2c4f25ef062ae3f74576b01638bebad5e045f747ff12643df63844/PyYAML-6.0.tar.gz",
-                    "sha256": "68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"
+                    "url": "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz",
+                    "sha256": "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43"
                 }
             ]
         },
