@@ -69,6 +69,7 @@ class PartitionPage(Gtk.Box, Page):
 
         if len(self.disk.partitions) == 0:
             reset_model(self.partition_list_model, [])
+            self.partition_stack.set_visible_child_name("no-partitions")
         elif is_booted_with_uefi() and self.disk.efi_partition is None:
             self.partition_stack.set_visible_child_name("no-boot-partition")
         else:
