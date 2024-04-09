@@ -10,9 +10,9 @@ i18n = import('i18n')
 
 application_id = 'com.github.p3732.OS-Installer'
 
-subdir('.build_files')
+subdir('misc-build-files')
 subdir('data')
 subdir('src')
 subdir('po')
 
-meson.add_install_script('.build_files/postinstall.py')
+meson.add_install_script('misc-build-files/postinstall.py')
