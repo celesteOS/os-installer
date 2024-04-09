@@ -4,6 +4,7 @@ from random import getrandbits
 
 from gi.repository import GLib, GObject
 
+from .global_state import global_state
 from .preloadable import Preloadable
 
 class DeviceInfo(GObject.GObject):
@@ -152,7 +153,19 @@ class DiskProvider(Preloadable):
 
         return disks
 
-    def get_testing_dummy_disks(self):
+
+class DiskDummyProvider(Preloadable):
+    def __init__(self):
+        Preloadable.__init__(self, lambda: None)
+
+    def disk_exists(self, dev_info: DeviceInfo):
+        return True
+
+    def disk_size_to_str(self, size):
+        # fake it till you make it
+        return f"{size / 1000000000:.1f} GB"
+
+    def get_disks(self):
         # in 12.5% of all cases claim that no disks are found
         if getrandbits(3) == 7:
             print("demo-mode: randomly chose that no disks are available")
@@ -172,4 +185,9 @@ class DiskProvider(Preloadable):
         return [smol_disk, disk, unformated_big_disk]
 
 
-disk_provider = DiskProvider()
+"""
+In demo-mode use DiskDummyProvider to
+ a) avoid any interaction with real disks
+ b) avoid using UDisks in Flatpak (not installed)
+"""
+disk_provider = DiskProvider() if global_state.demo_mode else DiskDummyProvider()

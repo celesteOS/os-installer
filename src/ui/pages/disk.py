@@ -43,10 +43,7 @@ class DiskPage(Gtk.Stack, Page):
             return DeviceRow(info, required_size_str)
 
     def _setup_disk_list(self):
-        if global_state.demo_mode:
-            disks = disk_provider.get_testing_dummy_disks()
-        else:
-            disks = disk_provider.get_disks()
+        disks = disk_provider.get_disks()
 
         if len(disks) == 0:
             self.set_visible_child_name('no-disks')
