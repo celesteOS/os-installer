@@ -2,7 +2,7 @@ subdir('ui')
 
 blueprints = custom_target('blueprints',
   input: files(
-    'ui/confirm_quit_popup.blp',
+    'ui/confirm_quit_dialog.blp',
     'ui/main_window.blp',
     'ui/pages/choices.blp',
     'ui/pages/confirm.blp',

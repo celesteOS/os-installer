@@ -296,7 +296,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def show_confirm_quit_dialog(self, quit_callback):
         with self.navigation_lock:
-            builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_popup.ui')
+            builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_dialog.ui')
             popup = builder.get_object('popup')
             popup.connect('response',
                           lambda _, response: quit_callback() if response == "stop" else None)
