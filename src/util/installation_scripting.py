@@ -44,8 +44,7 @@ class InstallationScripting():
     def _start_next_script(self):
         if self.current_step is Step.configure:
             global_state.installation_running = False
-            global_state.advance(None, allow_return=global_state.demo_mode,
-                                 cleanup=not global_state.demo_mode,)
+            global_state.advance(None, allow_return=False, cleanup=True)
 
         if self.current_step.value < self.step_ready.value and not self.script_running:
             self.current_step = Step(self.current_step.value + 1)
