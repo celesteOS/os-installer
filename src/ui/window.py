@@ -70,7 +70,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # set advancing functions in global state
         global_state.advance = self.advance
-        global_state.load_translated_pages = self.load_translated_pages
+        global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_page = self.reload_page
         global_state.reload_title_image = self._reload_title_image
@@ -252,7 +252,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._remove_pages(
                         self.pages[self.navigation.earliest:self.navigation.current - 1])
 
-    def load_translated_pages(self):
+    def retranslate_pages(self):
         with self.navigation_lock:
             # delete pages that are not the language page
             self._remove_pages(self.pages[1:])
