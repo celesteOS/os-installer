@@ -79,12 +79,13 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # determine available pages
         self._determine_available_pages()
 
-        if 'language' in self.available_pages:
+        page_name, page_type = self.available_pages[0]
+        if page_name == 'language':
             # only initialize language page, others depend on chosen language
-            self._initialize_page('language')
+            self._initialize_page(page_name, page_type)
         else:
-            for page_name in self.available_pages.keys():
-                self._initialize_page(page_name)
+            for page_name, page_type in self.available_pages:
+                self._initialize_page(page_name, page_type)
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
@@ -119,7 +120,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('failed', FailedPage, True)
         ]
         # filter out nonexistent pages
-        self.available_pages = {page_name: page for page_name, page, condition in pages if condition}
+        self.available_pages = [(page_name, page_type)
+                                for page_name, page_type, condition in pages if condition]
 
     def _offer_language_selection(self):
             # only initialize language page, others depend on chosen language
@@ -132,8 +134,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 global_state.set_config('fixed_language', '')
         return True
 
-    def _initialize_page(self, page_name):
-        page_type = self.available_pages[page_name]
+    def _initialize_page(self, page_name, page_type):
         page = PageWrapper(page_type())
 
         self.main_stack.add_named(page, page_name)
@@ -258,7 +259,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self._remove_pages(self.pages[1:])
             self.pages = ['language']
 
-            for page_name in self.available_pages.keys():
+            for page_name, page_type in self.available_pages:
                 if page_name != 'language':
                     self._initialize_page(page_name)
 
