@@ -59,10 +59,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     reload_revealer = Gtk.Template.Child()
 
     current_page = None
-    # when changing pages by name return to this page on advancing
     navigation_lock = Lock()
     navigation = Navigation()
     pages = []
+    # stack of previous pages when changing pages by name
     previous_pages = []
 
     def __init__(self, **kwargs):
