@@ -15,18 +15,11 @@ class InternetPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image = 'network-wireless-disabled-symbolic'
 
-    can_proceed_automatically = False
-    connected = False
-    connected_lock = Lock()
-
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-    def _set_connected(self):
-        self.image = 'network-wireless-symbolic'
-        self.connected = True
-        global_state.reload_title_image()
-        start_system_timesync()
+        self.connected = False
+        self.connected_lock = Lock()
 
     ### callbacks ###
 
@@ -36,7 +29,10 @@ class InternetPage(Gtk.Box, Page):
 
     def _on_connected(self):
         with self.connected_lock:
-            self._set_connected()
+            self.image = 'network-wireless-symbolic'
+            self.connected = True
+            global_state.reload_title_image()
+            start_system_timesync()
 
         # do not hold lock, could cause deadlock with simultaneous load()
         global_state.advance(self)
