@@ -21,6 +21,9 @@ class InternetPage(Gtk.Box, Page):
         self.connected = False
         self.connected_lock = Lock()
 
+        # setup connected callback
+        internet_provider.set_connected_callback(self._on_connected)
+
     ### callbacks ###
 
     @Gtk.Template.Callback('clicked_settings_button')
@@ -39,12 +42,10 @@ class InternetPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load_once(self):
+    def load(self):
         if global_state.demo_mode:
             return "load_next"
 
-        # setup connected callback
-        internet_provider.set_connected_callback(self._on_connected)
         with self.connected_lock:
             if self.connected:
                 return "load_next"
