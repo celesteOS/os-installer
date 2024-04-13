@@ -52,14 +52,12 @@ class InternetProvider():
 
     ### public methods ###
 
-    def is_connected_now_or_later(self, callback):
-        ''' Returns `True` immidiately if connected. Otherwise returns False and calls callback when connected.'''
+    def set_connected_callback(self, callback):
+        ''' Callback is immediately called if already connected.'''
         with self.callback_lock:
+            self.callback = callback
             if self.connected:
-                return True
-            else:
-                self.callback = callback
-                return False
+                self.callback()
 
 
 internet_provider = InternetProvider()

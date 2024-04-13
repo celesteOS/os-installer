@@ -24,6 +24,7 @@ class InternetPage(Gtk.Box, Page):
 
     def _set_connected(self):
         self.image = 'network-wireless-symbolic'
+        self.connected = True
         global_state.reload_title_image()
         start_system_timesync()
 
@@ -43,11 +44,11 @@ class InternetPage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
+        if global_state.demo_mode:
+            return "load_next"
+
+        # setup connected callback
+        internet_provider.set_connected_callback(self._on_connected)
         with self.connected_lock:
-            # setup callback on connected
-            if internet_provider.is_connected_now_or_later(self._on_connected):
-                # already connected
-                self._set_connected()
-                return "load_next"
-            if global_state.demo_mode:
+            if self.connected:
                 return "load_next"
