@@ -79,13 +79,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # determine available pages
         self._determine_available_pages()
 
-        page_name, page_type = self.available_pages[0]
-        if page_name == 'language':
-            # only initialize language page, others depend on chosen language
-            self._initialize_page(page_name, page_type)
-        else:
-            for page_name, page_type in self.available_pages:
-                self._initialize_page(page_name, page_type)
+        # initialize first available page
+        self._initialize_page(*self.available_pages[0])
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
@@ -134,29 +129,36 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 global_state.set_config('fixed_language', '')
         return True
 
-    def _initialize_page(self, page_name, page_type):
-        page = PageWrapper(page_type())
-
-        self.main_stack.add_named(page, page_name)
-        self.pages.append(page_name)
+    def _initialize_page(self, page_name, page_type, by_name: bool = False):
+        # only add permanent pages to page list
+        if not by_name:
+            self.pages.append(page_name)
+        wrapper = PageWrapper(page_type())
+        self.main_stack.add_named(wrapper, page_name)
+        return wrapper
 
     def _remove_pages(self, page_names):
         for page_name in filter(None, page_names):
             child = self.main_stack.get_child_by_name(page_name)
+            child.get_page().unload()
             self.main_stack.remove(child)
             del child
 
     def _load_page(self, page_number: int):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
-        assert page_number < len(self.pages), 'Tried to go to non-existent page (overflow)'
 
         # unload old page
         if self.current_page:
             self.current_page.unload()
 
-        # load page
-        page_name = self.pages[page_number]
-        wrapper = self.main_stack.get_child_by_name(page_name)
+        if page_number > self.navigation.furthest:
+            # new page
+            wrapper = self._initialize_page(*self.available_pages[page_number])
+        else:
+            # load page
+            page_name = self.pages[page_number]
+            wrapper = self.main_stack.get_child_by_name(page_name)
+
         self.current_page = wrapper.get_page()
 
         match self.current_page.load():
@@ -179,8 +181,13 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         wrapper = self.main_stack.get_child_by_name(page_name)
         if wrapper == None:
-            print(f'Page named {page_name} does not exist. Are you testing things and forgot to comment it back in?')
-            return
+            # find page
+            list = [type for name, type in self.available_pages if name == page_name]
+            if len(list) > 0:
+                wrapper = self._initialize_page(page_name, list[0], True)
+            else:
+                print(f'Page named {page_name} does not exist. Are you testing things and forgot to comment it back in?')
+                return
         self.current_page = wrapper.get_page()
         self.current_page.load()
         self.main_stack.set_visible_child(wrapper)
@@ -194,6 +201,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         assert len(self.previous_pages) > 0, 'Logic Error: No previous pages to go to!'
 
         self.current_page.unload()
+        popped_page = self.current_page
 
         page_name = self.previous_pages.pop()
         previous_page = self.main_stack.get_child_by_name(page_name)
@@ -203,6 +211,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._reload_title_image()
         self._update_navigation_buttons()
+
+        # delete popped page
+        del popped_page
 
     def _reload_title_image(self):
         next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
@@ -247,21 +258,18 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 if not allow_return:
                     self.navigation.earliest = self.navigation.current + 1
 
-                self._load_page(self.navigation.current + 1)
-
                 if cleanup:
                     self._remove_pages(
                         self.pages[self.navigation.earliest:self.navigation.current - 1])
+
+                self._load_page(self.navigation.current + 1)
 
     def retranslate_pages(self):
         with self.navigation_lock:
             # delete pages that are not the language page
             self._remove_pages(self.pages[1:])
             self.pages = ['language']
-
-            for page_name, page_type in self.available_pages:
-                if page_name != 'language':
-                    self._initialize_page(page_name)
+            self.navigation.furthest = 0
 
     def navigate_backward(self):
         with self.navigation_lock:
