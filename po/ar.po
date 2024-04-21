@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-04-21 13:07+0000\n"
+"Last-Translator: First Last <mohamedayman.fcis@gmail.com>\n"
 "Language-Team: Arabic <https://codeberg.org/contractover/Nabatean-"
 "Translations>\n"
 "Language: ar\n"
@@ -24,21 +24,15 @@ msgstr "مثبت النظام"
 msgid "Install an Operating System"
 msgstr "تثبيت نظام تشغيل"
 
-#, fuzzy
-#| msgid "Installation Failed"
 msgid "Installation Running"
-msgstr "فشل التثبيت"
+msgstr "التثبيت يعمل"
 
 #. Translators: Shown if user wants to close window with running installation
-#, fuzzy
-#| msgid ""
-#| "سيؤدي إيقاف تشغيل التثبيت إلى ترك القرص في حالة غير محددةStopping a "
-#| "running installation will leave the disk in an undefined state that might "
-#| "potentially be harmful"
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
-msgstr "قد يكون ذلك ضار"
+msgstr ""
+"سيؤدي إيقاف تشغيل التثبيت إلى ترك القرص في حالة غير محددة، قد يكون ذلك ضار"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 msgid "_Continue Installation"
@@ -120,9 +114,8 @@ msgid "Connect a disk and reload this page."
 msgstr "قم بتوصيل قرص وإعادة تحميل هذه الصفحة."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_إعادة_تحميل"
 
 #. Translators: Page title
 msgid "Installation Complete"
@@ -189,9 +182,8 @@ msgid "Show Terminal Output"
 msgstr "إظهار إخراج المحطة الطرفية"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Internet Connection Check"
-msgstr "Internet Connection Check"
+msgstr "تفقد الاتصال بالانترنت"
 
 msgid "No connection."
 msgstr "التحقق من اتصال الإنترنت"
@@ -253,10 +245,8 @@ msgid "User Account"
 msgstr "حساب المستخدم"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
-#| msgid "Automatic Login"
 msgid "(Automatic Login)"
-msgstr "تسجيل الدخول التلقائي"
+msgstr "­(تسجيل الدخول التلقائي)"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
@@ -291,7 +281,5 @@ msgstr "قسم بدون اسم"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
-#| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
-msgstr "لا توجد مساحة كافية للتثبيت"
+msgstr "لا توجد مساحة كافية للتثبيت({}مطلوب)"
