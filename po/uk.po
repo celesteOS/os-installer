@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-02 22:45+0100\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-04-24 19:07+0000\n"
+"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.1-dev\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -26,10 +26,8 @@ msgstr "Встановлення системи"
 msgid "Install an Operating System"
 msgstr "Встановіть операційну систему"
 
-#, fuzzy
-#| msgid "Installation Failed"
 msgid "Installation Running"
-msgstr "Не вдалося встановити"
+msgstr "Виконується встановлення"
 
 #. Translators: Shown if user wants to close window with running installation
 msgid ""
@@ -119,9 +117,8 @@ msgid "Connect a disk and reload this page."
 msgstr "Підключіть диск і перезавантажте цю сторінку."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_Перезавантажити"
 
 #. Translators: Page title
 msgid "Installation Complete"
@@ -255,10 +252,8 @@ msgid "User Account"
 msgstr "Обліковий запис користувача"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
-#| msgid "Automatic Login"
 msgid "(Automatic Login)"
-msgstr "Автоматичний вхід"
+msgstr "(Автоматичний вхід)"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
@@ -293,10 +288,8 @@ msgstr "Безіменний розділ"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
-#| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
-msgstr "Недостатньо місця для установки"
+msgstr "Недостатньо місця для установки (потрібно {})"
 
 #~ msgid "PIN"
 #~ msgstr "PIN-код"
