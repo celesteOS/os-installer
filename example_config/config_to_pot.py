@@ -58,7 +58,7 @@ def write_pot_header(pot_file):
         '''#\n''' \
         '''msgid ""\n''' \
         '''msgstr ""\n''' \
-        '''"Project-Id-Version: os-installer\\n"\n''' \
+        '''"Project-Id-Version: os-installer-config\\n"\n''' \
         '''"Report-Msgid-Bugs-To: \\n"\n''' \
         '''"POT-Creation-Date: 2023-08-18 03:39+0100\\n"\n''' \
         '''"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"\n''' \
@@ -75,13 +75,13 @@ try:
     with open(args.config_path, 'r') as config_file:
         config = yaml.load(config_file, Loader=yaml.Loader)
 
-        po_folder = args.config_path.parent / 'po'
-        po_folder.mkdir(exist_ok=True)
+    po_folder = args.config_path.parent / 'po'
+    po_folder.mkdir(exist_ok=True)
 
-        pot_path = po_folder / 'config.pot'
-        with open(pot_path, 'w') as pot_file:
-            write_pot_header(pot_file)
-            handle_config(config, pot_file)
+    pot_path = po_folder / 'config.pot'
+    with open(pot_path, 'w') as pot_file:
+        write_pot_header(pot_file)
+        handle_config(config, pot_file)
 except:
     print('Could not find or parse provided config')
     exit(1)
