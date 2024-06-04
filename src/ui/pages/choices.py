@@ -41,6 +41,7 @@ class ChoicesPage(Gtk.Box, Page):
                 print("Unknown choice type!")
                 exit(0)
 
+        self.model.splice(0, 0, self.list_provider())
         self.list.bind_model(self.model, self._create_row)
 
     def _create_row(self, choice):
@@ -65,9 +66,6 @@ class ChoicesPage(Gtk.Box, Page):
             row.flip_switch()
 
     ### public methods ###
-
-    def load_once(self):
-        reset_model(self.model, self.list_provider())
 
     def unload(self):
         summary = []
