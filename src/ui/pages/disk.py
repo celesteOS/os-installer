@@ -4,7 +4,7 @@ from threading import Lock
 
 from gi.repository import Gio, Gtk
 
-from .disk_provider import DeviceInfo, disk_provider
+from .disk_provider import DeviceInfo, get_disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting, Step
 from .page import Page
@@ -31,6 +31,7 @@ class DiskPage(Gtk.Stack, Page):
         Gtk.Stack.__init__(self, **kwargs)
 
         self.minimum_disk_size = global_state.get_config('minimum_disk_size')
+        self.disk_provider = get_disk_provider()
 
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
@@ -39,11 +40,11 @@ class DiskPage(Gtk.Stack, Page):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = disk_provider.disk_size_to_str(self.minimum_disk_size)
+            required_size_str = self.disk_provider.disk_size_to_str(self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
     def _setup_disk_list(self):
-        disks = disk_provider.get_disks()
+        disks = self.disk_provider.get_disks()
 
         if len(disks) == 0:
             self.set_visible_child_name('no-disks')

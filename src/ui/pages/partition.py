@@ -5,7 +5,7 @@ from threading import Lock
 
 from gi.repository import Gio, Gtk
 
-from .disk_provider import disk_provider
+from .disk_provider import get_disk_provider
 from .global_state import global_state
 from .page import Page
 from .system_calls import is_booted_with_uefi
@@ -33,6 +33,7 @@ class PartitionPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        self.disk_provider = get_disk_provider()
         self.disk = None
         self.lock = Lock()
         self.minimum_disk_size = global_state.get_config('minimum_disk_size')
@@ -45,7 +46,7 @@ class PartitionPage(Gtk.Box, Page):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = disk_provider.disk_size_to_str(
+            required_size_str = self.disk_provider.disk_size_to_str(
                 self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
@@ -56,7 +57,7 @@ class PartitionPage(Gtk.Box, Page):
             if not claim_existance:
                 print('demo-mode: randomly chose that disk does not exist anymore')
             return claim_existance
-        elif not disk_provider.disk_exists(self.disk):
+        elif not self.disk_provider.disk_exists(self.disk):
             return False
         else:
             return True
