@@ -163,13 +163,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             wrapper = self.main_stack.get_child_by_name(page_name)
 
         self.current_page = wrapper.get_page()
+        self.navigation.current = page_number
 
         match self.current_page.load():
             case "load_prev":
                 self._load_next_page(backwards=True)
                 return
-            case "load_next":
-                self._load_next_page()
+            case "pass":
+                self._load_next_page(backwards=backwards)
                 return
             case "prevent_back_navigation":
                 self._remove_all_but_one_page(page_name)

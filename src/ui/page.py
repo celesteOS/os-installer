@@ -17,7 +17,7 @@ class Page:
         Called before the page is shown.
         Pages can overwrite this to receive a call every time.
         Specialld handled return values are:
-        "load_next", "load_prev", "prevent_back_navigation".
+        "load_prev", "pass", "prevent_back_navigation".
         '''
         pass
 

@@ -44,8 +44,8 @@ class InternetPage(Gtk.Box, Page):
 
     def load(self):
         if global_state.demo_mode:
-            return "load_next"
+            return "pass"
 
         with self.connected_lock:
             if self.connected:
-                return "load_next"
+                return "pass"
