@@ -57,10 +57,8 @@ class PartitionPage(Gtk.Box, Page):
             if not claim_existance:
                 print('demo-mode: randomly chose that disk does not exist anymore')
             return claim_existance
-        elif not self.disk_provider.disk_exists(self.disk):
-            return False
         else:
-            return True
+            return self.disk_provider.disk_exists(self.disk)
 
     def _setup_partition_list(self):
         self.disk = global_state.get_config('selected_disk')
