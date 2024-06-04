@@ -54,6 +54,7 @@ class DiskPage(Gtk.Stack, Page):
             self.set_visible_child_name('disks')
             self.image = self.default_image_name
         global_state.reload_title_image()
+        installation_scripting.set_ok_to_start_step(Step.prepare)
 
     ### callbacks ###
 
@@ -73,10 +74,5 @@ class DiskPage(Gtk.Stack, Page):
     ### public methods ###
 
     def load(self):
-        if not self.loaded:
-            self.loaded = True
-            # start prepare script
-            installation_scripting.set_ok_to_start_step(Step.prepare)
-
         with self.lock:
             self._setup_disk_list()
