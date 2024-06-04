@@ -190,4 +190,4 @@ In demo-mode use DiskDummyProvider to
  a) avoid any interaction with real disks
  b) avoid using UDisks in Flatpak (not installed)
 """
-disk_provider = DiskProvider() if global_state.demo_mode else DiskDummyProvider()
+disk_provider = DiskProvider() if not global_state.demo_mode else DiskDummyProvider()
