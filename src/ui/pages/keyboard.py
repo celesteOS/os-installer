@@ -89,6 +89,18 @@ class KeyboardOverviewPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        # page gets reconstructed if different app language is chosen
+        language_code = global_state.get_config('language_code')
+        language = global_state.get_config('language')
+        keyboard_info = get_default_layout(language_code)
+
+        # TODO: do this in separate manager
+        global_state.set_config('keyboard_language_code', language_code)
+        global_state.set_config('keyboard_language_ui', language)
+        global_state.set_config('keyboard_layout_ui', keyboard_info.name)
+
+        set_system_keyboard_layout(keyboard_info.name, keyboard_info.layout)
+
     ### callbacks ###
 
     @Gtk.Template.Callback('continue')
@@ -102,19 +114,5 @@ class KeyboardOverviewPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        if self.loaded:
-            layout_name = global_state.get_config('keyboard_layout_ui')
-            self.primary_layout_row.set_title(layout_name)
-        else:
-            self.loaded = True
-            # page gets reconstructed if different app language is chosen
-            language_code = global_state.get_config('language_code')
-            language = global_state.get_config('language')
-            keyboard_info = get_default_layout(language_code)
-            self.primary_layout_row.set_title(keyboard_info.name)
-
-            # TODO: do this in separate manager
-            global_state.set_config('keyboard_language_code', language_code)
-            global_state.set_config('keyboard_language_ui', language)
-            set_system_keyboard_layout(
-                keyboard_info.name, keyboard_info.layout)
+        layout_name = global_state.get_config('keyboard_layout_ui')
+        self.primary_layout_row.set_title(layout_name)
