@@ -7,9 +7,6 @@ class Page:
     image: Union[str, Path, None] = None
     can_reload: bool = False
 
-    def id(self):
-        return self.__gtype_name__
-
     ### dummy stubs ###
 
     def load(self):
