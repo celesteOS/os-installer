@@ -39,7 +39,9 @@ class Application(Adw.Application):
 
         # Additional command line options
         self.add_main_option('demo-mode', b'd', GLib.OptionFlags.NONE,
-                             GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
+                             GLib.OptionArg.NONE, "Run in demo mode. Does not alter the system", None)
+        self.add_main_option('test-mode', b't', GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE, "Run in testing mode. Does not alter the system, but runs scripts.", None)
 
         global_state.set_config('version', version)
         global_state.send_notification = self._send_notification
@@ -94,7 +96,11 @@ class Application(Adw.Application):
         options = options.end().unpack()
 
         if 'demo-mode' in options:
+            if 'test-mode' in options:
+                print("Only one of demo and test mode can be set at a time! Using demo mode.")
             global_state.demo_mode = True
+        elif 'test-mode' in options:
+            global_state.test_mode = True
             self._add_action(Action('fail-page', self._window('show_failed_page'), ['<Alt>F']))
 
         self.activate()

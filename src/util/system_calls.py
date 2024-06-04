@@ -11,7 +11,7 @@ from .global_state import global_state
 
 
 def _exec(args):
-    if not global_state.demo_mode:
+    if not global_state.demo_mode and not global_state.test_mode:
         subprocess.run(args)
 
 

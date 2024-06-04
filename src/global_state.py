@@ -8,6 +8,7 @@ from .config import create_envs, init_config
 class GlobalState:
     config = init_config()
     demo_mode = False
+    test_mode = False
     installation_running = False
 
     thread_pool = ThreadPoolExecutor()  # for futures

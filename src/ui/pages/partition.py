@@ -52,10 +52,12 @@ class PartitionPage(Gtk.Box, Page):
 
     def disk_exists(self):
         if global_state.demo_mode:
-            # always claim disk existance on first load and in about 75% of cases
-            claim_existance = not self.loaded or getrandbits(2) != 3
+            return True
+        elif global_state.test_mode:
+            # claim disk existance in about 75% of cases
+            claim_existance = getrandbits(2) != 3
             if not claim_existance:
-                print('demo-mode: randomly chose that disk does not exist anymore')
+                print('test-mode: randomly chose that disk does not exist anymore')
             return claim_existance
         else:
             return self.disk_provider.disk_exists(self.disk)
