@@ -58,6 +58,7 @@ class InternetProvider():
             self.callback = callback
             if self.connected:
                 self.thread = Thread(target=self.callback)
+                self.thread.start()
 
 
 internet_provider = InternetProvider()
