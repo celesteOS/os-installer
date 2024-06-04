@@ -137,15 +137,19 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.main_stack.add_named(wrapper, page_name)
         return wrapper
 
-    def _remove_pages(self, page_names):
-        for page_name in filter(None, page_names):
+    def _remove_all_but_one_page(self, kept_page_name):
+        for page_name in filter(None, self.pages):
+            if page_name == kept_page_name:
+                continue
             child = self.main_stack.get_child_by_name(page_name)
             child.get_page().unload()
             self.main_stack.remove(child)
             del child
+        self.pages = [kept_page_name] if kept_page_name else []
 
     def _load_page(self, page_number: int):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
+        page_name = self.available_pages[page_number][0]
 
         # unload old page
         if self.current_page:
@@ -156,7 +160,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             wrapper = self._initialize_page(*self.available_pages[page_number])
         else:
             # load page
-            page_name = self.pages[page_number]
             wrapper = self.main_stack.get_child_by_name(page_name)
 
         self.current_page = wrapper.get_page()
@@ -169,6 +172,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self._load_page(page_number + 1)
                 return
             case "prevent_back_navigation":
+                self._remove_all_but_one_page(page_name)
                 self.navigation.earliest = page_number
 
         self.main_stack.set_visible_child(wrapper)
@@ -256,19 +260,17 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self._load_previous_page()
             else:
                 if not allow_return:
+                    self._remove_all_but_one_page(None)
                     self.navigation.earliest = self.navigation.current + 1
 
                 if cleanup:
-                    self._remove_pages(
-                        self.pages[self.navigation.earliest:self.navigation.current - 1])
+                    self._remove_all_but_one_page(None)
 
                 self._load_page(self.navigation.current + 1)
 
     def retranslate_pages(self):
         with self.navigation_lock:
-            # delete pages that are not the language page
-            self._remove_pages(self.pages[1:])
-            self.pages = ['language']
+            self._remove_all_but_one_page("language")
             self.navigation.furthest = 0
 
     def navigate_backward(self):
@@ -292,9 +294,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._load_page(self.navigation.current - 1)
                 case "load_next":
                     self._load_page(self.navigation.current + 1)
-                case "prevent_back_navigation":
-                    self.navigation.earliest = self.navigation.current
-                    self._update_navigation_buttons()
+                # ignore case "prevent_back_navigation"
 
     def show_about_page(self):
         with self.navigation_lock:
