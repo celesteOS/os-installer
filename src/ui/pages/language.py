@@ -20,14 +20,24 @@ class LanguagePage(Gtk.Box, Page):
     other_list = Gtk.Template.Child()
     other_model = Gtk.Template.Child()
 
-    language_chosen = False
-
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # models
-        self.suggested_list.bind_model(self.suggested_model, lambda o: ProgressRow(o.name, o))
-        self.other_list.bind_model(self.other_model, lambda o: ProgressRow(o.name, o))
+        self.language_chosen = False
+
+        if suggested_languages := language_provider.get_suggested_languages():
+            self.suggested_model.splice(0, 0, suggested_languages)
+            self.suggested_list.bind_model(
+                self.suggested_model, lambda o: ProgressRow(o.name, o))
+        else:
+            self.suggested_list.set_visible(False)
+
+        if other_languages := language_provider.get_other_languages():
+            self.other_model.splice(0, 0, other_languages)
+            self.other_list.bind_model(
+                self.other_model, lambda o: ProgressRow(o.name, o))
+        else:
+            self.other_list.set_visible(False)
 
     ### callbacks ###
 
@@ -39,16 +49,3 @@ class LanguagePage(Gtk.Box, Page):
             set_system_language(row.info)
             global_state.retranslate_pages()
         global_state.advance(self)
-
-    ### public methods ###
-
-    def load_once(self):
-        suggested_languages = language_provider.get_suggested_languages()
-        other_languages = language_provider.get_other_languages()
-        if not suggested_languages:
-            self.suggested_list.set_visible(False)
-        if not other_languages:
-            self.other_list.set_visible(False)
-        
-        reset_model(self.suggested_model, suggested_languages)
-        reset_model(self.other_model, other_languages)
