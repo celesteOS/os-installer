@@ -18,15 +18,11 @@ class FailedPage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
+        self.terminal_box.append(installation_scripting.terminal)
+        global_state.send_notification(self.page_title.get_label(),'')
 
     ### callbacks ###
 
     @Gtk.Template.Callback('search_button_clicked')
     def _search_button_clicked(self, button):
         open_internet_search()
-
-    ### public methods ###
-
-    def load_once(self):
-        self.terminal_box.append(installation_scripting.terminal)
-        global_state.send_notification(self.page_title.get_label(),'')
