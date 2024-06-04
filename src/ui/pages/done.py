@@ -19,6 +19,8 @@ class DonePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        global_state.send_notification(self.page_title.get_label(), '')
+
     ### callbacks ###
 
     @Gtk.Template.Callback('restart_button_clicked')
@@ -35,9 +37,6 @@ class DonePage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        if not self.loaded:
-            self.loaded = True
-            global_state.send_notification(self.page_title.get_label(), '')
         self.terminal_box.append(installation_scripting.terminal)
 
     def unload(self):
