@@ -21,6 +21,7 @@ class KeyboardLanguagePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        self.model.splice(0, 0, language_provider.get_all_languages())
         self.list.bind_model(self.model, lambda o: ProgressRow(o.name, o))
 
     ### callbacks ###
@@ -31,12 +32,6 @@ class KeyboardLanguagePage(Gtk.Box, Page):
         global_state.set_config('keyboard_language_code', info.language_code)
         global_state.set_config('keyboard_language_ui', info.name)
         global_state.advance(self)
-
-    ### public methods ###
-
-    def load_once(self):
-        languages = language_provider.get_all_languages()
-        reset_model(self.model, languages)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
