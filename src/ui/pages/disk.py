@@ -69,7 +69,7 @@ class DiskPage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('reload')
     def _reload(self, button):
-        global_state.reload_page()
+        self.load()
 
     ### public methods ###
 
