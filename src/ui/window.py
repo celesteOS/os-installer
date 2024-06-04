@@ -146,7 +146,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             del child
         self.pages = [kept_page_name] if kept_page_name else []
 
-    def _load_page(self, page_number: int):
+    def _load_next_page(self, backwards: bool = False):
+        page_number = self.navigation.current + (-1 if backwards else 1)
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
         page_name = self.available_pages[page_number][0]
 
@@ -165,10 +166,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         match self.current_page.load():
             case "load_prev":
-                self._load_page(page_number - 1)
+                self._load_next_page(backwards=True)
                 return
             case "load_next":
-                self._load_page(page_number + 1)
+                self._load_next_page()
                 return
             case "prevent_back_navigation":
                 self._remove_all_but_one_page(page_name)
@@ -260,7 +261,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._remove_all_but_one_page(None)
                     self.navigation.earliest = self.navigation.current + 1
 
-                self._load_page(self.navigation.current + 1)
+                self._load_next_page()
 
     def retranslate_pages(self):
         with self.navigation_lock:
@@ -272,12 +273,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if self.previous_pages:
                 self._load_previous_page()
             elif self.navigation.is_not_earliest():
-                self._load_page(self.navigation.current - 1)
+                self._load_next_page(backwards=True)
 
     def navigate_forward(self):
         with self.navigation_lock:
             if self.navigation.is_not_furthest():
-                self._load_page(self.navigation.current + 1)
+                self._load_next_page()
 
     def reload_page(self):
         with self.navigation_lock:
@@ -285,9 +286,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 return
             match self.current_page.load():
                 case "load_prev":
-                    self._load_page(self.navigation.current - 1)
+                    self._load_next_page(backwards=True)
                 case "load_next":
-                    self._load_page(self.navigation.current + 1)
+                    self._load_next_page()
                 # ignore case "prevent_back_navigation"
 
     def show_about_page(self):
