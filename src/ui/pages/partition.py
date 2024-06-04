@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from random import getrandbits
-from threading import Lock
 
 from gi.repository import Gio, Gtk
 
@@ -35,7 +34,6 @@ class PartitionPage(Gtk.Box, Page):
 
         self.disk_provider = get_disk_provider()
         self.disk = None
-        self.lock = Lock()
         self.minimum_disk_size = global_state.get_config('minimum_disk_size')
 
         # models
@@ -107,7 +105,4 @@ class PartitionPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        with self.lock:
-            response = self._setup_partition_list()
-        self.loaded = True
-        return response
+        return self._setup_partition_list()
