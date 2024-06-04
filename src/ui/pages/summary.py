@@ -55,7 +55,7 @@ class SummaryPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self, allow_return=False, cleanup=True)
+        global_state.advance(self, allow_return=False)
         installation_scripting.set_ok_to_start_step(Step.configure)
 
     @Gtk.Template.Callback('summary_row_activated')

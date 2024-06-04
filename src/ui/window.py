@@ -246,9 +246,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     ### public methods ###
 
-    def advance(self, page, allow_return: bool = True, cleanup: bool = False):
-        if cleanup and allow_return:
-            return print('Logic Error: Combining of return and cleanup not possible!')
+    def advance(self, page, allow_return: bool = True):
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
             if page != None and page != self.current_page:
@@ -262,9 +260,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 if not allow_return:
                     self._remove_all_but_one_page(None)
                     self.navigation.earliest = self.navigation.current + 1
-
-                if cleanup:
-                    self._remove_all_but_one_page(None)
 
                 self._load_page(self.navigation.current + 1)
 
