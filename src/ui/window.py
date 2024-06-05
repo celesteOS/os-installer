@@ -47,6 +47,31 @@ class Navigation:
         return self.current < self.furthest
 
 
+page_name_to_type = {
+    'confirm':              ConfirmPage,
+    'disk':                 DiskPage,
+    'done':                 DonePage,
+    'encrypt':              EncryptPage,
+    'failed':               FailedPage,
+    'feature':              FeaturePage,
+    'format':               FormatPage,
+    'install':              InstallPage,
+    'internet':             InternetPage,
+    'keyboard-language':    KeyboardLanguagePage,
+    'keyboard-layout':      KeyboardLayoutPage,
+    'keyboard-overview':    KeyboardOverviewPage,
+    'language':             LanguagePage,
+    'locale':               LocalePage,
+    'partition':            PartitionPage,
+    'restart':              RestartPage,
+    'software':             SoftwarePage,
+    'summary':              SummaryPage,
+    'timezone':             TimezonePage,
+    'user':                 UserPage,
+    'welcome':              WelcomePage,
+}
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
@@ -79,43 +104,42 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._determine_available_pages()
 
         # initialize first available page
-        self._initialize_page(*self.available_pages[0])
+        self._initialize_page(self.available_pages[0])
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
         pages = [
             # pre-installation section
-            ('language', LanguagePage, self._offer_language_selection()),
-            ('welcome', WelcomePage, global_state.get_config('welcome_page')['usage']),
-            ('keyboard-overview', KeyboardOverviewPage, True),
-            ('internet', InternetPage, global_state.get_config(
+            ('language', self._offer_language_selection()),
+            ('welcome', global_state.get_config('welcome_page')['usage']),
+            ('keyboard-overview', True),
+            ('internet', global_state.get_config(
                 'internet_connection_required')),
-            ('disk', DiskPage, True),
-            ('partition', PartitionPage, True),
-            ('encrypt', EncryptPage, global_state.get_config('offer_disk_encryption')),
-            ('confirm', ConfirmPage, exists('/etc/os-installer/scripts/install.sh')),
+            ('disk', True),
+            ('partition', True),
+            ('encrypt', global_state.get_config('offer_disk_encryption')),
+            ('confirm', exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
-            ('user', UserPage, not global_state.get_config('skip_user')),
-            ('locale', LocalePage, not global_state.get_config('skip_locale')),
-            ('software', SoftwarePage, global_state.get_config('additional_software')),
-            ('feature', FeaturePage, global_state.get_config('additional_features')),
+            ('user', not global_state.get_config('skip_user')),
+            ('locale', not global_state.get_config('skip_locale')),
+            ('software', global_state.get_config('additional_software')),
+            ('feature', global_state.get_config('additional_features')),
             # summary
-            ('summary', SummaryPage, True),
+            ('summary', True),
             # installation
-            ('install', InstallPage, True),
+            ('install', True),
             # post-installation
-            ('done', DonePage, True),
-            ('restart', RestartPage, True),
+            ('done', True),
+            ('restart', True),
             # pushable only
-            ('format', FormatPage, not global_state.get_config('skip_locale')),
-            ('timezone', TimezonePage, not global_state.get_config('skip_locale')),
-            ('keyboard-layout', KeyboardLayoutPage, True),
-            ('keyboard-language', KeyboardLanguagePage, True),
-            ('failed', FailedPage, True)
+            ('format', not global_state.get_config('skip_locale')),
+            ('timezone', not global_state.get_config('skip_locale')),
+            ('keyboard-layout', True),
+            ('keyboard-language', True),
+            ('failed', True)
         ]
         # filter out nonexistent pages
-        self.available_pages = [(page_name, page_type)
-                                for page_name, page_type, condition in pages if condition]
+        self.available_pages = [name for name, condition in pages if condition]
 
     def _offer_language_selection(self):
             # only initialize language page, others depend on chosen language
@@ -128,11 +152,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 global_state.set_config('fixed_language', '')
         return True
 
-    def _initialize_page(self, page_name, page_type, by_name: bool = False):
+    def _initialize_page(self, page_name, by_name: bool = False):
         # only add permanent pages to page list
         if not by_name:
             self.pages.append(page_name)
-        wrapper = PageWrapper(page_type())
+        wrapper = PageWrapper(page_name_to_type[page_name]())
         self.main_stack.add_named(wrapper, page_name)
         return wrapper
 
@@ -149,7 +173,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _load_next_page(self, backwards: bool = False):
         page_number = self.navigation.current + (-1 if backwards else 1)
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
-        page_name = self.available_pages[page_number][0]
+        page_name = self.available_pages[page_number]
 
         # unload old page
         if self.current_page:
@@ -157,7 +181,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         if page_name not in self.pages:
             # new page
-            self.current_page = self._initialize_page(*self.available_pages[page_number])
+            self.current_page = self._initialize_page(page_name)
         else:
             # load page
             self.current_page = self.main_stack.get_child_by_name(page_name)
@@ -185,13 +209,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if page := self.main_stack.get_child_by_name(page_name):
             self.current_page = page
         else:
-            # find page
-            list = [type for name, type in self.available_pages if name == page_name]
-            if len(list) > 0:
-                self.current_page = self._initialize_page(page_name, list[0], True)
-            else:
-                print(f'Page named {page_name} does not exist. Are you testing things and forgot to comment it back in?')
-                return
+            self.current_page = self._initialize_page(page_name, True)
         self.current_page.load()
         self.main_stack.set_visible_child(self.current_page)
 
