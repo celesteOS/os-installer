@@ -161,10 +161,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         current_index = self.available_pages.index(current_page_name)
         return self.available_pages[current_index + offset]
 
-    def _load_next_page(self, offset: int = forward):
-        page_name = self._get_next_page_name(offset)
-
-        # unload old page
+    def _load_page(self, page_name: str, offset: int = forward):
         if current_page := self.main_stack.get_visible_child():
             current_page.unload()
 
@@ -174,10 +171,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         match page_to_load.load():
             case "load_prev":
-                self._load_next_page(offset=backwards)
+                self._load_next_page(backwards if offset > 0 else offset - 1)
                 return
             case "pass":
-                self._load_next_page(offset=offset)
+                self._load_next_page(offset + (1 if offset > 0 else -1))
                 return
             case "prevent_back_navigation":
                 self._remove_all_but_one_page(page_name)
@@ -186,35 +183,22 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._reload_title_image()
         self._update_navigation_buttons()
 
-    def _load_page_by_name(self, page_name: str) -> None:
-        if current_page := self.main_stack.get_visible_child():
-            current_page.unload()
-
-        page_to_load = self._initialize_page(page_name)
-        page_to_load.load()
-        self.main_stack.set_visible_child(page_to_load)
-
-        self._reload_title_image()
-        self._update_navigation_buttons()
+    def _load_next_page(self, offset: int = forward):
+        page_name = self._get_next_page_name(offset)
+        self._load_page(page_name, offset)
 
     def _load_previous_page(self):
         assert self.previous_pages, 'Logic Error: No previous pages to go to!'
 
         popped_page = self.main_stack.get_visible_child()
-        popped_page.unload()
         self.pages.pop()
-
-        previous_page_name = self.previous_pages.pop()
-        page_to_load = self.main_stack.get_child_by_name(previous_page_name)
-        page_to_load.load()
-        self.main_stack.set_visible_child(page_to_load)
 
         # delete popped page
         self.main_stack.remove(popped_page)
         del popped_page
 
-        self._reload_title_image()
-        self._update_navigation_buttons()
+        previous_page_name = self.previous_pages.pop()
+        self._load_page(previous_page_name)
 
     def _reload_title_image(self):
         next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
@@ -258,10 +242,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     return print('Logic Error: Returning unpreventable, page name mode')
                 self._load_previous_page()
             else:
+                next_page_name = self._get_next_page_name()
                 if not allow_return:
                     self._remove_all_but_one_page(None)
-
-                self._load_next_page()
+                self._load_page(next_page_name)
 
     def retranslate_pages(self):
         with self.navigation_lock:
@@ -309,10 +293,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             global_state.installation_running = False
 
-            self._load_page_by_name('failed')
-            self._update_navigation_buttons()
+            self._remove_all_but_one_page(None)
+            self._load_page('failed')
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
             self.previous_pages.append(self.main_stack.get_visible_child_name())
-            self._load_page_by_name(page_name)
+            self._load_page(page_name)
