@@ -71,7 +71,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     previous_revealer = Gtk.Template.Child()
     reload_revealer = Gtk.Template.Child()
 
-    current_page = None
     navigation_lock = Lock()
     pages = []
 
@@ -166,17 +165,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_name = self._get_next_page_name(offset)
 
         # unload old page
-        if self.current_page:
-            self.current_page.unload()
+        if current_page := self.main_stack.get_visible_child():
+            current_page.unload()
 
-        if page_name not in self.pages:
-            # new page
-            self.current_page = self._initialize_page(page_name)
-        else:
-            # load page
-            self.current_page = self.main_stack.get_child_by_name(page_name)
+        page_to_load = self.main_stack.get_child_by_name(page_name)
+        if not page_to_load:
+            page_to_load = self._initialize_page(page_name)
 
-        match self.current_page.load():
+        match page_to_load.load():
             case "load_prev":
                 self._load_next_page(offset=backwards)
                 return
@@ -186,16 +182,17 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             case "prevent_back_navigation":
                 self._remove_all_but_one_page(page_name)
 
-        self.main_stack.set_visible_child(self.current_page)
+        self.main_stack.set_visible_child(page_to_load)
         self._reload_title_image()
         self._update_navigation_buttons()
 
     def _load_page_by_name(self, page_name: str) -> None:
-        self.current_page.unload()
+        if current_page := self.main_stack.get_visible_child():
+            current_page.unload()
 
-        self.current_page = self._initialize_page(page_name)
-        self.current_page.load()
-        self.main_stack.set_visible_child(self.current_page)
+        page_to_load = self._initialize_page(page_name)
+        page_to_load.load()
+        self.main_stack.set_visible_child(page_to_load)
 
         self._reload_title_image()
         self._update_navigation_buttons()
@@ -203,14 +200,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _load_previous_page(self):
         assert self.previous_pages, 'Logic Error: No previous pages to go to!'
 
-        self.current_page.unload()
-        popped_page = self.current_page
+        popped_page = self.main_stack.get_visible_child()
+        popped_page.unload()
         self.pages.pop()
 
         previous_page_name = self.previous_pages.pop()
-        self.current_page = self.main_stack.get_child_by_name(previous_page_name)
-        self.current_page.load()
-        self.main_stack.set_visible_child(self.current_page)
+        page_to_load = self.main_stack.get_child_by_name(previous_page_name)
+        page_to_load.load()
+        self.main_stack.set_visible_child(page_to_load)
 
         # delete popped page
         self.main_stack.remove(popped_page)
@@ -222,7 +219,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _reload_title_image(self):
         next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
         next_image = self.image_stack.get_child_by_name(next_image_name)
-        image_source = self.current_page.image()
+        current_page = self.main_stack.get_visible_child()
+        image_source = current_page.image()
         if isinstance(image_source, str):
             next_image.set_from_icon_name(image_source)
         elif isinstance(image_source, Path):
@@ -243,14 +241,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _update_navigation_buttons(self):
         self.previous_revealer.set_reveal_child(not self._current_is_first())
         self.next_revealer.set_reveal_child(not self._current_is_last())
-        self.reload_revealer.set_reveal_child(self.current_page.can_reload())
+        current_page = self.main_stack.get_visible_child()
+        self.reload_revealer.set_reveal_child(current_page.can_reload())
 
     ### public methods ###
 
     def advance(self, page, allow_return: bool = True):
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
-            if page != None and page != self.current_page.get_page():
+            current_page = self.main_stack.get_visible_child()
+            if page != None and page != current_page.get_page():
                 return
 
             if self.previous_pages:
@@ -281,9 +281,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def reload_page(self):
         with self.navigation_lock:
-            if not self.current_page.can_reload():
+            current_page = self.main_stack.get_visible_child()
+            if not current_page.can_reload():
                 return
-            match self.current_page.load():
+            match current_page.load():
                 case "load_prev":
                     self._load_next_page(backwards)
                 case "load_next":
