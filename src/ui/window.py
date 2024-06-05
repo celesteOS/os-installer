@@ -155,7 +155,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if self.current_page:
             self.current_page.unload()
 
-        if page_number > self.navigation.furthest:
+        if page_name not in self.pages:
             # new page
             self.current_page = self._initialize_page(*self.available_pages[page_number])
         else:
