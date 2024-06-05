@@ -66,7 +66,7 @@ class MultiSelectionRow(Adw.ComboRow):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
-class PageWrapper(Gtk.Box):
+class PageWrapper(Adw.Bin):
     __gtype_name__ = __qualname__
 
     content = Gtk.Template.Child()
