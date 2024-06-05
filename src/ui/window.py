@@ -104,7 +104,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._determine_available_pages()
 
         # initialize first available page
-        self._initialize_page(self.available_pages[0])
+        self._load_next_page()
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use

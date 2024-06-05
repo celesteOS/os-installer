@@ -88,9 +88,6 @@ class Application(Adw.Application):
             self.window.connect("close-request", self._on_quit)
             self.window.present()
 
-            # load initial page
-            self.window.advance(None)
-
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
         options = options.end().unpack()
