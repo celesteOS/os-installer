@@ -22,8 +22,7 @@ class SummaryPage(Gtk.Box, Page):
     software_row = Gtk.Template.Child()
     feature_row = Gtk.Template.Child()
 
-    # row content
-    user_label = Gtk.Template.Child()
+    # user row specific
     user_autologin = Gtk.Template.Child()
 
     # software list
@@ -68,7 +67,7 @@ class SummaryPage(Gtk.Box, Page):
         self.language_row.set_subtitle(global_state.get_config('language'))
         self.keyboard_row.set_subtitle(
             global_state.get_config('keyboard_layout_ui'))
-        self.user_label.set_label(global_state.get_config('user_name'))
+        self.user_row.set_subtitle(global_state.get_config('user_name'))
         self.user_autologin.set_visible(
             global_state.get_config('user_autologin'))
         self.format_row.set_subtitle(global_state.get_config('formats_ui'))

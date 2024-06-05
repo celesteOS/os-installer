@@ -54,36 +54,19 @@ template $SummaryPage : Box {
         Adw.ActionRow user_row {
           name: "user";
           activatable: true;
+          /* Translators: Description of defined user account name and autologin status. */
+          title: _("User Account");
+          styles ["property"]
 
-          [prefix]
-          Box {
-            orientation: vertical;
-            halign: start;
-            spacing: 3;
-
-            Label {
-              /* Translators: Description of defined user account name and autologin status. */
-              label: _("User Account");
-              xalign: 0;
-              styles ["dim-label", "caption"]
-            }
-
-            Box {
-              spacing: 3;
-
-              Label user_label {
-                wrap: true;
-              }
-
-              Label user_autologin {
-                halign: end;
-                /* Translators: Gets shown when autologin is enabled. */
-                label: _("(Automatic Login)");
-                wrap: true;
-                xalign: 0;
-                styles ["dim-label"]
-              }
-            }
+          Label user_autologin {
+            halign: fill;
+            hexpand: true;
+            justify: right;
+            /* Translators: Gets shown when autologin is enabled. */
+            label: _("(Automatic Login)");
+            wrap: true;
+            xalign: 0;
+            styles ["dim-label"]
           }
 
           Image {
