@@ -74,10 +74,24 @@ class PageWrapper(Gtk.Box):
     def __init__(self, page, **kwargs):
         super().__init__(**kwargs)
 
-        self.content.set_child(page)
+        self.page = page
+        self.content.set_child(self.page)
 
     def get_page(self):
-        return self.content.get_child()
+        return self.page
+
+    def load(self):
+        return self.page.load()
+
+    def unload(self):
+        return self.page.unload()
+
+    def can_reload(self):
+        return self.page.can_reload
+
+    def image(self):
+        return self.page.image
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
 class ProgressRow(Gtk.ListBoxRow):
