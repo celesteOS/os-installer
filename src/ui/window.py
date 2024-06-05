@@ -74,8 +74,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     current_page = None
     navigation_lock = Lock()
     pages = []
-    # stack of previous pages when changing pages by name
-    previous_pages = []
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -86,6 +84,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_title_image = self._reload_title_image
         global_state.installation_failed = self.show_failed_page
+
+        self.previous_pages = []
 
         # determine available pages
         self._determine_available_pages()
@@ -139,10 +139,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 global_state.set_config('fixed_language', '')
         return True
 
-    def _initialize_page(self, page_name, by_name: bool = False):
-        # only add permanent pages to page list
-        if not by_name:
-            self.pages.append(page_name)
+    def _initialize_page(self, page_name):
+        self.pages.append(page_name)
         wrapper = PageWrapper(page_name_to_type[page_name]())
         self.main_stack.add_named(wrapper, page_name)
         return wrapper
@@ -195,10 +193,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _load_page_by_name(self, page_name: str) -> None:
         self.current_page.unload()
 
-        if page := self.main_stack.get_child_by_name(page_name):
-            self.current_page = page
-        else:
-            self.current_page = self._initialize_page(page_name, True)
+        self.current_page = self._initialize_page(page_name)
         self.current_page.load()
         self.main_stack.set_visible_child(self.current_page)
 
@@ -208,13 +203,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.reload_revealer.set_reveal_child(self.current_page.can_reload())
 
     def _load_previous_page(self):
-        assert len(self.previous_pages) > 0, 'Logic Error: No previous pages to go to!'
+        assert self.previous_pages, 'Logic Error: No previous pages to go to!'
 
         self.current_page.unload()
         popped_page = self.current_page
+        self.pages.pop()
 
-        page_name = self.previous_pages.pop()
-        self.current_page = self.main_stack.get_child_by_name(page_name)
+        previous_page_name = self.previous_pages.pop()
+        self.current_page = self.main_stack.get_child_by_name(previous_page_name)
         self.current_page.load()
         self.main_stack.set_visible_child(self.current_page)
 
