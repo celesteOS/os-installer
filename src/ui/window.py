@@ -72,6 +72,10 @@ page_name_to_type = {
 }
 
 
+forward = 1
+backwards = -1
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
@@ -170,10 +174,17 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             del page
         self.pages = [kept_page_name] if kept_page_name else []
 
-    def _load_next_page(self, backwards: bool = False):
-        page_number = self.navigation.current + (-1 if backwards else 1)
+    def _get_next_page_name(self, offset: int = forward):
+        current_page_name = self.main_stack.get_visible_child_name()
+        if not current_page_name:
+            return self.available_pages[0]
+        current_index = self.available_pages.index(current_page_name)
+        return self.available_pages[current_index + offset]
+
+    def _load_next_page(self, offset: int = forward):
+        page_number = self.navigation.current + offset
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
-        page_name = self.available_pages[page_number]
+        page_name = self._get_next_page_name(offset)
 
         # unload old page
         if self.current_page:
@@ -189,10 +200,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         match self.current_page.load():
             case "load_prev":
-                self._load_next_page(backwards=True)
+                self._load_next_page(offset=backwards)
                 return
             case "pass":
-                self._load_next_page(backwards=backwards)
+                self._load_next_page(offset=offset)
                 return
             case "prevent_back_navigation":
                 self._remove_all_but_one_page(page_name)
@@ -290,7 +301,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if self.previous_pages:
                 self._load_previous_page()
             elif not self._current_is_first():
-                self._load_next_page(backwards=True)
+                self._load_next_page(backwards)
 
     def navigate_forward(self):
         with self.navigation_lock:
@@ -303,7 +314,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 return
             match self.current_page.load():
                 case "load_prev":
-                    self._load_next_page(backwards=True)
+                    self._load_next_page(backwards)
                 case "load_next":
                     self._load_next_page()
                 # ignore case "prevent_back_navigation"
