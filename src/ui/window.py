@@ -198,9 +198,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.main_stack.set_visible_child(self.current_page)
 
         self._reload_title_image()
-        self.previous_revealer.set_reveal_child(True)
-        self.next_revealer.set_reveal_child(False)
-        self.reload_revealer.set_reveal_child(self.current_page.can_reload())
+        self._update_navigation_buttons()
 
     def _load_previous_page(self):
         assert self.previous_pages, 'Logic Error: No previous pages to go to!'
