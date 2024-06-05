@@ -230,16 +230,17 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             return # ignoring
         self.image_stack.set_visible_child_name(next_image_name)
 
+    def _current_is_first(self):
+        page_name = self.main_stack.get_visible_child_name()
+        return page_name == self.pages[0]
+
+    def _current_is_last(self):
+        page_name = self.main_stack.get_visible_child_name()
+        return page_name == self.pages[-1]
+
     def _update_navigation_buttons(self):
-        # backward
-        show_backward = self.navigation.is_not_earliest()
-        self.previous_revealer.set_reveal_child(show_backward)
-
-        # forward
-        show_forward = self.navigation.is_not_furthest()
-        self.next_revealer.set_reveal_child(show_forward)
-
-        # reload
+        self.previous_revealer.set_reveal_child(not self._current_is_first())
+        self.next_revealer.set_reveal_child(not self._current_is_last())
         self.reload_revealer.set_reveal_child(self.current_page.can_reload())
 
     ### public methods ###
@@ -270,12 +271,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             if self.previous_pages:
                 self._load_previous_page()
-            elif self.navigation.is_not_earliest():
+            elif not self._current_is_first():
                 self._load_next_page(backwards=True)
 
     def navigate_forward(self):
         with self.navigation_lock:
-            if self.navigation.is_not_furthest():
+            if not self._current_is_last():
                 self._load_next_page()
 
     def reload_page(self):
