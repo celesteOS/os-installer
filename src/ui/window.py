@@ -240,11 +240,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.current_page.load()
         self.main_stack.set_visible_child(self.current_page)
 
+        # delete popped page
+        self.main_stack.remove(popped_page)
+        del popped_page
+
         self._reload_title_image()
         self._update_navigation_buttons()
-
-        # delete popped page
-        del popped_page
 
     def _reload_title_image(self):
         next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
