@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from pathlib import Path
+
 from gi.repository import Adw, Gtk
 
 
@@ -35,6 +37,30 @@ class DeviceRow(Adw.ActionRow):
             self.set_activatable(False)
             self.set_sensitive(False)
             self.stack.set_visible_child_name('too_small')
+
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/labeled_image.ui')
+class LabeledImage(Gtk.Box):
+    __gtype_name__ = __qualname__
+
+    image = Gtk.Template.Child()
+    title = Gtk.Template.Child()
+
+    def __init__(self, image_source, label, **kwargs):
+        super().__init__(**kwargs)
+
+        if isinstance(image_source, str):
+            self.image.set_from_icon_name(image_source)
+        elif isinstance(image_source, Path):
+            self.image.set_from_file(str(image_source))
+        else:
+            print('Developer hint: invalid title image')
+            # ignoring
+
+        if label:
+            self.title.set_label(label)
+        else:
+            self.title.set_visible(False)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')

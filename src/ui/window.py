@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from pathlib import Path
 from threading import Lock
 from os.path import exists
 
@@ -25,7 +24,7 @@ from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
 from .welcome import WelcomePage
-from .widgets import PageWrapper
+from .widgets import LabeledImage, PageWrapper
 
 from .language_provider import language_provider
 from .system_calls import set_system_language
@@ -201,18 +200,17 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._load_page(previous_page_name)
 
     def _reload_title_image(self):
-        next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
-        next_image = self.image_stack.get_child_by_name(next_image_name)
+        current_name = self.image_stack.get_visible_child_name()
+        other_name = '1' if current_name == '2' else '2'
+        other_page = self.image_stack.get_child_by_name(other_name)
+
+        if other_page:
+            self.image_stack.remove(other_page)
+
         current_page = self.main_stack.get_visible_child()
         image_source = current_page.image()
-        if isinstance(image_source, str):
-            next_image.set_from_icon_name(image_source)
-        elif isinstance(image_source, Path):
-            next_image.set_from_file(str(image_source))
-        else:
-            print('Developer hint: invalid request to set title image')
-            return # ignoring
-        self.image_stack.set_visible_child_name(next_image_name)
+        self.image_stack.add_named(LabeledImage(image_source, None), other_name)
+        self.image_stack.set_visible_child_name(other_name)
 
     def _current_is_first(self):
         page_name = self.main_stack.get_visible_child_name()
