@@ -20,8 +20,6 @@ class ChoicesPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
 
     list = Gtk.Template.Child()
-    software_header = Gtk.Template.Child()
-    feature_header = Gtk.Template.Child()
     model = Gtk.Template.Child()
 
     def __init__(self, choice_type, **kwargs):
@@ -31,11 +29,9 @@ class ChoicesPage(Gtk.Box, Page):
         match self.type:
             case ChoiceType.feature:
                 self.image = 'puzzle-piece-symbolic'
-                self.feature_header.set_visible(True)
                 self.list_provider = choices_provider.get_feature_suggestions
             case ChoiceType.software:
                 self.image = 'system-software-install-symbolic'
-                self.software_header.set_visible(True)
                 self.list_provider = choices_provider.get_software_suggestions
             case _:
                 print("Unknown choice type!")

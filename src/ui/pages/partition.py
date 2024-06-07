@@ -19,7 +19,6 @@ class PartitionPage(Gtk.Box, Page):
     image = default_image_name
     can_reload = True
 
-    disk_label = Gtk.Template.Child()
     disk_size = Gtk.Template.Child()
 
     whole_disk_row = Gtk.Template.Child()
@@ -76,7 +75,6 @@ class PartitionPage(Gtk.Box, Page):
             self.partition_stack.set_visible_child_name("available")
 
         # set disk info
-        self.disk_label.set_label(self.disk.name)
         self.whole_disk_row.set_subtitle(self.disk.device_path)
         self.disk_size.set_label(self.disk.size_text)
 
@@ -106,3 +104,6 @@ class PartitionPage(Gtk.Box, Page):
 
     def load(self):
         return self._setup_partition_list()
+
+    def get_title(self):
+        return self.disk.name

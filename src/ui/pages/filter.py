@@ -21,9 +21,6 @@ class FilterPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image = 'map-symbolic'
 
-    format_title = Gtk.Template.Child()
-    timezone_title = Gtk.Template.Child()
-
     search_entry = Gtk.Template.Child()
     custom_filter = Gtk.Template.Child()
     filter_list_model = Gtk.Template.Child()
@@ -39,10 +36,8 @@ class FilterPage(Gtk.Box, Page):
         self.type = filter_type
         match self.type:
             case FilterType.format:
-                self.format_title.set_visible(True)
                 self.filter = self._format_filter
             case FilterType.timezone:
-                self.timezone_title.set_visible(True)
                 self.filter = self._timezone_filter
 
         self.search_entry.connect("search-changed", self._filter)

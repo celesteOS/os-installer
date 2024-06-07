@@ -6,26 +6,6 @@ template $FilterPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Label format_title {
-    valign: start;
-    /* Translators: Page title */
-    label: _("Select Region");
-    justify: center;
-    visible: false;
-    wrap: true;
-    styles ["heading"]
-  }
-
-  Label timezone_title {
-    valign: start;
-    /* Translators: Page title */
-    label: _("Select Location");
-    justify: center;
-    visible: false;
-    wrap: true;
-    styles ["heading"]
-  }
-
   SearchEntry search_entry {
     hexpand: true;
     placeholder-text: _("Filter");

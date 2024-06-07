@@ -5,14 +5,6 @@ template $LocalePage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Label {
-    /* Translators: Page title */
-    label: _("Adapt to Location");
-    justify: center;
-    wrap: true;
-    styles ["heading"]
-  }
-
   ListBox {
     selection-mode: none;
     row-activated => $overview_row_activated();

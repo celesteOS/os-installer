@@ -57,10 +57,7 @@ class LabeledImage(Gtk.Box):
             print('Developer hint: invalid title image')
             # ignoring
 
-        if label:
-            self.title.set_label(label)
-        else:
-            self.title.set_visible(False)
+        self.title.set_label(label)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')

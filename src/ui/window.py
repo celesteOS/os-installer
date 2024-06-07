@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
 from threading import Lock
 from os.path import exists
 
@@ -52,6 +53,51 @@ page_name_to_type = {
     'timezone':             TimezonePage,
     'user':                 UserPage,
     'welcome':              WelcomePage,
+}
+
+page_name_to_title = {
+    # Translators: Page title
+    'confirm':              _('Confirmation'),
+    # Translators: Page title
+    'disk':                 _('Disk Selection'),
+    # Translators: Page title
+    'done':                 _('Installation Complete'),
+    # Translators: Page title
+    'encrypt':              _('Disk Encryption'),
+    # Translators: Page title
+    'failed':               _('Installation Failed'),
+    # Translators: Page title
+    'feature':              _('Additional Features'),
+    # Translators: Page title
+    'format':               _('Select Region'),
+    # Translators: Page title
+    'install':              _('Installing'),
+    # Translators: Page title
+    'internet':             _('Internet Connection Check'),
+    # Translators: Page title
+    'keyboard-language':    _('Keyboard Language'),
+    # Translators: Page title
+    'keyboard-layout':      _('Keyboard Layout Selection'),
+    # Translators: Page title
+    'keyboard-overview':    _('Keyboard Layout'),
+    # Language page has no title
+    'language':             '',
+    # Translators: Page title
+    'locale':               _('Adapt to Location'),
+    # Special-cased: Partition page shows disk name as title
+    'partition':            None,
+    # Translators: Page title
+    'restart':              _('Restarting'),
+    # Translators: Page title
+    'software':             _('Additional Software'),
+    # Translators: Page title
+    'summary':              _('Summary'),
+    # Translators: Page title
+    'timezone':             _('Select Location'),
+    # Translators: Page title
+    'user':                 _('User Account'),
+    # Translators: Page title
+    'welcome':              _('Welcome'),
 }
 
 
@@ -231,6 +277,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name)
 
+    def _get_page_title(self):
+        current_page_name = self.main_stack.get_visible_child_name()
+        title = page_name_to_title[current_page_name]
+
+        if title == None:
+            assert current_page_name == 'partition'
+            return self.main_stack.get_visible_child().get_page().get_title()
+        else:
+            return _(title)
+
     def _reload_title_image(self):
         current_name = self.image_stack.get_visible_child_name()
         other_name = '1' if current_name == '2' else '2'
@@ -239,9 +295,13 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if other_page:
             self.image_stack.remove(other_page)
 
+        current_page_name = self.main_stack.get_visible_child_name()
+        title = page_name_to_title[current_page_name]
+        def translate(text): return _(text) if text else None
+
         current_page = self.main_stack.get_visible_child()
-        image_source = current_page.image()
-        self.image_stack.add_named(LabeledImage(image_source, None), other_name)
+        title = LabeledImage(current_page.image(), self._get_page_title())
+        self.image_stack.add_named(title, other_name)
         self.image_stack.set_visible_child_name(other_name)
 
     def _current_is_first(self):
