@@ -3,7 +3,7 @@
 from threading import Lock
 from os.path import exists
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gio, Gtk, Adw
 
 from .global_state import global_state
 
@@ -76,12 +76,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self._setup_actions()
+
         # set advancing functions in global state
         global_state.advance = self.advance
         global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_title_image = self._reload_title_image
-        global_state.installation_failed = self.show_failed_page
+        global_state.installation_failed = lambda self: self._show_failed_page(None, None)
 
         self.previous_pages = []
 
@@ -90,6 +92,32 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # initialize first available page
         self._load_next_page()
+
+    def _add_action(self, action_name, callback, keybinding):
+        action = Gio.SimpleAction.new(action_name, None)
+        action.connect('activate', callback)
+        self.action_group.add_action(action)
+
+        trigger = Gtk.ShortcutTrigger.parse_string(keybinding)
+        named_action = Gtk.NamedAction.new(f'win.{action_name}')
+        shortcut = Gtk.Shortcut.new(trigger, named_action)
+        self.shortcut_controller.add_shortcut(shortcut)
+
+    def _setup_actions(self):
+        self.action_group = Gio.SimpleActionGroup()
+        self.shortcut_controller = Gtk.ShortcutController()
+        self.shortcut_controller.set_scope(Gtk.ShortcutScope(1))
+
+        self._add_action('next-page', self._navigate_forward, '<Alt>Right')
+        self._add_action('previous-page', self._navigate_backward, '<Alt>Left')
+        self._add_action('reload-page', self._reload_page, 'F5')
+        self._add_action('about-page', self._show_about_page, '<Alt>Return')
+
+        if global_state.test_mode:
+            self._add_action('fail-page', self._show_failed_page, '<Alt>F')
+
+        self.insert_action_group('win', self.action_group)
+        self.add_controller(self.shortcut_controller)
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
@@ -226,6 +254,46 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         current_page = self.main_stack.get_visible_child()
         self.reload_revealer.set_reveal_child(current_page.can_reload())
 
+    ### callbacks ###
+
+    def _navigate_backward(self, _, __):
+        with self.navigation_lock:
+            if self.previous_pages:
+                self._load_previous_page()
+            elif not self._current_is_first():
+                self._load_next_page(backwards)
+
+    def _navigate_forward(self, _, __):
+        with self.navigation_lock:
+            if not self._current_is_last():
+                self._load_next_page()
+
+    def _reload_page(self, _, __):
+        with self.navigation_lock:
+            current_page = self.main_stack.get_visible_child()
+            if not current_page.can_reload():
+                return
+            match current_page.load():
+                case "load_prev":
+                    self._load_next_page(backwards)
+                case "load_next":
+                    self._load_next_page()
+                # ignore case "prevent_back_navigation"
+
+    def _show_about_page(self, _, __):
+        with self.navigation_lock:
+            builder = Gtk.Builder.new_from_resource(
+                '/com/github/p3732/os-installer/ui/about_dialog.ui')
+            popup = builder.get_object('about_window')
+            popup.present(self)
+
+    def _show_failed_page(self, _, __):
+        with self.navigation_lock:
+            global_state.installation_running = False
+
+            self._remove_all_but_one_page(None)
+            self._load_page('failed')
+
     ### public methods ###
 
     def advance(self, page, allow_return: bool = True):
@@ -249,36 +317,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             self._remove_all_but_one_page("language")
 
-    def navigate_backward(self):
-        with self.navigation_lock:
-            if self.previous_pages:
-                self._load_previous_page()
-            elif not self._current_is_first():
-                self._load_next_page(backwards)
-
-    def navigate_forward(self):
-        with self.navigation_lock:
-            if not self._current_is_last():
-                self._load_next_page()
-
-    def reload_page(self):
-        with self.navigation_lock:
-            current_page = self.main_stack.get_visible_child()
-            if not current_page.can_reload():
-                return
-            match current_page.load():
-                case "load_prev":
-                    self._load_next_page(backwards)
-                case "load_next":
-                    self._load_next_page()
-                # ignore case "prevent_back_navigation"
-
-    def show_about_page(self):
-        with self.navigation_lock:
-            builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/about_dialog.ui')
-            popup = builder.get_object('about_window')
-            popup.present(self)
-
     def show_confirm_quit_dialog(self, quit_callback):
         with self.navigation_lock:
             builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_dialog.ui')
@@ -286,13 +324,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             popup.connect('response',
                           lambda _, response: quit_callback() if response == "stop" else None)
             popup.present(self)
-
-    def show_failed_page(self):
-        with self.navigation_lock:
-            global_state.installation_running = False
-
-            self._remove_all_but_one_page(None)
-            self._load_page('failed')
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:

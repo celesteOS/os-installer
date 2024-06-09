@@ -49,10 +49,6 @@ class Application(Adw.Application):
 
     def _setup_actions(self):
         actions = [
-            Action('next-page', self._window('navigate_forward'), ['<Alt>Right']),
-            Action('previous-page', self._window('navigate_backward'), ['<Alt>Left']),
-            Action('reload-page', self._window('reload_page'), ['F5']),
-            Action('about-page', self._window('show_about_page'), ['<Alt>Return']),
             Action('quit', self._on_quit, ['<Ctl>q']),
         ]
 
@@ -72,9 +68,6 @@ class Application(Adw.Application):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
         icon_theme.add_resource_path('/com/github/p3732/os-installer/')
         icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
-
-    def _window(self, method_name):
-        return (lambda _, __: getattr(self.window, method_name)())
 
     ### parent functions ###
 
@@ -98,7 +91,6 @@ class Application(Adw.Application):
             global_state.demo_mode = True
         elif 'test-mode' in options:
             global_state.test_mode = True
-            self._add_action(Action('fail-page', self._window('show_failed_page'), ['<Alt>F']))
 
         self.activate()
         return 0
