@@ -44,9 +44,6 @@ class GlobalState:
     def send_notification(self, *args):
         self._uninitialized()
 
-    def installation_failed(self, *args):
-        self._uninitialized()
-
     def create_envs(self, with_install_envs=False, with_configure_envs=False):
         return create_envs(self.config, with_install_envs, with_configure_envs)
 

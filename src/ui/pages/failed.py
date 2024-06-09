@@ -19,7 +19,6 @@ class FailedPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
         self.terminal_box.append(installation_scripting.terminal)
-        global_state.send_notification(self.page_title.get_label(),'')
 
     ### callbacks ###
 

@@ -86,7 +86,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_title_image = self._reload_title_image
-        global_state.installation_failed = lambda self: self._show_failed_page(None, None)
 
         self.previous_pages = []
 
@@ -117,7 +116,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
 
         if global_state.test_mode:
-            self._add_action('fail-page', self._show_failed_page, '<Alt>F')
+            def show_failed(self, _, __): return self._load_page('failed')
+            self._add_action('fail-page', show_failed, '<Alt>F')
 
         self.insert_action_group('win', self.action_group)
         self.add_controller(self.shortcut_controller)
@@ -289,13 +289,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 '/com/github/p3732/os-installer/ui/about_dialog.ui')
             popup = builder.get_object('about_window')
             popup.present(self)
-
-    def _show_failed_page(self, _, __):
-        with self.navigation_lock:
-            global_state.installation_running = False
-
-            self._remove_all_but_one_page(None)
-            self._load_page('failed')
 
     ### public methods ###
 

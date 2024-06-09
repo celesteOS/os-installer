@@ -26,3 +26,4 @@ data/resources/ui/pages/welcome.blp
 
 data/resources/ui/widgets/device_row.blp
 
+src/util/installation_scripting.py

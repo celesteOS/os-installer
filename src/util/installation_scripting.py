@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import Enum
+from locale import gettext as _
 from threading import Lock
 import os
 
@@ -43,6 +44,12 @@ class InstallationScripting():
         terminal.connect('child-exited', self._on_child_exited)
         return terminal
 
+    def _fail_installation(self):
+        global_state.installation_running = False
+        global_state.navigate_to_page("failed")
+        # Translators: Notification text
+        global_state.send_notification(_("Installation Failed"), '')
+
     def _try_start_next_script(self):
         if self.running_step != Step.none:
             return
@@ -64,7 +71,7 @@ class InstallationScripting():
             print('############################')
             print(global_state.config)
             print('############################')
-            global_state.installation_failed()
+            self._fail_installation()
             return
 
         # start script
@@ -93,13 +100,15 @@ class InstallationScripting():
 
             if not status == 0 and not global_state.demo_mode:
                 print(f'Failure during step "{self.finished_step.name}"')
-                global_state.installation_failed()
+                self._fail_installation()
                 return
 
             print(f'Finished step "{self.finished_step.name}".')
 
             if self.finished_step is Step.configure:
                 global_state.installation_running = False
+                # Translators: Notification text
+                global_state.send_notification(_("Finished Installation"), '')
                 global_state.advance(None, allow_return=False)
             else:
                 self._try_start_next_script()
