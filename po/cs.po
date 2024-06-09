@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-02 21:46+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,13 @@ msgstr "OS-Installer"
 msgid "Install an Operating System"
 msgstr "Nainstalovat operační systém"
 
+#. Translators: Dialog title
 #, fuzzy
 #| msgid "Installation Failed"
 msgid "Installation Running"
 msgstr "Instalace se nezdařila"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -80,37 +81,6 @@ msgstr "Výběr disku"
 msgid "_Manage Disks"
 msgstr "_Spravovat disky"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Použít celý disk"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Oddíly"
-
-msgid "Disk has no partitions."
-msgstr "Disk nemá žádné oddíly."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Výběr oddílu není možný."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Disk vyžaduje:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • Rozdělení GPT\n"
-"  • Oddíl EFI"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • Zaváděcí oddíl systému BIOS"
-
 msgid "No Disks avaliable"
 msgstr "Nejsou k dispozici žádné disky"
 
@@ -133,6 +103,10 @@ msgstr "_Restartovat systém"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Restartovat _později"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Zobrazit výstup terminálu"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -184,10 +158,6 @@ msgstr "Zkuste jiné vyhledávání"
 msgid "Installing"
 msgstr "Instaluje se"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Zobrazit výstup terminálu"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Kontrola připojení k internetu"
@@ -200,17 +170,23 @@ msgid "_Open Settings"
 msgstr "_Otevřít nastavení"
 
 #. Translators: Page title
+#. selectable: false;
+#. Translators: Followed by a language name.
+msgid "Keyboard Language"
+msgstr "Jazyk klávesnice"
+
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
+msgstr "Výběr rozvržení klávesnice"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
 msgstr "Výběr rozvržení klávesnice"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
 msgstr "Zde vyzkoušejte rozvržení klávesnice"
-
-#. selectable: false;
-#. Translators: Followed by a language name.
-msgid "Keyboard Language"
-msgstr "Jazyk klávesnice"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -230,6 +206,37 @@ msgstr "Formáty"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Definuje výchozí formát používaný pro data, časy, čísla atd."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Použít celý disk"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Oddíly"
+
+msgid "Disk has no partitions."
+msgstr "Disk nemá žádné oddíly."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Výběr oddílu není možný."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Disk vyžaduje:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • Rozdělení GPT\n"
+"  • Oddíl EFI"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • Zaváděcí oddíl systému BIOS"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Restartování"
@@ -241,10 +248,6 @@ msgstr "Shrnutí"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "Jazyk"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Výběr rozvržení klávesnice"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -294,6 +297,73 @@ msgstr "Nepojmenovaný oddíl"
 #| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
 msgstr "Nedostatek místa pro instalaci"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Potvrdit"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Šifrovat soubory"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Formáty"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Instaluje se"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Jazyk klávesnice"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "Výběr rozvržení klávesnice"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Oddíly"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Restartování"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #, fuzzy
 #~ msgid "PIN"

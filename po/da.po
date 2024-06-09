@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-02 21:46+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: none\n"
@@ -24,11 +24,12 @@ msgstr "OS-Installatør"
 msgid "Install an Operating System"
 msgstr "Installere et Operativsystem"
 
+#. Translators: Dialog title
 #, fuzzy
 msgid "Installation Running"
 msgstr "Installation Failed"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 #, fuzzy
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
@@ -82,42 +83,6 @@ msgstr "Valg af disk"
 msgid "_Manage Disks"
 msgstr "_Administrere Disk"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Brug hele diske"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Skillevægge"
-
-#, fuzzy
-msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#, fuzzy
-msgid "Selecting a partition is not possible."
-msgstr "Selecting a partition is not possible."
-
-#. Translators: Followed by a list of requirements
-#, fuzzy
-msgid "The disk requires:"
-msgstr "The disk requires:"
-
-#. Translators: Bullet point listing.
-#, fuzzy
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-
-#. Translators: Bullet point listing.
-#, fuzzy
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partition"
-
 #, fuzzy
 msgid "No Disks avaliable"
 msgstr "No Disks avaliable"
@@ -145,6 +110,11 @@ msgstr "_Restart System"
 #, fuzzy
 msgid "Restart _Later"
 msgstr "Restart _Later"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+#, fuzzy
+msgid "Show Terminal Output"
+msgstr "Show Terminal Output"
 
 #. Translators: Page title
 #, fuzzy
@@ -207,11 +177,6 @@ msgstr "Try a different search"
 msgid "Installing"
 msgstr "Installing"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-#, fuzzy
-msgid "Show Terminal Output"
-msgstr "Show Terminal Output"
-
 #. Translators: Page title
 #, fuzzy
 msgid "Internet Connection Check"
@@ -227,20 +192,27 @@ msgid "_Open Settings"
 msgstr "_Open Settings"
 
 #. Translators: Page title
-#, fuzzy
-msgid "Keyboard Layout Selection"
-msgstr "Keyboard Layout Selection"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#, fuzzy
-msgid "Test the Keyboard Layout Here"
-msgstr "Test the Keyboard Layout Here"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 #, fuzzy
 msgid "Keyboard Language"
 msgstr "Keyboard Language"
+
+#. Translators: Page title
+#, fuzzy
+msgid "Keyboard Layout Selection"
+msgstr "Keyboard Layout Selection"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+msgid "Keyboard Layout"
+msgstr "Keyboard Layout"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+#, fuzzy
+msgid "Test the Keyboard Layout Here"
+msgstr "Test the Keyboard Layout Here"
 
 #. Translators: Page title
 #, fuzzy
@@ -264,6 +236,42 @@ msgstr "Formats"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Defines the default format used for dates, times, numbers, etc."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Brug hele diske"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Skillevægge"
+
+#, fuzzy
+msgid "Disk has no partitions."
+msgstr "Disk has no partitions."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+#, fuzzy
+msgid "Selecting a partition is not possible."
+msgstr "Selecting a partition is not possible."
+
+#. Translators: Followed by a list of requirements
+#, fuzzy
+msgid "The disk requires:"
+msgstr "The disk requires:"
+
+#. Translators: Bullet point listing.
+#, fuzzy
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+
+#. Translators: Bullet point listing.
+#, fuzzy
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS boot partition"
+
 #. Translators: Page title
 #, fuzzy
 msgid "Restarting"
@@ -278,11 +286,6 @@ msgstr "Summary"
 #, fuzzy
 msgid "Language"
 msgstr "Language"
-
-#. Translators: Description of selected keyboard layout.
-#, fuzzy
-msgid "Keyboard Layout"
-msgstr "Keyboard Layout"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -340,3 +343,64 @@ msgstr "Unnamed Partition"
 #, fuzzy
 msgid "Not enough space for installation ({} required)"
 msgstr "Not enough space for installation"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Bekræfte"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+msgid "Encrypt"
+msgstr "Encrypt Files"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+msgid "Format"
+msgstr "Formats"
+
+#, fuzzy
+msgid "Install"
+msgstr "Installing"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+msgid "KeyboardLanguage"
+msgstr "Keyboard Language"
+
+#, fuzzy
+msgid "KeyboardLayout"
+msgstr "Keyboard Layout"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Skillevægge"
+
+#, fuzzy
+msgid "Restart"
+msgstr "Restarting"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""

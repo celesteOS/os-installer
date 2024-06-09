@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-02 21:46+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/et/>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,13 @@ msgstr "OS-Installer"
 msgid "Install an Operating System"
 msgstr "Paigaldage opsüsteemi"
 
+#. Translators: Dialog title
 #, fuzzy
 #| msgid "Installation Failed"
 msgid "Installation Running"
 msgstr "Paigaldamine ebaõnnestus"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -82,38 +83,6 @@ msgstr "Ketta valik"
 msgid "_Manage Disks"
 msgstr "_Ketaste haldamine"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Kasuta tervet ketast"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Partitsioonid"
-
-#, fuzzy
-msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Partitsiooni valimine ei ole võimalik."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Ketas vajab:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT partitsioneerimist\n"
-"  • EFI partitsiooni"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partitsiooni"
-
 msgid "No Disks avaliable"
 msgstr "Ühtegi ketast ei ole saadaval"
 
@@ -136,6 +105,10 @@ msgstr "_Taaskäivita süsteem"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Taaskäivita _hiljem"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Näita terminali väljundit"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -189,10 +162,6 @@ msgstr "Try a different search"
 msgid "Installing"
 msgstr "Paigaldamine"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Näita terminali väljundit"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Interneti-ühenduse kontroll"
@@ -205,17 +174,25 @@ msgid "_Open Settings"
 msgstr "_Ava sätted"
 
 #. Translators: Page title
+#. selectable: false;
+#. Translators: Followed by a language name.
+msgid "Keyboard Language"
+msgstr "Sisestuskeel"
+
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
+msgstr "Klaviatuuri paigutuse valik"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
 msgstr "Klaviatuuri paigutuse valik"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
 msgstr "Testi klaviatuuri siin"
-
-#. selectable: false;
-#. Translators: Followed by a language name.
-msgid "Keyboard Language"
-msgstr "Sisestuskeel"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -235,6 +212,38 @@ msgstr "Aja vorming"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Määratleb kuupäevade, kellaaegade, numbrite jne vaikimisi vormingu."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Kasuta tervet ketast"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Partitsioonid"
+
+#, fuzzy
+msgid "Disk has no partitions."
+msgstr "Disk has no partitions."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Partitsiooni valimine ei ole võimalik."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Ketas vajab:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT partitsioneerimist\n"
+"  • EFI partitsiooni"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS boot partitsiooni"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Taaskäivitamine"
@@ -249,12 +258,6 @@ msgstr "Summary"
 #| msgid "Keyboard Language"
 msgid "Language"
 msgstr "Sisestuskeel"
-
-#. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
-msgid "Keyboard Layout"
-msgstr "Klaviatuuri paigutuse valik"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -309,6 +312,73 @@ msgstr "Nimetu partitsioon"
 #| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
 msgstr "Paigaldamiseks ei ole piisavalt ruumi"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Kinnita"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Failide krüpteerimine"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Aja vorming"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Paigaldamine"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Sisestuskeel"
+
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "KeyboardLayout"
+msgstr "Klaviatuuri paigutuse valik"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Partitsioonid"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Taaskäivitamine"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN"

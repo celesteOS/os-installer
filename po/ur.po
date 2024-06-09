@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-02 21:46+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: none\n"
@@ -24,12 +24,13 @@ msgstr "او ایس انسٹالر"
 msgid "Install an Operating System"
 msgstr "آپریٹنگ سسٹم انسٹال کریں"
 
+#. Translators: Dialog title
 #, fuzzy
 #| msgid "Installation Failed"
 msgid "Installation Running"
 msgstr "انسٹالیشن ناکام"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -79,37 +80,6 @@ msgstr "ڈسک کا تعین کریں"
 msgid "_Manage Disks"
 msgstr "_مینج ڈسک"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "پوری ڈسک استعمال کریں"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "ڈسک پارٹیشنز"
-
-msgid "Disk has no partitions."
-msgstr "ڈسک میں کوئی پارٹیشن نہیں ہے۔"
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "پارٹیشن کو منتخب کرنا ممکن نہیں ہے۔"
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "ڈسک کو مندرجہ ذیل چیزوں کی ضرورت ہیں:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • جی پی ٹی پارٹیشنز\n"
-"• ای ایف آئی پارٹیشنز"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot پارٹیشنز"
-
 msgid "No Disks avaliable"
 msgstr "کوئی بھی ڈسک موجود نہیں ہے"
 
@@ -132,6 +102,10 @@ msgstr "_ سسٹم کو ابھی ری اسٹارٹ کریں"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "_ سسٹم کوبعد میں ری اسٹارٹ کریں"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "ٹرمینل آؤٹ پٹ دکھائیں"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -183,10 +157,6 @@ msgstr "مختلف طریقہ سے تلاش کرنے کی کوشش کریں"
 msgid "Installing"
 msgstr "انسٹال ہو رہا ہے"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "ٹرمینل آؤٹ پٹ دکھائیں"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "انٹرنیٹ کنیکشن چیک"
@@ -199,17 +169,23 @@ msgid "_Open Settings"
 msgstr "_ سیٹینگ کھولیں"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "کی بورڈ لے آؤٹ سلیکشن"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "کی بورڈ لے آؤٹ کو یہاں پر جانچیں"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "کی بورڈ لینگویج"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "کی بورڈ لے آؤٹ سلیکشن"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "کی بورڈ لے آؤٹ"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "کی بورڈ لے آؤٹ کو یہاں پر جانچیں"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -231,6 +207,37 @@ msgstr ""
 "تاریخوں، اوقات، نمبرز وغیرہ کے لیے استعمال ہونے والے ڈیفالٹ فارمیٹ کی وضاحت "
 "کرتا ہے۔"
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "پوری ڈسک استعمال کریں"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "ڈسک پارٹیشنز"
+
+msgid "Disk has no partitions."
+msgstr "ڈسک میں کوئی پارٹیشن نہیں ہے۔"
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "پارٹیشن کو منتخب کرنا ممکن نہیں ہے۔"
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "ڈسک کو مندرجہ ذیل چیزوں کی ضرورت ہیں:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • جی پی ٹی پارٹیشنز\n"
+"• ای ایف آئی پارٹیشنز"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS boot پارٹیشنز"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "ری اسٹارٹ ہو رہا ہے"
@@ -242,10 +249,6 @@ msgstr "خلاصہ"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "زبان"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "کی بورڈ لے آؤٹ"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -296,3 +299,70 @@ msgstr "بے نام پارٹیشن"
 #| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
 msgstr "انسٹالیشن کے لیے کافی جگہ نہیں ہے"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "جی، ٹھیک ہے"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "انکرپٹ فائلز"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "فارمیٹس"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "انسٹال ہو رہا ہے"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "کی بورڈ لینگویج"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "کی بورڈ لے آؤٹ"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "ڈسک پارٹیشنز"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "ری اسٹارٹ ہو رہا ہے"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""

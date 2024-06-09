@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-03 23:01+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/sv/>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,10 +26,11 @@ msgstr "Oprativsysteminstallatör"
 msgid "Install an Operating System"
 msgstr "Installera ett oprativsystem"
 
+#. Translators: Dialog title
 msgid "Installation Running"
 msgstr "Installation pågår"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -79,37 +80,6 @@ msgstr "Val av disk"
 msgid "_Manage Disks"
 msgstr "_Hantera diskar"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Använd hela disken"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Partitioner"
-
-msgid "Disk has no partitions."
-msgstr "Disken har inga partitioner."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Det går inte att välja en partition."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Denna disk kräver:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT-partitionering\n"
-"  • EFI-partition"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS-uppstartspartition"
-
 msgid "No Disks avaliable"
 msgstr "Inga diskar tillgängliga"
 
@@ -131,6 +101,10 @@ msgstr "_Starta om till systemet"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Starta om _senare"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Visa terminalutdata"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -182,10 +156,6 @@ msgstr "Prova med en annan sökning"
 msgid "Installing"
 msgstr "Installerar"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Visa terminalutdata"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Kontrollerar internetanslutningen"
@@ -198,17 +168,23 @@ msgid "_Open Settings"
 msgstr "_Öppna Inställningar"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "Val av tangentbordslayout"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "Testa tangentbordslayouten här"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Tangentbordsspråk"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "Val av tangentbordslayout"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "Tangentbordslayout"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "Testa tangentbordslayouten här"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -229,6 +205,37 @@ msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr ""
 "Definierar standardformatet som används för datum, tider, siffror, etc."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Använd hela disken"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Partitioner"
+
+msgid "Disk has no partitions."
+msgstr "Disken har inga partitioner."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Det går inte att välja en partition."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Denna disk kräver:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT-partitionering\n"
+"  • EFI-partition"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS-uppstartspartition"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Startar om"
@@ -240,10 +247,6 @@ msgstr "Sammanfattning"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "Språk"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Tangentbordslayout"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -290,6 +293,73 @@ msgstr "Namnlös partition"
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 msgid "Not enough space for installation ({} required)"
 msgstr "Inte tillräckligt med utrymme för installation ({} krävs)"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Bekräfta"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Kryptera filer"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Format"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Installerar"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Tangentbordsspråk"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "Tangentbordslayout"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Partitioner"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Startar om"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN-kod"

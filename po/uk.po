@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-04-24 19:07+0000\n"
 "Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
@@ -26,10 +26,11 @@ msgstr "Встановлення системи"
 msgid "Install an Operating System"
 msgstr "Встановіть операційну систему"
 
+#. Translators: Dialog title
 msgid "Installation Running"
 msgstr "Виконується встановлення"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -79,37 +80,6 @@ msgstr "Вибір диска"
 msgid "_Manage Disks"
 msgstr "_Керування дисками"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Використати весь диск"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Розділи"
-
-msgid "Disk has no partitions."
-msgstr "Диск не має розділів."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Вибрати розділ неможливо»."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Диск вимагає:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • Розділ GPT\n"
-"  • Розділ EFI"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • Завантажувальний розділ BIOS"
-
 msgid "No Disks avaliable"
 msgstr "Немає доступних дисків"
 
@@ -131,6 +101,10 @@ msgstr "Перезавантажити _систему"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Перезавантажити _пізніше"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Показати термінал"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -182,10 +156,6 @@ msgstr "Спробуйте інший пошук"
 msgid "Installing"
 msgstr "Встановлення"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Показати термінал"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Перевірка підключення до Інтернету"
@@ -198,17 +168,23 @@ msgid "_Open Settings"
 msgstr "_Відкрити налаштування"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "Вибір розкладки клавіатури"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "Перевірте розкладку клавіатури тут"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Мова клавіатури"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "Вибір розкладки клавіатури"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "Розкладка клавіатури"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "Перевірте розкладку клавіатури тут"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -230,6 +206,37 @@ msgstr ""
 "Визначає формат за замовчуванням, який використовується для дат, часу, чисел "
 "тощо."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Використати весь диск"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Розділи"
+
+msgid "Disk has no partitions."
+msgstr "Диск не має розділів."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Вибрати розділ неможливо»."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Диск вимагає:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • Розділ GPT\n"
+"  • Розділ EFI"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • Завантажувальний розділ BIOS"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Перезапуск"
@@ -241,10 +248,6 @@ msgstr "Резюме"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "Мова"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Розкладка клавіатури"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -290,6 +293,73 @@ msgstr "Безіменний розділ"
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 msgid "Not enough space for installation ({} required)"
 msgstr "Недостатньо місця для установки (потрібно {})"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Підтвердити"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Шифрування файлів"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Формати"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Встановлення"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Мова клавіатури"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "Розкладка клавіатури"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Розділи"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Перезапуск"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN-код"

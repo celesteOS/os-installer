@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-02 21:46+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,13 @@ msgstr "OS-Installer"
 msgid "Install an Operating System"
 msgstr "Installa un sistema operativo"
 
+#. Translators: Dialog title
 #, fuzzy
 #| msgid "Installation Failed"
 msgid "Installation Running"
 msgstr "Installazione non riuscita"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -82,38 +83,6 @@ msgstr "Selezione Disco"
 msgid "_Manage Disks"
 msgstr "_Gestione DIschi"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Usa Disco Intero"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Partizioni"
-
-#, fuzzy
-msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Non è possibile selezionare una partizione."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Questo disco richiede:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  - Partizionamento GPT\n"
-"  - Partizione EFI"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  - Partizione di avvio del BIOS"
-
 msgid "No Disks avaliable"
 msgstr "Nessun disco disponibile"
 
@@ -136,6 +105,10 @@ msgstr "_Riavvia il Sistema"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Riavviare _più tardi"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Mostra il Terminale di Log"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -190,10 +163,6 @@ msgstr "Try a different search"
 msgid "Installing"
 msgstr "Installazione"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Mostra il Terminale di Log"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Controllo Connessione Internet"
@@ -206,17 +175,25 @@ msgid "_Open Settings"
 msgstr "_Apri Impostazioni"
 
 #. Translators: Page title
+#. selectable: false;
+#. Translators: Followed by a language name.
+msgid "Keyboard Language"
+msgstr "Lingua della tastiera"
+
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
+msgstr "Selezione Layout Tastiera"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
 msgstr "Selezione Layout Tastiera"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
 msgstr "Prova Qui il Layout della Tastiera"
-
-#. selectable: false;
-#. Translators: Followed by a language name.
-msgid "Keyboard Language"
-msgstr "Lingua della tastiera"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -237,6 +214,38 @@ msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr ""
 "Definisce il formato predefinito utilizzato per date, orari, numeri, ecc."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Usa Disco Intero"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Partizioni"
+
+#, fuzzy
+msgid "Disk has no partitions."
+msgstr "Disk has no partitions."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Non è possibile selezionare una partizione."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Questo disco richiede:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  - Partizionamento GPT\n"
+"  - Partizione EFI"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  - Partizione di avvio del BIOS"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Riavviando"
@@ -251,12 +260,6 @@ msgstr "Summary"
 #| msgid "Keyboard Language"
 msgid "Language"
 msgstr "Lingua della tastiera"
-
-#. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
-msgid "Keyboard Layout"
-msgstr "Selezione Layout Tastiera"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -312,6 +315,73 @@ msgstr "Partizione senza nome"
 #| msgid "Not enough space for installation"
 msgid "Not enough space for installation ({} required)"
 msgstr "Spazio insufficiente per l'installazione"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Conferma"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Crittografa Files"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Formati"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Installazione"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Lingua della tastiera"
+
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "KeyboardLayout"
+msgstr "Selezione Layout Tastiera"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Partizioni"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Riavviando"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN"

@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-03 23:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: Croatian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/hr/>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,10 +27,11 @@ msgstr "OS-Instaler"
 msgid "Install an Operating System"
 msgstr "Instaliraj operacijski sustav"
 
+#. Translators: Dialog title
 msgid "Installation Running"
 msgstr "Instalacija u tijeku"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -80,37 +81,6 @@ msgstr "Odabir diska"
 msgid "_Manage Disks"
 msgstr "_Upravljanje diskovima"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Koristi cijeli disk"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Particija"
-
-msgid "Disk has no partitions."
-msgstr "Disk nema partiicja."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Odabir particije nije moguć."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Disk zahtijeva:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT particioniranje\n"
-"  • EFI particija"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS particija za pokretanje"
-
 msgid "No Disks avaliable"
 msgstr "Nema dostupnih diskova"
 
@@ -132,6 +102,10 @@ msgstr "Ponovo pokreni _sustav"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "Ponovo pokreni _kasnije"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Prikaži izlaz terminala"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -182,10 +156,6 @@ msgstr "Pokušaj jednu drugu pretragu"
 msgid "Installing"
 msgstr "Instaliranje"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Prikaži izlaz terminala"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Provjera internetske veze"
@@ -198,17 +168,23 @@ msgid "_Open Settings"
 msgstr "Otvori postavke"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "Odabir rasporeda tipkovnice"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "Ovdje isprobajte odabrani raspored tipkovnice"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Jezik tipkovnice"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "Odabir rasporeda tipkovnice"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "Raspored tipkovnice"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "Ovdje isprobajte odabrani raspored tipkovnice"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -228,6 +204,37 @@ msgstr "Formati"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Definira format koji se koristi za datume, vremena, brojeve itd."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Koristi cijeli disk"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Particija"
+
+msgid "Disk has no partitions."
+msgstr "Disk nema partiicja."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Odabir particije nije moguć."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Disk zahtijeva:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT particioniranje\n"
+"  • EFI particija"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS particija za pokretanje"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Ponovno pokretanje"
@@ -239,10 +246,6 @@ msgstr "Sažetak"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "Jezik"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Raspored tipkovnice"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -289,6 +292,73 @@ msgstr "Neimenovana particija"
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 msgid "Not enough space for installation ({} required)"
 msgstr "Premalo memorije za instalaciju (potrebno je {})"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Potvrdi"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Šifriranje datoteka"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Formati"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Instaliranje"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Jezik tipkovnice"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "Raspored tipkovnice"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Particija"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Ponovno pokretanje"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN"

@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-08 08:01+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/ka/>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,10 +25,11 @@ msgstr "OS-Installer"
 msgid "Install an Operating System"
 msgstr "ოპერაციული სისტემის დაყენება"
 
+#. Translators: Dialog title
 msgid "Installation Running"
 msgstr "დაყენება მიმდინარეობს"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -78,37 +79,6 @@ msgstr "დისკის არჩევანი"
 msgid "_Manage Disks"
 msgstr "_დისკების მართვა"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "დისკის სრულად გამოყენება"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "დანაყოფები"
-
-msgid "Disk has no partitions."
-msgstr "დისკს დანაყოფები არ გააჩნია."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "დანაყოფის არჩევა შეუძლებელია."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "დისკს სჭირდება:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT დანაყოფები\n"
-"  • EFI დანაყოფი"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS ჩატვირთვადი დანაყოფი"
-
 msgid "No Disks avaliable"
 msgstr "დისკების გარეშე"
 
@@ -130,6 +100,10 @@ msgstr "_სისტემის გადატვირთვა"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "_მოგვიანებით გადატვირთვა"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "ტერმინალზე გამონატანის ჩვენება"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -179,10 +153,6 @@ msgstr "სცადეთ, სხვანაირად მოძებნო
 msgid "Installing"
 msgstr "დაყენება"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "ტერმინალზე გამონატანის ჩვენება"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "ინტერნეტთან მიერთების შემოწმება"
@@ -195,17 +165,23 @@ msgid "_Open Settings"
 msgstr "პარამეტრების _გახსნა"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "კლავიატურის განლაგების არჩევა"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "კლავიატურის განლაგება არ გამოსცადეთ"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "კლავიატურის ენა"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "კლავიატურის განლაგების არჩევა"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "კლავიატურის განლაგება"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "კლავიატურის განლაგება არ გამოსცადეთ"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -225,6 +201,37 @@ msgstr "ფორმატები"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "თარიღის, დროის და ა.შ. ნაგულისხმები ფორმატის აღწერა."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "დისკის სრულად გამოყენება"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "დანაყოფები"
+
+msgid "Disk has no partitions."
+msgstr "დისკს დანაყოფები არ გააჩნია."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "დანაყოფის არჩევა შეუძლებელია."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "დისკს სჭირდება:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT დანაყოფები\n"
+"  • EFI დანაყოფი"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS ჩატვირთვადი დანაყოფი"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "გადატვირთვა"
@@ -236,10 +243,6 @@ msgstr "შეჯამება"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "ენა"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "კლავიატურის განლაგება"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -285,6 +288,73 @@ msgstr "უსახელო დანაყოფი"
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 msgid "Not enough space for installation ({} required)"
 msgstr "დასაყენებლად საჭირო ადგილის გარეშე (აუცილებელია {})"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_დადასტურება"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "ფაილების დაშიფვრა"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "ფორმატები"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "დაყენება"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "კლავიატურის ენა"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "კლავიატურის განლაგება"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "დანაყოფები"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "გადატვირთვა"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
 
 #~ msgid "PIN"
 #~ msgstr "PIN კოდი"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 22:45+0100\n"
+"POT-Creation-Date: 2024-06-06 10:41+0200\n"
 "PO-Revision-Date: 2024-03-06 18:01+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: none\n"
@@ -24,10 +24,11 @@ msgstr "İşletim Sistemi Kurucu"
 msgid "Install an Operating System"
 msgstr "Bir İşletim Sistemi Kurun"
 
+#. Translators: Dialog title
 msgid "Installation Running"
 msgstr "Kurulum Devam Ediyor"
 
-#. Translators: Shown if user wants to close window with running installation
+#. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -77,37 +78,6 @@ msgstr "Disk Seçimi"
 msgid "_Manage Disks"
 msgstr "_Diskleri Yönet"
 
-#. Translators: Label to use whole disk rather than a single partition.
-msgid "Use Whole Disk"
-msgstr "Tüm Diski Kullan"
-
-#. Translators: Heading of list of partitions
-msgid "Partitions"
-msgstr "Bölümler"
-
-msgid "Disk has no partitions."
-msgstr "Diskte bölüm yok."
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-msgid "Selecting a partition is not possible."
-msgstr "Bir bölüm seçimi mümkün değil."
-
-#. Translators: Followed by a list of requirements
-msgid "The disk requires:"
-msgstr "Disk gereksinimleri:"
-
-#. Translators: Bullet point listing.
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT bölümleme\n"
-"  • EFI bölümü"
-
-#. Translators: Bullet point listing.
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS önyükleme bölümü"
-
 msgid "No Disks avaliable"
 msgstr "Kullanılabilir disk yok"
 
@@ -129,6 +99,10 @@ msgstr "Sistemi _Yeniden Başlat"
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
 msgstr "_Daha Sonra Yeniden Başlat"
+
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+msgid "Show Terminal Output"
+msgstr "Uçbirim Çıktısını Göster"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -178,10 +152,6 @@ msgstr "Başka bir arama deneyin"
 msgid "Installing"
 msgstr "Kuruluyor"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-msgid "Show Terminal Output"
-msgstr "Uçbirim Çıktısını Göster"
-
 #. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "İnternet Bağlantısı Denetimi"
@@ -194,17 +164,23 @@ msgid "_Open Settings"
 msgstr "_Ayarları Aç"
 
 #. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "Klavye Düzeni Seçimi"
-
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-msgid "Test the Keyboard Layout Here"
-msgstr "Klavye Düzenini Burada Test Edin"
-
 #. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Klavye Dili"
+
+#. Translators: Page title
+msgid "Keyboard Layout Selection"
+msgstr "Klavye Düzeni Seçimi"
+
+#. Translators: Page title
+#. Translators: Description of selected keyboard layout.
+msgid "Keyboard Layout"
+msgstr "Klavye Düzeni"
+
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+msgid "Test the Keyboard Layout Here"
+msgstr "Klavye Düzenini Burada Test Edin"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -224,6 +200,37 @@ msgstr "Biçimler"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Tarih, saat, sayılar vb. için kullanılan öntanımlı biçimi tanımlar."
 
+#. Translators: Label to use whole disk rather than a single partition.
+msgid "Use Whole Disk"
+msgstr "Tüm Diski Kullan"
+
+#. Translators: Heading of list of partitions
+msgid "Partitions"
+msgstr "Bölümler"
+
+msgid "Disk has no partitions."
+msgstr "Diskte bölüm yok."
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+msgid "Selecting a partition is not possible."
+msgstr "Bir bölüm seçimi mümkün değil."
+
+#. Translators: Followed by a list of requirements
+msgid "The disk requires:"
+msgstr "Disk gereksinimleri:"
+
+#. Translators: Bullet point listing.
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT bölümleme\n"
+"  • EFI bölümü"
+
+#. Translators: Bullet point listing.
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS önyükleme bölümü"
+
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Yeniden Başlatılıyor"
@@ -235,10 +242,6 @@ msgstr "Özet"
 #. Translators: Description of selected language.
 msgid "Language"
 msgstr "Dil"
-
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Klavye Düzeni"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -284,3 +287,70 @@ msgstr "Adsız Bölüm"
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 msgid "Not enough space for installation ({} required)"
 msgstr "Kurulum için yeterli alan yok ({} gerekli)"
+
+#, fuzzy
+#| msgid "_Confirm"
+msgid "Confirm"
+msgstr "_Kabul Et"
+
+msgid "Disk"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+#, fuzzy
+#| msgid "Encrypt Files"
+msgid "Encrypt"
+msgstr "Dosyaları Şifrele"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+#, fuzzy
+#| msgid "Formats"
+msgid "Format"
+msgstr "Biçimler"
+
+#, fuzzy
+#| msgid "Installing"
+msgid "Install"
+msgstr "Kuruluyor"
+
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "KeyboardLanguage"
+msgstr "Klavye Dili"
+
+#, fuzzy
+#| msgid "Keyboard Layout"
+msgid "KeyboardLayout"
+msgstr "Klavye Düzeni"
+
+msgid "KeyboardOverview"
+msgstr ""
+
+msgid "Locale"
+msgstr ""
+
+#, fuzzy
+#| msgid "Partitions"
+msgid "Partition"
+msgstr "Bölümler"
+
+#, fuzzy
+#| msgid "Restarting"
+msgid "Restart"
+msgstr "Yeniden Başlatılıyor"
+
+msgid "Software"
+msgstr ""
+
+msgid "User"
+msgstr ""
