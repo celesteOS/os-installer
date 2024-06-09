@@ -55,6 +55,9 @@ page_name_to_type = {
 }
 
 
+non_returnable_pages = ['done', 'failed', 'summary']
+
+
 forward = 1
 backwards = -1
 
@@ -203,8 +206,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             case "pass":
                 self._load_next_page(offset + (1 if offset > 0 else -1))
                 return
-            case "prevent_back_navigation":
-                self._remove_all_but_one_page(page_name)
+
+        if page_name in non_returnable_pages:
+            self._remove_all_but_one_page(page_name)
 
         self.main_stack.set_visible_child(page_to_load)
         self._reload_title_image()
@@ -278,7 +282,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._load_next_page(backwards)
                 case "load_next":
                     self._load_next_page()
-                # ignore case "prevent_back_navigation"
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:

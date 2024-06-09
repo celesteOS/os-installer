@@ -86,5 +86,3 @@ class SummaryPage(Gtk.Box, Page):
             reset_model(self.feature_model, features)
         else:
             self.feature_stack.set_visible_child_name('none')
-
-        return "prevent_back_navigation"
