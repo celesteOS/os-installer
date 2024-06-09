@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"PO-Revision-Date: 2024-06-09 20:33+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -321,22 +321,26 @@ msgstr "Spazio insufficiente per l'installazione"
 msgid "Confirm"
 msgstr "_Conferma"
 
+#, fuzzy
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #, fuzzy
 #| msgid "Encrypt Files"
 msgid "Encrypt"
 msgstr "Crittografa Files"
 
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
+#, fuzzy
 msgid "Feature"
-msgstr ""
+msgstr "Feature"
 
 #, fuzzy
 #| msgid "Formats"
@@ -348,8 +352,9 @@ msgstr "Formati"
 msgid "Install"
 msgstr "Installazione"
 
+#, fuzzy
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #, fuzzy
 #| msgid "Keyboard Language"
@@ -361,11 +366,13 @@ msgstr "Lingua della tastiera"
 msgid "KeyboardLayout"
 msgstr "Selezione Layout Tastiera"
 
+#, fuzzy
 msgid "KeyboardOverview"
-msgstr ""
+msgstr "KeyboardOverview"
 
+#, fuzzy
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #, fuzzy
 #| msgid "Partitions"
@@ -377,11 +384,13 @@ msgstr "Partizioni"
 msgid "Restart"
 msgstr "Riavviando"
 
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"

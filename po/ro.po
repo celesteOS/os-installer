@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"PO-Revision-Date: 2024-06-09 20:33+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: none\n"
 "Language: ro\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -310,22 +310,26 @@ msgstr "Spațiu insuficient pentru instalare"
 msgid "Confirm"
 msgstr "_Confirmați"
 
+#, fuzzy
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #, fuzzy
 #| msgid "Encrypt Files"
 msgid "Encrypt"
 msgstr "Criptează fișiere"
 
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
+#, fuzzy
 msgid "Feature"
-msgstr ""
+msgstr "Feature"
 
 #, fuzzy
 msgid "Format"
@@ -336,8 +340,9 @@ msgstr "Formate"
 msgid "Install"
 msgstr "Se instalează"
 
+#, fuzzy
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #, fuzzy
 #| msgid "Keyboard Language"
@@ -348,11 +353,13 @@ msgstr "Limba tastaturii"
 msgid "KeyboardLayout"
 msgstr "Aranjamentul tastaturii"
 
+#, fuzzy
 msgid "KeyboardOverview"
-msgstr ""
+msgstr "KeyboardOverview"
 
+#, fuzzy
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #, fuzzy
 #| msgid "Partitions"
@@ -364,8 +371,10 @@ msgstr "Partiții"
 msgid "Restart"
 msgstr "Repornire"
 
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "User"

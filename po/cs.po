@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"PO-Revision-Date: 2024-06-09 20:33+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -303,22 +303,26 @@ msgstr "Nedostatek místa pro instalaci"
 msgid "Confirm"
 msgstr "_Potvrdit"
 
+#, fuzzy
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #, fuzzy
 #| msgid "Encrypt Files"
 msgid "Encrypt"
 msgstr "Šifrovat soubory"
 
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
+#, fuzzy
 msgid "Feature"
-msgstr ""
+msgstr "Feature"
 
 #, fuzzy
 #| msgid "Formats"
@@ -330,8 +334,9 @@ msgstr "Formáty"
 msgid "Install"
 msgstr "Instaluje se"
 
+#, fuzzy
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #, fuzzy
 #| msgid "Keyboard Language"
@@ -343,11 +348,13 @@ msgstr "Jazyk klávesnice"
 msgid "KeyboardLayout"
 msgstr "Výběr rozvržení klávesnice"
 
+#, fuzzy
 msgid "KeyboardOverview"
-msgstr ""
+msgstr "KeyboardOverview"
 
+#, fuzzy
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #, fuzzy
 #| msgid "Partitions"
@@ -359,11 +366,13 @@ msgstr "Oddíly"
 msgid "Restart"
 msgstr "Restartování"
 
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #, fuzzy
 #~ msgid "PIN"

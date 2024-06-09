@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-03-02 21:46+0000\n"
+"PO-Revision-Date: 2024-06-09 20:33+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: none\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installatør"
@@ -349,21 +349,25 @@ msgstr "Not enough space for installation"
 msgid "Confirm"
 msgstr "_Bekræfte"
 
+#, fuzzy
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #, fuzzy
 msgid "Encrypt"
 msgstr "Encrypt Files"
 
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
+#, fuzzy
 msgid "Feature"
-msgstr ""
+msgstr "Feature"
 
 #, fuzzy
 msgid "Format"
@@ -373,8 +377,9 @@ msgstr "Formats"
 msgid "Install"
 msgstr "Installing"
 
+#, fuzzy
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #, fuzzy
 msgid "KeyboardLanguage"
@@ -384,11 +389,13 @@ msgstr "Keyboard Language"
 msgid "KeyboardLayout"
 msgstr "Keyboard Layout"
 
+#, fuzzy
 msgid "KeyboardOverview"
-msgstr ""
+msgstr "KeyboardOverview"
 
+#, fuzzy
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #, fuzzy
 #| msgid "Partitions"
@@ -399,8 +406,10 @@ msgstr "Skillevægge"
 msgid "Restart"
 msgstr "Restarting"
 
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "User"

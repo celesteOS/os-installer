@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-03-10 14:01+0000\n"
-"Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
+"PO-Revision-Date: 2024-06-09 20:33+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -298,22 +298,26 @@ msgstr "Nicht genug Speicherplatz für die Installation ({} benötigt)"
 msgid "Confirm"
 msgstr "_Bestätigen"
 
+#, fuzzy
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
+#, fuzzy
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #, fuzzy
 #| msgid "Encrypt Files"
 msgid "Encrypt"
 msgstr "Dateien verschlüsseln"
 
+#, fuzzy
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
+#, fuzzy
 msgid "Feature"
-msgstr ""
+msgstr "Feature"
 
 #, fuzzy
 #| msgid "Formats"
@@ -325,8 +329,9 @@ msgstr "Formate"
 msgid "Install"
 msgstr "Installation läuft"
 
+#, fuzzy
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #, fuzzy
 #| msgid "Keyboard Language"
@@ -338,11 +343,13 @@ msgstr "Tastatursprache"
 msgid "KeyboardLayout"
 msgstr "Tastaturbelegung"
 
+#, fuzzy
 msgid "KeyboardOverview"
-msgstr ""
+msgstr "KeyboardOverview"
 
+#, fuzzy
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #, fuzzy
 #| msgid "Partitions"
@@ -354,11 +361,13 @@ msgstr "Partitionen"
 msgid "Restart"
 msgstr "Neu starten"
 
+#, fuzzy
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
+#, fuzzy
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"
