@@ -193,12 +193,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # post-installation
             ('done', True),
             ('restart', True),
-            # pushable only
-            ('format', not global_state.get_config('skip_locale')),
-            ('timezone', not global_state.get_config('skip_locale')),
-            ('keyboard-layout', True),
-            ('keyboard-language', True),
-            ('failed', True)
         ]
         # filter out nonexistent pages
         self.available_pages = [name for name, condition in pages if condition]
