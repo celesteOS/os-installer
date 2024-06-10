@@ -78,9 +78,9 @@ def _load_default_config():
 def _load_optional_defaults(config):
     config['use_encryption'] = False
     config['encryption_pin'] = ''
-    config['user_name'] = 'user'
-    config['user_autologin'] = True
-    config['user_password'] = 'password'
+    config['user_name'] = ''
+    config['user_autologin'] = False
+    config['user_password'] = ''
     config['formats_locale'] = 'en_US.UTF-8'
     config['formats_ui'] = 'United States'
     config['timezone'] = 'UTC'

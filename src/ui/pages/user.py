@@ -19,6 +19,11 @@ class UserPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        self.user_name_row.set_text(global_state.get_config('user_name'))
+        self.password_row.set_text(global_state.get_config('user_password'))
+        self.autologin_row.set_active(
+            global_state.get_config('user_autologin'))
+
     def _set_continue_button(self):
         has_user_name = not self.user_name_row.get_text().strip() == ''
         autologin = self.autologin_row.get_active()
