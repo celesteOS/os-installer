@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-06-10 21:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/es/>\n"
 "Language: es\n"
@@ -294,43 +294,30 @@ msgstr "Partición sin nombre"
 msgid "Not enough space for installation ({} required)"
 msgstr "No hay espacio suficiente para la instalación ({} obligatorio)"
 
-#, fuzzy
-#| msgid "_Confirm"
 msgid "Confirm"
-msgstr "_Confirmar"
+msgstr "Confirmar"
 
-#, fuzzy
 msgid "Disk"
-msgstr "Disk"
+msgstr "Disco"
 
-#, fuzzy
 msgid "Done"
-msgstr "Done"
+msgstr "Hecho"
 
-#, fuzzy
-#| msgid "Encrypt Files"
 msgid "Encrypt"
-msgstr "Encriptar archivos"
+msgstr "Encriptar"
 
-#, fuzzy
 msgid "Failed"
-msgstr "Failed"
+msgstr "Fallido"
 
-#, fuzzy
 msgid "Feature"
-msgstr "Feature"
+msgstr "Característica"
 
-#, fuzzy
-#| msgid "Formats"
 msgid "Format"
-msgstr "Formatos"
+msgstr "Formato"
 
-#, fuzzy
-#| msgid "Installing"
 msgid "Install"
-msgstr "Instalando"
+msgstr "Instalar"
 
-#, fuzzy
 msgid "Internet"
 msgstr "Internet"
 
@@ -348,27 +335,20 @@ msgstr "Diseño del teclado"
 msgid "KeyboardOverview"
 msgstr "KeyboardOverview"
 
-#, fuzzy
 msgid "Locale"
-msgstr "Locale"
+msgstr "Local"
 
-#, fuzzy
-#| msgid "Partitions"
 msgid "Partition"
-msgstr "Particiones"
+msgstr "Partición"
 
-#, fuzzy
-#| msgid "Restarting"
 msgid "Restart"
-msgstr "Reiniciando"
+msgstr "Reiniciar"
 
-#, fuzzy
 msgid "Software"
 msgstr "Software"
 
-#, fuzzy
 msgid "User"
-msgstr "User"
+msgstr "Usuario"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"
