@@ -22,11 +22,6 @@ from .window import OsInstallerWindow
 APP_ID = 'com.github.p3732.OS-Installer'
 
 
-class Action(NamedTuple):
-    name: str
-    func: Callable
-    accel: list = []
-
 class Application(Adw.Application):
     window = None
 
@@ -47,22 +42,11 @@ class Application(Adw.Application):
         global_state.send_notification = self._send_notification
         preload_manager.start()
 
-    def _setup_actions(self):
-        actions = [
-            Action('quit', self._on_quit, ['<Ctl>q']),
-        ]
-
-        for action in actions:
-            self._add_action(action)
-
-    def _add_action(self, action):
-        gio_action = Gio.SimpleAction.new(action.name, None)
-        gio_action.connect('activate', action.func)
-
+    def _setup_quit_action(self):
+        gio_action = Gio.SimpleAction.new('quit', None)
+        gio_action.connect('activate', self._on_quit)
         self.add_action(gio_action)
-
-        if len(action.accel) > 0:
-            self.set_accels_for_action('app.' + action.name, action.accel)
+        self.set_accels_for_action('app.quit', ['<Ctl>q'])
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
@@ -99,7 +83,7 @@ class Application(Adw.Application):
         # Startup application
         self.set_resource_base_path('/com/github/p3732/os-installer')
         Adw.Application.do_startup(self)
-        self._setup_actions()
+        self._setup_quit_action()
 
     ### callbacks ###
 
