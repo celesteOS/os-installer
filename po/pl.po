@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-06-10 21:09+0000\n"
+"Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/pl/>\n"
 "Language: pl\n"
@@ -288,81 +288,56 @@ msgstr "Nienazwana partycja"
 msgid "Not enough space for installation ({} required)"
 msgstr "Za mało miejsca na instalację (wymagane: {})"
 
-#, fuzzy
-#| msgid "_Confirm"
 msgid "Confirm"
-msgstr "_Potwierdź"
+msgstr "Potwierdź"
 
-#, fuzzy
 msgid "Disk"
-msgstr "Disk"
+msgstr "Dysk"
 
-#, fuzzy
 msgid "Done"
-msgstr "Done"
+msgstr "Gotowe"
 
-#, fuzzy
-#| msgid "Encrypt Files"
 msgid "Encrypt"
-msgstr "Szyfruj pliki"
+msgstr "Szyfruj"
 
-#, fuzzy
 msgid "Failed"
-msgstr "Failed"
+msgstr "Niepowodzenie"
 
-#, fuzzy
 msgid "Feature"
-msgstr "Feature"
+msgstr "Funkcja"
 
-#, fuzzy
-#| msgid "Formats"
 msgid "Format"
-msgstr "Formaty"
+msgstr "Format"
 
-#, fuzzy
-#| msgid "Installing"
 msgid "Install"
-msgstr "Instalowanie"
+msgstr "Instaluj"
 
-#, fuzzy
 msgid "Internet"
 msgstr "Internet"
 
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "KeyboardLanguage"
 msgstr "Język klawiatury"
 
-#, fuzzy
-#| msgid "Keyboard Layout"
 msgid "KeyboardLayout"
 msgstr "Układ klawiatury"
 
-#, fuzzy
 msgid "KeyboardOverview"
-msgstr "KeyboardOverview"
+msgstr "Przegląd klawiatury"
 
-#, fuzzy
 msgid "Locale"
-msgstr "Locale"
+msgstr "Ustawienia regionalne"
 
-#, fuzzy
-#| msgid "Partitions"
 msgid "Partition"
-msgstr "Partycje"
+msgstr "Partycja"
 
-#, fuzzy
-#| msgid "Restarting"
 msgid "Restart"
-msgstr "Uruchamianie ponownie"
+msgstr "Uruchom ponownie"
 
-#, fuzzy
 msgid "Software"
-msgstr "Software"
+msgstr "Oprogramowanie"
 
-#, fuzzy
 msgid "User"
-msgstr "User"
+msgstr "Użytkownik"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"
