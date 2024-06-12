@@ -5,17 +5,6 @@ import yaml
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 GIGABYTE_FACTOR = 1000 * 1000 * 1000
 
-configure_variables = ['user_name', 'user_autologin', 'user_password',
-                       'formats_locale', 'timezone', 'chosen_software_packages', 
-                       'chosen_feature_names']
-
-install_variables = ['locale', 'disk_device_path', 'disk_is_partition',
-                     'disk_efi_partition', 'use_encryption', 'encryption_pin']
-
-
-def _bool_to_int(b: bool):
-    return 1 if b else 0
-
 
 def _match(config, prop, *ok_types):
     if not prop in config:
@@ -28,16 +17,6 @@ def _match(config, prop, *ok_types):
     print(f'Config error: {prop} not of expected type (expected',
           f'{ok_types}, but got {has_type}')
     return False
-
-def _check_for(config, variables):
-    all_there = True
-
-    for var in variables:
-        if var not in config:
-            print(f"Required variable {var} not set in config.")
-            all_there = False
-
-    return all_there
 
 def _load_default_config():
     return {
@@ -150,31 +129,3 @@ def init_config():
     _set_testing_defaults(config)
     _preprocess_values(config)
     return config
-
-
-def create_envs(config, with_install_envs, with_configure_envs):
-    if (with_install_envs and not _check_for(config, install_variables) or
-            with_configure_envs and not _check_for(config, configure_variables)):
-        return None
-    envs = []
-    if with_install_envs:
-        envs += [
-            f'OSI_LOCALE={config["locale"]}',
-            f'OSI_KEYBOARD_LAYOUT={config["keyboard_layout_code"]}',
-            f'OSI_DEVICE_PATH={config["disk_device_path"]}',
-            f'OSI_DEVICE_IS_PARTITION={_bool_to_int(config["disk_is_partition"])}',
-            f'OSI_DEVICE_EFI_PARTITION={config["disk_efi_partition"]}',
-            f'OSI_USE_ENCRYPTION={_bool_to_int(config["use_encryption"])}',
-            f'OSI_ENCRYPTION_PIN={config["encryption_pin"]}',
-        ]
-    if with_configure_envs:
-        envs += [
-            f'OSI_USER_NAME={config["user_name"]}',
-            f'OSI_USER_AUTOLOGIN={_bool_to_int(config["user_autologin"])}',
-            f'OSI_USER_PASSWORD={config["user_password"]}',
-            f'OSI_FORMATS={config["formats_locale"]}',
-            f'OSI_TIMEZONE={config["timezone"]}',
-            f'OSI_ADDITIONAL_SOFTWARE={config["chosen_software_packages"]}',
-            f'OSI_ADDITIONAL_FEATURES={config["chosen_feature_names"]}',
-        ]
-    return envs + [None]

@@ -50,6 +50,7 @@ os_installer_sources = [
   'ui/pages/welcome.py',
   'ui/widgets.py',
   'ui/window.py',
+  'util/envvar_creator.py',
   'util/installation_scripting.py',
   'util/installation_step.py',
   'util/preloadable.py',

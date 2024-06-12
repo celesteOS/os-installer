@@ -6,6 +6,7 @@ import os
 
 from gi.repository import Gio, GLib, Vte
 
+from .envvar_creator import create_envs
 from .global_state import global_state
 from .installation_step import InstallationStep
 
@@ -52,19 +53,7 @@ class InstallationScripting():
         next_step = InstallationStep(self.finished_step.value + 1)
         print(f'Starting step "{next_step.name}"...')
 
-        with_install_env = next_step is InstallationStep.install or next_step is InstallationStep.configure
-        with_configure_env = next_step is InstallationStep.configure
-        envs = global_state.create_envs(with_install_env, with_configure_env)
-
-        # check config
-        if envs == None:
-            print(f'Not all config options set for "{next_step.name}". '
-                  'Please report this bug.')
-            print('############################')
-            print(global_state.config)
-            print('############################')
-            self._fail_installation()
-            return
+        envs = create_envs(global_state.config, next_step)
 
         # start script
         file_name = f'/etc/os-installer/scripts/{next_step.name}.sh'

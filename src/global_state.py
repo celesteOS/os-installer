@@ -2,7 +2,7 @@
 
 from concurrent.futures import ThreadPoolExecutor
 import traceback
-from .config import create_envs, init_config
+from .config import init_config
 
 
 class GlobalState:
@@ -43,9 +43,5 @@ class GlobalState:
 
     def send_notification(self, *args):
         self._uninitialized()
-
-    def create_envs(self, with_install_envs=False, with_configure_envs=False):
-        return create_envs(self.config, with_install_envs, with_configure_envs)
-
 
 global_state = GlobalState()
