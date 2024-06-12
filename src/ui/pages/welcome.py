@@ -7,7 +7,7 @@ from pathlib import Path
 from gi.repository import Gtk
 
 from .global_state import global_state
-from .installation_scripting import installation_scripting, Step
+from .installation_scripting import installation_scripting
 from .page import Page
 from .widgets import reset_model, DeviceRow
 

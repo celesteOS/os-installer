@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from enum import Enum
 from locale import gettext as _
 from threading import Lock
 import os
@@ -8,14 +7,7 @@ import os
 from gi.repository import Gio, GLib, Vte
 
 from .global_state import global_state
-
-
-class Step(Enum):
-    none = 0
-    prepare = 1
-    install = 2
-    configure = 3
-    done = 4
+from .installation_step import InstallationStep
 
 
 class InstallationScripting():
@@ -31,9 +23,9 @@ class InstallationScripting():
         self.cancel = Gio.Cancellable()
 
         self.lock = Lock()
-        self.ready_step = Step.none
-        self.running_step = Step.none
-        self.finished_step = Step.none
+        self.ready_step = InstallationStep.none
+        self.running_step = InstallationStep.none
+        self.finished_step = InstallationStep.none
 
     def _setup_terminal(self):
         terminal = Vte.Terminal()
@@ -51,17 +43,17 @@ class InstallationScripting():
         global_state.send_notification(_("Installation Failed"), '')
 
     def _try_start_next_script(self):
-        if self.running_step != Step.none:
+        if self.running_step != InstallationStep.none:
             return
 
         if self.finished_step.value >= self.ready_step.value:
             return
 
-        next_step = Step(self.finished_step.value + 1)
+        next_step = InstallationStep(self.finished_step.value + 1)
         print(f'Starting step "{next_step.name}"...')
 
-        with_install_env = next_step is Step.install or next_step is Step.configure
-        with_configure_env = next_step is Step.configure
+        with_install_env = next_step is InstallationStep.install or next_step is InstallationStep.configure
+        with_configure_env = next_step is InstallationStep.configure
         envs = global_state.create_envs(with_install_env, with_configure_env)
 
         # check config
@@ -96,7 +88,7 @@ class InstallationScripting():
     def _on_child_exited(self, terminal, status):
         with self.lock:
             self.finished_step = self.running_step
-            self.running_step = Step.none
+            self.running_step = InstallationStep.none
 
             if not status == 0 and not global_state.demo_mode:
                 print(f'Failure during step "{self.finished_step.name}"')
@@ -105,7 +97,7 @@ class InstallationScripting():
 
             print(f'Finished step "{self.finished_step.name}".')
 
-            if self.finished_step is Step.configure:
+            if self.finished_step is InstallationStep.configure:
                 global_state.installation_running = False
                 # Translators: Notification text
                 global_state.send_notification(_("Finished Installation"), '')
@@ -113,13 +105,22 @@ class InstallationScripting():
             else:
                 self._try_start_next_script()
 
-    ### public methods ###
-
-    def set_ok_to_start_step(self, step: Step):
+    def _set_ok_to_start_step(self, step: InstallationStep):
         with self.lock:
             if self.ready_step.value < step.value:
                 self.ready_step = step
                 self._try_start_next_script()
+
+    ### public methods ###
+
+    def can_run_configure(self):
+        self._set_ok_to_start_step(InstallationStep.configure)
+
+    def can_run_install(self):
+        self._set_ok_to_start_step(InstallationStep.install)
+
+    def can_run_prepare(self):
+        self._set_ok_to_start_step(InstallationStep.prepare)
 
 
 installation_scripting = InstallationScripting()

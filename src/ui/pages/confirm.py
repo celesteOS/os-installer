@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 
 from .global_state import global_state
-from .installation_scripting import installation_scripting, Step
+from .installation_scripting import installation_scripting
 from .page import Page
 from .widgets import reset_model, DeviceRow
 
@@ -22,7 +22,7 @@ class ConfirmPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
-        installation_scripting.set_ok_to_start_step(Step.install)
+        installation_scripting.can_run_install()
         global_state.advance(self, allow_return=False)
 
     ### public methods ###

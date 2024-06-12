@@ -51,6 +51,7 @@ os_installer_sources = [
   'ui/widgets.py',
   'ui/window.py',
   'util/installation_scripting.py',
+  'util/installation_step.py',
   'util/preloadable.py',
   'util/system_calls.py',
   'util/util.py',
