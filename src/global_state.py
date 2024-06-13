@@ -2,11 +2,10 @@
 
 from concurrent.futures import ThreadPoolExecutor
 import traceback
-from .config import init_config
+from .config import config
 
 
 class GlobalState:
-    config = init_config()
     demo_mode = False
     test_mode = False
     installation_running = False
@@ -21,13 +20,10 @@ class GlobalState:
         traceback.print_stack()
 
     def get_config(self, setting):
-        if setting in self.config:
-            return self.config[setting]
-        else:
-            return None
+        return config.get(setting)
 
     def set_config(self, setting, value):
-        self.config[setting] = value
+        config.set(setting, value)
 
     def advance(self, *args):
         self._uninitialized()

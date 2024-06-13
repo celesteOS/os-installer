@@ -53,7 +53,7 @@ class InstallationScripting():
         next_step = InstallationStep(self.finished_step.value + 1)
         print(f'Starting step "{next_step.name}"...')
 
-        envs = create_envs(global_state.config, next_step)
+        envs = create_envs(next_step)
 
         # start script
         file_name = f'/etc/os-installer/scripts/{next_step.name}.sh'
