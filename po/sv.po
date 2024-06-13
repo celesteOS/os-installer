@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-06-13 05:09+0000\n"
+"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/sv/>\n"
 "Language: sv\n"
@@ -294,81 +294,56 @@ msgstr "Namnlös partition"
 msgid "Not enough space for installation ({} required)"
 msgstr "Inte tillräckligt med utrymme för installation ({} krävs)"
 
-#, fuzzy
-#| msgid "_Confirm"
 msgid "Confirm"
-msgstr "_Bekräfta"
+msgstr "Bekräfta"
 
-#, fuzzy
 msgid "Disk"
 msgstr "Disk"
 
-#, fuzzy
 msgid "Done"
-msgstr "Done"
+msgstr "Klar"
 
-#, fuzzy
-#| msgid "Encrypt Files"
 msgid "Encrypt"
-msgstr "Kryptera filer"
+msgstr "Kryptera"
 
-#, fuzzy
 msgid "Failed"
-msgstr "Failed"
+msgstr "Misslyckades"
 
-#, fuzzy
 msgid "Feature"
-msgstr "Feature"
+msgstr "Funktion"
 
-#, fuzzy
-#| msgid "Formats"
 msgid "Format"
-msgstr "Format"
+msgstr "Formatera"
 
-#, fuzzy
-#| msgid "Installing"
 msgid "Install"
-msgstr "Installerar"
+msgstr "Installera"
 
-#, fuzzy
 msgid "Internet"
 msgstr "Internet"
 
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "KeyboardLanguage"
-msgstr "Tangentbordsspråk"
+msgstr "TangentbordsSpråk"
 
-#, fuzzy
-#| msgid "Keyboard Layout"
 msgid "KeyboardLayout"
-msgstr "Tangentbordslayout"
+msgstr "TangentbordsLayout"
 
-#, fuzzy
 msgid "KeyboardOverview"
-msgstr "KeyboardOverview"
+msgstr "TangentbordsÖversikt"
 
-#, fuzzy
 msgid "Locale"
-msgstr "Locale"
+msgstr "Lokal"
 
-#, fuzzy
-#| msgid "Partitions"
 msgid "Partition"
-msgstr "Partitioner"
+msgstr "Partition"
 
-#, fuzzy
-#| msgid "Restarting"
 msgid "Restart"
-msgstr "Startar om"
+msgstr "Starta om"
 
-#, fuzzy
 msgid "Software"
-msgstr "Software"
+msgstr "Programvara"
 
-#, fuzzy
 msgid "User"
-msgstr "User"
+msgstr "Användare"
 
 #~ msgid "PIN"
 #~ msgstr "PIN-kod"
