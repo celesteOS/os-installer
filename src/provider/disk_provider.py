@@ -126,6 +126,10 @@ class DiskProvider(Preloadable):
         
         disks = []
 
+        if global_state.test_mode and getrandbits(3) == 7:
+            print("test-mode: randomly chose that no disks are available")
+            return []
+
         # get available devices
         dummy_var = GLib.Variant('a{sv}', None)
         devices = self.udisks_client.get_manager().call_get_block_devices_sync(dummy_var, None)
@@ -167,9 +171,6 @@ class DiskDummyProvider(Preloadable):
 
     def get_disks(self):
         # in 12.5% of all cases claim that no disks are found
-        if getrandbits(3) == 7:
-            print("demo-mode: randomly chose that no disks are available")
-            return []
         smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
         smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", ([smol_partition], None))
 
