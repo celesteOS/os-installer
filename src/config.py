@@ -103,6 +103,7 @@ def _validate(variables):
 class Config:
     def __init__(self):
         self.variables = default_config
+        self.subscriptions = {}
 
         try:
             with open(DEFAULT_CONFIG_PATH, 'r') as file:
@@ -147,6 +148,23 @@ class Config:
 
     def set(self, variable, value):
         self.variables[variable] = value
+
+        if variable in self.subscriptions:
+            for func in self.subscriptions[variable]:
+                func(value)
+
+    def subscribe(self, variable, func):
+        if variable in self.subscriptions:
+            self.subscriptions[variable].append(func)
+        else:
+            self.subscriptions[variable] = [func]
+        func(self.variables[variable])
+
+    def unsubscribe(self, variable, func):
+        if variable in self.subscriptions and func in self.subscriptions[variable]:
+            self.subscriptions[variable].remove(func)
+        else:
+            print(f'Unsubscribing non-subscribed function {func}!')
 
 
 config = Config()
