@@ -6,6 +6,7 @@ from pathlib import Path
 
 from gi.repository import Gtk
 
+from .config import config
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .page import Page
@@ -21,16 +22,17 @@ class WelcomePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        config = global_state.get_config('welcome_page')
-        language_code = global_state.get_config('language_code')
+        welcome = global_state.get_config('welcome_page')
 
-        if config['logo']:
-            self.image = Path(config['logo'])
+        language_code = config.get('language')[0]
 
-        if (text_key := f'text_{language_code}') in config:
-            text = config[text_key]
-        elif config['text']:
-            text = config['text']
+        if welcome['logo']:
+            self.image = Path(welcome['logo'])
+
+        if (text_key := f'text_{language_code}') in welcome:
+            text = welcome[text_key]
+        elif welcome['text']:
+            text = welcome['text']
         else:
             text = self.description.get_label()
             text = text.format(global_state.get_config('distribution_name'))

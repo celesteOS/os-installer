@@ -64,9 +64,9 @@ class SummaryPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        self.language_row.set_subtitle(global_state.get_config('language'))
+        self.language_row.set_subtitle(global_state.get_config('language')[1])
         self.keyboard_row.set_subtitle(
-            global_state.get_config('keyboard_layout_ui'))
+            global_state.get_config('keyboard_layout')[1])
         self.user_row.set_subtitle(global_state.get_config('user_name'))
         self.user_autologin.set_visible(
             global_state.get_config('user_autologin'))

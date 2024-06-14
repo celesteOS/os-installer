@@ -17,7 +17,7 @@ default_config = {
     # welcome
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
     # keyboard
-    'keyboard_layout_code': 'us',
+    'keyboard_layout': ('us', 'English (US)'),
     # disk
     'minimum_disk_size': 5,
     'offer_disk_encryption': True,
@@ -55,13 +55,10 @@ optional_defaults = {
 }
 
 fallback_values = {
-    'language': 'English for Dummies',
-    'language_code': 'en_US',
+    'language': ('en_US', 'English for Dummies'),
     'locale': 'en_US.UTF-8',
-    'keyboard_language_code': 'en_US',
-    'keyboard_language_ui': 'English (US)',
-    'keyboard_layout_code': 'us',
-    'keyboard_layout_ui': 'English (US)',
+    'keyboard_language': ('en_US' 'English (US)'),
+    'keyboard_layout': ('us', 'English (US)'),
     'disk_device_path': '/dev/null',
     'disk_is_partition': False,
     'disk_efi_partition': '/dev/null',

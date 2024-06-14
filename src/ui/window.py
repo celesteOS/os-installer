@@ -6,6 +6,7 @@ from os.path import exists
 
 from gi.repository import Gio, Gtk, Adw
 
+from .config import config
 from .global_state import global_state
 
 from .choices import FeaturePage, SoftwarePage
@@ -201,6 +202,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # only initialize language page, others depend on chosen language
         if fixed_language := global_state.get_config('fixed_language'):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
+                config.set('language', (fixed_info.language_code, fixed_info.name))
                 set_system_language(fixed_info)
                 return False
             else:

@@ -46,18 +46,13 @@ def reboot_system():
     _exec(['reboot'])
 
 
-def set_system_keyboard_layout(keyboard_layout_name, keyboard_layout_code):
-    global_state.set_config('keyboard_layout_ui', keyboard_layout_name)
-    global_state.set_config('keyboard_layout_code', keyboard_layout_code)
-
+def set_system_keyboard_layout(keyboard_layout_code):
     # set system input
     _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
            f"[('xkb','{keyboard_layout_code}')]"])
 
 
 def set_system_language(language_info):
-    global_state.set_config('language', language_info.name)
-    global_state.set_config('language_code', language_info.language_code)
     locale = Locale.normalize(language_info.locale)
     global_state.set_config('locale', locale)
 

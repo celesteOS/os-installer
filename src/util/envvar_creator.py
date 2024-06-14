@@ -13,6 +13,8 @@ def _get(var):
         value = config.get(var)
         if isinstance(value, bool):
             return 1 if value else 0
+        elif isinstance(value, tuple):
+            value[0]
         else:
             return value
 
@@ -25,7 +27,7 @@ def create_envs(installation_step: InstallationStep):
     if with_install_envs:
         envs += [
             f'OSI_LOCALE={_get("locale")}',
-            f'OSI_KEYBOARD_LAYOUT={_get("keyboard_layout_code")}',
+            f'OSI_KEYBOARD_LAYOUT={_get("keyboard_layout")}',
             f'OSI_DEVICE_PATH={_get("disk_device_path")}',
             f'OSI_DEVICE_IS_PARTITION={_get("disk_is_partition")}',
             f'OSI_DEVICE_EFI_PARTITION={_get("disk_efi_partition")}',

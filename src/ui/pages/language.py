@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .config import config
 from .global_state import global_state
 from .language_provider import language_provider
 from .page import Page
@@ -23,7 +24,7 @@ class LanguagePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        self.language_chosen = False
+        self.chosen_language = ''
 
         if suggested_languages := language_provider.get_suggested_languages():
             self.suggested_model.splice(0, 0, suggested_languages)
@@ -43,9 +44,9 @@ class LanguagePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        if (not self.language_chosen or
-                global_state.get_config('language_code') != row.info.language_code):
-            self.language_chosen = True
+        if (self.chosen_language != row.info.language_code):
+            self.chosen_language = row.info.language_code
+            config.set('language', (row.info.language_code, row.info.name))
             set_system_language(row.info)
             global_state.retranslate_pages()
         global_state.advance(self)
