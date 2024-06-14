@@ -5,74 +5,68 @@ import yaml
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
-def _load_default_config():
-    return {
-        # general
-        'distribution_name': 'Untitled',
-        # internet
-        'internet_connection_required': True,
-        'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
-        # language
-        'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
-        'fixed_language': False,
-        # welcome
-        'welcome_page': {'usage': True, 'logo': None, 'text': None},
-        # keyboard
-        'keyboard_layout_code': 'us',
-        # disk
-        'minimum_disk_size': 5,
-        'offer_disk_encryption': True,
-        # optional pages
-        'skip_user': False,
-        'skip_locale': False,
-        # software
-        'additional_software': [],
-        # feature
-        'additional_features': [],
-        # fail
-        'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
-        # commands
-        'browser_cmd': 'epiphany',
-        'disks_cmd': 'gnome-disks',
-        'wifi_cmd': 'gnome-control-center wifi',
+default_config = {
+    # general
+    'distribution_name': 'Untitled',
+    # internet
+    'internet_connection_required': True,
+    'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
+    # language
+    'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
+    'fixed_language': False,
+    # welcome
+    'welcome_page': {'usage': True, 'logo': None, 'text': None},
+    # keyboard
+    'keyboard_layout_code': 'us',
+    # disk
+    'minimum_disk_size': 5,
+    'offer_disk_encryption': True,
+    # optional pages
+    'skip_user': False,
+    'skip_locale': False,
+    # software
+    'additional_software': [],
+    # feature
+    'additional_features': [],
+    # fail
+    'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
+    # commands
+    'browser_cmd': 'epiphany',
+    'disks_cmd': 'gnome-disks',
+    'wifi_cmd': 'gnome-control-center wifi',
 
-        # not configurable
-        'version': -1,
-    }
+    # not configurable
+    'version': -1,
+}
 
+optional_defaults = {
+    'use_encryption': False,
+    'encryption_pin': '',
+    'user_name': '',
+    'user_autologin': False,
+    'user_password': '',
+    'formats_locale': 'en_US.UTF-8',
+    'formats_ui': 'United States',
+    'timezone': 'UTC',
+    'chosen_software_packages': '',
+    'chosen_software': [],
+    'chosen_feature_names': '',
+    'chosen_features': []
+}
 
-def _load_optional_defaults(variables):
-    variables.update({
-        'use_encryption': False,
-        'encryption_pin': '',
-        'user_name': '',
-        'user_autologin': False,
-        'user_password': '',
-        'formats_locale': 'en_US.UTF-8',
-        'formats_ui': 'United States',
-        'timezone': 'UTC',
-        'chosen_software_packages': '',
-        'chosen_software': [],
-        'chosen_feature_names': '',
-        'chosen_features': []
-    })
-
-
-def _set_testing_defaults(variables):
-    '''Default values used when skipping pages during testing.'''
-    variables.update({
-        'language': 'English for Dummies',
-        'language_code': 'en_US',
-        'locale': 'en_US.UTF-8',
-        'keyboard_language_code': 'en_US',
-        'keyboard_language_ui': 'English (US)',
-        'keyboard_layout_code': 'us',
-        'keyboard_layout_ui': 'English (US)',
-        'disk_device_path': '/dev/null',
-        'disk_is_partition': False,
-        'disk_efi_partition': '/dev/null',
-        'disk_name': 'Test Dummy'
-    })
+fallback_values = {
+    'language': 'English for Dummies',
+    'language_code': 'en_US',
+    'locale': 'en_US.UTF-8',
+    'keyboard_language_code': 'en_US',
+    'keyboard_language_ui': 'English (US)',
+    'keyboard_layout_code': 'us',
+    'keyboard_layout_ui': 'English (US)',
+    'disk_device_path': '/dev/null',
+    'disk_is_partition': False,
+    'disk_efi_partition': '/dev/null',
+    'disk_name': 'Test Dummy'
+}
 
 
 def _match(variables, var, *ok_types):
@@ -108,7 +102,7 @@ def _validate(variables):
 
 class Config:
     def __init__(self):
-        self.variables = _load_default_config()
+        self.variables = default_config
 
         try:
             with open(DEFAULT_CONFIG_PATH, 'r') as file:
@@ -116,12 +110,11 @@ class Config:
         except Exception as e:
             print(f'Error loading config: {e}. Check if the config contains '
                   'syntax errors.')
-            self.variables = _load_default_config()
+            self.variables = default_config
         if not _validate(self.variables):
             print('Config errors, loading default config.')
-            self.variables = _load_default_config()
-        _load_optional_defaults(self.variables)
-        _set_testing_defaults(self.variables)
+            self.variables = default_config
+        self.variables.update(optional_defaults)
         self._preprocess_values()
 
     def _load_from_file(self, file):
@@ -142,6 +135,9 @@ class Config:
     def get(self, variable):
         if variable in self.variables:
             return self.variables[variable]
+        # TODO when global_state independent of config:
+        # elif global_state.test_mode and variable in fallback_values:
+        #     return fallback_values[variable]
         else:
             print(f'Requested {variable} not in config')
             return None
