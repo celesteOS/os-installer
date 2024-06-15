@@ -100,6 +100,9 @@ class PageWrapper(Adw.Bin):
         self.page = page
         self.content.set_child(self.page)
 
+    def __del__(self):
+        self.page.cancel_subscriptions()
+
     def get_page(self):
         return self.page
 
