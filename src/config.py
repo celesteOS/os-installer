@@ -16,8 +16,6 @@ default_config = {
     'fixed_language': False,
     # welcome
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
-    # keyboard
-    'keyboard_layout': ('us', 'English (US)'),
     # disk
     'minimum_disk_size': 5,
     'offer_disk_encryption': True,
