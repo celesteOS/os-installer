@@ -49,9 +49,9 @@ class PartitionPage(Gtk.Box, Page):
             return DeviceRow(info, required_size_str)
 
     def disk_exists(self):
-        if global_state.demo_mode:
+        if config.get('demo_mode'):
             return True
-        elif global_state.test_mode:
+        elif config.get('test_mode'):
             # claim disk existance in about 75% of cases
             claim_existance = getrandbits(2) != 3
             if not claim_existance:

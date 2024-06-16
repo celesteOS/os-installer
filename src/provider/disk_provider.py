@@ -4,6 +4,7 @@ from random import getrandbits
 
 from gi.repository import GLib, GObject
 
+from .config import config
 from .global_state import global_state
 from .preloadable import Preloadable
 
@@ -126,7 +127,7 @@ class DiskProvider(Preloadable):
         
         disks = []
 
-        if global_state.test_mode and getrandbits(3) == 7:
+        if config.get('test_mode') and getrandbits(3) == 7:
             print("test-mode: randomly chose that no disks are available")
             return []
 
@@ -192,7 +193,7 @@ In demo-mode use DiskDummyProvider to
  b) avoid using UDisks in Flatpak (not installed)
 """
 def get_disk_provider():
-    if global_state.demo_mode:
+    if config.get('demo_mode'):
         return DiskDummyProvider()
     else:
         return DiskProvider()

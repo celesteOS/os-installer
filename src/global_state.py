@@ -5,8 +5,6 @@ import traceback
 
 
 class GlobalState:
-    demo_mode = False
-    test_mode = False
     installation_running = False
 
     thread_pool = ThreadPoolExecutor()  # for futures

@@ -162,7 +162,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
 
-        if global_state.test_mode:
+        if config.get('test_mode'):
             def show_failed(self, _, __): return self._load_page('failed')
             self._add_action('fail-page', show_failed, '<Alt>F')
 

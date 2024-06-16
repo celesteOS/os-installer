@@ -73,9 +73,9 @@ class Application(Adw.Application):
         if 'demo-mode' in options:
             if 'test-mode' in options:
                 print("Only one of demo and test mode can be set at a time! Using demo mode.")
-            global_state.demo_mode = True
+            config.set('demo_mode', True)
         elif 'test-mode' in options:
-            global_state.test_mode = True
+            config.set('test_mode', True)
 
         self.activate()
         return 0

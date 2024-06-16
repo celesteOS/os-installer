@@ -4,6 +4,7 @@ from threading import Lock
 
 from gi.repository import Gtk
 
+from .config import config
 from .global_state import global_state
 from .internet_provider import internet_provider
 from .page import Page
@@ -43,7 +44,7 @@ class InternetPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        if global_state.test_mode:
+        if config.get('test_mode'):
             return "pass"
 
         with self.connected_lock:

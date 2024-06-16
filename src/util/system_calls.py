@@ -8,11 +8,10 @@ import subprocess
 import locale as Locale
 
 from .config import config
-from .global_state import global_state
 
 
 def _exec(args):
-    if not global_state.demo_mode and not global_state.test_mode:
+    if not config.get('demo_mode') and not config.get('test_mode'):
         subprocess.run(args)
 
 

@@ -8,6 +8,8 @@ DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 default_config = {
     # general
     'distribution_name': 'Untitled',
+    'demo_mode': False,
+    'test_mode': False,
     # internet
     'internet_connection_required': True,
     'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
