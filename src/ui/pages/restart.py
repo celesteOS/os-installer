@@ -15,9 +15,5 @@ class RestartPage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-    ### public methods ###
-
-    def load(self):
         self.spinner.start()
         reboot_system()
