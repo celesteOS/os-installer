@@ -133,9 +133,8 @@ class Config:
     def get(self, variable):
         if variable in self.variables:
             return self.variables[variable]
-        # TODO when global_state independent of config:
-        # elif global_state.test_mode and variable in fallback_values:
-        #     return fallback_values[variable]
+        elif self.variables['test_mode'] and variable in fallback_values:
+            return fallback_values[variable]
         else:
             print(f'Requested {variable} not in config')
             return None
