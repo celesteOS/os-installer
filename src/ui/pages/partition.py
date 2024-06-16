@@ -15,9 +15,7 @@ from .widgets import reset_model, DeviceRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/partition.ui')
 class PartitionPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    no_disk_image_name = 'no-disk-symbolic'
-    default_image_name = 'drive-harddisk-system-symbolic'
-    image = default_image_name
+    image = 'drive-harddisk-system-symbolic'
     can_reload = True
 
     disk_size = Gtk.Template.Child()
