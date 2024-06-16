@@ -19,7 +19,6 @@ class FilterType(Enum):
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/filter.ui')
 class FilterPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'map-symbolic'
 
     search_entry = Gtk.Template.Child()
     custom_filter = Gtk.Template.Child()

@@ -101,6 +101,29 @@ page_name_to_title = {
     'welcome':              _('Welcome'),
 }
 
+page_name_to_image = {
+    'confirm':              'question-round-symbolic',
+    'disk':                 None,
+    'done':                 'success-symbolic',
+    'encrypt':              'dialog-password-symbolic',
+    'failed':               'computer-fail-symbolic',
+    'feature':              'puzzle-piece-symbolic',
+    'format':               'map-symbolic',
+    'install':              'OS-Installer-symbolic',
+    'internet':             None,
+    'keyboard-language':    'input-keyboard-symbolic',
+    'keyboard-layout':      'input-keyboard-symbolic',
+    'keyboard-overview':    'input-keyboard-symbolic',
+    'language':             'language-symbolic',
+    'locale':               'globe-symbolic',
+    'partition':            'drive-harddisk-system-symbolic',
+    'restart':              'system-reboot-symbolic',
+    'software':             'system-software-install-symbolic',
+    'summary':              'checkbox-checked-symbolic',
+    'timezone':             'map-symbolic',
+    'user':                 'user-symbolic',
+    'welcome':              None,
+}
 
 non_returnable_pages = ['done', 'failed', 'summary']
 
@@ -273,15 +296,22 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name)
 
-    def _get_page_title(self):
+    def _create_title(self):
         current_page_name = self.main_stack.get_visible_child_name()
         title = page_name_to_title[current_page_name]
+        icon_name = page_name_to_image[current_page_name]
 
         if title == None:
             assert current_page_name == 'partition'
-            return self.main_stack.get_visible_child().get_page().get_title()
+            label = self.main_stack.get_visible_child().get_page().get_title()
         else:
-            return _(title)
+            label = _(title)
+
+        if icon_name == None:
+            current_page = self.main_stack.get_visible_child()
+            icon_name = current_page.image()
+
+        return LabeledImage(icon_name, label)
 
     def _reload_title_image(self):
         current_name = self.image_stack.get_visible_child_name()
@@ -291,12 +321,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if other_page:
             self.image_stack.remove(other_page)
 
-        current_page_name = self.main_stack.get_visible_child_name()
-        title = page_name_to_title[current_page_name]
-        def translate(text): return _(text) if text else None
-
-        current_page = self.main_stack.get_visible_child()
-        title = LabeledImage(current_page.image(), self._get_page_title())
+        title = self._create_title()
         self.image_stack.add_named(title, other_name)
         self.image_stack.set_visible_child_name(other_name)
 

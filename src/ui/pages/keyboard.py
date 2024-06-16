@@ -14,7 +14,6 @@ from .widgets import reset_model, ProgressRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')
 class KeyboardLanguagePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'input-keyboard-symbolic'
 
     list = Gtk.Template.Child()
     model = Gtk.Template.Child()
@@ -37,7 +36,6 @@ class KeyboardLanguagePage(Gtk.Box, Page):
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
 class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'input-keyboard-symbolic'
 
     language_row = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
@@ -72,7 +70,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_overview.ui')
 class KeyboardOverviewPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'input-keyboard-symbolic'
 
     primary_layout_row = Gtk.Template.Child()
 

@@ -10,7 +10,6 @@ from .page import Page
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/install.ui')
 class InstallPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'OS-Installer-symbolic'
 
     terminal_box = Gtk.Template.Child()
     stack = Gtk.Template.Child()

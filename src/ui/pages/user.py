@@ -10,7 +10,6 @@ from .page import Page
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
 class UserPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image = 'user-symbolic'
 
     user_name_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
