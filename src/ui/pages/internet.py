@@ -43,7 +43,7 @@ class InternetPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        if global_state.demo_mode:
+        if global_state.test_mode:
             return "pass"
 
         with self.connected_lock:
