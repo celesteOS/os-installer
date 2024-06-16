@@ -21,7 +21,24 @@ class LocalePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        if not config.has('formats_ui'):
+            locale, name = get_current_formats()
+            set_system_formats(locale, name)
+
+        if not config.has('timezone'):
+            timezone = get_current_timezone()
+            config.set('timezone', timezone)
+
+        self._subscribe('formats_ui', self._update_formats)
+        self._subscribe('timezone', self._update_timezone)
+
     ### callbacks ###
+
+    def _update_formats(self, formats):
+        self.formats_label.set_label(formats)
+
+    def _update_timezone(self, timezone):
+        self.timezone_label.set_label(timezone)
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
@@ -30,19 +47,3 @@ class LocalePage(Gtk.Box, Page):
     @Gtk.Template.Callback('overview_row_activated')
     def _overview_row_activated(self, list_box, row):
         global_state.navigate_to_page(row.get_name())
-
-    ### public methods ###
-
-    def load(self):
-        formats = config.get('formats_ui')
-        if not formats:
-            locale, name = get_current_formats()
-            set_system_formats(locale, name)
-            formats = config.set('formats_ui', name)
-        self.formats_label.set_label(formats)
-
-        timezone = config.get('timezone')
-        if not timezone:
-            timezone = get_current_timezone()
-            config.set('timezone', timezone)
-        self.timezone_label.set_label(timezone)
