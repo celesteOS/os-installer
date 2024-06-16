@@ -3,7 +3,7 @@
 from gi.repository import GObject
 from typing import NamedTuple
 
-from .global_state import global_state
+from .config import config
 from .preloadable import Preloadable
 
 
@@ -92,10 +92,8 @@ class ChoicesProvider(Preloadable):
         Preloadable.__init__(self, self._get_choices)
 
     def _get_choices(self):
-        self.features = handle_choices(
-            global_state.get_config('additional_features'))
-        self.software = handle_choices(
-            global_state.get_config('additional_software'))
+        self.features = handle_choices(config.get('additional_features'))
+        self.software = handle_choices(config.get('additional_software'))
 
     ### public methods ###
 

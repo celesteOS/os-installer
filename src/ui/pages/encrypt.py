@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .config import config
 from .global_state import global_state
 from .page import Page
 
@@ -51,5 +52,5 @@ class EncryptPage(Gtk.Box, Page):
     def unload(self):
         use_encryption = self.switch_row.get_active()
         pin = self.pin_row.get_text()
-        global_state.set_config('use_encryption', use_encryption)
-        global_state.set_config('encryption_pin', pin)
+        config.set('use_encryption', use_encryption)
+        config.set('encryption_pin', pin)

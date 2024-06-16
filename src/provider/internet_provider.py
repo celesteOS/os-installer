@@ -4,6 +4,7 @@ import time
 from threading import Lock, Thread
 from urllib.request import urlopen
 
+from .config import config
 from .global_state import global_state
 
 
@@ -20,7 +21,7 @@ class InternetProvider():
     callback = None
 
     def __init__(self):
-        self.url = global_state.get_config('internet_checker_url')
+        self.url = config.get('internet_checker_url')
 
         # connection locking
         self.connected = False

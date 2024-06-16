@@ -5,7 +5,7 @@ import os
 
 from gi.repository import GObject, GnomeDesktop
 
-from .global_state import global_state
+from .config import config
 from .preloadable import Preloadable
 
 
@@ -94,7 +94,7 @@ class LanguageProvider(Preloadable) :
             return f'{lang} ({lang_code})'
 
     def _get_languages(self):
-        localedir = global_state.get_config('localedir')
+        localedir = config.get('localedir')
         translations = self._get_existing_translations(localedir)
 
         self.all_languages = []
@@ -115,7 +115,7 @@ class LanguageProvider(Preloadable) :
 
         self.suggested = []
         self.other = []
-        suggested_codes = global_state.get_config('suggested_languages')
+        suggested_codes = config.get('suggested_languages')
         if suggested_codes and len(suggested_codes) > 0:
             for language_info in self.all_languages:
                 if language_info.language_code in suggested_codes:

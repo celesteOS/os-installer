@@ -4,6 +4,7 @@ from random import getrandbits
 
 from gi.repository import Gio, Gtk
 
+from .config import config
 from .disk_provider import get_disk_provider
 from .global_state import global_state
 from .page import Page
@@ -33,7 +34,7 @@ class PartitionPage(Gtk.Box, Page):
 
         self.disk_provider = get_disk_provider()
         self.disk = None
-        self.minimum_disk_size = global_state.get_config('minimum_disk_size')
+        self.minimum_disk_size = config.get('minimum_disk_size')
 
         # models
         self.partition_list.bind_model(
@@ -60,7 +61,7 @@ class PartitionPage(Gtk.Box, Page):
             return self.disk_provider.disk_exists(self.disk)
 
     def _setup_partition_list(self):
-        self.disk = global_state.get_config('selected_disk')
+        self.disk = config.get('selected_disk')
 
         if not self.disk_exists():
             return "load_prev"
@@ -79,11 +80,11 @@ class PartitionPage(Gtk.Box, Page):
         self.disk_size.set_label(self.disk.size_text)
 
     def _store_device_info(self, info):
-        global_state.set_config('disk_name', info.name)
-        global_state.set_config('disk_device_path', info.device_path)
-        global_state.set_config('disk_is_partition',
+        config.set('disk_name', info.name)
+        config.set('disk_device_path', info.device_path)
+        config.set('disk_is_partition',
                                 not type(info) == type(self.disk))
-        global_state.set_config('disk_efi_partition', self.disk.efi_partition)
+        config.set('disk_efi_partition', self.disk.efi_partition)
 
     ### callbacks ###
 

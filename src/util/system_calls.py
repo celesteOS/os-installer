@@ -7,6 +7,7 @@ from subprocess import Popen
 import subprocess
 import locale as Locale
 
+from .config import config
 from .global_state import global_state
 
 
@@ -17,7 +18,7 @@ def _exec(args):
 
 def _run_program(args):
     env = os.environ.copy()
-    env["LANG"] = global_state.get_config('locale')
+    env["LANG"] = config.get('locale')
     Popen(args, env=env)
 
 
@@ -27,19 +28,19 @@ def is_booted_with_uefi():
 
 
 def open_disks():
-    _run_program(global_state.get_config('disks_cmd').split())
+    _run_program(config.get('disks_cmd').split())
 
 
 def open_internet_search():
-    browser_cmd = global_state.get_config('browser_cmd').split()
-    failure_help_url = global_state.get_config('failure_help_url')
-    version = global_state.get_config("version")
+    browser_cmd = config.get('browser_cmd').split()
+    failure_help_url = config.get('failure_help_url')
+    version = config.get("version")
     browser_cmd.append(failure_help_url.format(version))
     _run_program(browser_cmd)
 
 
 def open_wifi_settings():
-    _run_program(global_state.get_config('wifi_cmd').split())
+    _run_program(config.get('wifi_cmd').split())
 
 
 def reboot_system():
@@ -55,7 +56,7 @@ def set_system_keyboard_layout(keyboard_info):
 
 def set_system_language(language_info):
     locale = Locale.normalize(language_info.locale)
-    global_state.set_config('locale', locale)
+    config.set('locale', locale)
 
     # set app language
     was_set = Locale.setlocale(Locale.LC_ALL, locale)
@@ -71,13 +72,13 @@ def set_system_language(language_info):
 
 
 def set_system_formats(locale, formats_label):
-    global_state.set_config('formats_locale', locale)
-    global_state.set_config('formats_ui', formats_label)
+    config.set('formats_locale', locale)
+    config.set('formats_ui', formats_label)
     _exec(['gsettings', 'set', 'org.gnome.system.locale', 'region', f"'{locale}'"])
 
 
 def set_system_timezone(timezone):
-    global_state.set_config('timezone', timezone)
+    config.set('timezone', timezone)
     # TODO find correct way to set timezone without user authentication
     _exec(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
 

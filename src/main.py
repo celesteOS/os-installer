@@ -15,6 +15,7 @@ gi.require_version('Vte', '3.91')          # noqa: E402
 from gi.repository import Adw, Gio, GLib, Gtk
 
 # local, import order is important
+from .config import config
 from .global_state import global_state
 from .preload_manager import preload_manager
 from .window import OsInstallerWindow
@@ -38,7 +39,7 @@ class Application(Adw.Application):
         self.add_main_option('test-mode', b't', GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Run in testing mode. Does not alter the system, but runs scripts.", None)
 
-        global_state.set_config('version', version)
+        config.set('version', version)
         global_state.send_notification = self._send_notification
         preload_manager.start()
 

@@ -22,7 +22,7 @@ class WelcomePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        welcome = global_state.get_config('welcome_page')
+        welcome = config.get('welcome_page')
 
         language_code = config.get('language')[0]
 
@@ -35,7 +35,7 @@ class WelcomePage(Gtk.Box, Page):
             text = welcome['text']
         else:
             text = self.description.get_label()
-            text = text.format(global_state.get_config('distribution_name'))
+            text = text.format(config.get('distribution_name'))
         self.description.set_label(text)
 
     ### callbacks ###

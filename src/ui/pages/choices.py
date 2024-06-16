@@ -3,6 +3,7 @@
 from enum import Enum
 from gi.repository import Gio, Gtk
 
+from .config import config
 from .choices_provider import choices_provider
 from .global_state import global_state
 from .page import Page
@@ -77,11 +78,11 @@ class ChoicesPage(Gtk.Box, Page):
         keywords = ' '.join(keywords)
         match self.type:
             case ChoiceType.feature:
-                global_state.set_config('chosen_feature_names', keywords)
-                global_state.set_config('chosen_features', summary)
+                config.set('chosen_feature_names', keywords)
+                config.set('chosen_features', summary)
             case ChoiceType.software:
-                global_state.set_config('chosen_software_packages', keywords)
-                global_state.set_config('chosen_software', summary)
+                config.set('chosen_software_packages', keywords)
+                config.set('chosen_software', summary)
 
 
 FeaturePage = lambda **args: ChoicesPage(ChoiceType.feature, **args)

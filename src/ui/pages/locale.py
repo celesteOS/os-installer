@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .config import config
 from .format_provider import get_current_formats
 from .global_state import global_state
 from .timezone_provider import get_current_timezone
@@ -33,15 +34,15 @@ class LocalePage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        formats = global_state.get_config('formats_ui')
+        formats = config.get('formats_ui')
         if not formats:
             locale, name = get_current_formats()
             set_system_formats(locale, name)
-            formats = global_state.set_config('formats_ui', name)
+            formats = config.set('formats_ui', name)
         self.formats_label.set_label(formats)
 
-        timezone = global_state.get_config('timezone')
+        timezone = config.get('timezone')
         if not timezone:
             timezone = get_current_timezone()
-            global_state.set_config('timezone', timezone)
+            config.set('timezone', timezone)
         self.timezone_label.set_label(timezone)

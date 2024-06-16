@@ -4,6 +4,7 @@ from threading import Lock
 
 from gi.repository import Gio, Gtk
 
+from .config import config
 from .disk_provider import DeviceInfo, get_disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
@@ -30,7 +31,7 @@ class DiskPage(Gtk.Stack, Page):
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
 
-        self.minimum_disk_size = global_state.get_config('minimum_disk_size')
+        self.minimum_disk_size = config.get('minimum_disk_size')
         self.disk_provider = get_disk_provider()
 
         # models
@@ -64,7 +65,7 @@ class DiskPage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('disk_selected')
     def _disk_selected(self, list_box, row):
-        global_state.set_config('selected_disk', row.info)
+        config.set('selected_disk', row.info)
         global_state.advance(self)
 
     @Gtk.Template.Callback('reload')

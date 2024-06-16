@@ -174,19 +174,19 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         pages = [
             # pre-installation section
             ('language', self._offer_language_selection()),
-            ('welcome', global_state.get_config('welcome_page')['usage']),
+            ('welcome', config.get('welcome_page')['usage']),
             ('keyboard-overview', True),
-            ('internet', global_state.get_config(
+            ('internet', config.get(
                 'internet_connection_required')),
             ('disk', True),
             ('partition', True),
-            ('encrypt', global_state.get_config('offer_disk_encryption')),
+            ('encrypt', config.get('offer_disk_encryption')),
             ('confirm', exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
-            ('user', not global_state.get_config('skip_user')),
-            ('locale', not global_state.get_config('skip_locale')),
-            ('software', global_state.get_config('additional_software')),
-            ('feature', global_state.get_config('additional_features')),
+            ('user', not config.get('skip_user')),
+            ('locale', not config.get('skip_locale')),
+            ('software', config.get('additional_software')),
+            ('feature', config.get('additional_features')),
             # summary
             ('summary', True),
             # installation
@@ -200,14 +200,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _offer_language_selection(self):
             # only initialize language page, others depend on chosen language
-        if fixed_language := global_state.get_config('fixed_language'):
+        if fixed_language := config.get('fixed_language'):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
                 config.set('language', (fixed_info.language_code, fixed_info.name))
                 set_system_language(fixed_info)
                 return False
             else:
                 print('Developer hint: defined fixed language not available')
-                global_state.set_config('fixed_language', '')
+                config.set('fixed_language', '')
         return True
 
     def _initialize_page(self, page_name):

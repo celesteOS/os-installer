@@ -4,7 +4,7 @@ import locale as Locale
 
 from gi.repository import GnomeDesktop, GObject
 
-from .global_state import global_state
+from .config import config
 
 locales = {
     'as_IN.UTF-8', 'pt_BR.UTF-8', 'am_ET.UTF-8', 'os_RU.UTF-8', 'ta_LK.UTF-8', 'ka_GE.UTF-8', 'ar_DZ.UTF-8',
@@ -63,10 +63,10 @@ class Format(GObject.GObject):
 ### public methods ###
 
 def get_current_formats():
-    formats = global_state.get_config('formats_locale')
+    formats = config.get('formats_locale')
     if not formats:
-        formats = global_state.get_config('locale')
-        global_state.set_config('formats_locale', formats)
+        formats = config.get('locale')
+        config.set('formats_locale', formats)
     name = GnomeDesktop.get_country_from_locale(formats)
     if not name:
         # solely to prevent crashes, e.g. for Esperanto
@@ -80,7 +80,7 @@ def get_formats():
     # separate name set to prevent duplicates in list
     # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
     names = set()
-    translation_locale = global_state.get_config('locale')
+    translation_locale = config.get('locale')
 
     for locale in locales:
         name = GnomeDesktop.get_country_from_locale(locale, translation_locale)

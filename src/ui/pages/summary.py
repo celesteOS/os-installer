@@ -2,6 +2,7 @@
 
 from gi.repository import Gio, Gtk
 
+from .config import config
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .page import Page
@@ -43,12 +44,12 @@ class SummaryPage(Gtk.Box, Page):
         self.feature_list.bind_model(
             self.feature_model, lambda summary: SummaryRow(summary.name, summary.icon_path,
                                                        'puzzle-piece-symbolic'))
-        self.language_row.set_visible(global_state.get_config('fixed_language'))
-        self.software_row.set_visible(global_state.get_config('additional_software'))
-        self.feature_row.set_visible(global_state.get_config('additional_features'))
-        self.user_row.set_visible(not global_state.get_config('skip_user'))
-        self.format_row.set_visible(not global_state.get_config('skip_locale'))
-        self.timezone_row.set_visible(not global_state.get_config('skip_locale'))
+        self.language_row.set_visible(config.get('fixed_language'))
+        self.software_row.set_visible(config.get('additional_software'))
+        self.feature_row.set_visible(config.get('additional_features'))
+        self.user_row.set_visible(not config.get('skip_user'))
+        self.format_row.set_visible(not config.get('skip_locale'))
+        self.timezone_row.set_visible(not config.get('skip_locale'))
 
     ### callbacks ###
 
@@ -64,23 +65,21 @@ class SummaryPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        self.language_row.set_subtitle(global_state.get_config('language')[1])
-        self.keyboard_row.set_subtitle(
-            global_state.get_config('keyboard_layout')[1])
-        self.user_row.set_subtitle(global_state.get_config('user_name'))
-        self.user_autologin.set_visible(
-            global_state.get_config('user_autologin'))
-        self.format_row.set_subtitle(global_state.get_config('formats_ui'))
-        self.timezone_row.set_subtitle(global_state.get_config('timezone'))
+        self.language_row.set_subtitle(config.get('language')[1])
+        self.keyboard_row.set_subtitle(config.get('keyboard_layout')[1])
+        self.user_row.set_subtitle(config.get('user_name'))
+        self.user_autologin.set_visible(config.get('user_autologin'))
+        self.format_row.set_subtitle(config.get('formats_ui'))
+        self.timezone_row.set_subtitle(config.get('timezone'))
 
-        software = global_state.get_config('chosen_software')
+        software = config.get('chosen_software')
         if len(software) > 0:
             self.software_stack.set_visible_child_name('used')
             reset_model(self.software_model, software)
         else:
             self.software_stack.set_visible_child_name('none')
 
-        features = global_state.get_config('chosen_features')
+        features = config.get('chosen_features')
         if len(features) > 0:
             self.feature_stack.set_visible_child_name('used')
             reset_model(self.feature_model, features)

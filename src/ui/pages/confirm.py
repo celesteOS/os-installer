@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .config import config
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .page import Page
@@ -28,5 +29,5 @@ class ConfirmPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        self.disk_row.set_title(global_state.get_config('disk_name'))
-        self.disk_row.set_subtitle(global_state.get_config('disk_device_path'))
+        self.disk_row.set_title(config.get('disk_name'))
+        self.disk_row.set_subtitle(config.get('disk_device_path'))

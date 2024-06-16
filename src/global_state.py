@@ -2,7 +2,6 @@
 
 from concurrent.futures import ThreadPoolExecutor
 import traceback
-from .config import config
 
 
 class GlobalState:
@@ -12,18 +11,9 @@ class GlobalState:
 
     thread_pool = ThreadPoolExecutor()  # for futures
 
-    def __init__(self):
-        self.set_config('disk_name', 'Test Dummy')
-
     def _uninitialized(self):
         print('Window method called before initialization.')
         traceback.print_stack()
-
-    def get_config(self, setting):
-        return config.get(setting)
-
-    def set_config(self, setting, value):
-        config.set(setting, value)
 
     def advance(self, *args):
         self._uninitialized()
