@@ -43,12 +43,6 @@ class Application(Adw.Application):
         global_state.send_notification = self._send_notification
         preload_manager.start()
 
-    def _setup_quit_action(self):
-        gio_action = Gio.SimpleAction.new('quit', None)
-        gio_action.connect('activate', self._on_quit)
-        self.add_action(gio_action)
-        self.set_accels_for_action('app.quit', ['<Ctl>q'])
-
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
         icon_theme.add_resource_path('/com/github/p3732/os-installer/')
@@ -63,7 +57,6 @@ class Application(Adw.Application):
         else:
             self.window = OsInstallerWindow(application=self)
             self._setup_icons()
-            self.window.connect("close-request", self._on_quit)
             self.window.present()
 
     def do_command_line(self, command_line):
@@ -84,18 +77,12 @@ class Application(Adw.Application):
         # Startup application
         self.set_resource_base_path('/com/github/p3732/os-installer')
         Adw.Application.do_startup(self)
-        self._setup_quit_action()
 
     ### callbacks ###
 
     def _on_quit(self, action, param=None):
-        if global_state.installation_running:
-            # show confirm dialog
-            self.window.show_confirm_quit_dialog(self.quit)
-            # return True to avoid further processing of event
-            return True
-        else:
-            self.quit()
+        self.window.close()
+        return True
 
     def _send_notification(self, title, text):
         n = Gio.Notification()

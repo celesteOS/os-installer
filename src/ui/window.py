@@ -150,6 +150,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
 
         self._setup_actions()
+        self.connect("close-request", self._show_confirm_dialog, None)
 
         # set advancing functions in global state
         global_state.advance = self.advance
@@ -184,6 +185,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('previous-page', self._navigate_backward, '<Alt>Left')
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
+        self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
 
         if config.get('test_mode'):
             def show_failed(self, _, __): return self._load_page('failed')
@@ -371,6 +373,24 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             popup = builder.get_object('about_window')
             popup.present(self)
 
+    def _show_confirm_dialog(self, _, __):
+        def check_quit(_, response, self):
+            if response == 'stop':
+                self.get_application().quit()
+
+        if not global_state.installation_running:
+            self.get_application().quit()
+            return False
+
+        with self.navigation_lock:
+            builder = Gtk.Builder.new_from_resource(
+                '/com/github/p3732/os-installer/ui/confirm_quit_dialog.ui')
+            popup = builder.get_object('popup')
+            popup.connect('response', check_quit, self)
+            popup.present(self)
+
+        return True
+
     ### public methods ###
 
     def advance(self, page, allow_return: bool = True):
@@ -393,14 +413,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def retranslate_pages(self):
         with self.navigation_lock:
             self._remove_all_but_one_page("language")
-
-    def show_confirm_quit_dialog(self, quit_callback):
-        with self.navigation_lock:
-            builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_dialog.ui')
-            popup = builder.get_object('popup')
-            popup.connect('response',
-                          lambda _, response: quit_callback() if response == "stop" else None)
-            popup.present(self)
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
