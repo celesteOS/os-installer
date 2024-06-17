@@ -5,7 +5,7 @@ from .installation_step import InstallationStep
 
 
 def _get(var):
-    if not config.has(var):
+    if not config.has(var) and not config.get('test_mode'):
         print(f'Required variable {var} not set, using empty string fallback. '
               'Please report this error.')
         return ''
