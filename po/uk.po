@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-06-18 11:28+0000\n"
+"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -294,81 +294,56 @@ msgstr "Безіменний розділ"
 msgid "Not enough space for installation ({} required)"
 msgstr "Недостатньо місця для установки (потрібно {})"
 
-#, fuzzy
-#| msgid "_Confirm"
 msgid "Confirm"
-msgstr "_Підтвердити"
+msgstr "Підтвердити"
 
-#, fuzzy
 msgid "Disk"
-msgstr "Disk"
+msgstr "Диск"
 
-#, fuzzy
 msgid "Done"
-msgstr "Done"
+msgstr "Готово"
 
-#, fuzzy
-#| msgid "Encrypt Files"
 msgid "Encrypt"
-msgstr "Шифрування файлів"
+msgstr "Зашифрувати"
 
-#, fuzzy
 msgid "Failed"
-msgstr "Failed"
+msgstr "Не вдалося"
 
-#, fuzzy
 msgid "Feature"
-msgstr "Feature"
+msgstr "Функції"
 
-#, fuzzy
-#| msgid "Formats"
 msgid "Format"
-msgstr "Формати"
+msgstr "Формат"
 
-#, fuzzy
-#| msgid "Installing"
 msgid "Install"
-msgstr "Встановлення"
+msgstr "Встановити"
 
-#, fuzzy
 msgid "Internet"
-msgstr "Internet"
+msgstr "Інтернет"
 
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "KeyboardLanguage"
 msgstr "Мова клавіатури"
 
-#, fuzzy
-#| msgid "Keyboard Layout"
 msgid "KeyboardLayout"
 msgstr "Розкладка клавіатури"
 
-#, fuzzy
 msgid "KeyboardOverview"
-msgstr "KeyboardOverview"
+msgstr "Огляд клавіатури"
 
-#, fuzzy
 msgid "Locale"
-msgstr "Locale"
+msgstr "Місцеперебування"
 
-#, fuzzy
-#| msgid "Partitions"
 msgid "Partition"
-msgstr "Розділи"
+msgstr "Розділ"
 
-#, fuzzy
-#| msgid "Restarting"
 msgid "Restart"
-msgstr "Перезапуск"
+msgstr "Перезапустити"
 
-#, fuzzy
 msgid "Software"
-msgstr "Software"
+msgstr "Програмне забезпечення"
 
-#, fuzzy
 msgid "User"
-msgstr "User"
+msgstr "Користувач"
 
 #~ msgid "PIN"
 #~ msgstr "PIN-код"
