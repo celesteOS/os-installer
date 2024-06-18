@@ -52,6 +52,8 @@ class InstallationScripting():
 
         next_step = InstallationStep(self.finished_step.value + 1)
         print(f'Starting step "{next_step.name}"...')
+        if next_step != InstallationStep.prepare:
+            global_state.installation_running = True
 
         envs = create_envs(next_step)
 
