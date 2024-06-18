@@ -5,8 +5,6 @@ import traceback
 
 
 class GlobalState:
-    installation_running = False
-
     thread_pool = ThreadPoolExecutor()  # for futures
 
     def _uninitialized(self):

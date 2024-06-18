@@ -6,6 +6,7 @@ import os
 
 from gi.repository import Gio, GLib, Vte
 
+from .config import config
 from .envvar_creator import create_envs
 from .global_state import global_state
 from .installation_step import InstallationStep
@@ -38,7 +39,7 @@ class InstallationScripting():
         return terminal
 
     def _fail_installation(self):
-        global_state.installation_running = False
+        config.set('installation_running', False)
         global_state.navigate_to_page("failed")
         # Translators: Notification text
         global_state.send_notification(_("Installation Failed"), '')
@@ -53,7 +54,7 @@ class InstallationScripting():
         next_step = InstallationStep(self.finished_step.value + 1)
         print(f'Starting step "{next_step.name}"...')
         if next_step != InstallationStep.prepare:
-            global_state.installation_running = True
+            config.set('installation_running', True)
 
         envs = create_envs(next_step)
 
@@ -89,7 +90,7 @@ class InstallationScripting():
             print(f'Finished step "{self.finished_step.name}".')
 
             if self.finished_step is InstallationStep.configure:
-                global_state.installation_running = False
+                config.set('installation_running', False)
                 # Translators: Notification text
                 global_state.send_notification(_("Finished Installation"), '')
                 global_state.advance(None, allow_return=False)

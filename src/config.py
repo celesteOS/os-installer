@@ -40,6 +40,7 @@ default_config = {
 }
 
 optional_defaults = {
+    'installation_running': False,
     'use_encryption': False,
     'encryption_pin': '',
     'user_name': '',

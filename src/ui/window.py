@@ -378,7 +378,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if response == 'stop':
                 self.get_application().quit()
 
-        if not global_state.installation_running:
+        if not config.get('installation_running'):
             self.get_application().quit()
             return False
 
