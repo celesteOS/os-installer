@@ -292,6 +292,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.pages.pop()
 
         # delete popped page
+        popped_page.unload()
         self.main_stack.remove(popped_page)
         del popped_page
 
