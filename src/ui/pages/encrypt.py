@@ -30,26 +30,22 @@ class EncryptPage(Gtk.Box, Page):
     @Gtk.Template.Callback('encryption_row_clicked')
     def _encryption_row_clicked(self, row, state):
         state = self.switch_row.get_active()
+        config.set('use_encryption', state)
         self.pin_row.set_sensitive(state)
         self.info_revealer.set_reveal_child(state)
         self._set_continue_button()
 
         if state:
             self.pin_row.grab_focus()
+        else:
+            config.set('encryption_pin', '')
 
     @Gtk.Template.Callback('pin_changed')
     def _pin_changed(self, editable):
+        config.set('encryption_pin', editable.get_text())
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
         if self.continue_button.is_sensitive():
             global_state.advance(self)
-
-    ### public methods ###
-
-    def unload(self):
-        use_encryption = self.switch_row.get_active()
-        pin = self.pin_row.get_text()
-        config.set('use_encryption', use_encryption)
-        config.set('encryption_pin', pin)
