@@ -34,24 +34,24 @@ class UserPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('autologin_row_clicked')
     def _autologin_row_clicked(self, row, state):
+        config.set('user_autologin', self.autologin_row.get_active())
         self._set_continue_button()
 
     @Gtk.Template.Callback('focus_password')
     def _focus_password(self, row):
         self.password_row.grab_focus()
 
-    @Gtk.Template.Callback('entry_changed')
-    def _entry_changed(self, editable):
+    @Gtk.Template.Callback('user_name_changed')
+    def _user_name_changed(self, editable):
+        config.set('user_name', editable.get_text().strip())
+        self._set_continue_button()
+
+    @Gtk.Template.Callback('password_changed')
+    def _password_changedentry_changed(self, editable):
+        config.set('user_password', editable.get_text())
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
         if self.continue_button.get_sensitive():
             global_state.advance(self)
-
-    ### public methods ###
-
-    def unload(self):
-        config.set('user_name', self.user_name_row.get_text().strip())
-        config.set('user_password', self.password_row.get_text())
-        config.set('user_autologin', self.autologin_row.get_active())

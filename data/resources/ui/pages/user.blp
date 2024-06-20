@@ -15,7 +15,7 @@ template $UserPage : Box {
       title: _("_Name");
       use-underline: true;
       entry-activated => $focus_password();
-      changed => $entry_changed();
+      changed => $user_name_changed();
     }
 
     Adw.SwitchRow autologin_row {
@@ -31,7 +31,7 @@ template $UserPage : Box {
       use-underline: true;
       /* Translators: Used with entry field for setting a password for new user */
       title: _("_Password");
-      changed => $entry_changed();
+      changed => $password_changed();
       entry-activated => $continue();
     }
   }
