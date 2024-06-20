@@ -18,6 +18,15 @@ def _get(var):
         else:
             return value
 
+def _parse_choices(choices_var):
+    keywords = []
+    for choice in _get(choices_var):
+        if choice.options:
+            keywords.append(choice.state.keyword)
+        elif choice.state:
+            keywords.append(choice.keyword)
+    return ' '.join(keywords)
+
 
 def create_envs(installation_step: InstallationStep):
     with_configure_envs = installation_step is InstallationStep.configure
@@ -42,7 +51,7 @@ def create_envs(installation_step: InstallationStep):
             f'OSI_USER_PASSWORD={_get("user_password")}',
             f'OSI_FORMATS={_get("formats_locale")}',
             f'OSI_TIMEZONE={_get("timezone")}',
-            f'OSI_ADDITIONAL_SOFTWARE={_get("chosen_software_packages")}',
-            f'OSI_ADDITIONAL_FEATURES={_get("chosen_feature_names")}',
+            f'OSI_ADDITIONAL_SOFTWARE={_parse_choices("software_choices")}',
+            f'OSI_ADDITIONAL_FEATURES={_parse_choices("feature_choices")}',
         ]
     return envs + [None]

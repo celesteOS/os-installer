@@ -22,12 +22,9 @@ class Choice(GObject.GObject):
         self.description = description
         self.icon_path = icon_path
 
-        if options:
-            self.options=options
-        else:
-            self.options=None
-            self.keyword = keyword
-            self.suggested = suggested
+        self.options = options
+        self.state = options[0] if options else suggested
+        self.keyword = keyword
 
 
 def handle_choice(choice):
@@ -92,18 +89,25 @@ class ChoicesProvider(Preloadable):
         Preloadable.__init__(self, self._get_choices)
 
     def _get_choices(self):
-        self.features = handle_choices(config.get('additional_features'))
-        self.software = handle_choices(config.get('additional_software'))
+        feature_choices = handle_choices(config.get('additional_features'))
+        for choice in feature_choices:
+            choice.icon_name = 'puzzle-piece-symbolic'
+        config.set('feature_choices', feature_choices)
+
+        software_choices = handle_choices(config.get('additional_software'))
+        for choice in software_choices:
+            choice.icon_name = 'system-software-install-symbolic'
+        config.set('software_choices', software_choices)
 
     ### public methods ###
 
     def get_software_suggestions(self):
         self.assert_preloaded()
-        return self.software
+        return config.get('software_choices')
 
     def get_feature_suggestions(self):
         self.assert_preloaded()
-        return self.features
+        return config.get('feature_choices')
 
 
 choices_provider = ChoicesProvider()

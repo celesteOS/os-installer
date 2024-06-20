@@ -67,25 +67,33 @@ class MultiSelectionRow(Adw.ComboRow):
     icon = Gtk.Template.Child()
     list = Gtk.Template.Child()
 
-    def __init__(self, title, description, icon_path, fallback_icon,
-                 options, **kwargs):
+    def __init__(self, choice, **kwargs):
         super().__init__(**kwargs)
-        self.set_title(title)
-        self.set_subtitle(description)
-        if not icon_path:
-            self.icon.set_from_icon_name(fallback_icon)
-            self.icon.set_icon_size(Gtk.IconSize.LARGE)
+
+        self.choice = choice
+
+        self.set_title(choice.name)
+        self.set_subtitle(choice.description)
+        if choice.icon_path:
+            self.icon.set_from_file(choice.icon_path)
         else:
-            self.icon.set_from_file(icon_path)
+            self.icon.set_from_icon_name(choice.icon_name)
+            self.icon.set_icon_size(Gtk.IconSize.LARGE)
 
-        self.icon_path = icon_path
-        self.options = options
-
-        self.list.splice(0, 0, [option.display for option in options])
+        self.list.splice(0, 0, [option.display for option in choice.options])
         self.set_model(self.list)
+        self.update_choice()
 
     def get_chosen_option(self):
-        return self.options[self.get_selected()]
+        return self.choice.options[self.get_selected()]
+
+    def update_choice(self):
+        display_text = self.get_selected_item().get_string()
+        for index, option in enumerate(self.choice.options):
+            if option.display == display_text:
+                self.set_selected(index)
+                self.choice.state = option
+                return
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
@@ -143,26 +151,27 @@ class SelectionRow(Adw.ActionRow):
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, title, description, icon_path, fallback_icon,
-                 default_state, info, **kwargs):
+    def __init__(self, choice, **kwargs):
         super().__init__(**kwargs)
-        self.set_title(title)
-        self.set_subtitle(description)
-        self.switch.set_active(default_state)
-        if not icon_path:
-            self.icon.set_from_icon_name(fallback_icon)
-            self.icon.set_icon_size(Gtk.IconSize.LARGE)
-        else:
-            self.icon.set_from_file(icon_path)
 
-        self.icon_path = icon_path
-        self.info = info
+        self.choice = choice
+
+        self.set_title(choice.name)
+        self.set_subtitle(choice.description)
+        self.switch.set_active(choice.state)
+        if choice.icon_path:
+            self.icon.set_from_file(choice.icon_path)
+        else:
+            self.icon.set_from_icon_name(choice.icon_name)
+            self.icon.set_icon_size(Gtk.IconSize.LARGE)
 
     def is_activated(self):
         return self.switch.get_active()
 
     def flip_switch(self):
-        return self.switch.set_active(not self.switch.get_active())
+        new_state = not self.switch.get_active()
+        self.switch.set_active(new_state)
+        self.choice.state = new_state
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/summary_row.ui')
@@ -172,10 +181,15 @@ class SummaryRow(Gtk.ListBoxRow):
     icon = Gtk.Template.Child()
     name = Gtk.Template.Child()
 
-    def __init__(self, name, icon_path, icon_name, **kwargs):
+    def __init__(self, choice, **kwargs):
         super().__init__(**kwargs)
-        self.name.set_label(name)
-        if not icon_path:
-            self.icon.set_from_icon_name(icon_name)
+
+        if choice.options:
+            self.name.set_label(choice.state.display)
         else:
-            self.icon.set_from_file(icon_path)
+            self.name.set_label(choice.name)
+
+        if choice.icon_path:
+            self.icon.set_from_file(choice.icon_path)
+        else:
+            self.icon.set_from_icon_name(choice.icon_name)

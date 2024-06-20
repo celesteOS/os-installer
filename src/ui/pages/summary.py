@@ -8,6 +8,8 @@ from .installation_scripting import installation_scripting
 from .page import Page
 from .widgets import reset_model, SummaryRow
 
+def _filter_chosen_choices(choices):
+    return [choice for choice in choices if choice.options or choice.state]
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
 class SummaryPage(Gtk.Box, Page):
@@ -37,12 +39,8 @@ class SummaryPage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        self.software_list.bind_model(
-            self.software_model, lambda summary: SummaryRow(summary.name, summary.icon_path,
-                                                            'application-x-executable-symbolic'))
-        self.feature_list.bind_model(
-            self.feature_model, lambda summary: SummaryRow(summary.name, summary.icon_path,
-                                                       'puzzle-piece-symbolic'))
+        self.software_list.bind_model(self.software_model, SummaryRow)
+        self.feature_list.bind_model(self.feature_model, SummaryRow)
         self.language_row.set_visible(config.get('fixed_language'))
         self.software_row.set_visible(config.get('additional_software'))
         self.feature_row.set_visible(config.get('additional_features'))
@@ -71,16 +69,14 @@ class SummaryPage(Gtk.Box, Page):
         self.format_row.set_subtitle(config.get('formats_ui'))
         self.timezone_row.set_subtitle(config.get('timezone'))
 
-        software = config.get('chosen_software')
-        if len(software) > 0:
+        if software := config.get('software_choices'):
             self.software_stack.set_visible_child_name('used')
-            reset_model(self.software_model, software)
+            reset_model(self.software_model, _filter_chosen_choices(software))
         else:
             self.software_stack.set_visible_child_name('none')
 
-        features = config.get('chosen_features')
-        if len(features) > 0:
+        if features := config.get('feature_choices'):
             self.feature_stack.set_visible_child_name('used')
-            reset_model(self.feature_model, features)
+            reset_model(self.feature_model, _filter_chosen_choices(features))
         else:
             self.feature_stack.set_visible_child_name('none')

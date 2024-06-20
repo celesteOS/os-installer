@@ -55,7 +55,6 @@ os_installer_sources = [
   'util/installation_step.py',
   'util/preloadable.py',
   'util/system_calls.py',
-  'util/util.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)

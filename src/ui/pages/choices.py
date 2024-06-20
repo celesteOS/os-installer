@@ -7,7 +7,6 @@ from .config import config
 from .choices_provider import choices_provider
 from .global_state import global_state
 from .page import Page
-from .util import SummaryEntry
 from .widgets import MultiSelectionRow, reset_model, SelectionRow
 
 
@@ -26,8 +25,7 @@ class ChoicesPage(Gtk.Box, Page):
     def __init__(self, choice_type, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        self.type = choice_type
-        match self.type:
+        match choice_type:
             case ChoiceType.feature:
                 self.list_provider = choices_provider.get_feature_suggestions
             case ChoiceType.software:
@@ -41,46 +39,24 @@ class ChoicesPage(Gtk.Box, Page):
 
     def _create_row(self, choice):
         if choice.options:
-            return MultiSelectionRow(choice.name, choice.description, choice.icon_path,
-                                     'application-x-executable-symbolic',
-                                     choice.options)
+            row = MultiSelectionRow(choice)
+            row.connect("notify::selected-item", self._option_chosen)
         else:
-            return SelectionRow(choice.name, choice.description, choice.icon_path,
-                                'application-x-executable-symbolic',
-                                choice.suggested, choice.keyword)
+            row = SelectionRow(choice)
+            row.connect("activated", self._switch_flipped)
+        return row
 
     ### callbacks ###
+
+    def _option_chosen(self, row, _):
+        row.update_choice()
+
+    def _switch_flipped(self, row):
+        row.flip_switch()
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
-
-    @Gtk.Template.Callback('row_activated')
-    def _row_activated(self, list_box, row):
-        if type(row) == SelectionRow:
-            row.flip_switch()
-
-    ### public methods ###
-
-    def unload(self):
-        summary = []
-        keywords = []
-        for row in self.list:
-            if type(row) == MultiSelectionRow:
-                option = row.get_chosen_option()
-                keywords.append(option.keyword)
-                summary.append(SummaryEntry(option.display, row.icon_path))
-            elif type(row) == SelectionRow and row.is_activated():
-                keywords.append(row.info)
-                summary.append(SummaryEntry(row.get_title(), row.icon_path))
-        keywords = ' '.join(keywords)
-        match self.type:
-            case ChoiceType.feature:
-                config.set('chosen_feature_names', keywords)
-                config.set('chosen_features', summary)
-            case ChoiceType.software:
-                config.set('chosen_software_packages', keywords)
-                config.set('chosen_software', summary)
 
 
 FeaturePage = lambda **args: ChoicesPage(ChoiceType.feature, **args)

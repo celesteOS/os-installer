@@ -49,10 +49,8 @@ optional_defaults = {
     'formats_locale': 'en_US.UTF-8',
     'formats_ui': 'United States',
     'timezone': 'UTC',
-    'chosen_software_packages': '',
-    'chosen_software': [],
-    'chosen_feature_names': '',
-    'chosen_features': []
+    'feature_choices': {},
+    'software_choices': {},
 }
 
 fallback_values = {
