@@ -47,7 +47,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.layout_list.bind_model(
             self.model, lambda o: ProgressRow(o.name, o))
 
-        self._subscribe('keyboard_language', self._update_keyboard_language)
+        config.subscribe('keyboard_language', self._update_keyboard_language)
 
     ### callbacks ###
 
@@ -82,7 +82,7 @@ class KeyboardOverviewPage(Gtk.Box, Page):
             keyboard = get_default_layout(language_code)
             set_system_keyboard_layout(keyboard_info=keyboard)
 
-        self._subscribe('keyboard_layout', self._update_primary_layout)
+        config.subscribe('keyboard_layout', self._update_primary_layout)
 
     ### callbacks ###
 

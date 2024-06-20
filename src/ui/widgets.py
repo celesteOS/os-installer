@@ -4,6 +4,8 @@ from pathlib import Path
 
 from gi.repository import Adw, Gtk
 
+from .config import config
+
 
 def reset_model(model, new_values):
     '''
@@ -109,7 +111,7 @@ class PageWrapper(Adw.Bin):
         self.content.set_child(self.page)
 
     def __del__(self):
-        self.page.cancel_subscriptions()
+        config.unsubscribe(self.page)
 
     def get_page(self):
         return self.page

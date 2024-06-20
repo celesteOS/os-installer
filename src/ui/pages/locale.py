@@ -28,8 +28,8 @@ class LocalePage(Gtk.Box, Page):
             timezone = get_current_timezone()
             config.set('timezone', timezone)
 
-        self._subscribe('formats_ui', self._update_formats)
-        self._subscribe('timezone', self._update_timezone)
+        config.subscribe('formats_ui', self._update_formats)
+        config.subscribe('timezone', self._update_timezone)
 
     ### callbacks ###
 

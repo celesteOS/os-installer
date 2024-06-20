@@ -155,11 +155,11 @@ class Config:
             self.subscriptions[variable] = [func]
         func(self.variables[variable])
 
-    def unsubscribe(self, variable, func):
-        if variable in self.subscriptions and func in self.subscriptions[variable]:
-            self.subscriptions[variable].remove(func)
-        else:
-            print(f'Unsubscribing non-subscribed function {func}!')
+    def unsubscribe(self, obj):
+        for subs in self.subscriptions.values():
+            for func in subs:
+                if func.__self__ == obj:
+                    subs.remove(func)
 
 
 config = Config()
