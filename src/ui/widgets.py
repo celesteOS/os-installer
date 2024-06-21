@@ -121,9 +121,6 @@ class PageWrapper(Adw.Bin):
     def load(self):
         return self.page.load()
 
-    def unload(self):
-        return self.page.unload()
-
     def can_reload(self):
         return self.page.can_reload
 

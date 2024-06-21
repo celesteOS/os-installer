@@ -18,9 +18,3 @@ class Page:
         "load_prev", "pass".
         '''
         pass
-
-    def unload(self):
-        '''
-        Called before the page is no longer shown. Used for e.g. storing current enrty values.
-        '''
-        pass

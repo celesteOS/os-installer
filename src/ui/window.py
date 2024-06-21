@@ -246,7 +246,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if page_name == kept_page_name:
                 continue
             page = self.main_stack.get_child_by_name(page_name)
-            page.unload()
             self.main_stack.remove(page)
             page.cleanup()
         self.pages = [kept_page_name] if kept_page_name else []
@@ -259,9 +258,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         return self.available_pages[current_index + offset]
 
     def _load_page(self, page_name: str, offset: int = forward):
-        if current_page := self.main_stack.get_visible_child():
-            current_page.unload()
-
         if page_name in non_returnable_pages:
             self._remove_all_but_one_page(None)
 
@@ -292,7 +288,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.pages.pop()
 
         # delete popped page
-        popped_page.unload()
         self.main_stack.remove(popped_page)
         popped_page.cleanup()
 
