@@ -188,7 +188,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
 
         if config.get('test_mode'):
-            def show_failed(self, _, __): return self._load_page('failed')
+            def show_failed(_, __): return self._load_page('failed')
             self._add_action('fail-page', show_failed, '<Alt>F')
 
         self.insert_action_group('win', self.action_group)
