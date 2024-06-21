@@ -19,7 +19,13 @@ class InstallPage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
 
         # UI element states
+        self.terminal_box.append(installation_scripting.terminal)
         self.stack.set_visible_child_name('spinner')
+        self.spinner.start()
+
+    def __cleanup__(self):
+        self.terminal_box.remove(installation_scripting.terminal)
+        self.spinner.stop()
 
     ### callbacks ###
 
@@ -31,14 +37,3 @@ class InstallPage(Gtk.Box, Page):
         else:
             self.spinner.start()
             self.stack.set_visible_child_name('spinner')
-
-    ### public methods ###
-
-    def load(self):
-        # setup terminal
-        self.terminal_box.append(installation_scripting.terminal)
-        self.spinner.start()
-
-    def unload(self):
-        self.terminal_box.remove(installation_scripting.terminal)
-        self.spinner.stop()

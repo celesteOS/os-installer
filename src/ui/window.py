@@ -248,7 +248,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             page = self.main_stack.get_child_by_name(page_name)
             page.unload()
             self.main_stack.remove(page)
-            del page
+            page.cleanup()
         self.pages = [kept_page_name] if kept_page_name else []
 
     def _get_next_page_name(self, offset: int = forward):
@@ -294,7 +294,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # delete popped page
         popped_page.unload()
         self.main_stack.remove(popped_page)
-        del popped_page
+        popped_page.cleanup()
 
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name)

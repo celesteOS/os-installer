@@ -16,6 +16,10 @@ class DonePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
+        self.terminal_box.append(installation_scripting.terminal)
+
+    def __cleanup__(self):
+        self.terminal_box.remove(installation_scripting.terminal)
 
     ### callbacks ###
 
@@ -29,11 +33,3 @@ class DonePage(Gtk.Box, Page):
             self.stack.set_visible_child_name("terminal")
         else:
             self.stack.set_visible_child_name("buttons")
-
-    ### public methods ###
-
-    def load(self):
-        self.terminal_box.append(installation_scripting.terminal)
-
-    def unload(self):
-        self.terminal_box.remove(installation_scripting.terminal)

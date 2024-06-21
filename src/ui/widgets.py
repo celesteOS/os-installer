@@ -110,7 +110,9 @@ class PageWrapper(Adw.Bin):
         self.page = page
         self.content.set_child(self.page)
 
-    def __del__(self):
+    def cleanup(self):
+        if hasattr(self.page, '__cleanup__'):
+            self.page.__cleanup__()
         config.unsubscribe(self.page)
 
     def get_page(self):
