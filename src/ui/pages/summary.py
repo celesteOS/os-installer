@@ -52,7 +52,7 @@ class SummaryPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self, allow_return=False)
+        global_state.advance(self)
         installation_scripting.can_run_configure()
 
     @Gtk.Template.Callback('summary_row_activated')

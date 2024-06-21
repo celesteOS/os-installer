@@ -21,7 +21,7 @@ class DonePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('restart_button_clicked')
     def _restart_button_clicked(self, button):
-        global_state.advance(self, allow_return=False)
+        global_state.advance(self)
 
     @Gtk.Template.Callback('terminal_button_toggled')
     def _terminal_button_toggled(self, toggle_button):

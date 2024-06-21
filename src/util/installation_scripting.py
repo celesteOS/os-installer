@@ -93,7 +93,7 @@ class InstallationScripting():
                 config.set('installation_running', False)
                 # Translators: Notification text
                 global_state.send_notification(_("Finished Installation"), '')
-                global_state.advance(None, allow_return=False)
+                global_state.advance(None)
             else:
                 self._try_start_next_script()
 

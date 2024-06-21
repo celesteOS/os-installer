@@ -125,7 +125,7 @@ page_name_to_image = {
     'welcome':              None,
 }
 
-non_returnable_pages = ['done', 'failed', 'summary']
+non_returnable_pages = ['done', 'failed', 'install', 'restart', 'summary']
 
 
 forward = 1
