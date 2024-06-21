@@ -44,9 +44,6 @@ class InternetPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        if config.get('test_mode'):
-            return "pass"
-
         with self.connected_lock:
             if self.connected:
                 return "pass"
