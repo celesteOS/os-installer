@@ -12,7 +12,6 @@ from .page import Page
 class FailedPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
 
-    page_title = Gtk.Template.Child()
     terminal_box = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
