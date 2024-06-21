@@ -77,8 +77,7 @@ class PartitionPage(Gtk.Box, Page):
         self.disk_size.set_label(self.disk.size_text)
 
     def _store_device_info(self, info):
-        config.set('disk_name', info.name)
-        config.set('disk_device_path', info.device_path)
+        config.set('disk', (info.device_path, info.name))
         config.set('disk_is_partition',
                                 not type(info) == type(self.disk))
         config.set('disk_efi_partition', self.disk.efi_partition)

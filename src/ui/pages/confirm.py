@@ -28,5 +28,6 @@ class ConfirmPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        self.disk_row.set_title(config.get('disk_name'))
-        self.disk_row.set_subtitle(config.get('disk_device_path'))
+        name, path = config.get('disk')
+        self.disk_row.set_title(name)
+        self.disk_row.set_subtitle(path)
