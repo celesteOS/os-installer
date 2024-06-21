@@ -262,6 +262,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if current_page := self.main_stack.get_visible_child():
             current_page.unload()
 
+        if page_name in non_returnable_pages:
+            self._remove_all_but_one_page(None)
+
         page_to_load = self.main_stack.get_child_by_name(page_name)
         if not page_to_load:
             page_to_load = self._initialize_page(page_name)
@@ -273,9 +276,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             case "pass":
                 self._load_next_page(offset + (1 if offset > 0 else -1))
                 return
-
-        if page_name in non_returnable_pages:
-            self._remove_all_but_one_page(page_name)
 
         self.main_stack.set_visible_child(page_to_load)
         self._reload_title_image()
