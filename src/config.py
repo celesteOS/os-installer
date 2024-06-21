@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from threading import Lock
 import yaml
 
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
@@ -98,6 +99,7 @@ def _validate(variables):
 class Config:
     def __init__(self):
         self.variables = default_config
+        self.subscription_lock = Lock()
         self.subscriptions = {}
 
         try:
@@ -143,22 +145,25 @@ class Config:
     def set(self, variable, value):
         self.variables[variable] = value
 
-        if variable in self.subscriptions:
-            for func in self.subscriptions[variable]:
-                func(value)
+        with self.subscription_lock:
+            if variable in self.subscriptions:
+                for func in self.subscriptions[variable]:
+                    func(value)
 
     def subscribe(self, variable, func):
-        if variable in self.subscriptions:
-            self.subscriptions[variable].append(func)
-        else:
-            self.subscriptions[variable] = [func]
+        with self.subscription_lock:
+            if variable in self.subscriptions:
+                self.subscriptions[variable].append(func)
+            else:
+                self.subscriptions[variable] = [func]
         func(self.variables[variable])
 
     def unsubscribe(self, obj):
-        for subs in self.subscriptions.values():
-            for func in subs:
-                if func.__self__ == obj:
-                    subs.remove(func)
+        with self.subscription_lock:
+            for subs in self.subscriptions.values():
+                for func in subs:
+                    if func.__self__ == obj:
+                        subs.remove(func)
 
 
 config = Config()
