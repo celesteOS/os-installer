@@ -18,16 +18,16 @@ class ConfirmPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        config.subscribe('disk', self._update_disk_row)
+
     ### callbacks ###
+
+    def _update_disk_row(self, disk):
+        name, path = disk
+        self.disk_row.set_title(name)
+        self.disk_row.set_subtitle(path)
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
         installation_scripting.can_run_install()
         global_state.advance(self, allow_return=False)
-
-    ### public methods ###
-
-    def load(self):
-        name, path = config.get('disk')
-        self.disk_row.set_title(name)
-        self.disk_row.set_subtitle(path)
