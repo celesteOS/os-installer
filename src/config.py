@@ -150,6 +150,10 @@ class Config:
                 for func in self.subscriptions[variable]:
                     func(value)
 
+    def steal(self, variable):
+        if variable in self.variables:
+            return self.variables.pop(variable)
+
     def subscribe(self, variable, func):
         with self.subscription_lock:
             if variable in self.subscriptions:

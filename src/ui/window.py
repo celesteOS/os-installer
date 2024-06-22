@@ -267,8 +267,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if not page_to_load:
             page_to_load = self._initialize_page(page_name)
 
-        match page_to_load.load():
-            case "load_prev":
+        page_to_load.load()
+        match config.steal('page_navigation'):
+            case 'load_prev':
                 self._load_next_page(backwards if offset > 0 else offset - 1)
                 return
             case "pass":
@@ -358,7 +359,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             current_page = self.main_stack.get_visible_child()
             if not current_page.can_reload():
                 return
-            match current_page.load():
+            page_to_load.load()
+            match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
                 case "load_next":

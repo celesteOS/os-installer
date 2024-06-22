@@ -61,7 +61,8 @@ class PartitionPage(Gtk.Box, Page):
         self.disk = config.get('selected_disk')
 
         if not self.disk_exists():
-            return "load_prev"
+            config.set('page_navigation', 'load_prev')
+            return
 
         if len(self.disk.partitions) == 0:
             reset_model(self.partition_list_model, [])

@@ -46,4 +46,4 @@ class InternetPage(Gtk.Box, Page):
     def load(self):
         with self.connected_lock:
             if self.connected:
-                return "pass"
+                config.set('page_navigation', 'pass')
