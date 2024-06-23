@@ -270,7 +270,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_to_load.load()
         match config.steal('page_navigation'):
             case 'load_prev':
-                self._load_next_page(backwards if offset > 0 else offset - 1)
+                self._load_next_page(offset - 1)
                 return
             case "pass":
                 self._load_next_page(offset + (1 if offset > 0 else -1))
