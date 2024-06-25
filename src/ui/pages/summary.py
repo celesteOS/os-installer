@@ -39,16 +39,65 @@ class SummaryPage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        self.software_list.bind_model(self.software_model, SummaryRow)
-        self.feature_list.bind_model(self.feature_model, SummaryRow)
-        self.language_row.set_visible(config.get('fixed_language'))
-        self.software_row.set_visible(config.get('additional_software'))
-        self.feature_row.set_visible(config.get('additional_features'))
-        self.user_row.set_visible(not config.get('skip_user'))
-        self.format_row.set_visible(not config.get('skip_locale'))
-        self.timezone_row.set_visible(not config.get('skip_locale'))
+
+        if not config.get('fixed_language'):
+            self.language_row.set_visible(True)
+            config.subscribe('language', self._update_language)
+        if config.get('additional_features'):
+            self.feature_list.bind_model(self.feature_model, SummaryRow)
+            self.feature_row.set_visible(True)
+            config.subscribe('feature_choices', self._update_feature_choices)
+        if config.get('additional_software'):
+            self.software_list.bind_model(self.software_model, SummaryRow)
+            self.software_row.set_visible(True)
+            config.subscribe('software_choices', self._update_software_choices)
+        if not config.get('skip_user'):
+            self.user_row.set_visible(True)
+            config.subscribe('user_autologin', self._update_user_autologin)
+            config.subscribe('user_name', self._update_user_name)
+        if not config.get('skip_locale'):
+            self.format_row.set_visible(True)
+            config.subscribe('formats_ui', self._update_formats)
+            self.timezone_row.set_visible(True)
+            config.subscribe('timezone', self._update_timezone)
+
+        config.subscribe('keyboard_layout', self._update_keyboard_layout)
 
     ### callbacks ###
+
+    def _update_feature_choices(self, choices):
+        if choices:
+            self.feature_stack.set_visible_child_name('used')
+            reset_model(self.feature_model, _filter_chosen_choices(choices))
+        else:
+            self.feature_stack.set_visible_child_name('none')
+
+    def _update_formats(self, formats):
+        self.format_row.set_subtitle(formats)
+
+    def _update_keyboard_layout(self, keyboard_layout):
+        _, name = keyboard_layout
+        self.keyboard_row.set_subtitle(name)
+
+    def _update_language(self, language):
+        _, name = language
+        self.language_row.set_subtitle(name)
+
+    def _update_software_choices(self, choices):
+        if choices:
+            self.software_stack.set_visible_child_name('used')
+            reset_model(self.software_model, _filter_chosen_choices(choices))
+        else:
+            self.software_stack.set_visible_child_name('none')
+
+    def _update_timezone(self, timezone):
+        self.timezone_row.set_subtitle(timezone)
+
+    def _update_user_autologin(self, autologin):
+        self.user_autologin.set_visible(autologin)
+
+    def _update_user_name(self, user_name):
+        self.user_row.set_subtitle(user_name)
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
@@ -58,25 +107,3 @@ class SummaryPage(Gtk.Box, Page):
     @Gtk.Template.Callback('summary_row_activated')
     def _summary_row_activated(self, list_box, row):
         global_state.navigate_to_page(row.get_name())
-
-    ### public methods ###
-
-    def load(self):
-        self.language_row.set_subtitle(config.get('language')[1])
-        self.keyboard_row.set_subtitle(config.get('keyboard_layout')[1])
-        self.user_row.set_subtitle(config.get('user_name'))
-        self.user_autologin.set_visible(config.get('user_autologin'))
-        self.format_row.set_subtitle(config.get('formats_ui'))
-        self.timezone_row.set_subtitle(config.get('timezone'))
-
-        if software := config.get('software_choices'):
-            self.software_stack.set_visible_child_name('used')
-            reset_model(self.software_model, _filter_chosen_choices(software))
-        else:
-            self.software_stack.set_visible_child_name('none')
-
-        if features := config.get('feature_choices'):
-            self.feature_stack.set_visible_child_name('used')
-            reset_model(self.feature_model, _filter_chosen_choices(features))
-        else:
-            self.feature_stack.set_visible_child_name('none')
