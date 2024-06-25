@@ -37,6 +37,8 @@ class PartitionPage(Gtk.Box, Page):
         self.partition_list.bind_model(
             self.partition_list_model, self._create_device_row)
 
+        config.subscribe('selected_disk', self._setup_partition_list)
+
     def _create_device_row(self, info):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
@@ -45,7 +47,7 @@ class PartitionPage(Gtk.Box, Page):
                 self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
-    def disk_exists(self):
+    def disk_exists(self, disk):
         if config.get('demo_mode'):
             return True
         elif config.get('test_mode'):
@@ -55,32 +57,30 @@ class PartitionPage(Gtk.Box, Page):
                 print('test-mode: randomly chose that disk does not exist anymore')
             return claim_existance
         else:
-            return self.disk_provider.disk_exists(self.disk)
+            return self.disk_provider.disk_exists(disk)
 
-    def _setup_partition_list(self):
-        self.disk = config.get('selected_disk')
-
-        if not self.disk_exists():
+    def _setup_partition_list(self, selected_disk):
+        if not self.disk_exists(selected_disk):
             config.set('page_navigation', 'load_prev')
             return
 
-        if len(self.disk.partitions) == 0:
+        if not selected_disk.partitions:
             reset_model(self.partition_list_model, [])
             self.partition_stack.set_visible_child_name("no-partitions")
-        elif is_booted_with_uefi() and self.disk.efi_partition is None:
+        elif is_booted_with_uefi() and selected_disk.efi_partition is None:
             self.partition_stack.set_visible_child_name("no-boot-partition")
         else:
-            reset_model(self.partition_list_model, self.disk.partitions)
+            reset_model(self.partition_list_model, selected_disk.partitions)
             self.partition_stack.set_visible_child_name("available")
 
         # set disk info
-        self.whole_disk_row.set_subtitle(self.disk.device_path)
-        self.disk_size.set_label(self.disk.size_text)
+        self.whole_disk_row.set_subtitle(selected_disk.device_path)
+        self.disk_size.set_label(selected_disk.size_text)
+        self.disk = selected_disk
 
     def _store_device_info(self, info):
         config.set('disk', (info.device_path, info.name))
-        config.set('disk_is_partition',
-                                not type(info) == type(self.disk))
+        config.set('disk_is_partition', not type(info) == type(self.disk))
         config.set('disk_efi_partition', self.disk.efi_partition)
 
     ### callbacks ###
@@ -99,9 +99,6 @@ class PartitionPage(Gtk.Box, Page):
         global_state.advance(self)
 
     ### public methods ###
-
-    def load(self):
-        return self._setup_partition_list()
 
     def get_title(self):
         return self.disk.name
