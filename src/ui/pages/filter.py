@@ -26,7 +26,6 @@ class FilterPage(Gtk.Box, Page):
 
     stack = Gtk.Template.Child()
     list = Gtk.Template.Child()
-    list_loaded = False
     list_model = Gtk.Template.Child()
 
     def __init__(self, filter_type, **kwargs):
@@ -36,8 +35,10 @@ class FilterPage(Gtk.Box, Page):
         match self.type:
             case FilterType.format:
                 self.filter = self._format_filter
+                self.list_model.splice(0, 0, get_formats())
             case FilterType.timezone:
                 self.filter = self._timezone_filter
+                self.list_model.splice(0, 0, get_timezones())
 
         self.search_entry.connect("search-changed", self._filter)
 
@@ -74,18 +75,6 @@ class FilterPage(Gtk.Box, Page):
             case FilterType.timezone:
                 set_system_timezone(row.get_label())
         global_state.advance(self)
-
-    ### public methods ###
-
-    def load(self):
-        if not self.list_loaded:
-            self.list_loaded = True
-            match self.type:
-                case FilterType.format:
-                    model = get_formats()
-                case FilterType.timezone:
-                    model = get_timezones()
-            reset_model(self.list_model, model)
 
 
 FormatPage = lambda **args: FilterPage(FilterType.format, **args)
