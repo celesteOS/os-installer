@@ -160,7 +160,10 @@ class Config:
                 self.subscriptions[variable].append(func)
             else:
                 self.subscriptions[variable] = [func]
-        func(self.variables[variable])
+        if variable in self.variables:
+            func(self.variables[variable])
+        elif not self.variables['test_mode']:
+            print(f'subscribing to unknown variable {variable}')
 
     def unsubscribe(self, obj):
         with self.subscription_lock:
