@@ -19,7 +19,6 @@ class DiskPage(Gtk.Stack, Page):
     no_disk_image_name = 'no-disk-symbolic'
     default_image_name = 'drive-harddisk-system-symbolic'
     image = default_image_name
-    can_reload = True
 
     disk_list = Gtk.Template.Child()
 

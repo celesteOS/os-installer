@@ -126,6 +126,7 @@ page_name_to_image = {
 }
 
 non_returnable_pages = ['done', 'failed', 'install', 'restart', 'summary']
+reloadable_pages = ['disk', 'partition']
 
 
 forward = 1
@@ -337,8 +338,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _update_navigation_buttons(self):
         self.previous_revealer.set_reveal_child(not self._current_is_first())
         self.next_revealer.set_reveal_child(not self._current_is_last())
-        current_page = self.main_stack.get_visible_child()
-        self.reload_revealer.set_reveal_child(current_page.can_reload())
+        page_name = self.main_stack.get_visible_child_name()
+        self.reload_revealer.set_reveal_child(page_name in reloadable_pages)
 
     ### callbacks ###
 
@@ -356,9 +357,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _reload_page(self, _, __):
         with self.navigation_lock:
-            current_page = self.main_stack.get_visible_child()
-            if not current_page.can_reload():
+            current_page_name = self.main_stack.get_visible_child_name()
+            if not current_page_name in reloadable_pages:
                 return
+            current_page = self.main_stack.get_visible_child()
             current_page.load()
             match config.steal('page_navigation'):
                 case "load_prev":

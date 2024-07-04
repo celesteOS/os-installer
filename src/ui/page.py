@@ -6,7 +6,6 @@ from  typing import Union
 
 class Page:
     image: Union[str, Path, None] = None
-    can_reload: bool = False
 
     ### dummy stubs ###
 
