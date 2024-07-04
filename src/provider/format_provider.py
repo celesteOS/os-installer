@@ -5,6 +5,7 @@ import locale as Locale
 from gi.repository import GnomeDesktop, GObject
 
 from .config import config
+from .system_calls import set_system_formats
 
 locales = {
     'as_IN.UTF-8', 'pt_BR.UTF-8', 'am_ET.UTF-8', 'os_RU.UTF-8', 'ta_LK.UTF-8', 'ka_GE.UTF-8', 'ar_DZ.UTF-8',
@@ -62,17 +63,14 @@ class Format(GObject.GObject):
 
 ### public methods ###
 
-def get_current_formats():
-    formats = config.get('formats_locale')
-    if not formats:
-        formats = config.get('locale')
-        config.set('formats_locale', formats)
-    name = GnomeDesktop.get_country_from_locale(formats)
+def initialize_formats():
+    locale = config.get('locale')
+    name = GnomeDesktop.get_country_from_locale(locale)
     if not name:
         # solely to prevent crashes, e.g. for Esperanto
         # TODO add to translatation
         name = 'Undefined'
-    return (formats, name)
+    set_system_formats(locale, name)
 
 
 def get_formats():

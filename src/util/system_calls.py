@@ -71,9 +71,9 @@ def set_system_language(language_info):
 
 
 def set_system_formats(locale, formats_label):
-    config.set('formats_locale', locale)
-    config.set('formats_ui', formats_label)
-    _exec(['gsettings', 'set', 'org.gnome.system.locale', 'region', f"'{locale}'"])
+    config.set('formats', (locale, formats_label))
+    _exec(['gsettings', 'set', 'org.gnome.system.locale',
+          'region', f"'{locale}'"])
 
 
 def set_system_timezone(timezone):

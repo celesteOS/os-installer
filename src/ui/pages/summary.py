@@ -57,7 +57,7 @@ class SummaryPage(Gtk.Box, Page):
             config.subscribe('user_name', self._update_user_name)
         if not config.get('skip_locale'):
             self.format_row.set_visible(True)
-            config.subscribe('formats_ui', self._update_formats)
+            config.subscribe('formats', self._update_formats)
             self.timezone_row.set_visible(True)
             config.subscribe('timezone', self._update_timezone)
 
@@ -73,7 +73,7 @@ class SummaryPage(Gtk.Box, Page):
             self.feature_stack.set_visible_child_name('none')
 
     def _update_formats(self, formats):
-        self.format_row.set_subtitle(formats)
+        self.format_row.set_subtitle(formats[1])
 
     def _update_keyboard_layout(self, keyboard_layout):
         _, name = keyboard_layout

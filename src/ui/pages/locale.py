@@ -3,10 +3,9 @@
 from gi.repository import Gtk
 
 from .config import config
-from .format_provider import get_current_formats
+from .format_provider import initialize_formats
 from .global_state import global_state
 from .timezone_provider import get_current_timezone
-from .system_calls import set_system_formats
 from .page import Page
 
 
@@ -20,21 +19,20 @@ class LocalePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        if not config.has('formats_ui'):
-            locale, name = get_current_formats()
-            set_system_formats(locale, name)
+        if not config.has('formats'):
+            initialize_formats()
 
         if not config.has('timezone'):
             timezone = get_current_timezone()
             config.set('timezone', timezone)
 
-        config.subscribe('formats_ui', self._update_formats)
+        config.subscribe('formats', self._update_formats)
         config.subscribe('timezone', self._update_timezone)
 
     ### callbacks ###
 
     def _update_formats(self, formats):
-        self.formats_label.set_label(formats)
+        self.formats_label.set_label(formats[1])
 
     def _update_timezone(self, timezone):
         self.timezone_label.set_label(timezone)

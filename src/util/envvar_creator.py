@@ -49,7 +49,7 @@ def create_envs(installation_step: InstallationStep):
             f'OSI_USER_NAME={_get("user_name")}',
             f'OSI_USER_AUTOLOGIN={_get("user_autologin")}',
             f'OSI_USER_PASSWORD={_get("user_password")}',
-            f'OSI_FORMATS={_get("formats_locale")}',
+            f'OSI_FORMATS={_get("formats")}',
             f'OSI_TIMEZONE={_get("timezone")}',
             f'OSI_ADDITIONAL_SOFTWARE={_parse_choices("software_choices")}',
             f'OSI_ADDITIONAL_FEATURES={_parse_choices("feature_choices")}',
