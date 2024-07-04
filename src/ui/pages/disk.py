@@ -67,10 +67,6 @@ class DiskPage(Gtk.Stack, Page):
         config.set('selected_disk', row.info)
         global_state.advance(self)
 
-    @Gtk.Template.Callback('reload')
-    def _reload(self, button):
-        self.load()
-
     ### public methods ###
 
     def load(self):

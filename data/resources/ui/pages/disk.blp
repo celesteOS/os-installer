@@ -49,13 +49,13 @@ template $DiskPage : Stack {
       description: _("Connect a disk and reload this page.");
       valign: start;
       child: Button {
+        action-name: "win.reload-page";
         /* Translators: On button. */
         label: _("_Reload");
         focusable: true;
         receives-default: true;
         halign: center;
         use-underline: true;
-        clicked => $reload();
         styles ["pill"]
       };
     };
