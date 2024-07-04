@@ -359,7 +359,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             current_page = self.main_stack.get_visible_child()
             if not current_page.can_reload():
                 return
-            page_to_load.load()
+            current_page.load()
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
