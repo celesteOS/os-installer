@@ -96,8 +96,3 @@ class PartitionPage(Gtk.Box, Page):
     def _use_whole_disk(self, list_box, row):
         self._store_device_info(self.disk)
         global_state.advance(self)
-
-    ### public methods ###
-
-    def get_title(self):
-        return self.disk.name
