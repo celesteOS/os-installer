@@ -187,13 +187,17 @@ class DiskDummyProvider(Preloadable):
         return [smol_disk, disk, unformated_big_disk]
 
 
-"""
-In demo-mode use DiskDummyProvider to
- a) avoid any interaction with real disks
- b) avoid using UDisks in Flatpak (not installed)
-"""
+_disk_provider = None
+
+
 def get_disk_provider():
-    if config.get('demo_mode'):
-        return DiskDummyProvider()
-    else:
-        return DiskProvider()
+    """
+    In demo-mode use DiskDummyProvider to
+    a) avoid any interaction with real disks
+    b) avoid using UDisks in Flatpak (not installed)
+    """
+    global _disk_provider
+    if not _disk_provider:
+        _disk_provider = DiskDummyProvider() if config.get('demo_mode') else DiskProvider()
+    return _disk_provider
+
