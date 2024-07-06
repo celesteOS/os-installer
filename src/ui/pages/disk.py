@@ -36,6 +36,9 @@ class DiskPage(Gtk.Stack, Page):
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
 
+        self._setup_disk_list()
+        installation_scripting.can_run_prepare()
+
     def _create_device_row(self, info: DeviceInfo):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
@@ -53,8 +56,6 @@ class DiskPage(Gtk.Stack, Page):
             reset_model(self.disk_list_model, disks)
             self.set_visible_child_name('disks')
             self.image = self.default_image_name
-        global_state.reload_title_image()
-        installation_scripting.can_run_prepare()
 
     ### callbacks ###
 
@@ -72,3 +73,4 @@ class DiskPage(Gtk.Stack, Page):
     def load(self):
         with self.lock:
             self._setup_disk_list()
+            global_state.reload_title_image()
