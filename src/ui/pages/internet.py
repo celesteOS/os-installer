@@ -35,7 +35,6 @@ class InternetPage(Gtk.Box, Page):
         with self.connected_lock:
             self.image = 'network-wireless-symbolic'
             self.connected = True
-            global_state.reload_title_image()
             start_system_timesync()
 
         # do not hold lock, could cause deadlock with simultaneous load()

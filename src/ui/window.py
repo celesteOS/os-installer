@@ -157,7 +157,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.advance = self.advance
         global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
-        global_state.reload_title_image = self._reload_title_image
 
         self.previous_pages = []
 

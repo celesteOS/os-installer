@@ -20,9 +20,6 @@ class GlobalState:
     def navigate_to_page(self, *args):
         self._uninitialized()
 
-    def reload_title_image(self, *args):
-        self._uninitialized()
-
     def send_notification(self, *args):
         self._uninitialized()
 
