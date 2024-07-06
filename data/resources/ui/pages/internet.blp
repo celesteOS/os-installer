@@ -1,30 +1,66 @@
 using Gtk 4.0;
 
-template $InternetPage : Box {
-  orientation: vertical;
-  margin-top: 12;
-  spacing: 18;
+template $InternetPage : Stack {
+  hexpand: true;
+  vhomogeneous: false;
+  transition-type: none;
 
-  Label {
-    label:_("No connection.");
-    justify: center;
-    styles ["heading"]
+  StackPage {
+    name: "not-connected";
+    child: Box {
+      orientation: vertical;
+      margin-top: 12;
+      spacing: 18;
+
+      Label {
+        label:_("No connection detected");
+        justify: center;
+        styles ["heading"]
+      }
+
+      Button {
+        receives-default: true;
+        halign: center;
+        valign: center;
+        use-underline: true;
+        clicked => $clicked_settings_button();
+        styles ["suggested-action", "pill", "bottom-button"]
+
+        Label {
+          /* Translators: On button for opening wifi settings. */
+          label: _("_Open Settings");
+          use-underline: true;
+          justify: center;
+          wrap: true;
+        }
+      }
+    };
   }
 
-  Button {
-    receives-default: true;
-    halign: center;
-    valign: center;
-    use-underline: true;
-    clicked => $clicked_settings_button();
-    styles ["suggested-action", "pill", "bottom-button"]
+  StackPage {
+    name: "connected";
+    child: Box {
+      orientation: vertical;
+      margin-top: 12;
+      spacing: 18;
 
-    Label {
-      /* Translators: On button for opening wifi settings. */
-      label: _("_Open Settings");
-      use-underline: true;
-      justify: center;
-      wrap: true;
-    }
+      Label {
+        label:_("Connection detected");
+        justify: center;
+        styles ["heading"]
+      }
+
+      Button {
+        /* Translators: On button. */
+        label: _("_Continue");
+        focusable: true;
+        receives-default: true;
+        halign: center;
+        valign: center;
+        use-underline: true;
+        clicked => $continue();
+        styles ["suggested-action", "pill", "bottom-button"]
+      }
+    };
   }
 }

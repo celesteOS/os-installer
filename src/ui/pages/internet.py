@@ -12,18 +12,24 @@ from .system_calls import open_wifi_settings, start_system_timesync
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
-class InternetPage(Gtk.Box, Page):
+class InternetPage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     image = 'network-wireless-disabled-symbolic'
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        Gtk.Stack.__init__(self, **kwargs)
 
         self.connected = False
         self.connected_lock = Lock()
 
+        self.set_visible_child_name('not-connected')
+
         # setup connected callback
         internet_provider.set_connected_callback(self._on_connected)
+
+        with self.connected_lock:
+            if self.connected:
+                config.set('page_navigation', 'pass')
 
     ### callbacks ###
 
@@ -33,6 +39,7 @@ class InternetPage(Gtk.Box, Page):
 
     def _on_connected(self):
         with self.connected_lock:
+            self.set_visible_child_name('connected')
             self.image = 'network-wireless-symbolic'
             self.connected = True
             start_system_timesync()
@@ -40,9 +47,6 @@ class InternetPage(Gtk.Box, Page):
         # do not hold lock, could cause deadlock with simultaneous load()
         global_state.advance(self)
 
-    ### public methods ###
-
-    def load(self):
-        with self.connected_lock:
-            if self.connected:
-                config.set('page_navigation', 'pass')
+    @Gtk.Template.Callback('continue')
+    def _continue(self, object):
+        global_state.advance(self)
