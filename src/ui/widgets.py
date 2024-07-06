@@ -118,6 +118,12 @@ class PageWrapper(Adw.Bin):
     def get_page(self):
         return self.page
 
+    def replace_page(self, page):
+        self.cleanup()
+        self.content.set_child(page)
+        del self.page
+        self.page = page
+
     def load(self):
         return self.page.load()
 

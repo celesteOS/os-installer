@@ -356,13 +356,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             current_page_name = self.main_stack.get_visible_child_name()
             if not current_page_name in reloadable_pages:
                 return
-            current_page = self.main_stack.get_visible_child()
-            current_page.load()
+            wrapper = self.main_stack.get_visible_child()
+            new_page = page_name_to_type[current_page_name]()
+            wrapper.replace_page(new_page)
+            new_page.load()
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
                 case "load_next":
                     self._load_next_page()
+            self._reload_title_image()
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:
