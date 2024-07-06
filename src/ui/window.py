@@ -238,12 +238,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 config.set('fixed_language', '')
         return True
 
-    def _initialize_page(self, page_name):
-        self.pages.append(page_name)
-        wrapper = PageWrapper(page_name_to_type[page_name]())
-        self.main_stack.add_named(wrapper, page_name)
-        return wrapper
-
     def _remove_all_but_one_page(self, kept_page_name):
         for page_name in filter(None, self.pages):
             if page_name == kept_page_name:
@@ -266,7 +260,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         page_to_load = self.main_stack.get_child_by_name(page_name)
         if not page_to_load:
-            page_to_load = self._initialize_page(page_name)
+            page_to_load = PageWrapper(page_name_to_type[page_name]())
+            self.main_stack.add_named(page_to_load, page_name)
+            self.pages.append(page_name)
 
         page_to_load.load()
         match config.steal('page_navigation'):
