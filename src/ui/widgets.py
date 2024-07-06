@@ -124,9 +124,6 @@ class PageWrapper(Adw.Bin):
         del self.page
         self.page = page
 
-    def load(self):
-        return self.page.load()
-
     def image(self):
         return self.page.image
 

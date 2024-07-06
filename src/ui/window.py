@@ -263,7 +263,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self.main_stack.add_named(page_to_load, page_name)
             self.pages.append(page_name)
 
-        page_to_load.load()
         match config.steal('page_navigation'):
             case 'load_prev':
                 self._load_next_page(offset - 1)
@@ -358,7 +357,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             wrapper = self.main_stack.get_visible_child()
             new_page = page_name_to_type[current_page_name]()
             wrapper.replace_page(new_page)
-            new_page.load()
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
