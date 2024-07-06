@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Lock
-
 from gi.repository import Gio, Gtk
 
 from .config import config
@@ -25,7 +23,6 @@ class DiskPage(Gtk.Stack, Page):
     disk_list_model = Gio.ListStore()
 
     current_disk = None
-    lock = Lock()
 
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
@@ -36,7 +33,14 @@ class DiskPage(Gtk.Stack, Page):
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
 
-        self._setup_disk_list()
+        if disks := self.disk_provider.get_disks():
+            reset_model(self.disk_list_model, disks)
+            self.set_visible_child_name('disks')
+            self.image = self.default_image_name
+        else:
+            self.set_visible_child_name('no-disks')
+            self.image = self.no_disk_image_name
+
         installation_scripting.can_run_prepare()
 
     def _create_device_row(self, info: DeviceInfo):
@@ -45,17 +49,6 @@ class DiskPage(Gtk.Stack, Page):
         else:
             required_size_str = self.disk_provider.disk_size_to_str(self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
-
-    def _setup_disk_list(self):
-        disks = self.disk_provider.get_disks()
-
-        if len(disks) == 0:
-            self.set_visible_child_name('no-disks')
-            self.image = self.no_disk_image_name
-        else:
-            reset_model(self.disk_list_model, disks)
-            self.set_visible_child_name('disks')
-            self.image = self.default_image_name
 
     ### callbacks ###
 
@@ -67,10 +60,3 @@ class DiskPage(Gtk.Stack, Page):
     def _disk_selected(self, list_box, row):
         config.set('selected_disk', row.info)
         global_state.advance(self)
-
-    ### public methods ###
-
-    def load(self):
-        with self.lock:
-            self._setup_disk_list()
-            global_state.reload_title_image()
