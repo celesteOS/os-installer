@@ -42,6 +42,7 @@ default_config = {
 
 optional_defaults = {
     'installation_running': False,
+    'internet_connection': False,
     'use_encryption': False,
     'encryption_pin': '',
     'user_name': '',

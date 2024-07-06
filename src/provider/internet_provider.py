@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import time
-from threading import Lock, Thread
+from threading import Thread
 from urllib.request import urlopen
 
 from .config import config
@@ -17,14 +17,8 @@ def check_connection(url):
 
 
 class InternetProvider():
-    callback_lock = Lock()
-    callback = None
-
     def __init__(self):
         self.url = config.get('internet_checker_url')
-
-        # connection locking
-        self.connected = False
 
         # start internet connection checking
         self._start_connection_checker()
@@ -41,25 +35,11 @@ class InternetProvider():
                 time.sleep(0.5)  # wait 500ms
             else:
                 connected = self.connection_checker.result()
+                config.set('internet_connection', connected)
 
                 if not connected:
                     # restart checker
                     self._start_connection_checker()
-
-        with self.callback_lock:
-            self.connected = connected
-            if not self.callback is None:
-                self.callback()
-
-    ### public methods ###
-
-    def set_connected_callback(self, callback):
-        ''' Callback is immediately called if already connected.'''
-        with self.callback_lock:
-            self.callback = callback
-            if self.connected:
-                self.thread = Thread(target=self.callback)
-                self.thread.start()
 
 
 internet_provider = InternetProvider()

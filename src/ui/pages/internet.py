@@ -6,7 +6,6 @@ from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
-from .internet_provider import internet_provider
 from .page import Page
 from .system_calls import open_wifi_settings, start_system_timesync
 
@@ -19,17 +18,11 @@ class InternetPage(Gtk.Stack, Page):
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
 
-        self.connected = False
-        self.connected_lock = Lock()
+        self.update_lock = Lock()
 
-        self.set_visible_child_name('not-connected')
-
-        # setup connected callback
-        internet_provider.set_connected_callback(self._on_connected)
-
-        with self.connected_lock:
-            if self.connected:
-                config.set('page_navigation', 'pass')
+        self.initial_load = True
+        config.subscribe('internet_connection', self._connection_state_changed)
+        self.initial_load = False
 
     ### callbacks ###
 
@@ -37,15 +30,19 @@ class InternetPage(Gtk.Stack, Page):
     def _clicked_settings_button(self, button):
         open_wifi_settings()
 
-    def _on_connected(self):
-        with self.connected_lock:
-            self.set_visible_child_name('connected')
-            self.image = 'network-wireless-symbolic'
-            self.connected = True
-            start_system_timesync()
-
-        # do not hold lock, could cause deadlock with simultaneous load()
-        global_state.advance(self)
+    def _connection_state_changed(self, connected):
+        with self.update_lock:
+            if connected:
+                self.set_visible_child_name('connected')
+                self.image = 'network-wireless-symbolic'
+                start_system_timesync()
+                if self.initial_load:
+                    config.set('page_navigation', 'pass')
+                else:
+                    global_state.advance(self)
+            else:
+                self.set_visible_child_name('not-connected')
+                self.image = 'network-wireless-disabled-symbolic'
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):

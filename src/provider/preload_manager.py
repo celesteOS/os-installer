@@ -4,6 +4,7 @@ from threading import Thread
 
 from .choices_provider import choices_provider
 from .disk_provider import get_disk_provider
+from .internet_provider import internet_provider
 from .language_provider import language_provider
 
 
