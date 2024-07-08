@@ -79,10 +79,10 @@ def set_system_formats(locale, formats_label):
 def set_system_timezone(timezone):
     config.set('timezone', timezone)
     # TODO find correct way to set timezone without user authentication
-    _exec(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
+    Popen(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
 
 
 def start_system_timesync():
     # TODO find correct way to set enable time sync without user authentication
-    _exec(['timedatectl', '--no-ask-password', 'set-ntp', 'true'])
-    _exec(['gsettings', 'set', 'org.gnome.desktop.datetime', 'automatic-timezone', 'true'])
+    Popen(['timedatectl', '--no-ask-password', 'set-ntp', 'true'])
+    Popen(['gsettings', 'set', 'org.gnome.desktop.datetime', 'automatic-timezone', 'true'])
