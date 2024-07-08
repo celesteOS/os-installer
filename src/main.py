@@ -41,7 +41,6 @@ class Application(Adw.Application):
 
         config.set('version', version)
         global_state.send_notification = self._send_notification
-        preload_manager.start()
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
@@ -51,6 +50,7 @@ class Application(Adw.Application):
     ### parent functions ###
 
     def do_activate(self):
+        preload_manager.start()
         # create window if not existing
         if window := self.props.active_window:
             window.present()
