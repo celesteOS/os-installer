@@ -133,7 +133,7 @@ class Config:
     def get(self, variable):
         if variable in self.variables:
             return self.variables[variable]
-        elif self.variables['test_mode'] and variable in fallback_values:
+        elif variable in fallback_values:
             return fallback_values[variable]
         else:
             print(f'Requested {variable} not in config')
