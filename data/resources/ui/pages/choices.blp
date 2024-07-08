@@ -5,15 +5,11 @@ template $ChoicesPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  ScrolledWindow {
-    propagate-natural-height: true;
-    styles ["embedded", "separate-bottom"]
-    child: ListBox list {
-      hexpand: true;
-      selection-mode: none;
-      styles ["boxed-list"]
-    };
-  }
+  ListBox list {
+    hexpand: true;
+    selection-mode: none;
+    styles ["boxed-list"]
+}
 
   Button {
     /* Translators: On button. */

@@ -6,16 +6,11 @@ template $KeyboardLanguagePage : Box {
   orientation: vertical;
   spacing: 12;
 
-  ScrolledWindow {
-    propagate-natural-height: true;
-    valign: start;
-    styles ["embedded"]
-    child: ListBox list {
-      hexpand: true;
-      selection-mode: none;
-      row-activated => $language_row_activated();
-      styles ["boxed-list", "bottom-spacing"]
-    };
+  ListBox list {
+    hexpand: true;
+    selection-mode: none;
+    row-activated => $language_row_activated();
+    styles ["boxed-list", "bottom-spacing"]
   }
 }
 

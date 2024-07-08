@@ -12,32 +12,28 @@ template $DiskPage : Stack {
       orientation: vertical;
       spacing: 12;
 
-      ScrolledWindow {
-        propagate-natural-height: true;
-        styles ["embedded", "separate-bottom"]
-        child: Box {
-          orientation: vertical;
-          spacing: 12;
+      Box {
+        orientation: vertical;
+        spacing: 12;
 
-          ListBox disk_list {
-            selection-mode: none;
-            receives-default: true;
-            valign: start;
-            row-activated => $disk_selected();
-            styles ["boxed-list"]
-          }
+        ListBox disk_list {
+          selection-mode: none;
+          receives-default: true;
+          valign: start;
+          row-activated => $disk_selected();
+          styles ["boxed-list"]
+        }
 
-          Button {
-            /* Translators: Button label to open disk management tool. */
-            label: _("_Manage Disks");
-            focusable: true;
-            halign: center;
-            valign: end;
-            use-underline: true;
-            clicked => $clicked_disks_button();
-            styles ["pill", "bottom-button"]
-          }
-        };
+        Button {
+          /* Translators: Button label to open disk management tool. */
+          label: _("_Manage Disks");
+          focusable: true;
+          halign: center;
+          valign: end;
+          use-underline: true;
+          clicked => $clicked_disks_button();
+          styles ["pill", "bottom-button"]
+        }
       }
     };
   }

@@ -5,201 +5,191 @@ template $SummaryPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  ScrolledWindow {
-    propagate-natural-height: true;
-    styles ["embedded", "separate-bottom"] 
+  ListBox {
+    hexpand: true;
+    selection-mode: none;
+    row-activated => $summary_row_activated();
+    styles ["boxed-list"]
 
-    child: Box {
-      orientation: vertical;
-      spacing: 12;
+    Adw.ActionRow language_row {
+      name: "language";
+      activatable: true;
+      /* Translators: Description of selected language. */
+      title: _("Language");
+      styles ["property"]
 
-      ListBox {
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
+    Adw.ActionRow keyboard_row {
+      name: "keyboard-overview";
+      activatable: true;
+      /* Translators: Description of selected keyboard layout. */
+      title: _("Keyboard Layout");
+      styles ["property"]
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
+    Adw.ActionRow user_row {
+      name: "user";
+      activatable: true;
+      /* Translators: Description of defined user account name and autologin status. */
+      title: _("User Account");
+      styles ["property"]
+
+      Label user_autologin {
+        halign: fill;
         hexpand: true;
-        selection-mode: none;
-        row-activated => $summary_row_activated();
-        styles ["boxed-list"]
+        justify: right;
+        /* Translators: Gets shown when autologin is enabled. */
+        label: _("(Automatic Login)");
+        wrap: true;
+        xalign: 0;
+        styles ["dim-label"]
+      }
 
-        Adw.ActionRow language_row {
-          name: "language";
-          activatable: true;
-          /* Translators: Description of selected language. */
-          title: _("Language");
-          styles ["property"]
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
 
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
+    Adw.ActionRow format_row {
+      name: "format";
+      activatable: true;
+      /* Translators: Description of selected format. */
+      title: _("Formats");
+      styles ["property"]
 
-        Adw.ActionRow keyboard_row {
-          name: "keyboard-overview";
-          activatable: true;
-          /* Translators: Description of selected keyboard layout. */
-          title: _("Keyboard Layout");
-          styles ["property"]
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
 
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
+    Adw.ActionRow timezone_row {
+      name: "timezone";
+      activatable: true;
+      /* Translators: Description of selected timezone. */
+      title: _("Timezone");
+      styles ["property"]
 
-        Adw.ActionRow user_row {
-          name: "user";
-          activatable: true;
-          /* Translators: Description of defined user account name and autologin status. */
-          title: _("User Account");
-          styles ["property"]
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
 
-          Label user_autologin {
-            halign: fill;
-            hexpand: true;
-            justify: right;
-            /* Translators: Gets shown when autologin is enabled. */
-            label: _("(Automatic Login)");
-            wrap: true;
-            xalign: 0;
-            styles ["dim-label"]
-          }
+    Adw.ActionRow software_row {
+      name: "software";
+      activatable: true;
 
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
+      [prefix]
+      Box {
+        orientation: vertical;
+        halign: start;
+        spacing: 3;
 
-        Adw.ActionRow format_row {
-          name: "format";
-          activatable: true;
-          /* Translators: Description of selected format. */
-          title: _("Formats");
-          styles ["property"]
-
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
-
-        Adw.ActionRow timezone_row {
-          name: "timezone";
-          activatable: true;
-          /* Translators: Description of selected timezone. */
-          title: _("Timezone");
-          styles ["property"]
-
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
-
-        Adw.ActionRow software_row {
-          name: "software";
-          activatable: true;
-
-          [prefix]
-          Box {
-            orientation: vertical;
-            halign: start;
-            spacing: 3;
-
-            Label {
-              /* Translators: Description of selected additional software. */
-              label: _("Additional Software");
-              xalign: 0;
-              styles ["dim-label", "caption"]
-            }
-
-            Stack software_stack {
-              vhomogeneous: false;
-              transition-type: crossfade;
-
-              StackPage {
-                name: "used";
-                child: ListBox software_list {
-                  halign: start;
-                  margin-bottom: 6;
-                  selection-mode: none;
-                  styles ["nested-list"]
-                };
-              }
-
-              StackPage {
-                name: "none";
-                child: Label {
-                  /* Translators: Shown when list of selected software is empty. */
-                  label: _("None");
-                  xalign: 0;
-                  styles ["dim-label"]
-                };
-              }
-            }
-          }
-
-          Image {
-            icon-name: "go-next-symbolic";
-          }
-        }
-
-        Adw.ActionRow feature_row {
-          name: "feature";
-          activatable: true;
+        Label {
           /* Translators: Description of selected additional software. */
+          label: _("Additional Software");
+          xalign: 0;
+          styles ["dim-label", "caption"]
+        }
 
-          [prefix]
-          Box {
-            orientation: vertical;
-            halign: start;
-            spacing: 3;
+        Stack software_stack {
+          vhomogeneous: false;
+          transition-type: crossfade;
 
-            Label {
-              /* Translators: Description of selected additional software. */
-              label: _("Additional Features");
-              xalign: 0;
-              styles ["dim-label", "caption"]
-            }
-
-
-            Stack feature_stack {
-              vhomogeneous: false;
-              transition-type: crossfade;
-
-              StackPage {
-                name: "used";
-                child: ListBox feature_list {
-                  halign: start;
-                  margin-bottom: 6;
-                  selection-mode: none;
-                  styles ["nested-list"]
-                };
-              }
-
-              StackPage {
-                name: "none";
-                child: Label {
-                  /* Translators: Shown when list of selected features is empty. */
-                  label: _("None");
-                  hexpand: true;
-                  xalign: 0;
-                  styles ["dim-label"]
-                };
-              }
-            }
+          StackPage {
+            name: "used";
+            child: ListBox software_list {
+              halign: start;
+              margin-bottom: 6;
+              selection-mode: none;
+              styles ["nested-list"]
+            };
           }
 
-          Image {
-            icon-name: "go-next-symbolic";
+          StackPage {
+            name: "none";
+            child: Label {
+              /* Translators: Shown when list of selected software is empty. */
+              label: _("None");
+              xalign: 0;
+              styles ["dim-label"]
+            };
           }
         }
       }
 
-      Button {
-        /* Translators: On button. */
-        label: _("_Confirm");
-        focusable: true;
-        receives-default: true;
-        halign: center;
-        use-underline: true;
-        clicked => $continue();
-        styles ["suggested-action", "pill", "bottom-button"]
+      Image {
+        icon-name: "go-next-symbolic";
       }
-    };
+    }
+
+    Adw.ActionRow feature_row {
+      name: "feature";
+      activatable: true;
+      /* Translators: Description of selected additional software. */
+
+      [prefix]
+      Box {
+        orientation: vertical;
+        halign: start;
+        spacing: 3;
+
+        Label {
+          /* Translators: Description of selected additional software. */
+          label: _("Additional Features");
+          xalign: 0;
+          styles ["dim-label", "caption"]
+        }
+
+
+        Stack feature_stack {
+          vhomogeneous: false;
+          transition-type: crossfade;
+
+          StackPage {
+            name: "used";
+            child: ListBox feature_list {
+              halign: start;
+              margin-bottom: 6;
+              selection-mode: none;
+              styles ["nested-list"]
+            };
+          }
+
+          StackPage {
+            name: "none";
+            child: Label {
+              /* Translators: Shown when list of selected features is empty. */
+              label: _("None");
+              hexpand: true;
+              xalign: 0;
+              styles ["dim-label"]
+            };
+          }
+        }
+      }
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+  }
+
+  Button {
+    /* Translators: On button. */
+    label: _("_Confirm");
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    use-underline: true;
+    clicked => $continue();
+    styles ["suggested-action", "pill", "bottom-button"]
   }
 }
