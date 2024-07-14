@@ -272,7 +272,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 return
 
         self.main_stack.set_visible_child(page_to_load)
-        self._reload_title_image()
+        self._reload_title()
         self._update_navigation_buttons()
 
     def _load_next_page(self, offset: int = forward):
@@ -309,7 +309,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         return LabeledImage(icon_name, label)
 
-    def _reload_title_image(self):
+    def _reload_title(self):
         current_name = self.image_stack.get_visible_child_name()
         other_name = '1' if current_name == '2' else '2'
         other_page = self.image_stack.get_child_by_name(other_name)
@@ -362,7 +362,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._load_next_page(backwards)
                 case "load_next":
                     self._load_next_page()
-            self._reload_title_image()
+            self._reload_title()
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:
