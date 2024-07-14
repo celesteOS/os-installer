@@ -5,21 +5,17 @@ template $WelcomePage : Box {
   orientation: vertical;
   spacing: 12;
 
-  ScrolledWindow {
-    propagate-natural-height: true;
-    styles ["embedded", "separate-bottom"]
-    child: Adw.Clamp {
-      maximum-size: 280;
+  Adw.Clamp {
+    maximum-size: 280;
 
-      Label description {
-        valign: center;
-        /* Translators: Default welcome text. Squiggly brackets are replaced by distribution name. */
-        label: _("This application will guide you through the installation of {} onto your system.");
-        wrap: true;
-        justify: center;
-        /*styles ["heading"]*/
-      }
-    };
+    Label description {
+      valign: center;
+      /* Translators: Default welcome text. Squiggly brackets are replaced by distribution name. */
+      label: _("This application will guide you through the installation of {} onto your system.");
+      wrap: true;
+      justify: center;
+      /*styles ["heading"]*/
+    }
   }
 
   CenterBox {
