@@ -19,15 +19,9 @@ template $FilterPage : Box {
 
     StackPage {
       name: "list";
-      child:
-      ScrolledWindow {
-        hexpand: true;
-        propagate-natural-height: true;
-        styles ["embedded"]
-        child: ListBox list {
-          row-activated => $row_selected();
-          styles ["boxed-list", "bottom-spacing"]
-        };
+      child: ListBox list {
+        row-activated => $row_selected();
+        styles ["boxed-list", "bottom-spacing"]
       };
     }
 
