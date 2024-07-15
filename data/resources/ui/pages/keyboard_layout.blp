@@ -6,40 +6,30 @@ template $KeyboardLayoutPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Box {
-    orientation: vertical;
-    spacing: 12;
+  ListBox {
+    selection-mode: none;
+    styles ["boxed-list"]
 
-    ListBox {
-      selection-mode: none;
-      styles ["boxed-list"]
+    Adw.ActionRow language_row {
+      activatable: true;
+      focusable: true;
+      /*selectable: false;*/
+      /* Translators: Followed by a language name. */
+      title: _("Keyboard Language");
+      activated => $show_language_selection();
+      styles ["property"]
 
-      Adw.ActionRow language_row {
-        activatable: true;
-        focusable: true;
-        /*selectable: false;*/
-        /* Translators: Followed by a language name. */
-        title: _("Keyboard Language");
-        activated => $show_language_selection();
-        styles ["property"]
-
-        Image {
-          icon-name: "emblem-system-symbolic";
-        }
+      Image {
+        icon-name: "emblem-system-symbolic";
       }
     }
+  }
 
-    ScrolledWindow {
-      propagate-natural-height: true;
-      styles ["embedded"]
-      child: ListBox layout_list {
-        valign: start;
-        selection-mode: none;
-        row-activated => $layout_row_activated();
-        styles ["boxed-list", "bottom-spacing"]
-      };
-    
-    }
+  ListBox layout_list {
+    valign: start;
+    selection-mode: none;
+    row-activated => $layout_row_activated();
+    styles ["boxed-list", "bottom-spacing"]
   }
 }
 
