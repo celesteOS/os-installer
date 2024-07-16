@@ -9,53 +9,12 @@ from gi.repository import Gio, Gtk, Adw
 from .config import config
 from .global_state import global_state
 
-from .choices import FeaturePage, SoftwarePage
-from .confirm import ConfirmPage
-from .disk import DiskPage
-from .done import DonePage
-from .encrypt import EncryptPage
-from .failed import FailedPage
-from .filter import FormatPage, TimezonePage
-from .install import InstallPage
-from .internet import InternetPage
-from .keyboard import KeyboardLanguagePage, KeyboardLayoutPage, KeyboardOverviewPage
-from .language import LanguagePage
-from .locale import LocalePage
 from .page_wrapper import PageWrapper
-from .partition import PartitionPage
-from .restart import RestartPage
-from .summary import SummaryPage
-from .user import UserPage
-from .welcome import WelcomePage
 from .widgets import LabeledImage
 
 from .language_provider import language_provider
 from .system_calls import set_system_language
 
-
-page_name_to_type = {
-    'confirm':              ConfirmPage,
-    'disk':                 DiskPage,
-    'done':                 DonePage,
-    'encrypt':              EncryptPage,
-    'failed':               FailedPage,
-    'feature':              FeaturePage,
-    'format':               FormatPage,
-    'install':              InstallPage,
-    'internet':             InternetPage,
-    'keyboard-language':    KeyboardLanguagePage,
-    'keyboard-layout':      KeyboardLayoutPage,
-    'keyboard-overview':    KeyboardOverviewPage,
-    'language':             LanguagePage,
-    'locale':               LocalePage,
-    'partition':            PartitionPage,
-    'restart':              RestartPage,
-    'software':             SoftwarePage,
-    'summary':              SummaryPage,
-    'timezone':             TimezonePage,
-    'user':                 UserPage,
-    'welcome':              WelcomePage,
-}
 
 page_name_to_title = {
     # Translators: Page title
@@ -260,7 +219,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         page_to_load = self.main_stack.get_child_by_name(page_name)
         if not page_to_load:
-            page_to_load = PageWrapper(page_name_to_type[page_name]())
+            page_to_load = PageWrapper(page_name)
             self.main_stack.add_named(page_to_load, page_name)
             self.pages.append(page_name)
 
@@ -356,8 +315,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if not current_page_name in reloadable_pages:
                 return
             wrapper = self.main_stack.get_visible_child()
-            new_page = page_name_to_type[current_page_name]()
-            wrapper.replace_page(new_page)
+            wrapper.replace_page(current_page_name)
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
