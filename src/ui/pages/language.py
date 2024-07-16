@@ -5,13 +5,12 @@ from gi.repository import Gtk
 from .config import config
 from .global_state import global_state
 from .language_provider import language_provider
-from .page import Page
 from .system_calls import set_system_language
 from .widgets import reset_model, ProgressRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
-class LanguagePage(Gtk.Box, Page):
+class LanguagePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     suggested_list = Gtk.Template.Child()

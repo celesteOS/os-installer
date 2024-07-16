@@ -6,13 +6,12 @@ from .config import config
 from .global_state import global_state
 from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
-from .page import Page
 from .system_calls import set_system_keyboard_layout
 from .widgets import reset_model, ProgressRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')
-class KeyboardLanguagePage(Gtk.Box, Page):
+class KeyboardLanguagePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     list = Gtk.Template.Child()
@@ -34,7 +33,7 @@ class KeyboardLanguagePage(Gtk.Box, Page):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
-class KeyboardLayoutPage(Gtk.Box, Page):
+class KeyboardLayoutPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     language_row = Gtk.Template.Child()
@@ -68,7 +67,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_overview.ui')
-class KeyboardOverviewPage(Gtk.Box, Page):
+class KeyboardOverviewPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     primary_layout_row = Gtk.Template.Child()

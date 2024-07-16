@@ -6,11 +6,10 @@ from .config import config
 from .format_provider import initialize_formats
 from .global_state import global_state
 from .timezone_provider import get_current_timezone
-from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
-class LocalePage(Gtk.Box, Page):
+class LocalePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     formats_label = Gtk.Template.Child()

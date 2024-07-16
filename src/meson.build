@@ -30,7 +30,6 @@ os_installer_sources = [
   'provider/language_provider.py',
   'provider/preload_manager.py',
   'provider/timezone_provider.py',
-  'ui/page.py',
   'ui/page_wrapper.py',
   'ui/pages/choices.py',
   'ui/pages/confirm.py',

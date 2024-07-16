@@ -4,11 +4,10 @@ from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
-from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
-class UserPage(Gtk.Box, Page):
+class UserPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     user_name_row = Gtk.Template.Child()

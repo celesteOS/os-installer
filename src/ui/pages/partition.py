@@ -7,13 +7,12 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .disk_provider import get_disk_provider
 from .global_state import global_state
-from .page import Page
 from .system_calls import is_booted_with_uefi
 from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/partition.ui')
-class PartitionPage(Gtk.Box, Page):
+class PartitionPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     disk_size = Gtk.Template.Child()

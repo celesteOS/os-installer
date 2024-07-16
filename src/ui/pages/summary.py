@@ -5,14 +5,13 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .page import Page
 from .widgets import reset_model, SummaryRow
 
 def _filter_chosen_choices(choices):
     return [choice for choice in choices if choice.options or choice.state]
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
-class SummaryPage(Gtk.Box, Page):
+class SummaryPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     # rows

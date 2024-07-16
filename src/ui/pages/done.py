@@ -4,11 +4,10 @@ from gi.repository import Gtk
 
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/done.ui')
-class DonePage(Gtk.Box, Page):
+class DonePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     stack = Gtk.Template.Child()

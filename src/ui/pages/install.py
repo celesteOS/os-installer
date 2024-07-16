@@ -4,11 +4,10 @@ from gi.repository import Gtk
 
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/install.ui')
-class InstallPage(Gtk.Box, Page):
+class InstallPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     terminal_box = Gtk.Template.Child()

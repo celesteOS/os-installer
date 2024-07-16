@@ -5,12 +5,11 @@ from gi.repository import Gtk
 from .config import config
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .page import Page
 from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
-class ConfirmPage(Gtk.Box, Page):
+class ConfirmPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     disk_row = Gtk.Template.Child()

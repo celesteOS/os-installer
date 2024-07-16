@@ -5,7 +5,6 @@ from gi.repository import Gtk
 
 from .format_provider import get_formats
 from .global_state import global_state
-from .page import Page
 from .system_calls import set_system_formats, set_system_timezone
 from .timezone_provider import get_timezones
 from .widgets import reset_model, ProgressRow
@@ -17,7 +16,7 @@ class FilterType(Enum):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/filter.ui')
-class FilterPage(Gtk.Box, Page):
+class FilterPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     search_entry = Gtk.Template.Child()

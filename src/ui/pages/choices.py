@@ -6,7 +6,6 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .choices_provider import choices_provider
 from .global_state import global_state
-from .page import Page
 from .widgets import MultiSelectionRow, reset_model, SelectionRow
 
 
@@ -16,7 +15,7 @@ class ChoiceType(Enum):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/choices.ui')
-class ChoicesPage(Gtk.Box, Page):
+class ChoicesPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     list = Gtk.Template.Child()

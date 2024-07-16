@@ -6,13 +6,12 @@ from .config import config
 from .disk_provider import DeviceInfo, get_disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .page import Page
 from .system_calls import is_booted_with_uefi, open_disks
 from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
-class DiskPage(Gtk.Stack, Page):
+class DiskPage(Gtk.Stack):
     __gtype_name__ = __qualname__
     no_disk_image_name = 'no-disk-symbolic'
     default_image_name = 'drive-harddisk-system-symbolic'

@@ -6,12 +6,11 @@ from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
-from .page import Page
 from .system_calls import open_wifi_settings, start_system_timesync
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
-class InternetPage(Gtk.Stack, Page):
+class InternetPage(Gtk.Stack):
     __gtype_name__ = __qualname__
     image = 'network-wireless-disabled-symbolic'
 

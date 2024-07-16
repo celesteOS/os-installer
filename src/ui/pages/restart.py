@@ -3,11 +3,10 @@
 from gi.repository import Gtk
 
 from .system_calls import reboot_system
-from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/restart.ui')
-class RestartPage(Gtk.Box, Page):
+class RestartPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     spinner = Gtk.Template.Child()
