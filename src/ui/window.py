@@ -21,12 +21,13 @@ from .internet import InternetPage
 from .keyboard import KeyboardLanguagePage, KeyboardLayoutPage, KeyboardOverviewPage
 from .language import LanguagePage
 from .locale import LocalePage
+from .page_wrapper import PageWrapper
 from .partition import PartitionPage
 from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
 from .welcome import WelcomePage
-from .widgets import LabeledImage, PageWrapper
+from .widgets import LabeledImage
 
 from .language_provider import language_provider
 from .system_calls import set_system_language
