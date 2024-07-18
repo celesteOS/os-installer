@@ -260,8 +260,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if title == None:
             assert current_page_name == 'partition'
             label = config.get('selected_disk').name
-        else:
+        elif title != "":
             label = _(title)
+        else:
+            label = ""
 
         if icon_name == None:
             current_page = self.main_stack.get_visible_child()
