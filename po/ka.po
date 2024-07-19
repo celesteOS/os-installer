@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-06 10:41+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-07-19 07:49+0000\n"
+"Last-Translator: data water <data.gogiberidze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/ka/>\n"
 "Language: ka\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -294,22 +294,19 @@ msgstr "დასაყენებლად საჭირო ადგილ�
 msgid "Confirm"
 msgstr "_დადასტურება"
 
-#, fuzzy
 msgid "Disk"
-msgstr "Disk"
+msgstr "დისკი"
 
-#, fuzzy
 msgid "Done"
-msgstr "Done"
+msgstr "შესრულებულია"
 
 #, fuzzy
 #| msgid "Encrypt Files"
 msgid "Encrypt"
 msgstr "ფაილების დაშიფვრა"
 
-#, fuzzy
 msgid "Failed"
-msgstr "Failed"
+msgstr "ვერ შესრულდა"
 
 #, fuzzy
 msgid "Feature"
@@ -325,9 +322,8 @@ msgstr "ფორმატები"
 msgid "Install"
 msgstr "დაყენება"
 
-#, fuzzy
 msgid "Internet"
-msgstr "Internet"
+msgstr "ინტერნეტი"
 
 #, fuzzy
 #| msgid "Keyboard Language"
@@ -361,9 +357,8 @@ msgstr "გადატვირთვა"
 msgid "Software"
 msgstr "Software"
 
-#, fuzzy
 msgid "User"
-msgstr "User"
+msgstr "მომხმარებელი"
 
 #~ msgid "PIN"
 #~ msgstr "PIN კოდი"
