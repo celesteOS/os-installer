@@ -57,6 +57,7 @@ class PageWrapper(Adw.Bin):
         super().__init__(**kwargs)
 
         self.page = page_name_to_type[page_name]()
+        self.page_name = page_name
         self.content.set_child(self.page)
 
     def cleanup(self):
@@ -67,12 +68,16 @@ class PageWrapper(Adw.Bin):
     def get_page(self):
         return self.page
 
+    def get_page_name(self):
+        return self.page_name
+
     def replace_page(self, page_name):
         self.cleanup()
         new_page = page_name_to_type[page_name]()
         self.content.set_child(new_page)
         del self.page
         self.page = new_page
+        self.page_name = page_name
 
     def image(self):
         return self.page.image

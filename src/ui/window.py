@@ -255,7 +255,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._load_page(previous_page_name)
 
     def _create_title(self):
-        current_page_name = self.main_stack.get_visible_child_name()
+        current_page = self.main_stack.get_visible_child()
+        current_page_name = current_page.get_page_name()
         title = page_name_to_title[current_page_name]
         icon_name = page_name_to_image[current_page_name]
 
@@ -268,7 +269,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             label = ""
 
         if icon_name == None:
-            current_page = self.main_stack.get_visible_child()
             icon_name = current_page.image()
 
         return LabeledImage(icon_name, label)
@@ -315,10 +315,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _reload_page(self, _, __):
         with self.navigation_lock:
-            current_page_name = self.main_stack.get_visible_child_name()
+            wrapper = self.main_stack.get_visible_child()
+            current_page_name = wrapper.get_page_name()
             if not current_page_name in reloadable_pages:
                 return
-            wrapper = self.main_stack.get_visible_child()
             wrapper.replace_page(current_page_name)
             match config.steal('page_navigation'):
                 case "load_prev":
