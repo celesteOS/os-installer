@@ -120,11 +120,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self.previous_pages = []
 
-        # determine available pages
         self._determine_available_pages()
+        self._initialize_first_page()
 
-        # initialize first available page
-        self._load_next_page()
+    def _initialize_first_page(self):
+        page_name = self.available_pages[0]
+        initial_page = PageWrapper(page_name)
+        self.main_stack.add_named(initial_page, page_name)
+        self.pages = [page_name]
+        self._reload_title()
 
     def _add_action(self, action_name, callback, keybinding):
         action = Gio.SimpleAction.new(action_name, None)
@@ -208,8 +212,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _get_next_page_name(self, offset: int = forward):
         current_page_name = self.main_stack.get_visible_child_name()
-        if not current_page_name:
-            return self.available_pages[0]
         current_index = self.available_pages.index(current_page_name)
         return self.available_pages[current_index + offset]
 
