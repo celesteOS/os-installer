@@ -1,8 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
+
 from gi.repository import Adw, Gtk
 
 from .config import config
+from .widgets import LabeledImage
 
 from .choices import FeaturePage, SoftwarePage
 from .confirm import ConfirmPage
@@ -21,6 +24,75 @@ from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
 from .welcome import WelcomePage
+
+page_name_to_caption = {
+    # Translators: Page title
+    'confirm':              _('Confirmation'),
+    # Translators: Page title
+    'disk':                 _('Disk Selection'),
+    # Translators: Page title
+    'done':                 _('Installation Complete'),
+    # Translators: Page title
+    'encrypt':              _('Disk Encryption'),
+    # Translators: Page title
+    'failed':               _('Installation Failed'),
+    # Translators: Page title
+    'feature':              _('Additional Features'),
+    # Translators: Page title
+    'format':               _('Select Region'),
+    # Translators: Page title
+    'install':              _('Installing'),
+    # Translators: Page title
+    'internet':             _('Internet Connection Check'),
+    # Translators: Page title
+    'keyboard-language':    _('Keyboard Language'),
+    # Translators: Page title
+    'keyboard-layout':      _('Keyboard Layout Selection'),
+    # Translators: Page title
+    'keyboard-overview':    _('Keyboard Layout'),
+    # Language page has no title
+    'language':             '',
+    # Translators: Page title
+    'locale':               _('Adapt to Location'),
+    # Special-cased: Partition page shows disk name as title
+    'partition':            None,
+    # Translators: Page title
+    'restart':              _('Restarting'),
+    # Translators: Page title
+    'software':             _('Additional Software'),
+    # Translators: Page title
+    'summary':              _('Summary'),
+    # Translators: Page title
+    'timezone':             _('Select Location'),
+    # Translators: Page title
+    'user':                 _('User Account'),
+    # Translators: Page title
+    'welcome':              _('Welcome'),
+}
+
+page_name_to_image = {
+    'confirm':              'question-round-symbolic',
+    'disk':                 None,
+    'done':                 'success-symbolic',
+    'encrypt':              'dialog-password-symbolic',
+    'failed':               'computer-fail-symbolic',
+    'feature':              'puzzle-piece-symbolic',
+    'format':               'map-symbolic',
+    'install':              'OS-Installer-symbolic',
+    'internet':             None,
+    'keyboard-language':    'input-keyboard-symbolic',
+    'keyboard-layout':      'input-keyboard-symbolic',
+    'keyboard-overview':    'input-keyboard-symbolic',
+    'language':             'language-symbolic',
+    'locale':               'globe-symbolic',
+    'partition':            'drive-harddisk-system-symbolic',
+    'restart':              'system-reboot-symbolic',
+    'software':             'system-software-install-symbolic',
+    'summary':              'checkbox-checked-symbolic',
+    'timezone':             'map-symbolic',
+    'user':                 'user-symbolic',
+    'welcome':              None,
+}
 
 page_name_to_type = {
     'confirm':              ConfirmPage,
@@ -71,6 +143,22 @@ class PageWrapper(Adw.Bin):
     def get_page_name(self):
         return self.page_name
 
+    def get_title(self):
+        caption = page_name_to_caption[self.page_name]
+        image = page_name_to_image[self.page_name]
+
+        if caption == None:
+            assert self.page_name == 'partition'
+            caption = config.get('selected_disk').name
+        # only translate translatable strings
+        elif caption != "":
+            caption = _(caption)
+
+        if not image:
+            image = self.page.image
+
+        return LabeledImage(image, caption)
+
     def replace_page(self, page_name):
         self.cleanup()
         new_page = page_name_to_type[page_name]()
@@ -78,6 +166,3 @@ class PageWrapper(Adw.Bin):
         del self.page
         self.page = new_page
         self.page_name = page_name
-
-    def image(self):
-        return self.page.image

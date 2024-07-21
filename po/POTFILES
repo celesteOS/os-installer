@@ -26,5 +26,5 @@ data/resources/ui/pages/welcome.blp
 
 data/resources/ui/widgets/device_row.blp
 
-src/ui/window.py
+src/ui/page_wrapper.py
 src/util/installation_scripting.py

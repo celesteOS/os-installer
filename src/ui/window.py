@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from locale import gettext as _
 from threading import Lock
 from os.path import exists
 
@@ -10,80 +9,10 @@ from .config import config
 from .global_state import global_state
 
 from .page_wrapper import PageWrapper
-from .widgets import LabeledImage
 
 from .language_provider import language_provider
 from .system_calls import set_system_language
 
-
-page_name_to_title = {
-    # Translators: Page title
-    'confirm':              _('Confirmation'),
-    # Translators: Page title
-    'disk':                 _('Disk Selection'),
-    # Translators: Page title
-    'done':                 _('Installation Complete'),
-    # Translators: Page title
-    'encrypt':              _('Disk Encryption'),
-    # Translators: Page title
-    'failed':               _('Installation Failed'),
-    # Translators: Page title
-    'feature':              _('Additional Features'),
-    # Translators: Page title
-    'format':               _('Select Region'),
-    # Translators: Page title
-    'install':              _('Installing'),
-    # Translators: Page title
-    'internet':             _('Internet Connection Check'),
-    # Translators: Page title
-    'keyboard-language':    _('Keyboard Language'),
-    # Translators: Page title
-    'keyboard-layout':      _('Keyboard Layout Selection'),
-    # Translators: Page title
-    'keyboard-overview':    _('Keyboard Layout'),
-    # Language page has no title
-    'language':             '',
-    # Translators: Page title
-    'locale':               _('Adapt to Location'),
-    # Special-cased: Partition page shows disk name as title
-    'partition':            None,
-    # Translators: Page title
-    'restart':              _('Restarting'),
-    # Translators: Page title
-    'software':             _('Additional Software'),
-    # Translators: Page title
-    'summary':              _('Summary'),
-    # Translators: Page title
-    'timezone':             _('Select Location'),
-    # Translators: Page title
-    'user':                 _('User Account'),
-    # Translators: Page title
-    'welcome':              _('Welcome'),
-}
-
-page_name_to_image = {
-    'confirm':              'question-round-symbolic',
-    'disk':                 None,
-    'done':                 'success-symbolic',
-    'encrypt':              'dialog-password-symbolic',
-    'failed':               'computer-fail-symbolic',
-    'feature':              'puzzle-piece-symbolic',
-    'format':               'map-symbolic',
-    'install':              'OS-Installer-symbolic',
-    'internet':             None,
-    'keyboard-language':    'input-keyboard-symbolic',
-    'keyboard-layout':      'input-keyboard-symbolic',
-    'keyboard-overview':    'input-keyboard-symbolic',
-    'language':             'language-symbolic',
-    'locale':               'globe-symbolic',
-    'partition':            'drive-harddisk-system-symbolic',
-    'restart':              'system-reboot-symbolic',
-    'software':             'system-software-install-symbolic',
-    'summary':              'checkbox-checked-symbolic',
-    'timezone':             'map-symbolic',
-    'user':                 'user-symbolic',
-    'welcome':              None,
-}
 
 non_returnable_pages = ['done', 'failed', 'install', 'restart', 'summary']
 reloadable_pages = ['disk', 'partition']
@@ -254,25 +183,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name)
 
-    def _create_title(self):
-        current_page = self.main_stack.get_visible_child()
-        current_page_name = current_page.get_page_name()
-        title = page_name_to_title[current_page_name]
-        icon_name = page_name_to_image[current_page_name]
-
-        if title == None:
-            assert current_page_name == 'partition'
-            label = config.get('selected_disk').name
-        elif title != "":
-            label = _(title)
-        else:
-            label = ""
-
-        if icon_name == None:
-            icon_name = current_page.image()
-
-        return LabeledImage(icon_name, label)
-
     def _reload_title(self):
         current_name = self.image_stack.get_visible_child_name()
         other_name = '1' if current_name == '2' else '2'
@@ -281,8 +191,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if other_page:
             self.image_stack.remove(other_page)
 
-        title = self._create_title()
-        self.image_stack.add_named(title, other_name)
+        current_page = self.main_stack.get_visible_child()
+        self.image_stack.add_named(current_page.get_title(), other_name)
         self.image_stack.set_visible_child_name(other_name)
 
     def _current_is_first(self):
