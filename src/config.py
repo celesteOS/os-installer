@@ -62,6 +62,7 @@ fallback_values = {
     'disk': ('/dev/null', 'Test Dummy'),
     'disk_is_partition': False,
     'disk_efi_partition': '/dev/null',
+    'selected_disk': 'Unknown',
 }
 
 
