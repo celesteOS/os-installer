@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-07-19 07:49+0000\n"
-"Last-Translator: data water <data.gogiberidze@gmail.com>\n"
-"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/ka/>\n"
+"PO-Revision-Date: 2024-07-28 10:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,8 +119,9 @@ msgstr "მიერთების გარეშე."
 msgid "_Open Settings"
 msgstr "პარამეტრების _გახსნა"
 
+#, fuzzy
 msgid "Connection detected"
-msgstr ""
+msgstr "Connection detected"
 
 #. selectable: false;
 #. Translators: Followed by a language name.

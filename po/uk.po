@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-06-18 11:28+0000\n"
-"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
+"PO-Revision-Date: 2024-07-28 10:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -122,8 +122,9 @@ msgstr "Немає підключення."
 msgid "_Open Settings"
 msgstr "_Відкрити налаштування"
 
+#, fuzzy
 msgid "Connection detected"
-msgstr ""
+msgstr "Connection detected"
 
 #. selectable: false;
 #. Translators: Followed by a language name.

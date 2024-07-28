@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-06-09 20:33+0000\n"
+"PO-Revision-Date: 2024-07-28 10:11+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: none\n"
 "Language: ur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "OS-Installer"
 msgstr "او ایس انسٹالر"
@@ -122,8 +122,9 @@ msgstr "کوئی کنکشن نہیں۔"
 msgid "_Open Settings"
 msgstr "_ سیٹینگ کھولیں"
 
+#, fuzzy
 msgid "Connection detected"
-msgstr ""
+msgstr "Connection detected"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
