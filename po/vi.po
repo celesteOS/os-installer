@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 10:41+0200\n"
+"POT-Creation-Date: 2024-07-28 12:09+0200\n"
 "PO-Revision-Date: 2024-07-24 07:09+0000\n"
 "Last-Translator: Tung Anh <buihuutunganh2007@gmail.com>\n"
 "Language-Team: none\n"
@@ -51,30 +51,14 @@ msgstr "_Tiếp tục cài đặt"
 msgid "_Stop Installation"
 msgstr "_Dừng cài đặt"
 
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
-msgid "Additional Software"
-msgstr "Phần mềm bổ sung"
-
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
-msgid "Additional Features"
-msgstr "Chức năng bổ sung"
-
 #. Translators: On button.
 #: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/internet.blp
 #: data/resources/ui/pages/keyboard_overview.blp
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr "_Tiếp tục"
-
-#. Translators: Page title
-#: data/resources/ui/pages/confirm.blp
-msgid "Confirmation"
-msgstr "Xác nhận"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
@@ -85,11 +69,6 @@ msgstr "Thao tác này sẽ xóa tất cả dữ liệu ở"
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
 msgstr "_Xác nhận"
-
-#. Translators: Page title
-#: data/resources/ui/pages/disk.blp
-msgid "Disk Selection"
-msgstr "Chọn ổ đĩa"
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
@@ -109,11 +88,6 @@ msgstr "Kết nối ổ đĩa và tải lại trang này."
 msgid "_Reload"
 msgstr "_Tải lại"
 
-#. Translators: Page title
-#: data/resources/ui/pages/done.blp
-msgid "Installation Complete"
-msgstr "Cài đặt hoàn thành"
-
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
 msgid "_Restart System"
@@ -128,11 +102,6 @@ msgstr "Khởi động lại_sau"
 #: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
 msgstr "Hiển thị đầu ra terminal"
-
-#. Translators: Page title
-#: data/resources/ui/pages/encrypt.blp
-msgid "Disk Encryption"
-msgstr "Mã hóa đĩa"
 
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
@@ -151,25 +120,10 @@ msgid ""
 msgstr ""
 "Nhớ PIN này đều vào. Không có nó bạn sẽ không thể truy cập tập tin của bạn."
 
-#. Translators: Page title
-#: data/resources/ui/pages/failed.blp
-msgid "Installation Failed"
-msgstr "Cài đặt thất bại"
-
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "Tìm trợ giúp trên Internet"
-
-#. Translators: Page title
-#: data/resources/ui/pages/filter.blp
-msgid "Select Region"
-msgstr "Chọn địa bàn"
-
-#. Translators: Page title
-#: data/resources/ui/pages/filter.blp
-msgid "Select Location"
-msgstr "Chọn địa điểm"
 
 #: data/resources/ui/pages/filter.blp
 msgid "Filter"
@@ -185,18 +139,9 @@ msgstr "Không có kết quả"
 msgid "Try a different search"
 msgstr "Hãy thử tìm kiếm khác"
 
-#. Translators: Page title
-#: data/resources/ui/pages/install.blp
-msgid "Installing"
-msgstr "Đang cài đặt"
-
-#. Translators: Page title
 #: data/resources/ui/pages/internet.blp
-msgid "Internet Connection Check"
-msgstr "Kiểm tra kết nối mạng"
-
-#: data/resources/ui/pages/internet.blp
-msgid "No connection."
+#, fuzzy
+msgid "No connection detected"
 msgstr "Không có kết nối."
 
 #. Translators: On button for opening wifi settings.
@@ -204,41 +149,25 @@ msgstr "Không có kết nối."
 msgid "_Open Settings"
 msgstr "_Mở cài đặt"
 
-#. Translators: Page title
+#: data/resources/ui/pages/internet.blp
+msgid "Connection detected"
+msgstr ""
+
 #. selectable: false;
 #. Translators: Followed by a language name.
-#: data/resources/ui/pages/keyboard_language.blp
-#: data/resources/ui/pages/keyboard_layout.blp
+#. Translators: Page title
+#: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
 msgid "Keyboard Language"
 msgstr "Ngôn ngữ bàn phím"
-
-#. Translators: Page title
-#: data/resources/ui/pages/keyboard_layout.blp
-msgid "Keyboard Layout Selection"
-msgstr "Chọn bố cục bàn phím"
-
-#. Translators: Page title
-#. Translators: Description of selected keyboard layout.
-#: data/resources/ui/pages/keyboard_overview.blp
-#: data/resources/ui/pages/summary.blp
-msgid "Keyboard Layout"
-msgstr "Bố cục bàn phím"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_overview.blp
 msgid "Test the Keyboard Layout Here"
 msgstr "Kiểm tra bố cục máy tính tại đây"
 
-#. Translators: Page title
-#: data/resources/ui/pages/locale.blp
-#, fuzzy
-msgid "Adapt to Location"
-msgstr "Thích ứng với vị trí"
-
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#: src/ui/window.py
 msgid "Timezone"
 msgstr "Múi giờ"
 
@@ -291,24 +220,20 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr "  • Mảng boot BIOS"
 
-#. Translators: Page title
-#: data/resources/ui/pages/restart.blp
-msgid "Restarting"
-msgstr "Đang khởi động lại"
-
-#. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/window.py
-msgid "Summary"
-msgstr "Tóm tắt"
-
 #. Translators: Description of selected language.
-#: data/resources/ui/pages/summary.blp src/ui/window.py
+#: data/resources/ui/pages/summary.blp
 msgid "Language"
 msgstr "Ngôn ngữ"
 
+#. Translators: Description of selected keyboard layout.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Keyboard Layout"
+msgstr "Bố cục bàn phím"
+
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "User Account"
 msgstr "Tài khoản người dùng"
 
@@ -317,11 +242,23 @@ msgstr "Tài khoản người dùng"
 msgid "(Automatic Login)"
 msgstr "(Tự động đăng nhập)"
 
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Software"
+msgstr "Phần mềm bổ sung"
+
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
 msgid "None"
 msgstr "Trống"
+
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Features"
+msgstr "Chức năng bổ sung"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
@@ -337,11 +274,6 @@ msgstr "Tự động đăng nhập"
 #: data/resources/ui/pages/user.blp
 msgid "_Password"
 msgstr "_Mật khẩu"
-
-#. Translators: Page title
-#: data/resources/ui/pages/welcome.blp src/ui/window.py
-msgid "Welcome"
-msgstr "Chào mừng"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
@@ -361,70 +293,131 @@ msgstr "Mảng không tên"
 msgid "Not enough space for installation ({} required)"
 msgstr "Không có đủ không gian cho cài đạt (cần {})"
 
-#: src/ui/window.py
-msgid "Confirm"
-msgstr "Xác nhận"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Confirmation"
+msgstr "Xác nhận"
 
-#: src/ui/window.py
-msgid "Disk"
-msgstr "Đĩa"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Selection"
+msgstr "Chọn ổ đĩa"
 
-#: src/ui/window.py
-msgid "Done"
-msgstr "Hoàn tất"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installation Complete"
+msgstr "Cài đặt hoàn thành"
 
-#: src/ui/window.py
-msgid "Encrypt"
-msgstr "Mã hóa"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Encryption"
+msgstr "Mã hóa đĩa"
 
-#: src/ui/window.py
-msgid "Failed"
-msgstr "Thất Bại"
+#. Translators: Page title
+#. Translators: Notification text
+#: src/ui/page_wrapper.py src/util/installation_scripting.py
+msgid "Installation Failed"
+msgstr "Cài đặt thất bại"
 
-#: src/ui/window.py
-msgid "Feature"
-msgstr "Chức năng"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Region"
+msgstr "Chọn địa bàn"
 
-#: src/ui/window.py
-msgid "Format"
-msgstr "Định dạng"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installing"
+msgstr "Đang cài đặt"
 
-#: src/ui/window.py
-msgid "Install"
-msgstr "Cài đặt"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Internet Connection Check"
+msgstr "Kiểm tra kết nối mạng"
 
-#: src/ui/window.py
-msgid "Internet"
-msgstr "Internet"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Keyboard Layout Selection"
+msgstr "Chọn bố cục bàn phím"
 
-#: src/ui/window.py
-msgid "KeyboardLanguage"
-msgstr "NgonNguBanPhim"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+#, fuzzy
+msgid "Adapt to Location"
+msgstr "Thích ứng với vị trí"
 
-#: src/ui/window.py
-msgid "KeyboardLayout"
-msgstr "BoCucBanPhim"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Restarting"
+msgstr "Đang khởi động lại"
 
-#: src/ui/window.py
-msgid "KeyboardOverview"
-msgstr "TongQuanBanPhim"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Summary"
+msgstr "Tóm tắt"
 
-#: src/ui/window.py
-msgid "Locale"
-msgstr "KhuVuc"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Location"
+msgstr "Chọn địa điểm"
 
-#: src/ui/window.py
-msgid "Partition"
-msgstr "Phân mảng"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Welcome"
+msgstr "Chào mừng"
 
-#: src/ui/window.py
-msgid "Restart"
-msgstr "Khởi động lại"
+#. Translators: Notification text
+#: src/util/installation_scripting.py
+#, fuzzy
+msgid "Finished Installation"
+msgstr "_Tiếp tục cài đặt"
 
-#: src/ui/window.py
-msgid "Software"
-msgstr "Phần mềm"
+#~ msgid "Confirm"
+#~ msgstr "Xác nhận"
 
-#: src/ui/window.py
-msgid "User"
-msgstr "Người dùng"
+#~ msgid "Disk"
+#~ msgstr "Đĩa"
+
+#~ msgid "Done"
+#~ msgstr "Hoàn tất"
+
+#~ msgid "Encrypt"
+#~ msgstr "Mã hóa"
+
+#~ msgid "Failed"
+#~ msgstr "Thất Bại"
+
+#~ msgid "Feature"
+#~ msgstr "Chức năng"
+
+#~ msgid "Format"
+#~ msgstr "Định dạng"
+
+#~ msgid "Install"
+#~ msgstr "Cài đặt"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "KeyboardLanguage"
+#~ msgstr "NgonNguBanPhim"
+
+#~ msgid "KeyboardLayout"
+#~ msgstr "BoCucBanPhim"
+
+#~ msgid "KeyboardOverview"
+#~ msgstr "TongQuanBanPhim"
+
+#~ msgid "Locale"
+#~ msgstr "KhuVuc"
+
+#~ msgid "Partition"
+#~ msgstr "Phân mảng"
+
+#~ msgid "Restart"
+#~ msgstr "Khởi động lại"
+
+#~ msgid "Software"
+#~ msgstr "Phần mềm"
+
+#~ msgid "User"
+#~ msgstr "Người dùng"

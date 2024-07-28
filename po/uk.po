@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 10:41+0200\n"
+"POT-Creation-Date: 2024-07-28 12:09+0200\n"
 "PO-Revision-Date: 2024-06-18 11:28+0000\n"
 "Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
@@ -20,17 +20,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 5.6-dev\n"
 
+#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "Встановлення системи"
 
+#: data/com.github.p3732.OS-Installer.desktop.in
+#: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
 msgstr "Встановіть операційну систему"
 
 #. Translators: Dialog title
+#: data/resources/ui/confirm_quit_dialog.blp
 msgid "Installation Running"
 msgstr "Виконується встановлення"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
+#: data/resources/ui/confirm_quit_dialog.blp
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -39,193 +44,175 @@ msgstr ""
 "потенційно може бути шкідливим"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
+#: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Continue Installation"
 msgstr "_Продовжити встановлення"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
+#: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Stop Installation"
 msgstr "_Зупинити встановлення"
 
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Software"
-msgstr "Додаткове програмне забезпечення"
-
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-msgid "Additional Features"
-msgstr "Додаткові функції"
-
 #. Translators: On button.
+#: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/internet.blp
+#: data/resources/ui/pages/keyboard_overview.blp
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr "_Продовжити"
 
-#. Translators: Page title
-msgid "Confirmation"
-msgstr "Підтвердження"
-
 #. Translators: Followed by a disk or partition name
+#: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "Це призведе до видалення всіх даних на"
 
 #. Translators: On button.
+#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
 msgstr "_Підтвердити"
 
-#. Translators: Page title
-msgid "Disk Selection"
-msgstr "Вибір диска"
-
 #. Translators: Button label to open disk management tool.
+#: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr "_Керування дисками"
 
+#: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
 msgstr "Немає доступних дисків"
 
+#: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
 msgstr "Підключіть диск і перезавантажте цю сторінку."
 
 #. Translators: On button.
+#: data/resources/ui/pages/disk.blp
 msgid "_Reload"
 msgstr "_Перезавантажити"
 
-#. Translators: Page title
-msgid "Installation Complete"
-msgstr "Встановлення завершено"
-
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
+#: data/resources/ui/pages/done.blp
 msgid "_Restart System"
 msgstr "Перезавантажити _систему"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
+#: data/resources/ui/pages/done.blp
 msgid "Restart _Later"
 msgstr "Перезавантажити _пізніше"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
+#: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
 msgstr "Показати термінал"
 
-#. Translators: Page title
-msgid "Disk Encryption"
-msgstr "Шифрування диска"
-
 #. Translators: Used with option to enable disk encryption
+#: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
 msgstr "Шифрування файлів"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
+#: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
 msgstr "PIN-код шифрування"
 
 #. Translators: Hint for disk encryption
+#: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 "«Добре запам’ятайте цей PIN-код. Без нього ви не зможете отримати доступ до "
 "своїх файлів»."
 
-#. Translators: Page title
-msgid "Installation Failed"
-msgstr "Не вдалося встановити"
-
 #. Translators: Shown if installation fails.
+#: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "Шукайте допомогу в Інтернеті"
 
-#. Translators: Page title
-msgid "Select Region"
-msgstr "Виберіть регіон"
-
-#. Translators: Page title
-msgid "Select Location"
-msgstr "Виберіть місцезнаходження"
-
+#: data/resources/ui/pages/filter.blp
 msgid "Filter"
 msgstr "Фільтр"
 
 #. Translators: Empty result placeholder title
+#: data/resources/ui/pages/filter.blp
 msgid "No Results"
 msgstr "Немає результатів"
 
 #. Translators: Empty result placeholder, meant as a suggestion
+#: data/resources/ui/pages/filter.blp
 msgid "Try a different search"
 msgstr "Спробуйте інший пошук"
 
-#. Translators: Page title
-msgid "Installing"
-msgstr "Встановлення"
-
-#. Translators: Page title
-msgid "Internet Connection Check"
-msgstr "Перевірка підключення до Інтернету"
-
-msgid "No connection."
+#: data/resources/ui/pages/internet.blp
+#, fuzzy
+msgid "No connection detected"
 msgstr "Немає підключення."
 
 #. Translators: On button for opening wifi settings.
+#: data/resources/ui/pages/internet.blp
 msgid "_Open Settings"
 msgstr "_Відкрити налаштування"
 
-#. Translators: Page title
+#: data/resources/ui/pages/internet.blp
+msgid "Connection detected"
+msgstr ""
+
 #. selectable: false;
 #. Translators: Followed by a language name.
+#. Translators: Page title
+#: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
 msgid "Keyboard Language"
 msgstr "Мова клавіатури"
 
-#. Translators: Page title
-msgid "Keyboard Layout Selection"
-msgstr "Вибір розкладки клавіатури"
-
-#. Translators: Page title
-#. Translators: Description of selected keyboard layout.
-msgid "Keyboard Layout"
-msgstr "Розкладка клавіатури"
-
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
+#: data/resources/ui/pages/keyboard_overview.blp
 msgid "Test the Keyboard Layout Here"
 msgstr "Перевірте розкладку клавіатури тут"
 
-#. Translators: Page title
-msgid "Adapt to Location"
-msgstr "Налаштувати за місцем розташування"
-
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Timezone"
 msgstr "Часовий пояс"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Formats"
 msgstr "Формати"
 
 #. Translators: Description of what is covered by formats.
+#: data/resources/ui/pages/locale.blp
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr ""
 "Визначає формат за замовчуванням, який використовується для дат, часу, чисел "
 "тощо."
 
 #. Translators: Label to use whole disk rather than a single partition.
+#: data/resources/ui/pages/partition.blp
 msgid "Use Whole Disk"
 msgstr "Використати весь диск"
 
 #. Translators: Heading of list of partitions
+#: data/resources/ui/pages/partition.blp
 msgid "Partitions"
 msgstr "Розділи"
 
+#: data/resources/ui/pages/partition.blp
 msgid "Disk has no partitions."
 msgstr "Диск не має розділів."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+#: data/resources/ui/pages/partition.blp
 msgid "Selecting a partition is not possible."
 msgstr "Вибрати розділ неможливо»."
 
 #. Translators: Followed by a list of requirements
+#: data/resources/ui/pages/partition.blp
 msgid "The disk requires:"
 msgstr "Диск вимагає:"
 
 #. Translators: Bullet point listing.
+#: data/resources/ui/pages/partition.blp
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -234,116 +221,210 @@ msgstr ""
 "  • Розділ EFI"
 
 #. Translators: Bullet point listing.
+#: data/resources/ui/pages/partition.blp
 msgid "  • BIOS boot partition"
 msgstr "  • Завантажувальний розділ BIOS"
 
-#. Translators: Page title
-msgid "Restarting"
-msgstr "Перезапуск"
-
-#. Translators: Page title
-msgid "Summary"
-msgstr "Резюме"
-
 #. Translators: Description of selected language.
+#: data/resources/ui/pages/summary.blp
 msgid "Language"
 msgstr "Мова"
 
+#. Translators: Description of selected keyboard layout.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Keyboard Layout"
+msgstr "Розкладка клавіатури"
+
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "User Account"
 msgstr "Обліковий запис користувача"
 
 #. Translators: Gets shown when autologin is enabled.
+#: data/resources/ui/pages/summary.blp
 msgid "(Automatic Login)"
 msgstr "(Автоматичний вхід)"
 
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Software"
+msgstr "Додаткове програмне забезпечення"
+
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
+#: data/resources/ui/pages/summary.blp
 msgid "None"
 msgstr "Немає"
 
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Features"
+msgstr "Додаткові функції"
+
 #. Translators: Used with entry field for User's name
+#: data/resources/ui/pages/user.blp
 msgid "_Name"
 msgstr "_Ім'я"
 
 #. Translators: Used with option to enable automatic login of user upon booting
+#: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
 msgstr "Автоматичний вхід"
 
 #. Translators: Used with entry field for setting a password for new user
+#: data/resources/ui/pages/user.blp
 msgid "_Password"
 msgstr "_Пароль"
 
-#. Translators: Page title
-msgid "Welcome"
-msgstr "Ласкаво просимо"
-
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
+#: data/resources/ui/pages/welcome.blp
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr "Цей застосунок допоможе вам встановити {} у вашу систему."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#: data/resources/ui/widgets/device_row.blp
 msgid "Unnamed Partition"
 msgstr "Безіменний розділ"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
+#: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation ({} required)"
 msgstr "Недостатньо місця для установки (потрібно {})"
 
-msgid "Confirm"
-msgstr "Підтвердити"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Confirmation"
+msgstr "Підтвердження"
 
-msgid "Disk"
-msgstr "Диск"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Selection"
+msgstr "Вибір диска"
 
-msgid "Done"
-msgstr "Готово"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installation Complete"
+msgstr "Встановлення завершено"
 
-msgid "Encrypt"
-msgstr "Зашифрувати"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Encryption"
+msgstr "Шифрування диска"
 
-msgid "Failed"
-msgstr "Не вдалося"
+#. Translators: Page title
+#. Translators: Notification text
+#: src/ui/page_wrapper.py src/util/installation_scripting.py
+msgid "Installation Failed"
+msgstr "Не вдалося встановити"
 
-msgid "Feature"
-msgstr "Функції"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Region"
+msgstr "Виберіть регіон"
 
-msgid "Format"
-msgstr "Формат"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installing"
+msgstr "Встановлення"
 
-msgid "Install"
-msgstr "Встановити"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Internet Connection Check"
+msgstr "Перевірка підключення до Інтернету"
 
-msgid "Internet"
-msgstr "Інтернет"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Keyboard Layout Selection"
+msgstr "Вибір розкладки клавіатури"
 
-msgid "KeyboardLanguage"
-msgstr "Мова клавіатури"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Adapt to Location"
+msgstr "Налаштувати за місцем розташування"
 
-msgid "KeyboardLayout"
-msgstr "Розкладка клавіатури"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Restarting"
+msgstr "Перезапуск"
 
-msgid "KeyboardOverview"
-msgstr "Огляд клавіатури"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Summary"
+msgstr "Резюме"
 
-msgid "Locale"
-msgstr "Місцеперебування"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Location"
+msgstr "Виберіть місцезнаходження"
 
-msgid "Partition"
-msgstr "Розділ"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Welcome"
+msgstr "Ласкаво просимо"
 
-msgid "Restart"
-msgstr "Перезапустити"
+#. Translators: Notification text
+#: src/util/installation_scripting.py
+#, fuzzy
+msgid "Finished Installation"
+msgstr "_Продовжити встановлення"
 
-msgid "Software"
-msgstr "Програмне забезпечення"
+#~ msgid "Confirm"
+#~ msgstr "Підтвердити"
 
-msgid "User"
-msgstr "Користувач"
+#~ msgid "Disk"
+#~ msgstr "Диск"
+
+#~ msgid "Done"
+#~ msgstr "Готово"
+
+#~ msgid "Encrypt"
+#~ msgstr "Зашифрувати"
+
+#~ msgid "Failed"
+#~ msgstr "Не вдалося"
+
+#~ msgid "Feature"
+#~ msgstr "Функції"
+
+#~ msgid "Format"
+#~ msgstr "Формат"
+
+#~ msgid "Install"
+#~ msgstr "Встановити"
+
+#~ msgid "Internet"
+#~ msgstr "Інтернет"
+
+#~ msgid "KeyboardLanguage"
+#~ msgstr "Мова клавіатури"
+
+#~ msgid "KeyboardLayout"
+#~ msgstr "Розкладка клавіатури"
+
+#~ msgid "KeyboardOverview"
+#~ msgstr "Огляд клавіатури"
+
+#~ msgid "Locale"
+#~ msgstr "Місцеперебування"
+
+#~ msgid "Partition"
+#~ msgstr "Розділ"
+
+#~ msgid "Restart"
+#~ msgstr "Перезапустити"
+
+#~ msgid "Software"
+#~ msgstr "Програмне забезпечення"
+
+#~ msgid "User"
+#~ msgstr "Користувач"
 
 #~ msgid "PIN"
 #~ msgstr "PIN-код"

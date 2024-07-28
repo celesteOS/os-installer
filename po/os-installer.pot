@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 10:41+0200\n"
+"POT-Creation-Date: 2024-07-28 12:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,29 +48,13 @@ msgstr ""
 msgid "_Stop Installation"
 msgstr ""
 
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
-msgid "Additional Software"
-msgstr ""
-
-#. Translators: Page title
-#. Translators: Description of selected additional software.
-#: data/resources/ui/pages/choices.blp data/resources/ui/pages/summary.blp
-msgid "Additional Features"
-msgstr ""
-
 #. Translators: On button.
 #: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/internet.blp
 #: data/resources/ui/pages/keyboard_overview.blp
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/confirm.blp
-msgid "Confirmation"
 msgstr ""
 
 #. Translators: Followed by a disk or partition name
@@ -81,11 +65,6 @@ msgstr ""
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/disk.blp
-msgid "Disk Selection"
 msgstr ""
 
 #. Translators: Button label to open disk management tool.
@@ -106,11 +85,6 @@ msgstr ""
 msgid "_Reload"
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/done.blp
-msgid "Installation Complete"
-msgstr ""
-
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
 msgid "_Restart System"
@@ -124,11 +98,6 @@ msgstr ""
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/encrypt.blp
-msgid "Disk Encryption"
 msgstr ""
 
 #. Translators: Used with option to enable disk encryption
@@ -147,24 +116,9 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/failed.blp
-msgid "Installation Failed"
-msgstr ""
-
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/filter.blp
-msgid "Select Region"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/filter.blp
-msgid "Select Location"
 msgstr ""
 
 #: data/resources/ui/pages/filter.blp
@@ -181,18 +135,8 @@ msgstr ""
 msgid "Try a different search"
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/install.blp
-msgid "Installing"
-msgstr ""
-
-#. Translators: Page title
 #: data/resources/ui/pages/internet.blp
-msgid "Internet Connection Check"
-msgstr ""
-
-#: data/resources/ui/pages/internet.blp
-msgid "No connection."
+msgid "No connection detected"
 msgstr ""
 
 #. Translators: On button for opening wifi settings.
@@ -200,24 +144,15 @@ msgstr ""
 msgid "_Open Settings"
 msgstr ""
 
-#. Translators: Page title
+#: data/resources/ui/pages/internet.blp
+msgid "Connection detected"
+msgstr ""
+
 #. selectable: false;
 #. Translators: Followed by a language name.
-#: data/resources/ui/pages/keyboard_language.blp
-#: data/resources/ui/pages/keyboard_layout.blp
+#. Translators: Page title
+#: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
 msgid "Keyboard Language"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/keyboard_layout.blp
-msgid "Keyboard Layout Selection"
-msgstr ""
-
-#. Translators: Page title
-#. Translators: Description of selected keyboard layout.
-#: data/resources/ui/pages/keyboard_overview.blp
-#: data/resources/ui/pages/summary.blp
-msgid "Keyboard Layout"
 msgstr ""
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
@@ -225,15 +160,9 @@ msgstr ""
 msgid "Test the Keyboard Layout Here"
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/locale.blp
-msgid "Adapt to Location"
-msgstr ""
-
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#: src/ui/window.py
 msgid "Timezone"
 msgstr ""
 
@@ -284,24 +213,20 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr ""
 
-#. Translators: Page title
-#: data/resources/ui/pages/restart.blp
-msgid "Restarting"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/window.py
-msgid "Summary"
-msgstr ""
-
 #. Translators: Description of selected language.
-#: data/resources/ui/pages/summary.blp src/ui/window.py
+#: data/resources/ui/pages/summary.blp
 msgid "Language"
+msgstr ""
+
+#. Translators: Description of selected keyboard layout.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Keyboard Layout"
 msgstr ""
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "User Account"
 msgstr ""
 
@@ -310,10 +235,22 @@ msgstr ""
 msgid "(Automatic Login)"
 msgstr ""
 
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Software"
+msgstr ""
+
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
 msgid "None"
+msgstr ""
+
+#. Translators: Description of selected additional software.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
+msgid "Additional Features"
 msgstr ""
 
 #. Translators: Used with entry field for User's name
@@ -329,11 +266,6 @@ msgstr ""
 #. Translators: Used with entry field for setting a password for new user
 #: data/resources/ui/pages/user.blp
 msgid "_Password"
-msgstr ""
-
-#. Translators: Page title
-#: data/resources/ui/pages/welcome.blp src/ui/window.py
-msgid "Welcome"
 msgstr ""
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
@@ -354,70 +286,78 @@ msgstr ""
 msgid "Not enough space for installation ({} required)"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Confirm"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Confirmation"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Disk"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Selection"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Done"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installation Complete"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Encrypt"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Disk Encryption"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Failed"
+#. Translators: Page title
+#. Translators: Notification text
+#: src/ui/page_wrapper.py src/util/installation_scripting.py
+msgid "Installation Failed"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Feature"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Region"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Format"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Installing"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Install"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Internet Connection Check"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Internet"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Keyboard Layout Selection"
 msgstr ""
 
-#: src/ui/window.py
-msgid "KeyboardLanguage"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Adapt to Location"
 msgstr ""
 
-#: src/ui/window.py
-msgid "KeyboardLayout"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Restarting"
 msgstr ""
 
-#: src/ui/window.py
-msgid "KeyboardOverview"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Summary"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Locale"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Select Location"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Partition"
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Welcome"
 msgstr ""
 
-#: src/ui/window.py
-msgid "Restart"
-msgstr ""
-
-#: src/ui/window.py
-msgid "Software"
-msgstr ""
-
-#: src/ui/window.py
-msgid "User"
+#. Translators: Notification text
+#: src/util/installation_scripting.py
+msgid "Finished Installation"
 msgstr ""
