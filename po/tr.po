@@ -18,22 +18,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.7-dev\n"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "İşletim Sistemi Kurucu"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
-#: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
 msgstr "Bir İşletim Sistemi Kurun"
 
 #. Translators: Dialog title
-#: data/resources/ui/confirm_quit_dialog.blp
 msgid "Installation Running"
 msgstr "Kurulum Devam Ediyor"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
-#: data/resources/ui/confirm_quit_dialog.blp
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -42,171 +37,134 @@ msgstr ""
 "durumda bırakacaktır"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
-#: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Continue Installation"
 msgstr "Kuruluma Devam _Et"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
-#: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Stop Installation"
 msgstr "Kurulumu _Durdur"
 
 #. Translators: On button.
-#: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
-#: data/resources/ui/pages/internet.blp
-#: data/resources/ui/pages/keyboard_overview.blp
-#: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
-#: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr "_Devam Et"
 
 #. Translators: Followed by a disk or partition name
-#: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "Bu şuradaki tüm verileri silecek"
 
 #. Translators: On button.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
 msgstr "_Kabul Et"
 
 #. Translators: Button label to open disk management tool.
-#: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr "_Diskleri Yönet"
 
-#: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
 msgstr "Kullanılabilir disk yok"
 
-#: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
 msgstr "Bir disk bağlayın ve bu sayfayı yeniden yükleyin."
 
 #. Translators: On button.
-#: data/resources/ui/pages/disk.blp
 msgid "_Reload"
 msgstr "Yeniden Yük_le"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#: data/resources/ui/pages/done.blp
 msgid "_Restart System"
 msgstr "Sistemi _Yeniden Başlat"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#: data/resources/ui/pages/done.blp
 msgid "Restart _Later"
 msgstr "_Daha Sonra Yeniden Başlat"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
-#: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
 msgstr "Uçbirim Çıktısını Göster"
 
 #. Translators: Used with option to enable disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
 msgstr "Dosyaları Şifrele"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
 msgstr "Şifreleme PIN'i"
 
 #. Translators: Hint for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr "Bu PIN kodunu iyi ezberleyin. Bu olmadan dosyalarınıza erişemezsiniz."
 
 #. Translators: Shown if installation fails.
-#: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "İnternet'te yardım ara"
 
-#: data/resources/ui/pages/filter.blp
 msgid "Filter"
 msgstr "Süzgeç"
 
 #. Translators: Empty result placeholder title
-#: data/resources/ui/pages/filter.blp
 msgid "No Results"
 msgstr "Sonuç Yok"
 
 #. Translators: Empty result placeholder, meant as a suggestion
-#: data/resources/ui/pages/filter.blp
 msgid "Try a different search"
 msgstr "Başka bir arama deneyin"
 
-#: data/resources/ui/pages/internet.blp
 #, fuzzy
 msgid "No connection detected"
 msgstr "Bağlantı yok."
 
 #. Translators: On button for opening wifi settings.
-#: data/resources/ui/pages/internet.blp
 msgid "_Open Settings"
 msgstr "_Ayarları Aç"
 
-#: data/resources/ui/pages/internet.blp
 msgid "Connection detected"
 msgstr ""
 
 #. selectable: false;
 #. Translators: Followed by a language name.
 #. Translators: Page title
-#: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
 msgid "Keyboard Language"
 msgstr "Klavye Dili"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#: data/resources/ui/pages/keyboard_overview.blp
 msgid "Test the Keyboard Layout Here"
 msgstr "Klavye Düzenini Burada Test Edin"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
-#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Timezone"
 msgstr "Saat dilimi"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
-#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Formats"
 msgstr "Biçimler"
 
 #. Translators: Description of what is covered by formats.
-#: data/resources/ui/pages/locale.blp
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Tarih, saat, sayılar vb. için kullanılan öntanımlı biçimi tanımlar."
 
 #. Translators: Label to use whole disk rather than a single partition.
-#: data/resources/ui/pages/partition.blp
 msgid "Use Whole Disk"
 msgstr "Tüm Diski Kullan"
 
 #. Translators: Heading of list of partitions
-#: data/resources/ui/pages/partition.blp
 msgid "Partitions"
 msgstr "Bölümler"
 
-#: data/resources/ui/pages/partition.blp
 msgid "Disk has no partitions."
 msgstr "Diskte bölüm yok."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/pages/partition.blp
 msgid "Selecting a partition is not possible."
 msgstr "Bir bölüm seçimi mümkün değil."
 
 #. Translators: Followed by a list of requirements
-#: data/resources/ui/pages/partition.blp
 msgid "The disk requires:"
 msgstr "Disk gereksinimleri:"
 
 #. Translators: Bullet point listing.
-#: data/resources/ui/pages/partition.blp
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -215,156 +173,127 @@ msgstr ""
 "  • EFI bölümü"
 
 #. Translators: Bullet point listing.
-#: data/resources/ui/pages/partition.blp
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS önyükleme bölümü"
 
 #. Translators: Description of selected language.
-#: data/resources/ui/pages/summary.blp
 msgid "Language"
 msgstr "Dil"
 
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Keyboard Layout"
 msgstr "Klavye Düzeni"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "User Account"
 msgstr "Kullanıcı Hesabı"
 
 #. Translators: Gets shown when autologin is enabled.
-#: data/resources/ui/pages/summary.blp
 msgid "(Automatic Login)"
 msgstr "(Otomatik Oturum Aç)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Additional Software"
 msgstr "İlave Yazılım"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#: data/resources/ui/pages/summary.blp
 msgid "None"
 msgstr "Hiçbiri"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
-#: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Additional Features"
 msgstr "İlave Özellikler"
 
 #. Translators: Used with entry field for User's name
-#: data/resources/ui/pages/user.blp
 msgid "_Name"
 msgstr "_Ad"
 
 #. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
 msgstr "Otomatik Oturum Aç"
 
 #. Translators: Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.blp
 msgid "_Password"
 msgstr "_Parola"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#: data/resources/ui/pages/welcome.blp
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr "Bu uygulama sisteminize {} kurulumu boyunca size rehberlik edecektir."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/widgets/device_row.blp
 msgid "Unnamed Partition"
 msgstr "Adsız Bölüm"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation ({} required)"
 msgstr "Kurulum için yeterli alan yok ({} gerekli)"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Confirmation"
 msgstr "Onayla"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Disk Selection"
 msgstr "Disk Seçimi"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Installation Complete"
 msgstr "Kurulum Tamamlandı"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Disk Encryption"
 msgstr "Disk Şifreleme"
 
 #. Translators: Page title
 #. Translators: Notification text
-#: src/ui/page_wrapper.py src/util/installation_scripting.py
 msgid "Installation Failed"
 msgstr "Kurulum Başarısız Oldu"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Select Region"
 msgstr "Bölge Seç"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Installing"
 msgstr "Kuruluyor"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Internet Connection Check"
 msgstr "İnternet Bağlantısı Denetimi"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Keyboard Layout Selection"
 msgstr "Klavye Düzeni Seçimi"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Adapt to Location"
 msgstr "Konuma Uyarla"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Restarting"
 msgstr "Yeniden Başlatılıyor"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Summary"
 msgstr "Özet"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Select Location"
 msgstr "Konum Seç"
 
 #. Translators: Page title
-#: src/ui/page_wrapper.py
 msgid "Welcome"
 msgstr "Hoş Geldiniz"
 
 #. Translators: Notification text
-#: src/util/installation_scripting.py
 #, fuzzy
 msgid "Finished Installation"
 msgstr "Kuruluma Devam _Et"
