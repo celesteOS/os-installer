@@ -168,20 +168,20 @@ class DiskDummyProvider(Preloadable):
         return f"{size / 1000000000:.1f} GB"
 
     def get_disks(self):
-        # in 12.5% of all cases claim that no disks are found
-        smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
-        smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", [smol_partition])
-
-        efi_partition = DeviceInfo("EFI", 200000000, "20 GB", "/dev/sda_efi", True)
-        unnamed_partition_1 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed")
-        unnamed_partition_2 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2")
-        unnamed_partition_3 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed3")
-        partytion = DeviceInfo("PARTYtion", 20000000000, "20 GB", "/dev/sda_party")
-        disk = Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", [efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3])
-
-        unformated_big_disk = Disk("VERY BIG DISK", 1000000000000000, "1000 TB", "/dev/sdb_very_big", [])
-
-        return [smol_disk, disk, unformated_big_disk]
+        return [
+            Disk("Dummy", 10000, "10 KB", "/dev/null",
+                 [DeviceInfo("Too small partiton", 1000, "1 KB", "/dev/00null")]),
+            Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", [
+                DeviceInfo("EFI", 200000000, "2 GB", "/dev/sda_efi", True),
+                DeviceInfo("Previous Installation", 20000000000, "40 GB",
+                           "/dev/sda_yes"),
+                DeviceInfo(None, 20000000000, "30 GB", "/dev/sda_unnamed"),
+                DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2"),
+                DeviceInfo("Swap", 20000000000, "8 GB", None),
+            ]),
+            Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
+                 "/dev/sdb_very_big", []),
+        ]
 
 
 _disk_provider = None
