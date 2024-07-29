@@ -35,12 +35,10 @@ default_config = {
     'browser_cmd': 'epiphany',
     'disks_cmd': 'gnome-disks',
     'wifi_cmd': 'gnome-control-center wifi',
-
-    # not configurable
-    'version': -1,
 }
 
-optional_defaults = {
+# not configurable via config file
+internal_values = {
     'installation_running': False,
     'internet_connection': False,
     'use_encryption': False,
@@ -52,6 +50,7 @@ optional_defaults = {
     'timezone': 'UTC',
     'feature_choices': {},
     'software_choices': {},
+    'version': -1,
 }
 
 fallback_values = {
@@ -113,7 +112,7 @@ class Config:
         if not _validate(self.variables):
             print('Config errors, loading default config.')
             self.variables = default_config
-        self.variables.update(optional_defaults)
+        self.variables.update(internal_values)
         self._preprocess_values()
 
     def _load_from_file(self, file):
