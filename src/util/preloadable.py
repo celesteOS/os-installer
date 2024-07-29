@@ -23,7 +23,8 @@ class Preloadable:
                 return
 
             if not self.preload_started:
-                print(f'Preloading for {self.__class__.__name__} was never started')
+                class_name = self.__class__.__name__
+                print(f'Preloading for {class_name} was never started')
                 self.preloading_lock.release()
                 self.preload()
                 self.preloading_lock.acquire()

@@ -18,6 +18,7 @@ def _get(var):
         else:
             return value
 
+
 def _parse_choices(choices_var):
     keywords = []
     for choice in _get(choices_var):

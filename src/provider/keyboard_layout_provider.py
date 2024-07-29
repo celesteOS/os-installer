@@ -39,6 +39,7 @@ fallback_codes = {
 
 xkb_info = XkbInfo()
 
+
 class KeyboardInfo(GObject.GObject):
     __gtype_name__ = __qualname__
     name: str
@@ -75,7 +76,8 @@ def _get_existing_layouts(language_code):
         layouts = xkb_info.get_layouts_for_language(fallback_code)
         return layouts
     else:
-        print(f'Language {language_code} has no keyboard layouts! Please report this.')
+        print(f'Language {language_code} has no keyboard layouts! '
+              'Please report this.')
         return ['us']
 
 
@@ -89,10 +91,12 @@ def _get_default_layout_code(language_code):
     else:
         return 'us'
 
+
 def get_default_layout(language_code):
     layout_code = _get_default_layout_code(language_code)
     name = xkb_info.get_layout_info(layout_code).display_name
     return KeyboardInfo(name, layout_code)
+
 
 def get_layouts_for(language_code, language):
     layouts = _get_existing_layouts(language_code)

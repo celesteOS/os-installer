@@ -23,4 +23,5 @@ class GlobalState:
     def send_notification(self, *args):
         self._uninitialized()
 
+
 global_state = GlobalState()

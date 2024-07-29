@@ -2,6 +2,7 @@
 
 from enum import Enum
 
+
 class InstallationStep(Enum):
     none = 0
     prepare = 1

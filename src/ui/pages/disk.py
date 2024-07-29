@@ -30,7 +30,8 @@ class DiskPage(Gtk.Stack):
         self.disk_provider = get_disk_provider()
 
         # models
-        self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
+        self.disk_list.bind_model(
+            self.disk_list_model, self._create_device_row)
 
         if disks := self.disk_provider.get_disks():
             reset_model(self.disk_list_model, disks)
@@ -46,7 +47,8 @@ class DiskPage(Gtk.Stack):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = self.disk_provider.disk_size_to_str(self.minimum_disk_size)
+            required_size_str = self.disk_provider.disk_size_to_str(
+                self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
     ### callbacks ###

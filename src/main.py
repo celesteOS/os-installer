@@ -65,7 +65,8 @@ class Application(Adw.Application):
 
         if 'demo-mode' in options:
             if 'test-mode' in options:
-                print("Only one of demo and test mode can be set at a time! Using demo mode.")
+                print("Only one of demo and test mode can be set at a time! "
+                      "Using demo mode.")
             config.set('demo_mode', True)
         elif 'test-mode' in options:
             config.set('test_mode', True)
@@ -89,6 +90,7 @@ class Application(Adw.Application):
         n.set_title(title)
         n.set_body(text)
         self.send_notification(APP_ID, n)
+
 
 def main(version):
     app = Application(version)

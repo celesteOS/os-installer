@@ -7,6 +7,7 @@ from gi.repository import GLib, GObject
 from .config import config
 from .preloadable import Preloadable
 
+
 class DeviceInfo(GObject.GObject):
     __gtype_name__ = __qualname__
 
@@ -51,8 +52,8 @@ class DiskProvider(Preloadable):
 
     def _init_client(self):
         # avoids initializing udisks client in demo mode
-        import gi                           # noqa: E402
-        gi.require_version('UDisks', '2.0') # noqa: E402
+        import gi                            # noqa: E402
+        gi.require_version('UDisks', '2.0')  # noqa: E402
         from gi.repository import UDisks
         self.EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
         self.udisks_client = UDisks.Client.new_sync()
@@ -121,8 +122,6 @@ class DiskProvider(Preloadable):
 
     def get_disks(self):
         self.assert_preloaded()
-        
-        disks = []
 
         if config.get('test_mode') and getrandbits(3) == 7:
             print("test-mode: randomly chose that no disks are available")
@@ -130,9 +129,11 @@ class DiskProvider(Preloadable):
 
         # get available devices
         dummy_var = GLib.Variant('a{sv}', None)
-        devices = self.udisks_client.get_manager().call_get_block_devices_sync(dummy_var, None)
+        manager = self.udisks_client.get_manager()
+        devices = manager.call_get_block_devices_sync(dummy_var, None)
 
         # get device information
+        disks = []
         for device in devices:
             udisks_object = self.udisks_client.get_object(device)
             if not udisks_object:
@@ -195,6 +196,6 @@ def get_disk_provider():
     """
     global _disk_provider
     if not _disk_provider:
-        _disk_provider = DiskDummyProvider() if config.get('demo_mode') else DiskProvider()
+        use_dummy = config.get('demo_mode')
+        _disk_provider = DiskDummyProvider() if use_dummy else DiskProvider()
     return _disk_provider
-

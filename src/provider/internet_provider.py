@@ -26,7 +26,8 @@ class InternetProvider():
         self.thread.start()
 
     def _start_connection_checker(self):
-        self.connection_checker = global_state.thread_pool.submit(check_connection, url=self.url)
+        self.connection_checker = global_state.thread_pool.submit(
+            check_connection, url=self.url)
 
     def _poll(self):
         connected = False

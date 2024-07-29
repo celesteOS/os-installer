@@ -13,6 +13,7 @@ def reset_model(model, new_values):
     n_prev_items = model.get_n_items()
     model.splice(0, n_prev_items, new_values)
 
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
@@ -102,7 +103,7 @@ class ProgressRow(Gtk.ListBoxRow):
 
     title = Gtk.Template.Child()
 
-    def __init__(self, label, additional_info = None, **kwargs):
+    def __init__(self, label, additional_info=None, **kwargs):
         super().__init__(**kwargs)
 
         self.title.set_label(label)

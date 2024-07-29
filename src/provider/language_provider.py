@@ -45,7 +45,7 @@ language_to_default_locale = {
     'xh': 'xh_ZA.UTF-8', 'yi': 'yi_US.UTF-8', 'yo': 'yo_NG.UTF-8', 'za_ZA': 'zu_ZA.UTF-8', 'zu': 'zu_ZA.UTF-8',
     # manually added
     'pt_BR': 'pt_BR.UTF-8', 'pt_PT': 'pt_PT.UTF-8',
-    }
+}
 
 
 class LanguageInfo(GObject.GObject):
@@ -62,7 +62,7 @@ class LanguageInfo(GObject.GObject):
         self.locale = locale
 
 
-class LanguageProvider(Preloadable) :
+class LanguageProvider(Preloadable):
     def __init__(self):
         Preloadable.__init__(self, self._get_languages)
 
@@ -103,7 +103,7 @@ class LanguageProvider(Preloadable) :
             locale = self._get_default_locale(language_code)
 
             if name := self._get_language_name_localized(locale, locale, language_code):
-                language_info =  LanguageInfo(name, language_code, locale)
+                language_info = LanguageInfo(name, language_code, locale)
                 self.all_languages.append(language_info)
             else:
                 unavailable_languages.append(language_code)
@@ -149,5 +149,6 @@ class LanguageProvider(Preloadable) :
     def get_other_languages(self):
         self.assert_preloaded()
         return self.other
+
 
 language_provider = LanguageProvider()

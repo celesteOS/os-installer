@@ -96,8 +96,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('language', self._offer_language_selection()),
             ('welcome', config.get('welcome_page')['usage']),
             ('keyboard-overview', True),
-            ('internet', config.get(
-                'internet_connection_required')),
+            ('internet', config.get('internet_connection_required')),
             ('disk', True),
             ('partition', True),
             ('encrypt', config.get('offer_disk_encryption')),
@@ -119,10 +118,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.available_pages = [name for name, condition in pages if condition]
 
     def _offer_language_selection(self):
-            # only initialize language page, others depend on chosen language
+        # only initialize language page, others depend on chosen language
         if fixed_language := config.get('fixed_language'):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
-                config.set('language', (fixed_info.language_code, fixed_info.name))
+                config.set('language',
+                           (fixed_info.language_code, fixed_info.name))
                 set_system_language(fixed_info)
                 return False
             else:
@@ -287,5 +287,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
-            self.previous_pages.append(self.main_stack.get_visible_child_name())
+            self.previous_pages.append(
+                self.main_stack.get_visible_child_name())
             self._load_page(page_name)

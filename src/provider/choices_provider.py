@@ -8,8 +8,8 @@ from .preloadable import Preloadable
 
 
 class Option(NamedTuple):
-    display : str
-    keyword : str
+    display: str
+    keyword: str
 
 
 class Choice(GObject.GObject):
@@ -34,7 +34,8 @@ def handle_choice(choice):
 
     if 'options' in choice:
         if 'keyword' in choice or 'suggested' in choice:
-            print(f"Config of {name}: 'options' can't be used with 'keyword'/'suggested'")
+            print(f'Config of {name}: '
+                  "Can't combine 'options' with 'keyword'/'suggested'")
             return None
 
         options = []
@@ -57,6 +58,7 @@ def handle_choice(choice):
         else:
             print(f'No keyword found for {name}')
             return None
+
 
 def handle_legacy(choice):
     if 'package' in choice:

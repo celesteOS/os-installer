@@ -60,7 +60,8 @@ def set_system_language(language_info):
     # set app language
     was_set = Locale.setlocale(Locale.LC_ALL, locale)
     if not was_set:
-        print(f'Could not set locale to {language_info.name}, falling back to English.')
+        print(f'Could not set locale to {language_info.name}, '
+              'falling back to English.')
         print('Installation medium creators, check that you have correctly set up the locales',
               f'to support {language_info.name}.')
         # fallback
@@ -85,4 +86,5 @@ def set_system_timezone(timezone):
 def start_system_timesync():
     # TODO find correct way to set enable time sync without user authentication
     Popen(['timedatectl', '--no-ask-password', 'set-ntp', 'true'])
-    Popen(['gsettings', 'set', 'org.gnome.desktop.datetime', 'automatic-timezone', 'true'])
+    Popen(['gsettings', 'set', 'org.gnome.desktop.datetime',
+          'automatic-timezone', 'true'])

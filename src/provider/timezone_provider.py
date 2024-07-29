@@ -37,7 +37,8 @@ def _recurse_location(location, timezones):
         if child.has_timezone():
             timezone_id = child.get_timezone().get_identifier()
             if not timezone_id in timezones:
-                print(f'Developer hint: Unknown timezone {timezone_id} {child.get_name()}')
+                print('Developer hint: '
+                      f'Unknown timezone {timezone_id} {child.get_name()}')
                 continue
             _add_all_locations_to_timezone(timezones[timezone_id], child)
         else:
@@ -55,7 +56,7 @@ def get_timezones():
     timezones = {timezone.get_identifier(): Timezone(timezone.get_identifier())
                  for timezone in GWeather.Location().get_world().get_timezones()}
     for child in _get_location_children(GWeather.Location().get_world()):
-        if not child.has_timezone(): # skips UTC and Etc/GMT+12
+        if not child.has_timezone():  # skips UTC and Etc/GMT+12
             _recurse_location(child, timezones)
 
     return sorted(timezones.values(), key=lambda t: t.name)

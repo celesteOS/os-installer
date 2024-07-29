@@ -23,7 +23,8 @@ if __name__ == '__main__':
     import gi
 
     from gi.repository import Gio
-    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'os-installer.gresource'))
+    resource_file = os.path.join(pkgdatadir, 'os-installer.gresource')
+    resource = Gio.Resource.load(resource_file)
     resource._register()
     from os_installer.config import config
     config.set('localedir', localedir)
