@@ -28,20 +28,6 @@ headerbar, .nested-list {
   margin-right: 12px;
 }
 
-scrolledwindow.embedded undershoot.top {
-  border: 1px @borders;
-  border-style: solid none none none;
-}
-
-scrolledwindow.embedded undershoot.bottom {
-  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 1) 0px, alpha(@shaded_card_bg_color, 0) 18px);
-}
-
-scrolledwindow.separate-bottom undershoot.bottom {
-  border: 1px @borders;
-  border-style: none none solid none;
-}
-
 /* Margin around every boxed-list */
 .boxed-list,
 .terminal-box {

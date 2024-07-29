@@ -7,9 +7,8 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 640;
 
-  Box {
-    orientation: vertical;
-
+  Adw.ToolbarView {
+    [top]
     Adw.HeaderBar {
       show-start-title-buttons: false;
       show-end-title-buttons: false;
@@ -76,8 +75,8 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
       }
     }
 
-    Stack main_stack {
+    content: Stack main_stack {
       transition-type: slide_left_right;
-    }
+    };
   }
 }
