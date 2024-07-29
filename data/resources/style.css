@@ -1,31 +1,11 @@
-@define-color shaded_card_bg_color shade(@card_bg_color, .95);
-
 .terminal-box {
   background-color: #000;
 }
 
 /* Flat style for headerbar and nested-list. */
-headerbar, .nested-list {
+.nested-list {
   background: none;
   box-shadow:none;
-}
-
-/* Use AdwActionRow style where they are not usable. */
-.row-content {
-  margin-bottom: 12px;
-  margin-top: 12px;
-}
-
-/* Default margin in all directions. */
-.marginalized
-{
-  margin: 12px;
-}
-
-.standalone-search
-{
-  margin-left: 12px;
-  margin-right: 12px;
 }
 
 /* Margin around every boxed-list */

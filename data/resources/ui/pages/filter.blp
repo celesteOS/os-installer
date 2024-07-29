@@ -8,9 +8,10 @@ template $FilterPage : Box {
 
   SearchEntry search_entry {
     hexpand: true;
+    margin-start: 12;
+    margin-end: 12;
     placeholder-text: _("Filter");
     receives-default: true;
-    styles ["standalone-search"]
   }
 
   Stack stack {
