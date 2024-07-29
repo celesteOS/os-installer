@@ -14,8 +14,9 @@ class DeviceInfo(GObject.GObject):
     size: int
     size_text: str
     device_path: str
+    is_efi: bool
 
-    def __init__(self, name, size, size_text, device_path):
+    def __init__(self, name, size, size_text, device_path, is_efi=False):
         super().__init__()
 
         if name:
@@ -23,17 +24,21 @@ class DeviceInfo(GObject.GObject):
         self.size = size
         self.size_text = size_text
         self.device_path = device_path
+        self.is_efi = is_efi
 
 
 class Disk(DeviceInfo):
     partitions: list = []
     efi_partition: str = ''
 
-    def __init__(self, name, size, size_text, device_path, partitions=None):
+    def __init__(self, name, size, size_text, device_path, partitions):
         super().__init__(name, size, size_text, device_path)
 
         if partitions:
-            self.partitions, self.efi_partition = partitions
+            self.partitions = partitions
+            efis = [partition for partition in partitions if partition.is_efi]
+            efi_partition = efis[0].name if len(efis) > 0 else ''
+
 
 class DiskProvider(Preloadable):
     udisks_client = None
@@ -58,20 +63,17 @@ class DiskProvider(Preloadable):
             name=block.props.id_label,
             size=block.props.size,
             size_text=self.disk_size_to_str(block.props.size),
-            device_path=block.props.device)
-
-        # check if EFI System Partiton
-        is_efi_partition = (partition.props.type.upper() == self.EFI_PARTITION_GUID)
+            device_path=block.props.device,
+            is_efi=partition.props.type.upper() == self.EFI_PARTITION_GUID)
 
         # add to disk info
-        return (partition_info, is_efi_partition)
+        return partition_info
 
     def _get_partitions(self, partition_table):
         if not partition_table:
             return None
 
         partitions = []
-        efi_partition = ''
         for partition_name in partition_table.props.partitions:
             partition_object = self.udisks_client.get_object(partition_name)
             if not partition_object:
@@ -79,15 +81,11 @@ class DiskProvider(Preloadable):
             block = partition_object.get_block()
             partition = partition_object.get_partition()
             if block and partition:
-                partition_info, is_efi_partition = self._get_one_partition(partition, block)
-
-                partitions.append(partition_info)
-                if is_efi_partition:
-                    efi_partition = partition_info.device_path
+                partitions.append(self._get_one_partition(partition, block))
             else:
                 print('Unhandled partiton in partition table, ignoring.')
 
-        return (partitions, efi_partition)
+        return partitions
 
     def _get_disk_info(self, block, drive, partition_table):
         # disk info
@@ -172,16 +170,16 @@ class DiskDummyProvider(Preloadable):
     def get_disks(self):
         # in 12.5% of all cases claim that no disks are found
         smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
-        smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", ([smol_partition], None))
+        smol_disk = Disk("Dummy", 10000, "10 KB", "/dev/null", [smol_partition])
 
-        efi_partition = DeviceInfo("EFI", 200000000, "20 GB", "/dev/sda_efi")
+        efi_partition = DeviceInfo("EFI", 200000000, "20 GB", "/dev/sda_efi", True)
         unnamed_partition_1 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed")
         unnamed_partition_2 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2")
         unnamed_partition_3 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed3")
         partytion = DeviceInfo("PARTYtion", 20000000000, "20 GB", "/dev/sda_party")
-        disk = Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", ([efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3], "EFI"))
+        disk = Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", [efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3])
 
-        unformated_big_disk = Disk("VERY BIG DISK", 1000000000000000, "1000 TB", "/dev/sdb_very_big")
+        unformated_big_disk = Disk("VERY BIG DISK", 1000000000000000, "1000 TB", "/dev/sdb_very_big", [])
 
         return [smol_disk, disk, unformated_big_disk]
 
