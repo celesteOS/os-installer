@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-07-28 10:11+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-07-29 11:09+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -110,17 +110,15 @@ msgstr "Sonuç Yok"
 msgid "Try a different search"
 msgstr "Başka bir arama deneyin"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Bağlantı yok."
+msgstr "Bağlantı algılanmadı"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Ayarları Aç"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Bağlantı algılandı"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -295,9 +293,8 @@ msgid "Welcome"
 msgstr "Hoş Geldiniz"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "Kuruluma Devam _Et"
+msgstr "Kurulum Tamamlandı"
 
 #~ msgid "Confirm"
 #~ msgstr "Kabul Et"
