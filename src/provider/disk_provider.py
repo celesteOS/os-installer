@@ -5,7 +5,6 @@ from random import getrandbits
 from gi.repository import GLib, GObject
 
 from .config import config
-from .global_state import global_state
 from .preloadable import Preloadable
 
 class DeviceInfo(GObject.GObject):

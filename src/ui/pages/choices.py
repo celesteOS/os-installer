@@ -3,10 +3,9 @@
 from enum import Enum
 from gi.repository import Gio, Gtk
 
-from .config import config
 from .choices_provider import choices_provider
 from .global_state import global_state
-from .widgets import MultiSelectionRow, reset_model, SelectionRow
+from .widgets import MultiSelectionRow, SelectionRow
 
 
 class ChoiceType(Enum):

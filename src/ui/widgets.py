@@ -4,8 +4,6 @@ from pathlib import Path
 
 from gi.repository import Adw, Gtk
 
-from .config import config
-
 
 def reset_model(model, new_values):
     '''

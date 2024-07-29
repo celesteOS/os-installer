@@ -8,8 +8,6 @@ from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
-from .installation_scripting import installation_scripting
-from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/welcome.ui')

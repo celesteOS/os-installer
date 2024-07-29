@@ -2,7 +2,6 @@
 
 from gi.repository import Gtk
 
-from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .system_calls import open_internet_search
 
