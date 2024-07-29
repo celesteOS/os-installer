@@ -118,7 +118,9 @@ class Config:
     def _load_from_file(self, file):
         config_from_file = yaml.load(file, Loader=yaml.Loader)
         for config_property in config_from_file:
-            if type(self.variables[config_property]) is dict:
+            if not config_property in default_config:
+                print(f'Ignoring unknown config for "{config_property}"')
+            elif type(self.variables[config_property]) is dict:
                 for key, value in config_from_file[config_property].items():
                     self.variables[config_property][key] = value
             else:
