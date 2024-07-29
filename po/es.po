@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-07-28 10:11+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-07-29 11:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/es/>\n"
 "Language: es\n"
@@ -116,17 +116,15 @@ msgstr "Sin resultados"
 msgid "Try a different search"
 msgstr "Prueba una búsqueda diferente"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Sin conexión."
+msgstr "Sin conexión"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Abrir Configuración"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Conectado"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -301,9 +299,8 @@ msgid "Welcome"
 msgstr "Bienvenido"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "_Resumir la Instalación"
+msgstr "Instalación terminada"
 
 #~ msgid "Confirm"
 #~ msgstr "Confirmar"
