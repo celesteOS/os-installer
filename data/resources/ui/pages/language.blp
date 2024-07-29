@@ -9,13 +9,13 @@ template $LanguagePage : Box {
     /* Margin is set here, in case this list is empty */
     margin-bottom: 12;
     row-activated => $language_row_activated();
-    styles ["boxed-list", "bottom-spacing"]
+    styles ["boxed-list"]
   }
 
   ListBox other_list {
     hexpand: true;
     row-activated => $language_row_activated();
-    styles ["boxed-list", "bottom-spacing"]
+    styles ["boxed-list"]
   }
 }
 

@@ -2,17 +2,13 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PageWrapper : Adw.Bin {
-  child: ScrolledWindow {
-    propagate-natural-height: true;
-    vexpand: true;
-
-    child: Adw.Clamp {
-      margin-top: 2;
-      maximum-size: 500;
-      tightening-threshold: 352;
-      child: Adw.Bin content {
+  child: Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      Adw.Clamp content {
+        maximum-size: 500;
+        tightening-threshold: 352;
         hexpand: true;
-      };
-    };
+      }
+    }
   };
 }

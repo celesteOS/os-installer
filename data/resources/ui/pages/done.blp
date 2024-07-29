@@ -35,7 +35,7 @@ template $DonePage : Box {
           action-name: "win.quit";
           use-underline: true;
 
-          styles ["pill", "bottom-button"]
+          styles ["pill"]
         }
       };
     }
@@ -60,7 +60,7 @@ template $DonePage : Box {
     tooltip-text: _("Show Terminal Output");
     halign: center;
     clicked => $terminal_button_toggled();
-    styles ["pill", "bottom-button"]
+    styles ["pill"]
 
     Image {
       icon-name: "utilities-terminal-symbolic";
