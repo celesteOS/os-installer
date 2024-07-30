@@ -7,77 +7,7 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 640;
 
-  Adw.ToolbarView {
-    [top]
-    Adw.HeaderBar {
-      show-start-title-buttons: false;
-      show-end-title-buttons: false;
-      styles ["flat"]
-
-      [start]
-      Box {
-        spacing: 6;
-        valign: start;
-
-        WindowControls win_controls_start {
-          side: start;
-          visible: bind win_controls_start.empty inverted;
-        }
-
-        Revealer previous_revealer {
-          transition-type: crossfade;
-          child:
-          Button {
-            action-name: "win.previous-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "go-previous-symbolic";
-          };
-        }
-
-        Revealer next_revealer {
-          transition-type: crossfade;
-          child:
-          Button {
-            action-name: "win.next-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "go-next-symbolic";
-          };
-        }
-      }
-
-      [title]
-      Stack image_stack {
-        margin-top: 6;
-        transition-type: crossfade;
-      }
-
-      [end]
-      Box {
-        valign: start;
-        spacing: 6;
-
-        Revealer reload_revealer {
-          transition-type: crossfade;
-          child:
-          Button {
-            action-name: "win.reload-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "view-refresh-symbolic";
-          };
-        }
-
-        WindowControls win_controls_end {
-          side: end;
-          visible: bind win_controls_end.empty inverted;
-        }
-      }
-    }
-
-    content: Stack main_stack {
-      transition-type: slide_left_right;
-    };
+  Stack main_stack {
+    transition-type: slide_left_right;
   }
 }

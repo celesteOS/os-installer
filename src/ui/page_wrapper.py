@@ -118,10 +118,17 @@ page_name_to_type = {
     'welcome':              WelcomePage,
 }
 
+reloadable_pages = ['disk', 'partition']
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
 class PageWrapper(Adw.Bin):
     __gtype_name__ = __qualname__
+
+    next_revealer = Gtk.Template.Child()
+    previous_revealer = Gtk.Template.Child()
+    title_stack = Gtk.Template.Child()
+    reload_revealer = Gtk.Template.Child()
 
     content = Gtk.Template.Child()
 
@@ -131,19 +138,19 @@ class PageWrapper(Adw.Bin):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
         self.content.set_child(self.page)
+        self._reload_title()
 
-    def cleanup(self):
-        if hasattr(self.page, '__cleanup__'):
-            self.page.__cleanup__()
-        config.unsubscribe(self.page)
+    def _reload_title(self):
+        current_name = self.title_stack.get_visible_child_name()
+        other_name = '1' if current_name == '2' else '2'
 
-    def get_page(self):
-        return self.page
+        if other_title := self.title_stack.get_child_by_name(other_name):
+            self.title_stack.remove(other_title)
 
-    def get_page_name(self):
-        return self.page_name
+        self.title_stack.add_named(self._get_title(), other_name)
+        self.title_stack.set_visible_child_name(other_name)
 
-    def get_title(self):
+    def _get_title(self):
         caption = page_name_to_caption[self.page_name]
         image = page_name_to_image[self.page_name]
 
@@ -159,10 +166,28 @@ class PageWrapper(Adw.Bin):
 
         return LabeledImage(image, caption)
 
-    def replace_page(self, page_name):
+    ### public methods ###
+
+    def cleanup(self):
+        if hasattr(self.page, '__cleanup__'):
+            self.page.__cleanup__()
+        config.unsubscribe(self.page)
+
+    def get_page(self):
+        return self.page
+
+    def reload(self):
+        if not self.page_name in reloadable_pages:
+            return
         self.cleanup()
-        new_page = page_name_to_type[page_name]()
+        new_page = page_name_to_type[self.page_name]()
         self.content.set_child(new_page)
         del self.page
         self.page = new_page
-        self.page_name = page_name
+        self._reload_title()
+
+    def update_navigation_buttons(self, is_first: bool, is_last: bool):
+        self.previous_revealer.set_reveal_child(not is_first)
+        self.next_revealer.set_reveal_child(not is_last)
+        self.reload_revealer.set_reveal_child(
+            self.page_name in reloadable_pages)

@@ -15,7 +15,6 @@ from .system_calls import set_system_language
 
 
 non_returnable_pages = ['done', 'failed', 'install', 'restart', 'summary']
-reloadable_pages = ['disk', 'partition']
 
 
 forward = 1
@@ -26,12 +25,7 @@ backwards = -1
 class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
 
-    image_stack = Gtk.Template.Child()
     main_stack = Gtk.Template.Child()
-
-    next_revealer = Gtk.Template.Child()
-    previous_revealer = Gtk.Template.Child()
-    reload_revealer = Gtk.Template.Child()
 
     navigation_lock = Lock()
     pages = []
@@ -57,7 +51,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         initial_page = PageWrapper(page_name)
         self.main_stack.add_named(initial_page, page_name)
         self.pages = [page_name]
-        self._reload_title()
 
     def _add_action(self, action_name, callback, keybinding):
         action = Gio.SimpleAction.new(action_name, None)
@@ -163,8 +156,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 return
 
         self.main_stack.set_visible_child(page_to_load)
-        self._reload_title()
-        self._update_navigation_buttons()
+        is_first, is_last = self._current_is_first(), self._current_is_last()
+        page_to_load.update_navigation_buttons(is_first, is_last)
 
     def _load_next_page(self, offset: int = forward):
         page_name = self._get_next_page_name(offset)
@@ -183,18 +176,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name)
 
-    def _reload_title(self):
-        current_name = self.image_stack.get_visible_child_name()
-        other_name = '1' if current_name == '2' else '2'
-        other_page = self.image_stack.get_child_by_name(other_name)
-
-        if other_page:
-            self.image_stack.remove(other_page)
-
-        current_page = self.main_stack.get_visible_child()
-        self.image_stack.add_named(current_page.get_title(), other_name)
-        self.image_stack.set_visible_child_name(other_name)
-
     def _current_is_first(self):
         page_name = self.main_stack.get_visible_child_name()
         return page_name == self.pages[0]
@@ -202,12 +183,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _current_is_last(self):
         page_name = self.main_stack.get_visible_child_name()
         return page_name == self.pages[-1]
-
-    def _update_navigation_buttons(self):
-        self.previous_revealer.set_reveal_child(not self._current_is_first())
-        self.next_revealer.set_reveal_child(not self._current_is_last())
-        page_name = self.main_stack.get_visible_child_name()
-        self.reload_revealer.set_reveal_child(page_name in reloadable_pages)
 
     ### callbacks ###
 
@@ -225,17 +200,13 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _reload_page(self, _, __):
         with self.navigation_lock:
-            wrapper = self.main_stack.get_visible_child()
-            current_page_name = wrapper.get_page_name()
-            if not current_page_name in reloadable_pages:
-                return
-            wrapper.replace_page(current_page_name)
+            self.main_stack.get_visible_child().reload()
+
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
                 case "load_next":
                     self._load_next_page()
-            self._reload_title()
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:
