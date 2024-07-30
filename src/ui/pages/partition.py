@@ -5,7 +5,7 @@ from random import getrandbits
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .disk_provider import get_disk_provider
+from .disk_provider import disk_provider
 from .global_state import global_state
 from .system_calls import is_booted_with_uefi
 from .widgets import reset_model, DeviceRow
@@ -27,7 +27,6 @@ class PartitionPage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        self.disk_provider = get_disk_provider()
         self.disk = None
         self.minimum_disk_size = config.get('minimum_disk_size')
 
@@ -41,7 +40,7 @@ class PartitionPage(Gtk.Box):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = self.disk_provider.disk_size_to_str(
+            required_size_str = disk_provider.disk_size_to_str(
                 self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
@@ -55,7 +54,7 @@ class PartitionPage(Gtk.Box):
                 print('test-mode: randomly chose that disk does not exist anymore')
             return claim_existance
         else:
-            return self.disk_provider.disk_exists(disk)
+            return disk_provider.disk_exists(disk)
 
     def _setup_partition_list(self, selected_disk):
         if not self.disk_exists(selected_disk):

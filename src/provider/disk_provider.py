@@ -42,7 +42,6 @@ class Disk(DeviceInfo):
 
 
 class DiskProvider(Preloadable):
-    udisks_client = None
 
     EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
     EFI_PARTITON_FLAGS = None
@@ -52,6 +51,10 @@ class DiskProvider(Preloadable):
 
     def _init_client(self):
         # avoids initializing udisks client in demo mode
+        self.use_dummy_implementation = config.get('demo_mode')
+        if self.use_dummy_implementation:
+            return
+
         import gi                            # noqa: E402
         gi.require_version('UDisks', '2.0')  # noqa: E402
         from gi.repository import UDisks
@@ -99,10 +102,29 @@ class DiskProvider(Preloadable):
 
         return disk
 
+    def _get_dummy_disks(self):
+        return [
+            Disk("Dummy", 10000, "10 KB", "/dev/null",
+                 [DeviceInfo("Too small partiton", 1000, "1 KB", "/dev/00null")]),
+            Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", [
+                DeviceInfo("EFI", 200000000, "2 GB", "/dev/sda_efi", True),
+                DeviceInfo("Previous Installation", 20000000000, "40 GB",
+                           "/dev/sda_yes"),
+                DeviceInfo(None, 20000000000, "30 GB", "/dev/sda_unnamed"),
+                DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2"),
+                DeviceInfo("Swap", 20000000000, "8 GB", None),
+            ]),
+            Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
+                 "/dev/sdb_very_big", []),
+        ]
+
     ### public methods ###
 
     def disk_exists(self, dev_info: DeviceInfo):
         self.assert_preloaded()
+
+        if self.use_dummy_implementation:
+            return True
 
         # check against all available devices
         dummy_var = GLib.Variant('a{sv}', None)
@@ -118,10 +140,18 @@ class DiskProvider(Preloadable):
 
     def disk_size_to_str(self, size):
         self.assert_preloaded()
+
+        if self.use_dummy_implementation:
+            # fake it till you make it
+            return f"{size / 1000000000:.1f} GB"
+
         return self.udisks_client.get_size_for_display(size, False, False)
 
     def get_disks(self):
         self.assert_preloaded()
+
+        if self.use_dummy_implementation:
+            return self._get_dummy_disks()
 
         if config.get('test_mode') and getrandbits(3) == 7:
             print("test-mode: randomly chose that no disks are available")
@@ -157,45 +187,4 @@ class DiskProvider(Preloadable):
         return disks
 
 
-class DiskDummyProvider(Preloadable):
-    def __init__(self):
-        Preloadable.__init__(self, lambda: None)
-
-    def disk_exists(self, dev_info: DeviceInfo):
-        return True
-
-    def disk_size_to_str(self, size):
-        # fake it till you make it
-        return f"{size / 1000000000:.1f} GB"
-
-    def get_disks(self):
-        return [
-            Disk("Dummy", 10000, "10 KB", "/dev/null",
-                 [DeviceInfo("Too small partiton", 1000, "1 KB", "/dev/00null")]),
-            Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", [
-                DeviceInfo("EFI", 200000000, "2 GB", "/dev/sda_efi", True),
-                DeviceInfo("Previous Installation", 20000000000, "40 GB",
-                           "/dev/sda_yes"),
-                DeviceInfo(None, 20000000000, "30 GB", "/dev/sda_unnamed"),
-                DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2"),
-                DeviceInfo("Swap", 20000000000, "8 GB", None),
-            ]),
-            Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
-                 "/dev/sdb_very_big", []),
-        ]
-
-
-_disk_provider = None
-
-
-def get_disk_provider():
-    """
-    In demo-mode use DiskDummyProvider to
-    a) avoid any interaction with real disks
-    b) avoid using UDisks in Flatpak (not installed)
-    """
-    global _disk_provider
-    if not _disk_provider:
-        use_dummy = config.get('demo_mode')
-        _disk_provider = DiskDummyProvider() if use_dummy else DiskProvider()
-    return _disk_provider
+disk_provider = DiskProvider()

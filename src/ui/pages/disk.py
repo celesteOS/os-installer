@@ -3,7 +3,7 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .disk_provider import DeviceInfo, get_disk_provider
+from .disk_provider import DeviceInfo, disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .system_calls import is_booted_with_uefi, open_disks
@@ -27,13 +27,12 @@ class DiskPage(Gtk.Stack):
         Gtk.Stack.__init__(self, **kwargs)
 
         self.minimum_disk_size = config.get('minimum_disk_size')
-        self.disk_provider = get_disk_provider()
 
         # models
         self.disk_list.bind_model(
             self.disk_list_model, self._create_device_row)
 
-        if disks := self.disk_provider.get_disks():
+        if disks := disk_provider.get_disks():
             reset_model(self.disk_list_model, disks)
             self.set_visible_child_name('disks')
             self.image = self.default_image_name
@@ -47,7 +46,7 @@ class DiskPage(Gtk.Stack):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = self.disk_provider.disk_size_to_str(
+            required_size_str = disk_provider.disk_size_to_str(
                 self.minimum_disk_size)
             return DeviceRow(info, required_size_str)
 
