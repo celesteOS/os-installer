@@ -16,15 +16,16 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
 
       [start]
       Box {
+        spacing: 6;
         valign: start;
 
-        WindowControls {
+        WindowControls win_controls_start {
           side: start;
+          visible: bind win_controls_start.empty inverted;
         }
 
         Revealer previous_revealer {
           transition-type: crossfade;
-          margin-end: 6;
           child:
           Button {
             action-name: "win.previous-page";
@@ -68,8 +69,9 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
           };
         }
 
-        WindowControls {
+        WindowControls win_controls_end {
           side: end;
+          visible: bind win_controls_end.empty inverted;
         }
       }
     }
