@@ -51,7 +51,7 @@ page_name_to_page_title = {
     # Translators: Page title
     'keyboard-overview':    _('Keyboard Layout'),
     # Language page has no title
-    'language':             '',
+    'language':             ' ',
     # Translators: Page title
     'locale':               _('Adapt to Location'),
     # Special-cased: Partition page shows disk name as title
@@ -154,7 +154,7 @@ class PageWrapper(Adw.Bin):
             assert self.page_name == 'partition'
             page_title = config.get('selected_disk').name
         # only translate translatable strings
-        elif page_title != "":
+        elif page_title != ' ':
             page_title = _(page_title)
         return page_title
 
