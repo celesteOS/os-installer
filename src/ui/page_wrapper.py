@@ -169,8 +169,6 @@ class PageWrapper(Adw.Bin):
     ### public methods ###
 
     def cleanup(self):
-        if hasattr(self.page, '__cleanup__'):
-            self.page.__cleanup__()
         config.unsubscribe(self.page)
 
     def get_page(self):
