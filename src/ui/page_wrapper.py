@@ -25,7 +25,7 @@ from .summary import SummaryPage
 from .user import UserPage
 from .welcome import WelcomePage
 
-page_name_to_caption = {
+page_name_to_page_title = {
     # Translators: Page title
     'confirm':              _('Confirmation'),
     # Translators: Page title
@@ -156,21 +156,22 @@ class PageWrapper(Adw.Bin):
         self.title_stack.add_named(self._get_title(), other_name)
         self.title_stack.set_visible_child_name(other_name)
 
-    def _get_title(self):
-        caption = page_name_to_caption[self.page_name]
-        image = page_name_to_image[self.page_name]
-
-        if caption == None:
+    def _get_page_title(self):
+        page_title = page_name_to_page_title[self.page_name]
+        if page_title == None:
             assert self.page_name == 'partition'
-            caption = config.get('selected_disk').name
+            page_title = config.get('selected_disk').name
         # only translate translatable strings
-        elif caption != "":
-            caption = _(caption)
+        elif page_title != "":
+            page_title = _(page_title)
+        return page_title
 
+    def _get_title(self):
+        image = page_name_to_image[self.page_name]
         if not image:
             image = self.page.image
 
-        return LabeledImage(image, caption)
+        return LabeledImage(image, self._get_page_title())
 
     ### public methods ###
 
