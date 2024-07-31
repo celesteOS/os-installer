@@ -136,6 +136,10 @@ class PageWrapper(Adw.Bin):
         super().__init__(**kwargs)
         self._set_new_page(page_name)
 
+    def __del__(self):
+        config.unsubscribe(self.page)
+        del self.page
+
     def _set_new_page(self, page_name):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
@@ -170,16 +174,13 @@ class PageWrapper(Adw.Bin):
 
     ### public methods ###
 
-    def cleanup(self):
-        config.unsubscribe(self.page)
-
     def get_page(self):
         return self.page
 
     def reload(self):
         if not self.page_name in reloadable_pages:
             return
-        self.cleanup()
+        config.unsubscribe(self.page)
         del self.page
         self._set_new_page(self.page_name)
 
