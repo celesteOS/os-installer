@@ -13,9 +13,6 @@ from .widgets import reset_model, DeviceRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
 class DiskPage(Gtk.Stack):
     __gtype_name__ = __qualname__
-    no_disk_image_name = 'no-disk-symbolic'
-    default_image_name = 'drive-harddisk-system-symbolic'
-    image = default_image_name
 
     disk_list = Gtk.Template.Child()
 
@@ -35,10 +32,8 @@ class DiskPage(Gtk.Stack):
         if disks := disk_provider.get_disks():
             reset_model(self.disk_list_model, disks)
             self.set_visible_child_name('disks')
-            self.image = self.default_image_name
         else:
             self.set_visible_child_name('no-disks')
-            self.image = self.no_disk_image_name
 
         installation_scripting.can_run_prepare()
 

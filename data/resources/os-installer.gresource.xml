@@ -12,7 +12,6 @@
     <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/map-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/no-disk-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/puzzle-piece-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/success-symbolic.svg</file>

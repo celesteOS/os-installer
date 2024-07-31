@@ -72,7 +72,7 @@ page_name_to_caption = {
 
 page_name_to_image = {
     'confirm':              'question-round-symbolic',
-    'disk':                 None,
+    'disk':                 'drive-harddisk-system-symbolic',
     'done':                 'success-symbolic',
     'encrypt':              'dialog-password-symbolic',
     'failed':               'computer-fail-symbolic',
