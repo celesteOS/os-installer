@@ -20,8 +20,9 @@ class InstallPage(Gtk.Box):
         self.terminal_box.append(installation_scripting.terminal)
         self.stack.set_visible_child_name('spinner')
         self.spinner.start()
+        config.subscribe('installation_running', self._installation_done)
 
-    def __cleanup__(self):
+    def _installation_done(self, _):
         self.terminal_box.remove(installation_scripting.terminal)
         self.spinner.stop()
 
