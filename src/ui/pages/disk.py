@@ -6,7 +6,7 @@ from .config import config
 from .disk_provider import DeviceInfo, disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
-from .system_calls import is_booted_with_uefi, open_disks
+from .system_calls import open_disks
 from .widgets import reset_model, DeviceRow
 
 
@@ -17,8 +17,6 @@ class DiskPage(Gtk.Stack):
     disk_list = Gtk.Template.Child()
 
     disk_list_model = Gio.ListStore()
-
-    current_disk = None
 
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
