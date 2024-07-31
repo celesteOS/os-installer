@@ -134,7 +134,9 @@ class PageWrapper(Adw.Bin):
 
     def __init__(self, page_name, **kwargs):
         super().__init__(**kwargs)
+        self._set_new_page(page_name)
 
+    def _set_new_page(self, page_name):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
         self.content.set_child(self.page)
@@ -178,11 +180,8 @@ class PageWrapper(Adw.Bin):
         if not self.page_name in reloadable_pages:
             return
         self.cleanup()
-        new_page = page_name_to_type[self.page_name]()
-        self.content.set_child(new_page)
         del self.page
-        self.page = new_page
-        self._reload_title()
+        self._set_new_page(self.page_name)
 
     def update_navigation_buttons(self, is_first: bool, is_last: bool):
         self.previous_revealer.set_reveal_child(not is_first)
