@@ -25,7 +25,7 @@ backwards = -1
 class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
 
-    main_stack = Gtk.Template.Child()
+    navigation_view = Gtk.Template.Child()
 
     navigation_lock = Lock()
     pages = []
@@ -49,7 +49,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _initialize_first_page(self):
         page_name = self.available_pages[0]
         initial_page = PageWrapper(page_name)
-        self.main_stack.add_named(initial_page, page_name)
+        self.navigation_view.add(initial_page)
         self.pages = [page_name]
 
     def _add_action(self, action_name, callback, keybinding):
@@ -127,25 +127,33 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         for page_name in filter(None, self.pages):
             if page_name == kept_page_name:
                 continue
-            page = self.main_stack.get_child_by_name(page_name)
-            self.main_stack.remove(page)
+            page = self.navigation_view.find_page(page_name)
+            if not page:
+                continue
+            self.navigation_view.remove(page)
             del page
         self.pages = [kept_page_name] if kept_page_name else []
 
     def _get_next_page_name(self, offset: int = forward):
-        current_page_name = self.main_stack.get_visible_child_name()
-        current_index = self.available_pages.index(current_page_name)
+        current_page = self.navigation_view.get_visible_page()
+        current_index = self.available_pages.index(current_page.get_tag())
         return self.available_pages[current_index + offset]
 
     def _load_page(self, page_name: str, offset: int = forward):
         if page_name in non_returnable_pages:
             self._remove_all_but_one_page(None)
 
-        page_to_load = self.main_stack.get_child_by_name(page_name)
+        page_to_load = self.navigation_view.find_page(page_name)
         if not page_to_load:
             page_to_load = PageWrapper(page_name)
-            self.main_stack.add_named(page_to_load, page_name)
+            self.navigation_view.add(page_to_load)
+            self.navigation_view.push_by_tag(page_name)
             self.pages.append(page_name)
+        else:
+            if offset >= forward:
+                self.navigation_view.push_by_tag(page_name)
+            else:
+                self.navigation_view.pop_to_tag(page_name)
 
         match config.steal('page_navigation'):
             case 'load_prev':
@@ -155,9 +163,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self._load_next_page(offset + (1 if offset > 0 else -1))
                 return
 
-        self.main_stack.set_visible_child(page_to_load)
+        current_page = self.navigation_view.get_visible_page()
         is_first, is_last = self._current_is_first(), self._current_is_last()
-        page_to_load.update_navigation_buttons(is_first, is_last)
+        current_page.update_navigation_buttons(is_first, is_last)
 
     def _load_next_page(self, offset: int = forward):
         page_name = self._get_next_page_name(offset)
@@ -166,22 +174,19 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _load_previous_page(self):
         assert self.previous_pages, 'Logic Error: No previous pages to go to!'
 
-        popped_page = self.main_stack.get_visible_child()
-        self.pages.pop()
-
-        # delete popped page
-        self.main_stack.remove(popped_page)
+        popped_page = self.navigation_view.get_visible_page()
+        self.navigation_view.pop()
         del popped_page
 
         previous_page_name = self.previous_pages.pop()
-        self._load_page(previous_page_name)
+        self._load_page(previous_page_name, offset=backwards)
 
     def _current_is_first(self):
-        page_name = self.main_stack.get_visible_child_name()
-        return page_name == self.pages[0]
+        page = self.navigation_view.get_visible_page()
+        return page.get_tag() == self.pages[0]
 
     def _current_is_last(self):
-        page_name = self.main_stack.get_visible_child_name()
+        page_name = self.navigation_view.get_visible_page().get_tag()
         return page_name == self.pages[-1]
 
     ### callbacks ###
@@ -200,7 +205,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _reload_page(self, _, __):
         with self.navigation_lock:
-            self.main_stack.get_visible_child().reload()
+            self.navigation_view.get_visible_page().reload()
 
             match config.steal('page_navigation'):
                 case "load_prev":
@@ -238,7 +243,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def advance(self, page, allow_return: bool = True):
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
-            current_page = self.main_stack.get_visible_child()
+            current_page = self.navigation_view.get_visible_page()
             if page != None and page != current_page.get_page():
                 return
 
@@ -259,5 +264,5 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
             self.previous_pages.append(
-                self.main_stack.get_visible_child_name())
+                self.navigation_view.get_visible_page().get_tag())
             self._load_page(page_name)

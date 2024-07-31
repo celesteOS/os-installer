@@ -122,7 +122,7 @@ reloadable_pages = ['disk', 'partition']
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
-class PageWrapper(Adw.Bin):
+class PageWrapper(Adw.NavigationPage):
     __gtype_name__ = __qualname__
 
     next_revealer = Gtk.Template.Child()
@@ -146,7 +146,12 @@ class PageWrapper(Adw.Bin):
         self.page_name = page_name
         self.content.set_child(self.page)
         self._set_title_image()
-        self.title_label.set_label(self._get_page_title())
+        page_title = self._get_page_title()
+        self.title_label.set_label(page_title)
+
+        # AdwNavigationPage properties
+        self.set_title(page_title)
+        self.set_tag(page_name)
 
     def _get_page_title(self):
         page_title = page_name_to_page_title[self.page_name]
