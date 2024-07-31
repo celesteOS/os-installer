@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from locale import gettext as _
+from pathlib import Path
 
 from gi.repository import Adw, Gtk
 
 from .config import config
-from .widgets import LabeledImage
 
 from .choices import FeaturePage, SoftwarePage
 from .confirm import ConfirmPage
@@ -127,7 +127,8 @@ class PageWrapper(Adw.Bin):
 
     next_revealer = Gtk.Template.Child()
     previous_revealer = Gtk.Template.Child()
-    title_stack = Gtk.Template.Child()
+    title_image = Gtk.Template.Child()
+    title_label = Gtk.Template.Child()
     reload_revealer = Gtk.Template.Child()
 
     content = Gtk.Template.Child()
@@ -144,17 +145,8 @@ class PageWrapper(Adw.Bin):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
         self.content.set_child(self.page)
-        self._reload_title()
-
-    def _reload_title(self):
-        current_name = self.title_stack.get_visible_child_name()
-        other_name = '1' if current_name == '2' else '2'
-
-        if other_title := self.title_stack.get_child_by_name(other_name):
-            self.title_stack.remove(other_title)
-
-        self.title_stack.add_named(self._get_title(), other_name)
-        self.title_stack.set_visible_child_name(other_name)
+        self._set_title_image()
+        self.title_label.set_label(self._get_page_title())
 
     def _get_page_title(self):
         page_title = page_name_to_page_title[self.page_name]
@@ -166,12 +158,19 @@ class PageWrapper(Adw.Bin):
             page_title = _(page_title)
         return page_title
 
-    def _get_title(self):
+    def _set_title_image(self):
         image = page_name_to_image[self.page_name]
         if not image:
             image = self.page.image
 
-        return LabeledImage(image, self._get_page_title())
+        if isinstance(image, str):
+            self.title_image.set_from_icon_name(image)
+        elif isinstance(image, Path):
+            self.title_image.set_from_file(str(image))
+        else:
+            print('Developer hint: invalid title image')
+            assert self.page_name == 'welcome'
+            self.title_image.set_from_icon_name('weather-clear-symbolic')
 
     ### public methods ###
 

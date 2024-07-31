@@ -41,9 +41,20 @@ template $PageWrapper : Adw.Bin {
       }
 
       [title]
-      Stack title_stack {
+      Box {
         margin-top: 6;
-        transition-type: crossfade;
+        orientation: vertical;
+        spacing: 6;
+
+        Image title_image {
+          pixel-size: 128;
+        }
+
+        Label title_label {
+          justify: center;
+          wrap: true;
+          styles ["heading"]
+        }
       }
 
       [end]
