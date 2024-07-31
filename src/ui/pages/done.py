@@ -17,13 +17,11 @@ class DonePage(Gtk.Box):
         Gtk.Box.__init__(self, **kwargs)
         self.terminal_box.append(installation_scripting.terminal)
 
-    def __cleanup__(self):
-        self.terminal_box.remove(installation_scripting.terminal)
-
     ### callbacks ###
 
     @Gtk.Template.Callback('restart_button_clicked')
     def _restart_button_clicked(self, button):
+        self.terminal_box.remove(installation_scripting.terminal)
         global_state.advance(self)
 
     @Gtk.Template.Callback('terminal_button_toggled')
