@@ -147,10 +147,12 @@ class Config:
     def set(self, variable, value):
         self.variables[variable] = value
 
+        subscribers = []
         with self.subscription_lock:
             if variable in self.subscriptions:
-                for func in self.subscriptions[variable]:
-                    func(value)
+                subscribers = self.subscriptions[variable]
+        for func in subscribers:
+            func(value)
 
     def steal(self, variable):
         if variable in self.variables:
