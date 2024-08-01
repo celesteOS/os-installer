@@ -45,6 +45,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._initialize_first_page()
         self.navigation_view.connect('popped', self._popped_page)
         self.navigation_view.connect('pushed', self._pushed_page)
+        self.navigation_view.connect('get-next-page', self._add_next_page)
+
+    def _add_next_page(self, _):
+        current_page = self.navigation_view.get_visible_page()
+        next_index = self.pages.index(current_page.get_tag()) + 1
+        if next_index >= len(self.pages):
+            return None
+        next_page_name = self.pages[next_index]
+        return self.navigation_view.find_page(next_page_name)
 
     def _popped_page(self, _, __):
         self._update_page()
@@ -140,6 +149,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.navigation_view.replace([])
         self.pages = []
         self.previous_pages = []
+
+        if page := self.navigation_view.find_page('language'):
+            self.navigation_view.replace([page])
 
     def _get_next_page_name(self, offset: int = forward):
         current_page = self.navigation_view.get_visible_page()
