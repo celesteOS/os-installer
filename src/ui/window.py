@@ -53,7 +53,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._update_page()
 
     def _initialize_first_page(self):
-        self._remove_all_but_one_page(None)
+        self._remove_all_pages()
         page_name = self.available_pages[0]
         initial_page = PageWrapper(page_name)
         self.navigation_view.replace([initial_page])
@@ -130,16 +130,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 config.set('fixed_language', '')
         return True
 
-    def _remove_all_but_one_page(self, kept_page_name):
+    def _remove_all_pages(self):
         for page_name in filter(None, self.pages):
-            if page_name == kept_page_name:
-                continue
             page = self.navigation_view.find_page(page_name)
             if not page:
                 continue
             self.navigation_view.remove(page)
             del page
-        self.pages = [kept_page_name] if kept_page_name else []
+        self.navigation_view.replace([])
+        self.pages = []
         self.previous_pages = []
 
     def _get_next_page_name(self, offset: int = forward):
@@ -149,7 +148,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _load_page(self, page_name: str, offset: int = forward):
         if page_name in non_returnable_pages:
-            self._remove_all_but_one_page(None)
+            self._remove_all_pages()
 
         page_to_load = self.navigation_view.find_page(page_name)
         if not page_to_load:
@@ -267,7 +266,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             else:
                 next_page_name = self._get_next_page_name()
                 if not allow_return:
-                    self._remove_all_but_one_page(None)
+                    self._remove_all_pages()
                 self._load_page(next_page_name)
 
     def retranslate_pages(self):
