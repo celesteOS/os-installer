@@ -7,7 +7,6 @@ template $PageWrapper : Adw.NavigationPage {
     Adw.HeaderBar {
       show-start-title-buttons: false;
       show-end-title-buttons: false;
-      show-back-button: false;
       styles ["flat"]
 
       [start]
@@ -18,16 +17,6 @@ template $PageWrapper : Adw.NavigationPage {
         WindowControls win_controls_start {
           side: start;
           visible: bind win_controls_start.empty inverted;
-        }
-
-        Revealer previous_revealer {
-          transition-type: crossfade;
-          child: Button {
-            action-name: "win.previous-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "go-previous-symbolic";
-          };
         }
 
         Revealer next_revealer {

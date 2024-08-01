@@ -126,7 +126,6 @@ class PageWrapper(Adw.NavigationPage):
     __gtype_name__ = __qualname__
 
     next_revealer = Gtk.Template.Child()
-    previous_revealer = Gtk.Template.Child()
     title_image = Gtk.Template.Child()
     title_label = Gtk.Template.Child()
     reload_revealer = Gtk.Template.Child()
@@ -189,8 +188,7 @@ class PageWrapper(Adw.NavigationPage):
         del self.page
         self._set_new_page(self.page_name)
 
-    def update_navigation_buttons(self, is_first: bool, is_last: bool):
-        self.previous_revealer.set_reveal_child(not is_first)
+    def update_navigation_buttons(self, is_last: bool):
         self.next_revealer.set_reveal_child(not is_last)
         self.reload_revealer.set_reveal_child(
             self.page_name in reloadable_pages)
