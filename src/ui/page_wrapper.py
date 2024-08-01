@@ -179,8 +179,8 @@ class PageWrapper(Adw.NavigationPage):
 
     ### public methods ###
 
-    def get_page(self):
-        return self.page
+    def has_same_type(self, other_page):
+        return type(self.page) == type(other_page)
 
     def reload(self):
         if not self.page_name in reloadable_pages:

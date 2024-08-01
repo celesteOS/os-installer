@@ -244,7 +244,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
             current_page = self.navigation_view.get_visible_page()
-            if page != None and page != current_page.get_page():
+            if page != None and not current_page.has_same_type(page):
                 return
 
             if self.previous_pages:
