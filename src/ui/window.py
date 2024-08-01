@@ -45,6 +45,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._determine_available_pages()
         self._initialize_first_page()
+        self.navigation_view.connect('popped', self._popped_page)
+        self.navigation_view.connect('pushed', self._pushed_page)
+
+    def _popped_page(self, _, __):
+        self._update_page()
+
+    def _pushed_page(self, _):
+        self._update_page()
 
     def _initialize_first_page(self):
         page_name = self.available_pages[0]
@@ -157,12 +165,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         match config.steal('page_navigation'):
             case 'load_prev':
-                self._load_next_page(offset - 1)
+                self._load_next_page(offset)
                 return
-            case "pass":
-                self._load_next_page(offset + (1 if offset > 0 else -1))
+            case 'pass':
+                self._load_next_page(offset)
                 return
+        self._update_page()
 
+    def _update_page(self):
         current_page = self.navigation_view.get_visible_page()
         is_first, is_last = self._current_is_first(), self._current_is_last()
         current_page.update_navigation_buttons(is_first, is_last)
