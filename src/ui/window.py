@@ -41,8 +41,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
 
-        self.previous_pages = []
-
         self._determine_available_pages()
         self._initialize_first_page()
         self.navigation_view.connect('popped', self._popped_page)
@@ -55,9 +53,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._update_page()
 
     def _initialize_first_page(self):
+        self._remove_all_but_one_page(None)
         page_name = self.available_pages[0]
         initial_page = PageWrapper(page_name)
-        self.navigation_view.add(initial_page)
+        self.navigation_view.replace([initial_page])
         self.pages = [page_name]
 
     def _add_action(self, action_name, callback, keybinding):
@@ -141,6 +140,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self.navigation_view.remove(page)
             del page
         self.pages = [kept_page_name] if kept_page_name else []
+        self.previous_pages = []
 
     def _get_next_page_name(self, offset: int = forward):
         current_page = self.navigation_view.get_visible_page()
