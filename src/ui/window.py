@@ -158,6 +158,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self.navigation_view.push_by_tag(page_name)
             self.pages.append(page_name)
         else:
+            # in case page is still in stack, but not in internal list
+            if not page_name in self.pages:
+                self.pages.append(page_name)
             if offset >= forward:
                 self.navigation_view.push_by_tag(page_name)
             else:
@@ -269,7 +272,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def retranslate_pages(self):
         with self.navigation_lock:
-            self._remove_all_but_one_page("language")
+            self._initialize_first_page()
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
