@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-07-28 10:11+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-08-02 12:09+0000\n"
+"Last-Translator: AsciiWolf <mail@asciiwolf.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/cs/>\n"
 "Language: cs\n"
@@ -26,9 +26,8 @@ msgid "Install an Operating System"
 msgstr "Nainstalovat operační systém"
 
 #. Translators: Dialog title
-#, fuzzy
 msgid "Installation Running"
-msgstr "Instalace se nezdařila"
+msgstr "Instalace běží"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
@@ -69,9 +68,8 @@ msgid "Connect a disk and reload this page."
 msgstr "Připojte disk a znovu načtěte tuto stránku."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "Zno_vu načíst"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 msgid "_Restart System"
@@ -115,17 +113,15 @@ msgstr "Žádné výsledky"
 msgid "Try a different search"
 msgstr "Zkuste jiné vyhledávání"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Žádné připojení."
+msgstr "Nezjištěno žádné připojení"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Otevřít nastavení"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Zjištěno připojení"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -197,9 +193,8 @@ msgid "User Account"
 msgstr "Uživatelský účet"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
 msgid "(Automatic Login)"
-msgstr "Automaticky přihlašovat"
+msgstr "(Automatické přihlášení)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
@@ -240,9 +235,8 @@ msgstr "Nepojmenovaný oddíl"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
 msgid "Not enough space for installation ({} required)"
-msgstr "Nedostatek místa pro instalaci"
+msgstr "Nedostatek místa pro instalaci (vyžadováno {})"
 
 #. Translators: Page title
 msgid "Confirmation"
@@ -302,9 +296,8 @@ msgid "Welcome"
 msgstr "Vítejte"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "_Pokračovat v instalaci"
+msgstr "Instalace dokončena"
 
 #, fuzzy
 #~| msgid "_Confirm"
