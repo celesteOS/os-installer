@@ -20,24 +20,20 @@ template $PageWrapper : Adw.NavigationPage {
           visible: bind win_controls_start.empty inverted;
         }
 
-        Revealer previous_revealer {
-          transition-type: crossfade;
-          child: Button {
-            action-name: "win.previous-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "go-previous-symbolic";
-          };
+        Button previous_button {
+          action-name: "win.previous-page";
+          focusable: true;
+          focus-on-click: false;
+          icon-name: "go-previous-symbolic";
+          visible: false;
         }
 
-        Revealer next_revealer {
-          transition-type: crossfade;
-          child: Button {
-            action-name: "win.next-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "go-next-symbolic";
-          };
+        Button next_button {
+          action-name: "win.next-page";
+          focusable: true;
+          focus-on-click: false;
+          icon-name: "go-next-symbolic";
+          visible: false;
         }
       }
 
@@ -63,14 +59,11 @@ template $PageWrapper : Adw.NavigationPage {
         valign: start;
         spacing: 6;
 
-        Revealer reload_revealer {
-          transition-type: crossfade;
-          child: Button {
-            action-name: "win.reload-page";
-            focusable: true;
-            focus-on-click: false;
-            icon-name: "view-refresh-symbolic";
-          };
+        Button reload_button {
+          action-name: "win.reload-page";
+          focusable: true;
+          focus-on-click: false;
+          icon-name: "view-refresh-symbolic";
         }
 
         WindowControls win_controls_end {

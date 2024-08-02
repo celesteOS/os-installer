@@ -125,17 +125,18 @@ reloadable_pages = ['disk', 'partition']
 class PageWrapper(Adw.NavigationPage):
     __gtype_name__ = __qualname__
 
-    next_revealer = Gtk.Template.Child()
-    previous_revealer = Gtk.Template.Child()
+    previous_button = Gtk.Template.Child()
+    next_button = Gtk.Template.Child()
     title_image = Gtk.Template.Child()
     title_label = Gtk.Template.Child()
-    reload_revealer = Gtk.Template.Child()
+    reload_button = Gtk.Template.Child()
 
     content = Gtk.Template.Child()
 
     def __init__(self, page_name, **kwargs):
         super().__init__(**kwargs)
         self._set_new_page(page_name)
+        self.reload_button.set_visible(page_name in reloadable_pages)
 
     def __del__(self):
         config.unsubscribe(self.page)
@@ -190,7 +191,5 @@ class PageWrapper(Adw.NavigationPage):
         self._set_new_page(self.page_name)
 
     def update_navigation_buttons(self, is_first: bool, is_last: bool):
-        self.previous_revealer.set_reveal_child(not is_first)
-        self.next_revealer.set_reveal_child(not is_last)
-        self.reload_revealer.set_reveal_child(
-            self.page_name in reloadable_pages)
+        self.previous_button.set_visible(not is_first)
+        self.next_button.set_visible(not is_last)
