@@ -84,6 +84,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.shortcut_controller.set_scope(Gtk.ShortcutScope(1))
 
         self._add_action('next-page', self._navigate_forward, '<Alt>Right')
+        self._add_action('previous-page', self._navigate_backward, '<Alt>Left')
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
         self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
@@ -187,7 +188,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _update_page(self):
         current_page = self.navigation_view.get_visible_page()
-        current_page.update_navigation_buttons(self._current_is_last())
+        is_first, is_last = self._current_is_first(), self._current_is_last()
+        current_page.update_navigation_buttons(is_first, is_last)
 
     def _load_next_page(self, offset: int = forward):
         page_name = self._get_next_page_name(offset)
@@ -203,11 +205,22 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         previous_page_name = self.previous_pages.pop()
         self._load_page(previous_page_name, offset=backwards)
 
+    def _current_is_first(self):
+        page = self.navigation_view.get_visible_page()
+        return page.get_tag() == self.pages[0]
+
     def _current_is_last(self):
         page_name = self.navigation_view.get_visible_page().get_tag()
         return page_name == self.pages[-1]
 
     ### callbacks ###
+
+    def _navigate_backward(self, _, __):
+        with self.navigation_lock:
+            if self.previous_pages:
+                self._load_previous_page()
+            elif not self._current_is_first():
+                self._load_next_page(backwards)
 
     def _navigate_forward(self, _, __):
         with self.navigation_lock:
