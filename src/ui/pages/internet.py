@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Lock
+from threading import Lock, Thread
 
 from gi.repository import Gtk
 
@@ -19,9 +19,7 @@ class InternetPage(Gtk.Stack):
 
         self.update_lock = Lock()
 
-        self.initial_load = True
         config.subscribe('internet_connection', self._connection_state_changed)
-        self.initial_load = False
 
     ### callbacks ###
 
@@ -35,10 +33,7 @@ class InternetPage(Gtk.Stack):
                 self.set_visible_child_name('connected')
                 self.image = 'network-wireless-symbolic'
                 start_system_timesync()
-                if self.initial_load:
-                    config.set('page_navigation', 'pass')
-                else:
-                    global_state.advance(self)
+                Thread(target=global_state.advance, args=[self]).start()
             else:
                 self.set_visible_child_name('not-connected')
                 self.image = 'network-wireless-disabled-symbolic'

@@ -181,9 +181,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             case 'load_prev':
                 self._load_next_page(offset)
                 return
-            case 'pass':
-                self._load_next_page(offset)
-                return
         self._update_page()
 
     def _update_page(self):
@@ -234,8 +231,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             match config.steal('page_navigation'):
                 case "load_prev":
                     self._load_next_page(backwards)
-                case "load_next":
-                    self._load_next_page()
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:
