@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-28 12:09+0200\n"
-"PO-Revision-Date: 2024-08-01 10:33+0000\n"
+"PO-Revision-Date: 2024-08-02 12:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/hr/>\n"
@@ -36,8 +36,8 @@ msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Zaustavljanje instalacije u tijeku će ostaviti disk u nedefiniranom stanju "
-"što bi moglo biti štetno"
+"Prekidanje instalacije koja je u tijeku će ostaviti disk u nedefiniranom "
+"stanju što bi moglo biti štetno"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 msgid "_Continue Installation"
@@ -64,10 +64,10 @@ msgid "_Manage Disks"
 msgstr "_Upravljanje diskovima"
 
 msgid "No Disks avaliable"
-msgstr "Nema dostupnih diskova"
+msgstr "Nema diskova"
 
 msgid "Connect a disk and reload this page."
-msgstr "Spojite disk i ponovo učitajte ovu stranicu."
+msgstr "Poveži disk i ponovo učitaj ovu stranicu."
 
 #. Translators: On button.
 msgid "_Reload"
@@ -83,11 +83,11 @@ msgstr "Ponovo pokreni _kasnije"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 msgid "Show Terminal Output"
-msgstr "Prikaži izlaz terminala"
+msgstr "Prikaži rezultat terminala"
 
 #. Translators: Used with option to enable disk encryption
 msgid "Encrypt Files"
-msgstr "Šifriranje datoteka"
+msgstr "Šifriraj datoteke"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
 msgid "Encryption PIN"
@@ -97,25 +97,25 @@ msgstr "PIN za šifriranje"
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Dobro zapamtite ovaj PIN. Bez njega nećete moći pristupiti svojim datotekama."
+"Dobro zapamti ovaj PIN. Bez njega nećeš moći pristupiti svojim datotekama."
 
 #. Translators: Shown if installation fails.
 msgid "Search for Help on the Internet"
-msgstr "Potraži pomoć na Internetu"
+msgstr "Potraži pomoć na internetu"
 
 msgid "Filter"
 msgstr "Filtar"
 
 #. Translators: Empty result placeholder title
 msgid "No Results"
-msgstr "Bez rezultata"
+msgstr "Nema rezultata"
 
 #. Translators: Empty result placeholder, meant as a suggestion
 msgid "Try a different search"
 msgstr "Pokušaj jednu drugu pretragu"
 
 msgid "No connection detected"
-msgstr "Veza nije otkrivena"
+msgstr "Nijedna veza nije otkrivena"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
@@ -132,7 +132,7 @@ msgstr "Jezik tipkovnice"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
-msgstr "Ovdje isprobajte odabrani raspored tipkovnice"
+msgstr "Ovdje isprobaj odabrani raspored tipkovnice"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
@@ -154,18 +154,18 @@ msgstr "Koristi cijeli disk"
 
 #. Translators: Heading of list of partitions
 msgid "Partitions"
-msgstr "Particija"
+msgstr "Particije"
 
 msgid "Disk has no partitions."
-msgstr "Disk nema partiicja."
+msgstr "Disk nema partiicija."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
-msgstr "Odabir particije nije moguć."
+msgstr "Biranje particije nije moguće."
 
 #. Translators: Followed by a list of requirements
 msgid "The disk requires:"
-msgstr "Disk zahtijeva:"
+msgstr "Disk treba:"
 
 #. Translators: Bullet point listing.
 msgid ""
@@ -173,11 +173,11 @@ msgid ""
 "  • EFI partition"
 msgstr ""
 "  • GPT particioniranje\n"
-"  • EFI particija"
+"  • EFI particiju"
 
 #. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
-msgstr "  • BIOS particija za pokretanje"
+msgstr "  • BIOS particiju za pokretanje"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -191,7 +191,7 @@ msgstr "Raspored tipkovnice"
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
 msgid "User Account"
-msgstr "Korisnički Račun"
+msgstr "Korisnički račun"
 
 #. Translators: Gets shown when autologin is enabled.
 msgid "(Automatic Login)"
@@ -200,12 +200,12 @@ msgstr "(Automatska prijava)"
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 msgid "Additional Software"
-msgstr "Dodatnih programi"
+msgstr "Dodatni softver"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 msgid "None"
-msgstr "Ništa"
+msgstr "Nema"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
@@ -228,8 +228,7 @@ msgstr "_Loznka"
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"Ova aplikacija će vas voditi kroz instalaciju distribucije {} na vaš sustav."
+msgstr "Ova će ti aplikacija pomoći instalirati {} na tvoj sustav."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
@@ -246,11 +245,11 @@ msgstr "Potvrda"
 
 #. Translators: Page title
 msgid "Disk Selection"
-msgstr "Odabir diska"
+msgstr "Biranje diska"
 
 #. Translators: Page title
 msgid "Installation Complete"
-msgstr "Instalacija je završena"
+msgstr "Instalacija je gotova"
 
 #. Translators: Page title
 msgid "Disk Encryption"
@@ -263,7 +262,7 @@ msgstr "Instalacija nije upijela"
 
 #. Translators: Page title
 msgid "Select Region"
-msgstr "Odabir regije"
+msgstr "Odaberi regiju"
 
 #. Translators: Page title
 msgid "Installing"
@@ -275,7 +274,7 @@ msgstr "Provjera internetske veze"
 
 #. Translators: Page title
 msgid "Keyboard Layout Selection"
-msgstr "Odabir rasporeda tipkovnice"
+msgstr "Biranje rasporeda tipkovnice"
 
 #. Translators: Page title
 msgid "Adapt to Location"
@@ -291,16 +290,15 @@ msgstr "Sažetak"
 
 #. Translators: Page title
 msgid "Select Location"
-msgstr "Odabir lokacije"
+msgstr "Odaberi lokaciju"
 
 #. Translators: Page title
 msgid "Welcome"
-msgstr "Dobrodošlica"
+msgstr "Dobro došao, dobro došla"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "_Nastavi instalaciju"
+msgstr "Instalacija je završena"
 
 #, fuzzy
 #~| msgid "_Confirm"
