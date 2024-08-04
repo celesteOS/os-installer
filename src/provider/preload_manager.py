@@ -7,20 +7,18 @@ from .disk_provider import disk_provider
 from .internet_provider import internet_provider
 from .language_provider import language_provider
 
+providers = [language_provider, disk_provider, choices_provider]
+
 
 class PreloadManager:
     def __init__(self):
         self.thread = Thread(target=self._preload)
 
     def _preload(self):
-        language_provider.preload()
-        language_provider.assert_preloaded()
-
-        disk_provider.preload()
-        disk_provider.assert_preloaded()
-
-        choices_provider.preload()
-        choices_provider.assert_preloaded()
+        for provider in providers:
+            provider.preload()
+        for provider in providers:
+            provider.assert_preloaded()
 
     ### public methods ###
 
