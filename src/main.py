@@ -40,7 +40,8 @@ class Application(Adw.Application):
                              GLib.OptionArg.NONE, "Run in testing mode. Does not alter the system, but runs scripts.", None)
 
         config.set('version', version)
-        global_state.send_notification = self._send_notification
+        config.set('send_notification', None)
+        config.subscribe('send_notification', self._send_notification)
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
@@ -85,10 +86,11 @@ class Application(Adw.Application):
         self.window.close()
         return True
 
-    def _send_notification(self, title, text):
+    def _send_notification(self, title):
+        if not title:
+            return
         n = Gio.Notification()
         n.set_title(title)
-        n.set_body(text)
         self.send_notification(APP_ID, n)
 
 
