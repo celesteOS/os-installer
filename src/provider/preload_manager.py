@@ -7,7 +7,8 @@ from .disk_provider import disk_provider
 from .internet_provider import internet_provider
 from .language_provider import language_provider
 
-providers = [language_provider, disk_provider, choices_provider]
+providers = [language_provider, internet_provider,
+             disk_provider, choices_provider]
 
 
 class PreloadManager:

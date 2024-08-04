@@ -1,46 +1,28 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import time
 from threading import Thread
 from urllib.request import urlopen
 
 from .config import config
-from .global_state import global_state
+from .preloadable import Preloadable
 
 
-def check_connection(url):
-    try:
-        urlopen(url, timeout=50)
-        return True
-    except:
-        return False
-
-
-class InternetProvider():
+class InternetProvider(Preloadable):
     def __init__(self):
-        self.url = config.get('internet_checker_url')
+        Preloadable.__init__(self, self._run_connection_checker)
 
-        # start internet connection checking
-        self._start_connection_checker()
-        self.thread = Thread(target=self._poll, daemon=True)
-        self.thread.start()
+    def _run_connection_checker(self):
+        Thread(target=self._check_connection, daemon=True).start()
 
-    def _start_connection_checker(self):
-        self.connection_checker = global_state.thread_pool.submit(
-            check_connection, url=self.url)
+    def _check_connection(self):
+        url = config.get('internet_checker_url')
 
-    def _poll(self):
-        connected = False
-        while not connected:
-            if not self.connection_checker.done():
-                time.sleep(0.5)  # wait 500ms
-            else:
-                connected = self.connection_checker.result()
-                config.set('internet_connection', connected)
-
-                if not connected:
-                    # restart checker
-                    self._start_connection_checker()
+        while not config.get('installation_running'):
+            try:
+                urlopen(self.url, timeout=50)
+                config.set('internet_connection', True)
+            except:
+                config.set('internet_connection', False)
 
 
 internet_provider = InternetProvider()
