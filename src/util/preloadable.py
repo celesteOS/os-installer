@@ -1,11 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 
 from .global_state import global_state
 
 
 class Preloadable:
+    # static thread pool
+    thread_pool = ThreadPoolExecutor()
+
     def __init__(self, preload_func):
         self.preload_func = preload_func
         self.preload_started = False
@@ -38,5 +42,5 @@ class Preloadable:
             if self.preload_started:
                 return
 
-            self.future = global_state.thread_pool.submit(self.preload_func)
+            self.future = self.thread_pool.submit(self.preload_func)
             self.preload_started = True

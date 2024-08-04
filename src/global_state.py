@@ -1,12 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from concurrent.futures import ThreadPoolExecutor
 import traceback
 
 
 class GlobalState:
-    thread_pool = ThreadPoolExecutor()  # for futures
-
     def _uninitialized(self):
         print('Window method called before initialization.')
         traceback.print_stack()
