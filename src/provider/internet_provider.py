@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from threading import Thread
+from time import sleep
 from urllib.request import urlopen
 
 from .config import config
@@ -23,6 +24,7 @@ class InternetProvider(Preloadable):
                 config.set('internet_connection', True)
             except:
                 config.set('internet_connection', False)
+            sleep(1)
 
 
 internet_provider = InternetProvider()
