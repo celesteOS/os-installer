@@ -18,6 +18,7 @@ class InternetPage(Gtk.Stack):
         Gtk.Stack.__init__(self, **kwargs)
 
         self.update_lock = Lock()
+        self.has_advanced = False
 
         config.subscribe('internet_connection', self._connection_state_changed)
 
@@ -33,7 +34,9 @@ class InternetPage(Gtk.Stack):
                 self.set_visible_child_name('connected')
                 self.image = 'network-wireless-symbolic'
                 start_system_timesync()
-                Thread(target=global_state.advance, args=[self]).start()
+                if not self.has_advanced:
+                    self.has_advanced = True
+                    Thread(target=global_state.advance, args=[self]).start()
             else:
                 self.set_visible_child_name('not-connected')
                 self.image = 'network-wireless-disabled-symbolic'
