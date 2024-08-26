@@ -1,6 +1,6 @@
 project('os-installer',  
           version: '0.4.0',
-    meson_version: '>= 0.50.0',
+    meson_version: '>= 0.55.0',
   default_options: [ 'warning_level=2',
                    ],
   license: 'GPL-3.0-or-later',

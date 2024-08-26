@@ -32,14 +32,16 @@ class InternetPage(Gtk.Stack):
         with self.update_lock:
             if connected:
                 self.set_visible_child_name('connected')
-                self.image = 'network-wireless-symbolic'
+                config.set('internet_page_image',
+                           'network-wireless-symbolic')
                 start_system_timesync()
                 if not self.has_advanced:
                     self.has_advanced = True
                     Thread(target=global_state.advance, args=[self]).start()
             else:
                 self.set_visible_child_name('not-connected')
-                self.image = 'network-wireless-disabled-symbolic'
+                config.set('internet_page_image',
+                           'network-wireless-disabled-symbolic')
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):

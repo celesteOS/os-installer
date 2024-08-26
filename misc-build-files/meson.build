@@ -1,9 +1,9 @@
 contributors = run_command(
-  'cat', files('contributors'),
+  'cat', files('contributors'), check: true,
 ).stdout().strip()
 
 translators = run_command(
-  'cat', files('translators'),
+  'cat', files('translators'), check: true,
 ).stdout().strip()
 
 if get_option('flatpak')

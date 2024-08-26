@@ -79,7 +79,6 @@ page_name_to_image = {
     'feature':              'puzzle-piece-symbolic',
     'format':               'map-symbolic',
     'install':              'OS-Installer-symbolic',
-    'internet':             None,
     'keyboard-language':    'input-keyboard-symbolic',
     'keyboard-layout':      'input-keyboard-symbolic',
     'keyboard-overview':    'input-keyboard-symbolic',
@@ -91,8 +90,9 @@ page_name_to_image = {
     'summary':              'checkbox-checked-symbolic',
     'timezone':             'map-symbolic',
     'user':                 'user-symbolic',
-    'welcome':              None,
 }
+
+special_image_pages = {'internet', 'welcome'}
 
 page_name_to_type = {
     'confirm':              ConfirmPage,
@@ -146,7 +146,11 @@ class PageWrapper(Adw.NavigationPage):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
         self.content.set_child(self.page)
-        self._set_title_image()
+        if self.page_name in special_image_pages:
+            config_value = f'{self.page_name}_page_image'
+            config.subscribe(config_value, self._set_title_image)
+        else:
+            self._set_title_image(page_name_to_image[self.page_name])
         page_title = self._get_page_title()
         self.title_label.set_label(page_title)
 
@@ -164,11 +168,7 @@ class PageWrapper(Adw.NavigationPage):
             page_title = _(page_title)
         return page_title
 
-    def _set_title_image(self):
-        image = page_name_to_image[self.page_name]
-        if not image:
-            image = self.page.image
-
+    def _set_title_image(self, image):
         if isinstance(image, str):
             self.title_image.set_from_icon_name(image)
         elif isinstance(image, Path):

@@ -24,7 +24,7 @@ class WelcomePage(Gtk.Box):
         language_code = config.get('language')[0]
 
         if welcome['logo']:
-            self.image = Path(welcome['logo'])
+            config.set('welcome_page_image', Path(welcome['logo']))
 
         if (text_key := f'text_{language_code}') in welcome:
             text = welcome[text_key]
