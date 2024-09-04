@@ -66,7 +66,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_name = self.available_pages[0]
         initial_page = PageWrapper(page_name)
         self.navigation_view.replace([initial_page])
-        self.pages = [page_name]
 
     def _add_action(self, action_name, callback, keybinding):
         action = Gio.SimpleAction.new(action_name, None)
@@ -145,7 +144,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self.navigation_view.remove(page)
                 del page
         self.navigation_view.replace([])
-        self.pages = []
         self.previous_pages = []
 
         if page := self.navigation_view.find_page('language'):
@@ -165,11 +163,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             page_to_load = PageWrapper(page_name)
             self.navigation_view.add(page_to_load)
             self.navigation_view.push_by_tag(page_name)
-            self.pages.append(page_name)
         else:
             # in case page is still in stack, but not in internal list
-            if not page_name in self.pages:
-                self.pages.append(page_name)
             if offset >= forward:
                 self.navigation_view.push_by_tag(page_name)
             else:
