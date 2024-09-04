@@ -203,12 +203,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._load_page(previous_page_name, offset=backwards)
 
     def _current_is_first(self):
-        page = self.navigation_view.get_visible_page()
-        return page.get_tag() == self.pages[0]
+        return len(self.navigation_view.get_navigation_stack()) == 1
 
     def _current_is_last(self):
+        if self.previous_pages:
+            return True
         page_name = self.navigation_view.get_visible_page().get_tag()
-        return page_name == self.pages[-1]
+        page_index = self.available_pages.index(page_name)
+        next_page_name = self.available_pages[page_index + 1]
+        return self.navigation_view.find_page(next_page_name) is None
 
     ### callbacks ###
 
