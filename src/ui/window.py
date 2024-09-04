@@ -140,12 +140,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         return True
 
     def _remove_all_pages(self):
-        for page_name in filter(None, self.pages):
-            page = self.navigation_view.find_page(page_name)
-            if not page:
-                continue
-            self.navigation_view.remove(page)
-            del page
+        for page_name in self.available_pages:
+            if page := self.navigation_view.find_page(page_name):
+                self.navigation_view.remove(page)
+                del page
         self.navigation_view.replace([])
         self.pages = []
         self.previous_pages = []
