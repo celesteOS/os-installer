@@ -49,10 +49,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _add_next_page(self, _):
         current_page = self.navigation_view.get_visible_page()
-        next_index = self.pages.index(current_page.get_tag()) + 1
-        if next_index >= len(self.pages):
+        next_index = self.available_pages.index(current_page.get_tag()) + 1
+        if next_index >= len(self.available_pages):
             return None
-        next_page_name = self.pages[next_index]
+        next_page_name = self.available_pages[next_index]
         return self.navigation_view.find_page(next_page_name)
 
     def _popped_page(self, _, __):
