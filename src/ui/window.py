@@ -55,7 +55,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         next_page_name = self.available_pages[next_index]
         return self.navigation_view.find_page(next_page_name)
 
-    def _popped_page(self, _, __):
+    def _popped_page(self, _, popped_page):
+        if not popped_page.permanent:
+            del popped_page
         self._update_page()
 
     def _pushed_page(self, _):
@@ -65,6 +67,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._remove_all_pages()
         page_name = self.available_pages[0]
         initial_page = PageWrapper(page_name)
+        initial_page.permanent = True
         self.navigation_view.replace([initial_page])
 
     def _add_action(self, action_name, callback, keybinding):
@@ -144,7 +147,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self.navigation_view.remove(page)
                 del page
         self.navigation_view.replace([])
-        self.previous_pages = []
 
         if page := self.navigation_view.find_page('language'):
             self.navigation_view.replace([page])
@@ -154,15 +156,20 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         current_index = self.available_pages.index(current_page.get_tag())
         return self.available_pages[current_index + offset]
 
-    def _load_page(self, page_name: str, offset: int = forward):
+    def _load_page(self, page_name: str, offset: int = forward, permanent: bool = True):
         if page_name in non_returnable_pages:
             self._remove_all_pages()
 
         page_to_load = self.navigation_view.find_page(page_name)
         if not page_to_load:
             page_to_load = PageWrapper(page_name)
-            self.navigation_view.add(page_to_load)
-            self.navigation_view.push_by_tag(page_name)
+            page_to_load.permanent = permanent
+
+            if permanent:
+                self.navigation_view.add(page_to_load)
+                self.navigation_view.push_by_tag(page_name)
+            else:
+                self.navigation_view.push(page_to_load)
         else:
             # in case page is still in stack, but not in internal list
             if offset >= forward:
@@ -185,24 +192,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_name = self._get_next_page_name(offset)
         self._load_page(page_name, offset)
 
-    def _load_previous_page(self):
-        assert self.previous_pages, 'Logic Error: No previous pages to go to!'
-
-        popped_page = self.navigation_view.get_visible_page()
-        self.navigation_view.pop()
-        del popped_page
-
-        previous_page_name = self.previous_pages.pop()
-        self._load_page(previous_page_name, offset=backwards)
-
     def _current_is_first(self):
         return len(self.navigation_view.get_navigation_stack()) == 1
 
     def _current_is_last(self):
-        if self.previous_pages:
+        page = self.navigation_view.get_visible_page()
+        if not page.permanent:
             return True
-        page_name = self.navigation_view.get_visible_page().get_tag()
-        page_index = self.available_pages.index(page_name)
+        page_index = self.available_pages.index(page.get_tag())
         next_page_name = self.available_pages[page_index + 1]
         return self.navigation_view.find_page(next_page_name) is None
 
@@ -210,8 +207,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _navigate_backward(self, _, __):
         with self.navigation_lock:
-            if self.previous_pages:
-                self._load_previous_page()
+            page = self.navigation_view.get_visible_page()
+            if not page.permanent:
+                self.navigation_view.pop()
             elif not self._current_is_first():
                 self._load_next_page(backwards)
 
@@ -262,10 +260,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if page != None and not current_page.has_same_type(page):
                 return
 
-            if self.previous_pages:
-                if not allow_return:
-                    return print('Logic Error: Returning unpreventable, page name mode')
-                self._load_previous_page()
+            if not current_page.permanent:
+                self.navigation_view.pop()
             else:
                 next_page_name = self._get_next_page_name()
                 if not allow_return:
@@ -278,6 +274,5 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
-            self.previous_pages.append(
-                self.navigation_view.get_visible_page().get_tag())
-            self._load_page(page_name)
+            assert self.navigation_view.find_page(page_name) is None
+            self._load_page(page_name, permanent=False)
