@@ -29,14 +29,14 @@ fixed_language: no
 # and the installer needs to have a translation into that language.
 # Default: ['ar', 'de', 'en', 'es', 'fr', 'ja', 'ru', 'zh']
 suggested_languages:
-    - 'ar'
-    - 'de'
-    - 'en'
-    - 'es'
-    - 'fr'
-    - 'ja'
-    - 'ru'
-    - 'zh'
+  - 'ar'
+  - 'de'
+  - 'en'
+  - 'es'
+  - 'fr'
+  - 'ja'
+  - 'ru'
+  - 'zh'
 
 # Show a welcome page after language selection.
 #
@@ -46,9 +46,9 @@ suggested_languages:
 #
 # Default: logo: None, text: None, usage: yes
 welcome_page:
-    logo    : '/your/distribution/logo.png'
-    text    : 'A welcoming text to inform about the installation.'
-    usage   : yes
+  logo    : '/your/distribution/logo.png'
+  text    : 'A welcoming text to inform about the installation.'
+  usage   : yes
 
 # Minimum disk size needed for the installation (in Gigabyte)
 # Default: 5
@@ -83,29 +83,29 @@ skip_locale: no
 #
 # Default: [], suggested: False, description: '', icon_path: fallback icon
 additional_software:
-    - name           : 'Firefox'
-      description    : 'Popular Web Browser from Mozilla'
-      icon_path      : '/etc/os-installer/icons/firefox.png'
-      keyword        : 'firefox'
-      suggested      : yes
-    - name           : 'Chröm'
-      description    : 'HIDEOUS browser made by big brother'
-      keyword        : 'börk'
-      suggested      : no
-    - name           : 'Files'
-      description    : 'Access and organize files'
-      icon_path      : '/etc/os-installer/icons/nautilus.svg'
-      keyword        : 'nautilus'
-      suggested      : yes
-    - name           : 'Optional Option'
-      description    : 'Select your favorite option'
-      icon_path      : '/etc/os-installer/icons/options-symbolic.svg'
-      options        :
-        - option     : 'Nothing'
-        - name       : 'Option 1'
-          option     : 'package_1'
-        - name       : 'Option 2'
-          option     : 'package_2'
+  - name           : 'Firefox'
+    description    : 'Popular Web Browser from Mozilla'
+    icon_path      : '/etc/os-installer/icons/firefox.png'
+    keyword        : 'firefox'
+    suggested      : yes
+  - name           : 'Chröm'
+    description    : 'HIDEOUS browser made by big brother'
+    keyword        : 'börk'
+    suggested      : no
+  - name           : 'Files'
+    description    : 'Access and organize files'
+    icon_path      : '/etc/os-installer/icons/nautilus.svg'
+    keyword        : 'nautilus'
+    suggested      : yes
+  - name           : 'Optional Option'
+    description    : 'Select your favorite option'
+    icon_path      : '/etc/os-installer/icons/options-symbolic.svg'
+    options        :
+      - option     : 'Nothing'
+      - name       : 'Option 1'
+        option     : 'package_1'
+      - name       : 'Option 2'
+        option     : 'package_2'
 
 # List of features that can additionally be selected. Very similar
 # to `additional_software`, but meant for more generic features. Can
@@ -113,22 +113,22 @@ additional_software:
 #
 # See `additional_software` for syntax description.
 additional_features:
-    - name           : 'Dummy Feature'
-      description    : 'Does not do anything'
-      keyword        : 'dummy'
-    - name           : 'Snapshots'
-      description    : 'Snapshots allow restoring a previous state of your system'
-      icon_path      : '/etc/os-installer/icons/snapshot.svg'
-      keyword        : 'snapshots'
-      suggested      : yes
-    - name           : 'Background Image'
-      options        :
-        - name       : 'Axolotls'
-          option     : 'bg-axolotl'
-        - name       : 'Cats'
-          option     : 'bg-cats'
-        - name       : 'Dogs'
-          option     : 'bg-dogs'
+  - name           : 'Dummy Feature'
+    description    : 'Does not do anything'
+    keyword        : 'dummy'
+  - name           : 'Snapshots'
+    description    : 'Snapshots allow restoring a previous state of your system'
+    icon_path      : '/etc/os-installer/icons/snapshot.svg'
+    keyword        : 'snapshots'
+    suggested      : yes
+  - name           : 'Background Image'
+    options        :
+      - name       : 'Axolotls'
+        option     : 'bg-axolotl'
+      - name       : 'Cats'
+        option     : 'bg-cats'
+      - name       : 'Dogs'
+        option     : 'bg-dogs'
 
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are
