@@ -48,7 +48,7 @@ language_to_default_locale = {
 }
 
 
-class LanguageInfo(GObject.GObject):
+class LanguageInfo(GObject.Object):
     __gtype_name__ = __qualname__
     name: str
     language_code: str

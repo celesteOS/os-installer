@@ -8,7 +8,7 @@ from .config import config
 from .preloadable import Preloadable
 
 
-class DeviceInfo(GObject.GObject):
+class DeviceInfo(GObject.Object):
     __gtype_name__ = __qualname__
 
     name: str = None

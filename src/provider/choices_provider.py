@@ -12,7 +12,7 @@ class Option(NamedTuple):
     keyword: str
 
 
-class Choice(GObject.GObject):
+class Choice(GObject.Object):
     __gtype_name__ = __qualname__
 
     def __init__(self, name, description, icon_path, suggested=False, keyword=None, options=[]):

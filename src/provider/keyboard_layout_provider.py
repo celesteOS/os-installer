@@ -40,7 +40,7 @@ fallback_codes = {
 xkb_info = XkbInfo()
 
 
-class KeyboardInfo(GObject.GObject):
+class KeyboardInfo(GObject.Object):
     __gtype_name__ = __qualname__
     name: str
     layout: str

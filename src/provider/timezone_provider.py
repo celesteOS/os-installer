@@ -4,7 +4,7 @@ from time import time
 from gi.repository import GnomeDesktop, GObject, GWeather
 
 
-class Timezone(GObject.GObject):
+class Timezone(GObject.Object):
     __gtype_name__ = __qualname__
 
     def __init__(self, name):

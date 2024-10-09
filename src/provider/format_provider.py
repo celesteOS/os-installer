@@ -47,7 +47,7 @@ locales = {
     'aa_DJ.UTF-8', 'so_SO.UTF-8'}
 
 
-class Format(GObject.GObject):
+class Format(GObject.Object):
     __gtype_name__ = __qualname__
     name: str
     lower_case_name: str
