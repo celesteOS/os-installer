@@ -178,10 +178,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             else:
                 self.navigation_view.pop_to_tag(page_name)
 
-        match config.steal('page_navigation'):
-            case 'load_prev':
-                self._load_next_page(offset)
-                return
         self._update_page()
 
     def _update_page(self):
@@ -222,10 +218,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _reload_page(self, _, __):
         with self.navigation_lock:
             self.navigation_view.get_visible_page().reload()
-
-            match config.steal('page_navigation'):
-                case "load_prev":
-                    self._load_next_page(backwards)
 
     def _show_about_page(self, _, __):
         with self.navigation_lock:
