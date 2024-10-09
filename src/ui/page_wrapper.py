@@ -9,6 +9,7 @@ from .config import config
 
 from .choices import FeaturePage, SoftwarePage
 from .confirm import ConfirmPage
+from .desktop import DesktopPage
 from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
@@ -28,6 +29,8 @@ from .welcome import WelcomePage
 page_name_to_page_title = {
     # Translators: Page title
     'confirm':              _('Confirmation'),
+    # Translators: Page title
+    'desktop':              _('Desktop Selection'),
     # Translators: Page title
     'disk':                 _('Disk Selection'),
     # Translators: Page title
@@ -72,6 +75,7 @@ page_name_to_page_title = {
 
 page_name_to_image = {
     'confirm':              'question-round-symbolic',
+    'desktop':              'computer-symbolic',
     'disk':                 'drive-harddisk-system-symbolic',
     'done':                 'success-symbolic',
     'encrypt':              'dialog-password-symbolic',
@@ -96,6 +100,7 @@ special_image_pages = {'internet', 'welcome'}
 
 page_name_to_type = {
     'confirm':              ConfirmPage,
+    'desktop':              DesktopPage,
     'disk':                 DiskPage,
     'done':                 DonePage,
     'encrypt':              EncryptPage,

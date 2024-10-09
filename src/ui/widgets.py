@@ -12,6 +12,21 @@ def reset_model(model, new_values):
     model.splice(0, n_prev_items, new_values)
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/desktop_entry.ui')
+class DesktopEntry(Gtk.Button):
+    __gtype_name__ = __qualname__
+
+    image = Gtk.Template.Child()
+    name = Gtk.Template.Child()
+
+    def __init__(self, desktop, **kwargs):
+        super().__init__(**kwargs)
+
+        self.desktop = desktop
+        self.name.set_label(desktop.name)
+        self.image.set_filename(desktop.image_path)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__

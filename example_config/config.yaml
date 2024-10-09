@@ -58,6 +58,32 @@ minimum_disk_size: 5
 # Default: yes
 offer_disk_encryption: yes
 
+# Provide multiple desktop environments to choose from
+#
+# name        string  Name of desktop. Translatable.
+# description string  Optional. Short descripiton of the desktop.
+# image_path  string  Absolute path of an image to display.
+# keyword     string  Forwarded to the installation script as is.
+#
+# Default: [] (no desktop selection page)
+desktop:
+  - name        : 'GNOME'
+    description : 'Simple desktop that can be personalized with extensions.'
+    image_path  : '/etc/os-installer/desktops/gnome.jpg'
+    keyword     : 'gnome'
+  - name        : 'KDE Plasma'
+    description : 'Configurable desktop that is similar to Windows.'
+    image_path  : '/etc/os-installer/desktops/kde.png'
+    keyword     : 'kde'
+  - name        : 'Xfce'
+    description : 'Lightweight desktop with focus on modularity.'
+    image_path  : '/etc/os-installer/desktops/xfce.png'
+    keyword     : 'xfce'
+  - name        : 'Enlightenment'
+    description : 'Highly configurable, lightweight desktop for tinkerers.'
+    image_path  : '/etc/os-installer/desktops/enlightenment.png'
+    keyword     : 'enlightenment'
+
 # gnome-initial-setup can handle user and locale setup.
 # These settings allow to disable these pages.
 #

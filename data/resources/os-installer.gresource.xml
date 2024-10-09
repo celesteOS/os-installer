@@ -9,6 +9,7 @@
     <file>style.css</file>
 
     <!-- Icons -->
+    <file preprocess="xml-stripblanks">icon/scalable/actions/computer-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/map-symbolic.svg</file>
@@ -24,6 +25,7 @@
 
     <file preprocess="xml-stripblanks">ui/pages/choices.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/desktop.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/disk.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/done.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/encrypt.ui</file>
@@ -42,6 +44,7 @@
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
 
+    <file preprocess="xml-stripblanks">ui/widgets/desktop_entry.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/multi_selection_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>

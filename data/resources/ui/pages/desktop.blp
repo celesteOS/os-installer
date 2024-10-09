@@ -1,0 +1,44 @@
+using Gtk 4.0;
+using Gio 2.0;
+
+Gio.ListStore model {}
+
+template $DesktopPage: Box {
+  orientation: vertical;
+  spacing:12;
+
+  Picture selected_image {
+    content-fit: contain;
+    halign: center;
+    height-request: 178;
+    styles ["card"]
+  }
+
+  Label selected_description {
+    margin-end: 12;
+    margin-start: 12;
+    ellipsize: end;
+    lines: 3;
+  }
+
+  Button continue_button {
+    /* Translators: On button, brackets will be replaced with desktop name. */
+    label: _("_Use {}");
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    valign: center;
+    use-underline: true;
+    clicked => $continue();
+    styles ["suggested-action", "pill"]
+  }
+
+  Grid grid {
+    column-homogeneous: true;
+    row-homogeneous: true;
+    column-spacing: 12;
+    row-spacing: 12;
+    hexpand: true;
+  }
+}
+

@@ -1,0 +1,27 @@
+using Gtk 4.0;
+
+template $DesktopEntry: Button {
+  overflow: hidden;
+  styles ["card"]
+
+  child: Box {
+    halign: center;
+    orientation: vertical;
+
+    Picture image {
+      content-fit: contain;
+      halign: center;
+      height-request: 80;
+    }
+
+    Label name {
+      ellipsize: none;
+      margin-start: 12;
+      margin-end: 12;
+      margin-top: 6;
+      margin-bottom: 6;
+
+      styles ["heading"]
+    }
+  };
+}

@@ -111,6 +111,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('disk', True),
             ('partition', True),
             ('encrypt', config.get('offer_disk_encryption')),
+            ('desktop', config.get('desktop')),
             ('confirm', exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
             ('user', not config.get('skip_user')),

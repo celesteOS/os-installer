@@ -3,6 +3,7 @@
 # This is an example installer script. For OS-Installer to use it, place it at:
 # /etc/os-installer/scripts/install.sh
 # The script gets called with the following environment variables set:
+# OSI_DESKTOP             : Desktop keyword, or empty if 'desktop' was not configured
 # OSI_LOCALE              : Locale to be used in the new system
 # OSI_DEVICE_PATH         : Device path at which to install
 # OSI_DEVICE_IS_PARTITION : 1 if the specified device is a partition (0 -> disk)
@@ -11,7 +12,8 @@
 # OSI_ENCRYPTION_PIN      : The encryption pin to use (if encryption is set)
 
 # sanity check that all variables were set
-if [ -z ${OSI_LOCALE+x} ] || \
+if [ -z ${OSI_DESKTOP+x} ] || \
+   [ -z ${OSI_LOCALE+x} ] || \
    [ -z ${OSI_KEYBOARD_LAYOUT+x} ] || \
    [ -z ${OSI_DEVICE_PATH+x} ] || \
    [ -z ${OSI_DEVICE_IS_PARTITION+x} ] || \
@@ -26,6 +28,7 @@ fi
 echo 'Installation started.'
 echo ''
 echo 'Variables set to:'
+echo 'OSI_DESKTOP              ' $OSI_DESKTOP
 echo 'OSI_LOCALE               ' $OSI_LOCALE
 echo 'OSI_KEYBOARD_LAYOUT      ' $OSI_KEYBOARD_LAYOUT
 echo 'OSI_DEVICE_PATH          ' $OSI_DEVICE_PATH

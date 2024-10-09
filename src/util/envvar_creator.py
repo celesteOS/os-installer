@@ -36,6 +36,7 @@ def create_envs(installation_step: InstallationStep):
     envs = []
     if with_install_envs:
         envs += [
+            f'OSI_DESKTOP={_get("desktop_chosen")}',
             f'OSI_LOCALE={_get("locale")}',
             f'OSI_KEYBOARD_LAYOUT={_get("keyboard_layout")}',
             f'OSI_DEVICE_PATH={_get("disk")}',

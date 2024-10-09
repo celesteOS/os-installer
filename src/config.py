@@ -22,6 +22,8 @@ default_config = {
     # disk
     'minimum_disk_size': 5,
     'offer_disk_encryption': True,
+    # desktop
+    'desktop': [],
     # optional pages
     'skip_user': False,
     'skip_locale': False,
@@ -43,6 +45,7 @@ internal_values = {
     'internet_connection': False,
     'use_encryption': False,
     'encryption_pin': '',
+    'desktop_chosen': '',
     'user_name': '',
     'user_autologin': False,
     'user_password': '',
