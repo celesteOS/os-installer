@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template $InstallPage : Box {
   orientation: vertical;
@@ -10,11 +11,7 @@ template $InstallPage : Box {
 
     StackPage {
       name: "spinner";
-      child: Spinner spinner {
-        halign: center;
-        height-request: 64;
-        width-request: 64;
-      };
+      child: Adw.Spinner {};
     }
 
     StackPage {

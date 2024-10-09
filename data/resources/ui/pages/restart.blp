@@ -1,14 +1,9 @@
 using Gtk 4.0;
+using Adw 1;
 
 template $RestartPage : Box {
-  orientation: vertical;
-  spacing: 18;
-
-  Spinner spinner {
-    valign: center;
-    margin-top: 18;
-    width-request: 64;
-    height-request: 64;
-    spinning: false;
+  Adw.Spinner {
+    hexpand: true;
+    vexpand: true;
   }
 }
