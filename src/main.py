@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
-from typing import Callable, NamedTuple
 
 import gi
 # set versions for all used submodules
@@ -16,7 +15,6 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 # local, import order is important
 from .config import config
-from .global_state import global_state
 from .preload_manager import preload_manager
 from .window import OsInstallerWindow
 
