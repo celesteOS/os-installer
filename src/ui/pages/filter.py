@@ -70,9 +70,9 @@ class FilterPage(Gtk.Box):
     def _row_selected(self, list_box, row):
         match self.type:
             case FilterType.format:
-                set_system_formats(row.info, row.get_label())
+                set_system_formats(row.info, row.get_title())
             case FilterType.timezone:
-                set_system_timezone(row.get_label())
+                set_system_timezone(row.get_title())
         global_state.advance(self)
 
 

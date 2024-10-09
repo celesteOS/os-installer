@@ -1,25 +1,12 @@
 using Gtk 4.0;
+using Adw 1;
 
-template $ProgressRow : ListBoxRow {
+template $ProgressRow : Adw.ActionRow {
   activatable: true;
   focusable: true;
-  child: Box {
-    hexpand: true;
-    margin-start: 12;
-    margin-end: 12;
-    margin-top: 12;
-    margin-bottom: 12;
-    spacing: 6;
 
-    Label title {
-      ellipsize: end;
-      hexpand: true;
-      xalign: 0;
-    }
-
-    Image {
-      halign: end;
-      icon-name: "go-next-symbolic";
-    }
-  };
+  [suffix]
+  Image {
+    icon-name: "go-next-symbolic";
+  }
 }
