@@ -168,7 +168,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
             if permanent:
                 self.navigation_view.add(page_to_load)
-                self.navigation_view.push_by_tag(page_name)
+                if self.navigation_view.get_visible_page().get_tag() != page_name:
+                    self.navigation_view.push_by_tag(page_name)
             else:
                 self.navigation_view.push(page_to_load)
         else:
