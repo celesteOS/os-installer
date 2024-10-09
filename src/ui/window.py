@@ -197,6 +197,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if not page.permanent:
             return True
         page_index = self.available_pages.index(page.get_tag())
+        if page_index + 1 == len(self.available_pages):
+            return True
         next_page_name = self.available_pages[page_index + 1]
         return self.navigation_view.find_page(next_page_name) is None
 
