@@ -21,26 +21,34 @@ class DesktopPage(Gtk.Box):
         super().__init__(**kwargs)
 
         self.button_label = self.continue_button.get_label()
+        self.selected_entry = None
 
         number = 0
         for desktop in desktop_provider.get_desktops():
-            if number == 0:
-                self._set_selected_desktop(desktop)
             entry = DesktopEntry(desktop)
             entry.connect('clicked', self._desktop_activated)
+            if number == 0:
+                self._set_selected_desktop(entry)
             self.grid.attach(entry, number % 3, int(number/3), 1, 1)
             number += 1
 
-    def _set_selected_desktop(self, desktop):
+    def _set_selected_desktop(self, entry):
+        desktop = entry.desktop
         self.continue_button.set_label(self.button_label.format(desktop.name))
         self.selected_image.set_filename(desktop.image_path)
         self.selected_description.set_label(desktop.description)
+
+        if self.selected_entry:
+            self.selected_entry.remove_css_class('selected-card')
+        entry.add_css_class('selected-card')
+        self.selected_entry = entry
+
         config.set('desktop_chosen', desktop.keyword)
 
     ### callbacks ###
 
     def _desktop_activated(self, button):
-        self._set_selected_desktop(button.desktop)
+        self._set_selected_desktop(button)
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):

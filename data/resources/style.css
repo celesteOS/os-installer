@@ -7,3 +7,8 @@
   background: none;
   box-shadow:none;
 }
+
+/* Distinction for a selected */
+.selected-card {
+  background: @accent_bg_color;
+}
