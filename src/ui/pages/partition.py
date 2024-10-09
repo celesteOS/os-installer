@@ -12,7 +12,7 @@ from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/partition.ui')
-class PartitionPage(Gtk.Box):
+class PartitionPage(Gtk.Stack):
     __gtype_name__ = __qualname__
 
     disk_size = Gtk.Template.Child()
@@ -25,10 +25,11 @@ class PartitionPage(Gtk.Box):
     partition_list_model = Gio.ListStore()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         self.disk = None
         self.minimum_disk_size = config.get('minimum_disk_size')
+        self.set_visible_child_name("default")
 
         # models
         self.partition_list.bind_model(
@@ -58,7 +59,7 @@ class PartitionPage(Gtk.Box):
 
     def _setup_partition_list(self, selected_disk):
         if not self.disk_exists(selected_disk):
-            config.set('page_navigation', 'load_prev')
+            self.set_visible_child_name("no-disk")
             return
 
         if not selected_disk.partitions:
