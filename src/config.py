@@ -141,21 +141,27 @@ class Config:
         elif variable in fallback_values:
             return fallback_values[variable]
         else:
-            print(f'Requested {variable} not in config')
+            print(f'Requested "{variable}" not in config')
             return None
 
     def has(self, variable):
         return variable in self.variables
 
-    def set(self, variable, value):
-        self.variables[variable] = value
+    def set(self, variable, new_value):
+        '''Returns whether config was changed.'''
+        if variable in self.variables and (old_value := self.variables[variable]) == new_value:
+            return False
+
+        self.variables[variable] = new_value
 
         subscribers = []
         with self.subscription_lock:
             if variable in self.subscriptions:
                 subscribers = self.subscriptions[variable]
         for func in subscribers:
-            func(value)
+            func(new_value)
+
+        return True
 
     def steal(self, variable):
         if variable in self.variables:
