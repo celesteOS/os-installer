@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .config import config
 from .installation_scripting import installation_scripting
 
 
