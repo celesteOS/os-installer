@@ -22,8 +22,6 @@ class LanguagePage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        self.chosen_language = ''
-
         if suggested_languages := language_provider.get_suggested_languages():
             self.suggested_model.splice(0, 0, suggested_languages)
             self.suggested_list.bind_model(
@@ -42,9 +40,7 @@ class LanguagePage(Gtk.Box):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        if (self.chosen_language != row.info.language_code):
-            self.chosen_language = row.info.language_code
-            config.set('language', (row.info.language_code, row.info.name))
+        if config.set('language', (row.info.language_code, row.info.name)):
             set_system_language(row.info)
             global_state.retranslate_pages()
         global_state.advance(self)
