@@ -46,7 +46,7 @@ suggested_languages:
 #
 # Default: logo: None, text: None, usage: yes
 welcome_page:
-  logo    : '/your/distribution/logo.png'
+  logo    : '/etc/os-installer/distro.svg'
   text    : 'A welcoming text to inform about the installation.'
   usage   : yes
 
