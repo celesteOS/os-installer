@@ -94,7 +94,7 @@ class DiskProvider(Preloadable):
     def _get_disk_info(self, block, drive, partition_table):
         # disk info
         disk = Disk(
-            name=drive.props.vendor + ' ' + drive.props.model,
+            name=(drive.props.vendor + ' ' + drive.props.model).strip(),
             size=block.props.size,
             size_text=self.disk_size_to_str(block.props.size),
             device_path=block.props.device,
