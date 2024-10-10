@@ -19,6 +19,11 @@ class EncryptPage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        encryption_setting = config.get('disk_encryption')
+        if encryption_setting['forced']:
+            self.switch_row.set_active(True)
+            self.switch_row.set_visible(False)
+
     def _set_continue_button(self):
         needs_pin = self.switch_row.get_active()
         has_pin = len(self.pin_row.get_text()) > 0

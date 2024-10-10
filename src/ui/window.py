@@ -110,7 +110,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('internet', config.get('internet_connection_required')),
             ('disk', True),
             ('partition', True),
-            ('encrypt', config.get('offer_disk_encryption')),
+            ('encrypt', config.get('disk_encryption')['offered']),
             ('desktop', config.get('desktop')),
             ('confirm', exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
