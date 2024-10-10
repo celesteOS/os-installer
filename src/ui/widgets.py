@@ -24,7 +24,7 @@ class DesktopEntry(Gtk.Button):
 
         self.desktop = desktop
         self.name.set_label(desktop.name)
-        self.image.set_filename(desktop.image_path)
+        self.image.set_paintable(desktop.texture)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')

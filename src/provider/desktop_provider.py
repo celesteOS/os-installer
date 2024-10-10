@@ -2,6 +2,8 @@
 
 from typing import NamedTuple
 
+from gi.repository import Gdk
+
 from .config import config
 from .preloadable import Preloadable
 
@@ -9,7 +11,7 @@ from .preloadable import Preloadable
 class Desktop(NamedTuple):
     name: str
     description: str
-    image_path: str
+    texture: str
     keyword: str
 
 
@@ -24,8 +26,9 @@ class DesktopProvider(Preloadable):
                 print(f'Desktop choice not correctly configured: {entry}')
                 continue
             description = entry['description'] if 'description' in entry else ''
+            texture = Gdk.Texture.new_from_filename(entry['image_path'])
             desktop = Desktop(entry['name'], description,
-                              entry['image_path'], entry['keyword'])
+                              texture, entry['keyword'])
             self.desktops.append(desktop)
 
     ### public methods ###

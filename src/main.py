@@ -6,6 +6,7 @@ import gi
 # set versions for all used submodules
 gi.require_version('Gio', '2.0')           # noqa: E402
 gi.require_version('GLib', '2.0')          # noqa: E402
+gi.require_version('Gdk', '4.0')           # noqa: E402
 gi.require_version('Gtk', '4.0')           # noqa: E402
 gi.require_version('GnomeDesktop', '4.0')  # noqa: E402
 gi.require_version('GWeather', '4.0')      # noqa: E402
