@@ -21,7 +21,7 @@ default_config = {
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
     # disk
     'minimum_disk_size': 5,
-    'offer_disk_encryption': True,
+    'disk_encryption': {'offered': True, 'forced': False, 'min_length': 1},
     # desktop
     'desktop': [],
     # optional pages
@@ -37,6 +37,13 @@ default_config = {
     'browser_cmd': 'epiphany',
     'disks_cmd': 'gnome-disks',
     'wifi_cmd': 'gnome-control-center wifi',
+}
+
+legacy_values = {
+    'offer_disk_encryption': ('disk_encryption',
+                              True,
+                              {'offered': True, 'forced': False, 'min_length': 1},
+                              {'offered': False, 'forced': False, 'min_length': 1}),
 }
 
 # not configurable via config file
@@ -92,7 +99,10 @@ def _validate(variables):
         _match(variables, 'internet_checker_url', str) and
         _match(variables, 'suggested_languages', list) and
         _match(variables, 'minimum_disk_size', int) and
-        _match(variables, 'offer_disk_encryption', bool) and
+        _match(variables, 'disk_encryption', dict) and
+        _match(variables['disk_encryption'], 'offered', bool) and
+        _match(variables['disk_encryption'], 'forced', bool) and
+        _match(variables['disk_encryption'], 'min_length', int) and
         _match(variables, 'additional_software', list) and
         _match(variables, 'additional_features', list) and
         _match(variables, 'distribution_name', str) and
@@ -121,13 +131,19 @@ class Config:
     def _load_from_file(self, file):
         config_from_file = yaml.load(file, Loader=yaml.Loader)
         for config_property in config_from_file:
-            if not config_property in default_config:
+            if config_property in legacy_values:
+                self._handle_legacy(config_property, config_from_file[config_property])
+            elif not config_property in default_config:
                 print(f'Ignoring unknown config for "{config_property}"')
             elif type(self.variables[config_property]) is dict:
                 for key, value in config_from_file[config_property].items():
                     self.variables[config_property][key] = value
             else:
                 self.variables[config_property] = config_from_file[config_property]
+
+    def _handle_legacy(self, legacy_prop, legacy_val):
+        new_var, compare_val, new1, new2 = legacy_values[legacy_prop]
+        self.variables[new_var] = new1 if legacy_val == compare_val else new2
 
     def _preprocess_values(self):
         GIGABYTE_FACTOR = 1000 * 1000 * 1000
