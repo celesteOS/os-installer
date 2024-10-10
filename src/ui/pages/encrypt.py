@@ -20,13 +20,14 @@ class EncryptPage(Gtk.Box):
         Gtk.Box.__init__(self, **kwargs)
 
         encryption_setting = config.get('disk_encryption')
+        self.min_pin_length = max(1, encryption_setting['min_length'])
         if encryption_setting['forced']:
             self.switch_row.set_active(True)
             self.switch_row.set_visible(False)
 
     def _set_continue_button(self):
         needs_pin = self.switch_row.get_active()
-        has_pin = len(self.pin_row.get_text()) > 0
+        has_pin = len(self.pin_row.get_text()) >= self.min_pin_length
         self.continue_button.set_sensitive(not needs_pin or has_pin)
 
     ### callbacks ###
