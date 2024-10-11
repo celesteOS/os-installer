@@ -30,17 +30,14 @@ def _add_all_locations_to_timezone(timezone, location):
         _add_all_locations_to_timezone(timezone, child)
 
 
-def _recurse_location(location, timezones):
+def _recurse_location(location, timezone_map):
     for child in _get_location_children(location):
-        if child.has_timezone():
-            timezone_id = child.get_timezone().get_identifier()
-            if not timezone_id in timezones:
-                print('Developer hint: '
-                      f'Unknown timezone {timezone_id} {child.get_name()}')
-                continue
-            _add_all_locations_to_timezone(timezones[timezone_id], child)
+        if not child.has_timezone():
+            _recurse_location(child, timezone_map)
+        elif (id := child.get_timezone().get_identifier()) in timezone_map:
+            _add_all_locations_to_timezone(timezone_map[id], child)
         else:
-            _recurse_location(child, timezones)
+            print(f'Developer hint: Unknown timezone {id} {child.get_name()}')
 
 
 ### public methods ###
