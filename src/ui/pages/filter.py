@@ -6,7 +6,7 @@ from gi.repository import Gtk
 from .format_provider import get_formats
 from .global_state import global_state
 from .system_calls import set_system_formats, set_system_timezone
-from .timezone_provider import get_timezones
+from .timezone_provider import timezone_provider
 from .widgets import ProgressRow
 
 
@@ -37,7 +37,7 @@ class FilterPage(Gtk.Box):
                 self.list_model.splice(0, 0, get_formats())
             case FilterType.timezone:
                 self.filter = self._timezone_filter
-                self.list_model.splice(0, 0, get_timezones())
+                self.list_model.splice(0, 0, timezone_provider.get_timezones())
 
         self.search_entry.connect("search-changed", self._filter)
 

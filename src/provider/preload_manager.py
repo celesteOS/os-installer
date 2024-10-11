@@ -7,9 +7,10 @@ from .desktop_provider import desktop_provider
 from .disk_provider import disk_provider
 from .internet_provider import internet_provider
 from .language_provider import language_provider
+from .timezone_provider import timezone_provider
 
-providers = [language_provider, internet_provider,
-             disk_provider, desktop_provider, choices_provider]
+providers = [language_provider, internet_provider, disk_provider,
+             desktop_provider, timezone_provider, choices_provider]
 
 
 class PreloadManager:

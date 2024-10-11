@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from time import time
+
 from gi.repository import GnomeDesktop, GObject, GWeather
+
+from .config import config
+from .preloadable import Preloadable
 
 
 class Timezone(GObject.Object):
@@ -40,18 +44,30 @@ def _recurse_location(location, timezone_map):
             print(f'Developer hint: Unknown timezone {id} {child.get_name()}')
 
 
-### public methods ###
+class TimezoneProvider(Preloadable):
+    def __init__(self):
+        Preloadable.__init__(self, self._get_timezones)
 
-def get_current_timezone():
-    timezone = GnomeDesktop.WallClock().get_timezone()
-    return timezone.get_identifier()
+    def _get_timezones(self):
+        current_timezone = GnomeDesktop.WallClock().get_timezone()
+        config.set('timezone', current_timezone.get_identifier())
+
+        timezone_map = dict()
+        for timezone in GWeather.Location().get_world().get_timezones():
+            id = timezone.get_identifier()
+            timezone_map[id] = Timezone(id)
+
+        for child in _get_location_children(GWeather.Location().get_world()):
+            if not child.has_timezone():  # skips UTC and Etc/GMT+12
+                _recurse_location(child, timezone_map)
+
+        self.timezones = sorted(timezone_map.values(), key=lambda t: t.name)
+
+    ### public methods ###
+
+    def get_timezones(self):
+        self.assert_preloaded()
+        return self.timezones
 
 
-def get_timezones():
-    timezones = {timezone.get_identifier(): Timezone(timezone.get_identifier())
-                 for timezone in GWeather.Location().get_world().get_timezones()}
-    for child in _get_location_children(GWeather.Location().get_world()):
-        if not child.has_timezone():  # skips UTC and Etc/GMT+12
-            _recurse_location(child, timezones)
-
-    return sorted(timezones.values(), key=lambda t: t.name)
+timezone_provider = TimezoneProvider()

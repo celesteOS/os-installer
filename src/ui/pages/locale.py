@@ -5,7 +5,6 @@ from gi.repository import Gtk
 from .config import config
 from .format_provider import initialize_formats
 from .global_state import global_state
-from .timezone_provider import get_current_timezone
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
@@ -20,10 +19,6 @@ class LocalePage(Gtk.Box):
 
         if not config.has('formats'):
             initialize_formats()
-
-        if not config.has('timezone'):
-            timezone = get_current_timezone()
-            config.set('timezone', timezone)
 
         config.subscribe('formats', self._update_formats)
         config.subscribe('timezone', self._update_timezone)
