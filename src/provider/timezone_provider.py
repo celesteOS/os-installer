@@ -16,13 +16,11 @@ class Timezone(GObject.Object):
 
 
 def _get_location_children(location):
-    # this code is un-pythonesque because libgweather decided to simplify their API too much
-    first_child = location.next_child(None)
-    if not first_child:
-        return []
-    children = [first_child]
-    while child := location.next_child(children[-1]):
+    current_child = None
+    children = []
+    while child := location.next_child(current_child):
         children.append(child)
+        current_child = child
     return children
 
 
