@@ -183,12 +183,14 @@ class Config:
         if variable in self.variables:
             return self.variables.pop(variable)
 
-    def subscribe(self, variable, func):
+    def subscribe(self, variable, func, delayed=False):
         with self.subscription_lock:
             if variable in self.subscriptions:
                 self.subscriptions[variable].append(func)
             else:
                 self.subscriptions[variable] = [func]
+        if delayed:
+            return
         if variable in self.variables:
             func(self.variables[variable])
         elif not self.variables['test_mode']:
