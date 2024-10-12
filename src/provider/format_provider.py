@@ -5,6 +5,7 @@ import locale as Locale
 from gi.repository import GnomeDesktop, GObject
 
 from .config import config
+from .preloadable import Preloadable
 from .system_calls import set_system_formats
 
 locales = {
@@ -61,33 +62,36 @@ class Format(GObject.Object):
         self.locale = locale
 
 
-### public methods ###
+class FormatProvider(Preloadable):
+    def __init__(self):
+        Preloadable.__init__(self, self._initialize_formats, 'locale')
 
-def initialize_formats():
-    locale = config.get('locale')
-    name = GnomeDesktop.get_country_from_locale(locale)
-    if not name:
-        # solely to prevent crashes, e.g. for Esperanto
-        # TODO add to translatation
-        name = 'Undefined'
-    set_system_formats(locale, name)
+    def _initialize_formats(self, translation_locale):
+        name = GnomeDesktop.get_country_from_locale(translation_locale)
+        if not name:
+            # solely to prevent crashes, e.g. for Esperanto
+            # TODO add to translatation
+            name = 'Undefined'
+        set_system_formats(translation_locale, name)
 
+        self.formats = []
+        # separate name set to prevent duplicates in list
+        # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
+        names = set()
 
-def get_formats():
-    formats = []
-    # separate name set to prevent duplicates in list
-    # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
-    names = set()
-    translation_locale = config.get('locale')
+        for locale in locales:
+            name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
+            if name and not name in names:
+                names.add(name)
+                self.formats.append(Format(name, locale))
 
-    for locale in locales:
-        name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
-        if name and not name in names:
-            names.add(name)
-            formats.append(Format(name, locale))
+        # return sorted (considers umlauts and such)
+        self.formats.sort(key=lambda t: Locale.strxfrm(t.name))
 
-    # return sorted (considers umlauts and such)
-    return sorted(
-        formats,
-        key=lambda t: Locale.strxfrm(t.name)
-    )
+    ### public methods ###
+
+    def get_formats(self):
+        self.assert_preloaded()
+        return self.formats
+
+format_provider = FormatProvider()

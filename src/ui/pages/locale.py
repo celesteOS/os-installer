@@ -3,7 +3,6 @@
 from gi.repository import Gtk
 
 from .config import config
-from .format_provider import initialize_formats
 from .global_state import global_state
 
 
@@ -16,9 +15,6 @@ class LocalePage(Gtk.Box):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        if not config.has('formats'):
-            initialize_formats()
 
         config.subscribe('formats', self._update_formats)
         config.subscribe('timezone', self._update_timezone)

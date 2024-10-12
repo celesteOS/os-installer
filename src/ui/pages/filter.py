@@ -3,7 +3,7 @@
 from enum import Enum
 from gi.repository import Gtk
 
-from .format_provider import get_formats
+from .format_provider import format_provider
 from .global_state import global_state
 from .system_calls import set_system_formats, set_system_timezone
 from .timezone_provider import timezone_provider
@@ -34,7 +34,7 @@ class FilterPage(Gtk.Box):
         match self.type:
             case FilterType.format:
                 self.filter = self._format_filter
-                self.list_model.splice(0, 0, get_formats())
+                self.list_model.splice(0, 0, format_provider.get_formats())
             case FilterType.timezone:
                 self.filter = self._timezone_filter
                 self.list_model.splice(0, 0, timezone_provider.get_timezones())
