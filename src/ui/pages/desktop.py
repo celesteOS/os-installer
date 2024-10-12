@@ -35,6 +35,7 @@ class DesktopPage(Gtk.Box):
     def _set_selected_desktop(self, entry):
         desktop = entry.desktop
         self.continue_button.set_label(self.button_label.format(desktop.name))
+        self.selected_image.set_paintable(None)
         self.selected_image.set_paintable(desktop.texture)
         self.selected_description.set_label(desktop.description)
 
