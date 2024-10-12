@@ -22,6 +22,7 @@ os_installer_sources = [
   'config.py',
   'global_state.py',
   'main.py',
+  'state_machine.py',
   'provider/choices_provider.py',
   'provider/desktop_provider.py',
   'provider/disk_provider.py',

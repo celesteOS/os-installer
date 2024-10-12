@@ -11,6 +11,7 @@ from .global_state import global_state
 from .page_wrapper import PageWrapper
 
 from .language_provider import language_provider
+from .state_machine import page_order
 from .system_calls import set_system_language
 
 
@@ -101,33 +102,21 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.add_controller(self.shortcut_controller)
 
     def _determine_available_pages(self):
-        # list page types tupled with condition on when to use
-        pages = [
-            # pre-installation section
-            ('language', self._offer_language_selection()),
-            ('welcome', config.get('welcome_page')['usage']),
-            ('keyboard-overview', True),
-            ('internet', config.get('internet_connection_required')),
-            ('disk', True),
-            ('partition', True),
-            ('encrypt', config.get('disk_encryption')['offered']),
-            ('desktop', config.get('desktop')),
-            ('confirm', exists('/etc/os-installer/scripts/install.sh')),
-            # configuration section
-            ('user', not config.get('skip_user')),
-            ('locale', not config.get('skip_locale')),
-            ('software', config.get('additional_software')),
-            ('feature', config.get('additional_features')),
-            # summary
-            ('summary', True),
-            # installation
-            ('install', True),
-            # post-installation
-            ('done', True),
-            ('restart', True),
-        ]
-        # filter out nonexistent pages
-        self.available_pages = [name for name, condition in pages if condition]
+        page_conditions = {
+            'language': self._offer_language_selection(),
+            'welcome': config.get('welcome_page')['usage'],
+            'internet': config.get('internet_connection_required'),
+            'encrypt': config.get('disk_encryption')['offered'],
+            'desktop': config.get('desktop'),
+            'confirm': exists('/etc/os-installer/scripts/install.sh'),
+            'user': not config.get('skip_user'),
+            'locale': not config.get('skip_locale'),
+            'software': config.get('additional_software'),
+            'feature': config.get('additional_features'),
+        }
+
+        self.available_pages = [
+            page for page in page_order if page not in page_conditions or page_conditions[page]]
 
     def _offer_language_selection(self):
         # only initialize language page, others depend on chosen language
