@@ -1,13 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import gettext
-import locale
 from pathlib import Path
 
 from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
+from .welcome_provider import welcome_provider
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/welcome.ui')
@@ -19,12 +18,9 @@ class WelcomePage(Gtk.Box):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
+
         welcome = config.get('welcome_page')
-
         language_code = config.get('language')[0]
-
-        if welcome['logo']:
-            config.set('welcome_page_image', Path(welcome['logo']))
 
         if (text_key := f'text_{language_code}') in welcome:
             text = welcome[text_key]
@@ -34,6 +30,8 @@ class WelcomePage(Gtk.Box):
             text = self.description.get_label()
             text = text.format(config.get('distribution_name'))
         self.description.set_label(text)
+
+        welcome_provider.assert_preloaded()
 
     ### callbacks ###
 

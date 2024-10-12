@@ -3,7 +3,7 @@
 from locale import gettext as _
 from pathlib import Path
 
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, Gdk, Gtk
 
 from .config import config
 
@@ -176,6 +176,8 @@ class PageWrapper(Adw.NavigationPage):
     def _set_title_image(self, image):
         if isinstance(image, str):
             self.title_image.set_from_icon_name(image)
+        elif isinstance(image, Gdk.Texture):
+            self.title_image.set_from_paintable(image)
         elif isinstance(image, Path):
             self.title_image.set_from_file(str(image))
         else:
