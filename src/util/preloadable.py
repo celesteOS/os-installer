@@ -3,6 +3,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 
+from .config import config
 from .global_state import global_state
 
 
@@ -10,8 +11,9 @@ class Preloadable:
     # static thread pool
     thread_pool = ThreadPoolExecutor()
 
-    def __init__(self, preload_func):
+    def __init__(self, preload_func, config_var=None):
         self.preload_func = preload_func
+        self.config_var = config_var
         self.preload_started = False
         self.preloaded = False
         self.preloading_lock = Lock()
@@ -19,9 +21,6 @@ class Preloadable:
     ### public methods ###
 
     def assert_preloaded(self):
-        if self.preloaded:
-            return
-
         with self.preloading_lock:
             if self.preloaded:
                 return
@@ -39,8 +38,18 @@ class Preloadable:
 
     def preload(self):
         with self.preloading_lock:
-            if self.preload_started:
-                return
+            if self.config_var:
+                self.preloaded = True
+                config.subscribe(
+                    self.config_var, self.dependent_preload, delayed=True)
+            else:
+                if self.preload_started:
+                    return
+                self.future = self.thread_pool.submit(self.preload_func)
+                self.preload_started = True
 
-            self.future = self.thread_pool.submit(self.preload_func)
+    def dependent_preload(self, value):
+        with self.preloading_lock:
+            self.preloaded = False
+            self.future = self.thread_pool.submit(self.preload_func, value)
             self.preload_started = True
