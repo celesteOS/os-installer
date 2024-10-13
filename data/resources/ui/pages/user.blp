@@ -9,13 +9,13 @@ template $UserPage : Box {
     selection-mode: none;
     styles ["boxed-list"]
 
-    Adw.EntryRow user_name_row {
+    Adw.EntryRow name_row {
       activatable: true;
       /* Translators: Used with entry field for User's name */
       title: _("_Name");
       use-underline: true;
       entry-activated => $focus_password();
-      changed => $user_name_changed();
+      changed => $name_changed();
     }
 
     Adw.SwitchRow autologin_row {

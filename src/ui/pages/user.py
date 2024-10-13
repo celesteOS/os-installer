@@ -11,7 +11,7 @@ from .config import config
 class UserPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
-    user_name_row = Gtk.Template.Child()
+    name_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
     password_row = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
@@ -22,7 +22,7 @@ class UserPage(Gtk.Box):
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']
 
-        self.user_name_row.set_text(config.get('user_name'))
+        self.name_row.set_text(config.get('user_name'))
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
             self.autologin_row.set_active(config.get('user_autologin'))
@@ -32,9 +32,9 @@ class UserPage(Gtk.Box):
         self.password_row.set_text(config.get('user_password'))
 
     def _set_continue_button(self):
-        has_user_name = not self.user_name_row.get_text().strip() == ''
+        has_name = not self.name_row.get_text().strip() == ''
         has_password = len(self.password_row.get_text()) >= self.min_password_length
-        can_continue = has_user_name and has_password
+        can_continue = has_name and has_password
         self.continue_button.set_sensitive(can_continue)
 
     def _generate_username(self, name):
@@ -59,8 +59,8 @@ class UserPage(Gtk.Box):
     def _focus_password(self, row):
         self.password_row.grab_focus()
 
-    @Gtk.Template.Callback('user_name_changed')
-    def _user_name_changed(self, editable):
+    @Gtk.Template.Callback('name_changed')
+    def _name_changed(self, editable):
         name = editable.get_text().strip()
         config.set('user_name', name)
         username = self._generate_username(name)
