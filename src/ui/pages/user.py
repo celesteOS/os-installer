@@ -22,6 +22,9 @@ class UserPage(Gtk.Box):
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']
 
+        self.name_ok = False
+        self.password_ok = self.min_password_length <= 0
+
         self.name_row.set_text(config.get('user_name'))
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
@@ -32,10 +35,7 @@ class UserPage(Gtk.Box):
         self.password_row.set_text(config.get('user_password'))
 
     def _set_continue_button(self):
-        has_name = not self.name_row.get_text().strip() == ''
-        has_password = len(self.password_row.get_text()) >= self.min_password_length
-        can_continue = has_name and has_password
-        self.continue_button.set_sensitive(can_continue)
+        self.continue_button.set_sensitive(self.name_ok and self.password_ok)
 
     def _generate_username(self, name):
         # This sticks to common linux username rules:
@@ -65,11 +65,13 @@ class UserPage(Gtk.Box):
         config.set('user_name', name)
         username = self._generate_username(name)
         config.set('user_username', username)
+        self.name_ok = not editable.get_text().strip() == ''
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')
     def _password_changedentry_changed(self, editable):
         config.set('user_password', editable.get_text())
+        self.password_ok = len(editable.get_text()) >= self.min_password_length
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
