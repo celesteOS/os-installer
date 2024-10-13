@@ -87,6 +87,12 @@ desktop:
     image_path  : '/etc/os-installer/desktops/enlightenment.png'
     keyword     : 'enlightenment'
 
+# User setup requests a printable name and a password by default.
+#
+# min_password_length Minimal password length.
+user:
+  min_password_length: 1
+
 # gnome-initial-setup can handle user and locale setup.
 # These settings allow to disable these pages.
 #

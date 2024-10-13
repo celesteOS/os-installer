@@ -24,6 +24,8 @@ default_config = {
     'disk_encryption': {'offered': True, 'forced': False, 'min_length': 1},
     # desktop
     'desktop': [],
+    # user
+    'user': {'min_password_length': 1},
     # optional pages
     'skip_user': False,
     'skip_locale': False,
@@ -104,6 +106,8 @@ def _validate(variables):
         _match(variables['disk_encryption'], 'offered', bool) and
         _match(variables['disk_encryption'], 'forced', bool) and
         _match(variables['disk_encryption'], 'min_length', int) and
+        _match(variables, 'user', dict) and
+        _match(variables['user'], 'min_password_length', int) and
         _match(variables, 'additional_software', list) and
         _match(variables, 'additional_features', list) and
         _match(variables, 'distribution_name', str) and

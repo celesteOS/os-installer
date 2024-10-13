@@ -19,15 +19,17 @@ class UserPage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        user_setting = config.get('user')
+        self.min_password_length = user_setting['min_password_length']
+
         self.user_name_row.set_text(config.get('user_name'))
         self.password_row.set_text(config.get('user_password'))
         self.autologin_row.set_active(config.get('user_autologin'))
 
     def _set_continue_button(self):
         has_user_name = not self.user_name_row.get_text().strip() == ''
-        autologin = self.autologin_row.get_active()
-        has_password = not self.password_row.get_text() == ''
-        can_continue = has_user_name and (autologin or has_password)
+        has_password = len(self.password_row.get_text()) >= self.min_password_length
+        can_continue = has_user_name and has_password
         self.continue_button.set_sensitive(can_continue)
 
     def _generate_username(self, name):
