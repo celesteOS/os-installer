@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .config import config
+from .installation_scripting import installation_scripting
 
 
 page_order = [
@@ -42,10 +43,16 @@ class StateMachine:
 
         for page in page_order[self.latest_page+1:new_index+1]:
             match page:
+                case 'disk':
+                    installation_scripting.can_run_prepare()
                 case 'user':
                     if prev_page == 'confirm':
+                        installation_scripting.can_run_install()
                         ret_val = 'no_return'
-                case 'done' | 'failed' | 'install' | 'restart' | 'summary':
+                case 'install':
+                    installation_scripting.can_run_configure()
+                    ret_val = 'no_return'
+                case 'done' | 'failed' | 'restart' | 'summary':
                     ret_val = 'no_return'
         self.latest_page = new_index
 

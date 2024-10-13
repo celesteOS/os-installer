@@ -5,7 +5,6 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .disk_provider import DeviceInfo, disk_provider
 from .global_state import global_state
-from .installation_scripting import installation_scripting
 from .system_calls import open_disks
 from .widgets import reset_model, DeviceRow
 
@@ -32,8 +31,6 @@ class DiskPage(Gtk.Stack):
             self.set_visible_child_name('disks')
         else:
             self.set_visible_child_name('no-disks')
-
-        installation_scripting.can_run_prepare()
 
     def _create_device_row(self, info: DeviceInfo):
         if info.size >= self.minimum_disk_size:

@@ -4,7 +4,6 @@ from gi.repository import Gtk
 
 from .config import config
 from .global_state import global_state
-from .installation_scripting import installation_scripting
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
@@ -27,5 +26,4 @@ class ConfirmPage(Gtk.Box):
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
-        installation_scripting.can_run_install()
         global_state.advance(self)
