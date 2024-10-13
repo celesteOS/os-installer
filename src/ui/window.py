@@ -11,11 +11,8 @@ from .global_state import global_state
 from .page_wrapper import PageWrapper
 
 from .language_provider import language_provider
-from .state_machine import page_order
+from .state_machine import page_order, state_machine
 from .system_calls import set_system_language
-
-
-non_returnable_pages = ['done', 'failed', 'install', 'restart', 'summary']
 
 
 forward = 1
@@ -147,9 +144,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         return self.available_pages[current_index + offset]
 
     def _load_page(self, page_name: str, offset: int = forward, permanent: bool = True):
-        if page_name in non_returnable_pages:
-            self._remove_all_pages()
-
         page_to_load = self.navigation_view.find_page(page_name)
         if not page_to_load:
             page_to_load = PageWrapper(page_name)
@@ -238,7 +232,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     ### public methods ###
 
-    def advance(self, page, allow_return: bool = True):
+    def advance(self, page):
         with self.navigation_lock:
             # confirm calling page is current page to prevent incorrect navigation
             current_page = self.navigation_view.get_visible_page()
@@ -249,8 +243,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self.navigation_view.pop()
             else:
                 next_page_name = self._get_next_page_name()
-                if not allow_return:
-                    self._remove_all_pages()
+                match state_machine.transition(current_page.get_tag(), next_page_name):
+                    case 'no_return':
+                        self._remove_all_pages()
                 self._load_page(next_page_name)
 
     def retranslate_pages(self):

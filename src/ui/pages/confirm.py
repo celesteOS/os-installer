@@ -28,4 +28,4 @@ class ConfirmPage(Gtk.Box):
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
         installation_scripting.can_run_install()
-        global_state.advance(self, allow_return=False)
+        global_state.advance(self)
