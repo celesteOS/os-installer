@@ -3,7 +3,6 @@
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
@@ -53,4 +52,4 @@ class UserPage(Gtk.Box):
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
         if self.continue_button.get_sensitive():
-            global_state.advance(self)
+            config.set_next_page(self)

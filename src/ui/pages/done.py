@@ -2,7 +2,7 @@
 
 from gi.repository import Gtk
 
-from .global_state import global_state
+from .config import config
 from .installation_scripting import installation_scripting
 
 
@@ -22,7 +22,7 @@ class DonePage(Gtk.Box):
     @Gtk.Template.Callback('restart_button_clicked')
     def _restart_button_clicked(self, button):
         self.terminal_box.remove(installation_scripting.terminal)
-        global_state.advance(self)
+        config.set_next_page(self)
 
     @Gtk.Template.Callback('terminal_button_toggled')
     def _terminal_button_toggled(self, toggle_button):

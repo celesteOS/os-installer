@@ -4,7 +4,7 @@ from enum import Enum
 from gi.repository import Gio, Gtk
 
 from .choices_provider import choices_provider
-from .global_state import global_state
+from .config import config
 from .widgets import MultiSelectionRow, SelectionRow
 
 
@@ -54,7 +54,7 @@ class ChoicesPage(Gtk.Box):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self)
+        config.set_next_page(self)
 
 
 FeaturePage = lambda **args: ChoicesPage(ChoiceType.feature, **args)

@@ -3,7 +3,6 @@
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
@@ -26,4 +25,4 @@ class ConfirmPage(Gtk.Box):
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
-        global_state.advance(self)
+        config.set_next_page(self)

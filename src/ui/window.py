@@ -6,11 +6,8 @@ from os.path import exists
 from gi.repository import Gio, Gtk, Adw
 
 from .config import config
-from .global_state import global_state
-
-from .page_wrapper import PageWrapper
-
 from .language_provider import language_provider
+from .page_wrapper import PageWrapper
 from .state_machine import page_order, state_machine
 from .system_calls import set_system_language
 
@@ -33,9 +30,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._setup_actions()
         self.connect("close-request", self._show_confirm_dialog, None)
-
-        # set advancing functions in global state
-        global_state.advance = self.advance
 
         self._determine_available_pages()
         self._initialize_first_page()
@@ -143,6 +137,24 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         current_index = self.available_pages.index(current_page.get_tag())
         return self.available_pages[current_index + offset]
 
+    def _advance(self, page):
+        # confirm calling page is current page to prevent incorrect navigation
+        current_page = self.navigation_view.get_visible_page()
+        if page != None and not current_page.has_same_type(page):
+            return
+
+        if not current_page.permanent:
+            self.navigation_view.pop()
+        else:
+            next_page_name = self._get_next_page_name()
+            match state_machine.transition(current_page.get_tag(), next_page_name):
+                case 'no_return':
+                    self._remove_all_pages()
+                case 'retranslate':
+                    self._initialize_first_page()
+
+            self._load_page(next_page_name)
+
     def _load_page(self, page_name: str, offset: int = forward, permanent: bool = True):
         page_to_load = self.navigation_view.find_page(page_name)
         if not page_to_load:
@@ -191,6 +203,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _change_page(self, value):
         with self.navigation_lock:
             match value:
+                case 'next', page:
+                    self._advance(page)
                 case _:
                     page_name = value
                     assert self.navigation_view.find_page(page_name) is None
@@ -237,24 +251,3 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             popup.present(self)
 
         return True
-
-    ### public methods ###
-
-    def advance(self, page):
-        with self.navigation_lock:
-            # confirm calling page is current page to prevent incorrect navigation
-            current_page = self.navigation_view.get_visible_page()
-            if page != None and not current_page.has_same_type(page):
-                return
-
-            if not current_page.permanent:
-                self.navigation_view.pop()
-            else:
-                next_page_name = self._get_next_page_name()
-                match state_machine.transition(current_page.get_tag(), next_page_name):
-                    case 'no_return':
-                        self._remove_all_pages()
-                    case 'retranslate':
-                        self._initialize_first_page()
-
-                self._load_page(next_page_name)

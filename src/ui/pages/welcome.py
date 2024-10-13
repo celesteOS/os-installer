@@ -5,7 +5,6 @@ from pathlib import Path
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 from .welcome_provider import welcome_provider
 
 
@@ -37,4 +36,4 @@ class WelcomePage(Gtk.Box):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self)
+        config.set_next_page(self)

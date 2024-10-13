@@ -3,8 +3,8 @@
 from enum import Enum
 from gi.repository import Gtk
 
+from .config import config
 from .format_provider import format_provider
-from .global_state import global_state
 from .system_calls import set_system_formats, set_system_timezone
 from .timezone_provider import timezone_provider
 from .widgets import ProgressRow
@@ -73,7 +73,7 @@ class FilterPage(Gtk.Box):
                 set_system_formats(row.info, row.get_title())
             case FilterType.timezone:
                 set_system_timezone(row.get_title())
-        global_state.advance(self)
+        config.set_next_page(self)
 
 
 FormatPage = lambda **args: FilterPage(FilterType.format, **args)

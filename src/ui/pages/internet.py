@@ -5,7 +5,6 @@ from threading import Lock, Thread
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 from .system_calls import open_wifi_settings, start_system_timesync
 
 
@@ -37,7 +36,7 @@ class InternetPage(Gtk.Stack):
                 start_system_timesync()
                 if not self.has_advanced:
                     self.has_advanced = True
-                    Thread(target=global_state.advance, args=[self]).start()
+                    Thread(target=config.set_next_page, args=[self]).start()
             else:
                 self.set_visible_child_name('not-connected')
                 config.set('internet_page_image',
@@ -45,4 +44,4 @@ class InternetPage(Gtk.Stack):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
-        global_state.advance(self)
+        config.set_next_page(self)

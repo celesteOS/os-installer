@@ -20,7 +20,6 @@ configure_file(
 os_installer_sources = [
   '__init__.py',
   'config.py',
-  'global_state.py',
   'main.py',
   'state_machine.py',
   'provider/choices_provider.py',

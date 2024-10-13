@@ -8,7 +8,6 @@ from gi.repository import Gio, GLib, Vte
 
 from .config import config
 from .envvar_creator import create_envs
-from .global_state import global_state
 from .installation_step import InstallationStep
 
 
@@ -93,7 +92,7 @@ class InstallationScripting():
                 config.set('installation_running', False)
                 # Translators: Notification text
                 config.set('send_notification', _("Finished Installation"))
-                global_state.advance(None)
+                config.set_next_page(None)
             else:
                 self._try_start_next_script()
 

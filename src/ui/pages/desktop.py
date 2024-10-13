@@ -3,7 +3,6 @@
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 from .desktop_provider import desktop_provider
 from .widgets import DesktopEntry
 
@@ -54,4 +53,4 @@ class DesktopPage(Gtk.Box):
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
         if self.continue_button.is_sensitive():
-            global_state.advance(self)
+            config.set_next_page(self)

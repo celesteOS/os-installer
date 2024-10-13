@@ -3,7 +3,6 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .global_state import global_state
 from .widgets import reset_model, SummaryRow
 
 
@@ -101,7 +100,7 @@ class SummaryPage(Gtk.Box):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self)
+        config.set_next_page(self)
 
     @Gtk.Template.Callback('summary_row_activated')
     def _summary_row_activated(self, list_box, row):

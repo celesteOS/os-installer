@@ -3,7 +3,6 @@
 from gi.repository import Gtk
 
 from .config import config
-from .global_state import global_state
 from .language_provider import language_provider
 from .system_calls import set_system_language
 from .widgets import ProgressRow
@@ -42,4 +41,4 @@ class LanguagePage(Gtk.Box):
     def _language_row_activated(self, list_box, row):
         if config.set('language', (row.info.language_code, row.info.name)):
             set_system_language(row.info)
-        global_state.advance(self)
+        config.set_next_page(self)

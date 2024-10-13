@@ -4,7 +4,6 @@ from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 
 from .config import config
-from .global_state import global_state
 
 
 class Preloadable:

@@ -179,6 +179,10 @@ class Config:
 
         return True
 
+    def set_next_page(self, page):
+        '''Convenience function'''
+        self.set('displayed-page', ('next', page))
+
     def steal(self, variable):
         if variable in self.variables:
             return self.variables.pop(variable)

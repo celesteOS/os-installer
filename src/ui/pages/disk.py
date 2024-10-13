@@ -4,7 +4,6 @@ from gi.repository import Gio, Gtk
 
 from .config import config
 from .disk_provider import DeviceInfo, disk_provider
-from .global_state import global_state
 from .system_calls import open_disks
 from .widgets import reset_model, DeviceRow
 
@@ -49,4 +48,4 @@ class DiskPage(Gtk.Stack):
     @Gtk.Template.Callback('disk_selected')
     def _disk_selected(self, list_box, row):
         config.set('selected_disk', row.info)
-        global_state.advance(self)
+        config.set_next_page(self)

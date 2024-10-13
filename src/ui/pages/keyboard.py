@@ -3,7 +3,6 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .global_state import global_state
 from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
 from .system_calls import set_system_keyboard_layout
@@ -29,7 +28,7 @@ class KeyboardLanguagePage(Gtk.Box):
     def _language_row_activated(self, list_box, row):
         info = row.info
         config.set('keyboard_language', (info.language_code, info.name))
-        global_state.advance(self)
+        config.set_next_page(self)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
@@ -59,7 +58,7 @@ class KeyboardLayoutPage(Gtk.Box):
     def _layout_row_activated(self, list_box, row):
         # use selected keyboard layout
         set_system_keyboard_layout(keyboard_info=row.info)
-        global_state.advance(self)
+        config.set_next_page(self)
 
     @Gtk.Template.Callback('show_language_selection')
     def _show_language_selection(self, row):
@@ -91,7 +90,7 @@ class KeyboardOverviewPage(Gtk.Box):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self)
+        config.set_next_page(self)
 
     @Gtk.Template.Callback('show_layout_selection')
     def _show_layout_selection(self, row):

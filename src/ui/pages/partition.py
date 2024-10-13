@@ -6,7 +6,6 @@ from gi.repository import Gio, Gtk
 
 from .config import config
 from .disk_provider import disk_provider
-from .global_state import global_state
 from .system_calls import is_booted_with_uefi
 from .widgets import reset_model, DeviceRow
 
@@ -89,9 +88,9 @@ class PartitionPage(Gtk.Stack):
         if not info.name:
             info.name = row.get_title()
         self._store_device_info(info)
-        global_state.advance(self)
+        config.set_next_page(self)
 
     @Gtk.Template.Callback('use_whole_disk')
     def _use_whole_disk(self, list_box, row):
         self._store_device_info(self.disk)
-        global_state.advance(self)
+        config.set_next_page(self)
