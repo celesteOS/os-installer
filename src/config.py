@@ -132,7 +132,8 @@ class Config:
         config_from_file = yaml.load(file, Loader=yaml.Loader)
         for config_property in config_from_file:
             if config_property in legacy_values:
-                self._handle_legacy(config_property, config_from_file[config_property])
+                self._handle_legacy(
+                    config_property, config_from_file[config_property])
             elif not config_property in default_config:
                 print(f'Ignoring unknown config for "{config_property}"')
             elif type(self.variables[config_property]) is dict:
@@ -142,6 +143,8 @@ class Config:
                 self.variables[config_property] = config_from_file[config_property]
 
     def _handle_legacy(self, legacy_prop, legacy_val):
+        print(f'Developer hint: "{legacy_prop}" is deprecated, '
+              f'use "{new_var}" instead')
         new_var, compare_val, new1, new2 = legacy_values[legacy_prop]
         self.variables[new_var] = new1 if legacy_val == compare_val else new2
 
