@@ -63,7 +63,7 @@ class KeyboardLayoutPage(Gtk.Box):
 
     @Gtk.Template.Callback('show_language_selection')
     def _show_language_selection(self, row):
-        global_state.navigate_to_page("keyboard-language")
+        config.set('displayed-page', 'keyboard-language')
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_overview.ui')
@@ -95,4 +95,4 @@ class KeyboardOverviewPage(Gtk.Box):
 
     @Gtk.Template.Callback('show_layout_selection')
     def _show_layout_selection(self, row):
-        global_state.navigate_to_page("keyboard-layout")
+        config.set('displayed-page', 'keyboard-layout')

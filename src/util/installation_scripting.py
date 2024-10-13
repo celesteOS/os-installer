@@ -40,7 +40,7 @@ class InstallationScripting():
 
     def _fail_installation(self):
         config.set('installation_running', False)
-        global_state.navigate_to_page("failed")
+        config.set('displayed-page', 'failed')
         # Translators: Notification text
         config.set('send_notification', _("Finished Installation"))
 

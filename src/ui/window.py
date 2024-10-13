@@ -36,13 +36,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # set advancing functions in global state
         global_state.advance = self.advance
-        global_state.navigate_to_page = self.navigate_to_page
 
         self._determine_available_pages()
         self._initialize_first_page()
         self.navigation_view.connect('popped', self._popped_page)
         self.navigation_view.connect('pushed', self._pushed_page)
         self.navigation_view.connect('get-next-page', self._add_next_page)
+
+        config.subscribe('displayed-page', self._change_page, delayed=True)
 
     def _add_next_page(self, _):
         current_page = self.navigation_view.get_visible_page()
@@ -187,6 +188,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     ### callbacks ###
 
+    def _change_page(self, value):
+        with self.navigation_lock:
+            match value:
+                case _:
+                    page_name = value
+                    assert self.navigation_view.find_page(page_name) is None
+                    self._load_page(page_name, permanent=False)
+
     def _navigate_backward(self, _, __):
         with self.navigation_lock:
             page = self.navigation_view.get_visible_page()
@@ -249,8 +258,3 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                         self._initialize_first_page()
 
                 self._load_page(next_page_name)
-
-    def navigate_to_page(self, page_name):
-        with self.navigation_lock:
-            assert self.navigation_view.find_page(page_name) is None
-            self._load_page(page_name, permanent=False)

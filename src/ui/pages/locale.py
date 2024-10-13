@@ -33,4 +33,4 @@ class LocalePage(Gtk.Box):
 
     @Gtk.Template.Callback('overview_row_activated')
     def _overview_row_activated(self, list_box, row):
-        global_state.navigate_to_page(row.get_name())
+        config.set('displayed-page', row.get_name())
