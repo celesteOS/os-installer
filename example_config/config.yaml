@@ -89,8 +89,10 @@ desktop:
 
 # User setup requests a printable name and a password by default.
 #
+# provide_autologin   Whether to present an autologin option.
 # min_password_length Minimal password length.
 user:
+  provide_autologin: True
   min_password_length: 1
 
 # gnome-initial-setup can handle user and locale setup.

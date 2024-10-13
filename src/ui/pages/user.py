@@ -23,8 +23,13 @@ class UserPage(Gtk.Box):
         self.min_password_length = user_setting['min_password_length']
 
         self.user_name_row.set_text(config.get('user_name'))
+        if user_setting['provide_autologin']:
+            self.autologin_row.set_visible(True)
+            self.autologin_row.set_active(config.get('user_autologin'))
+        else:
+            self.autologin_row.set_visible(False)
+            self.autologin_row.set_active(False)
         self.password_row.set_text(config.get('user_password'))
-        self.autologin_row.set_active(config.get('user_autologin'))
 
     def _set_continue_button(self):
         has_user_name = not self.user_name_row.get_text().strip() == ''
