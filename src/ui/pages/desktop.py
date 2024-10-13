@@ -40,7 +40,9 @@ class DesktopPage(Gtk.Box):
 
         if self.selected_entry:
             self.selected_entry.remove_css_class('selected-card')
+            self.selected_entry.remove_css_class('suggested-action')
         entry.add_css_class('selected-card')
+        entry.add_css_class('suggested-action')
         self.selected_entry = entry
 
         config.set('desktop_chosen', desktop.keyword)
