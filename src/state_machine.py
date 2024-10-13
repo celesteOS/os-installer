@@ -33,6 +33,9 @@ class StateMachine:
     def transition(self, prev_page, reached_page):
         ret_val = None
 
+        if prev_page == 'language':
+            ret_val = 'retranslate'
+
         new_index = page_order.index(reached_page)
         if self.latest_page >= new_index:
             return ret_val

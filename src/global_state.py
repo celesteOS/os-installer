@@ -11,9 +11,6 @@ class GlobalState:
     def advance(self, *args):
         self._uninitialized()
 
-    def retranslate_pages(self, *args):
-        self._uninitialized()
-
     def navigate_to_page(self, *args):
         self._uninitialized()
 

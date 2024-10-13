@@ -36,7 +36,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # set advancing functions in global state
         global_state.advance = self.advance
-        global_state.retranslate_pages = self.retranslate_pages
         global_state.navigate_to_page = self.navigate_to_page
 
         self._determine_available_pages()
@@ -246,11 +245,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 match state_machine.transition(current_page.get_tag(), next_page_name):
                     case 'no_return':
                         self._remove_all_pages()
-                self._load_page(next_page_name)
+                    case 'retranslate':
+                        self._initialize_first_page()
 
-    def retranslate_pages(self):
-        with self.navigation_lock:
-            self._initialize_first_page()
+                self._load_page(next_page_name)
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
