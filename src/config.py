@@ -54,6 +54,7 @@ internal_values = {
     'encryption_pin': '',
     'desktop_chosen': '',
     'user_name': '',
+    'user_username': '',
     'user_autologin': False,
     'user_password': '',
     'formats': ('en_US.UTF-8', 'United States'),

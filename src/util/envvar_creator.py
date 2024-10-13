@@ -49,6 +49,7 @@ def create_envs(installation_step: InstallationStep):
     if with_configure_envs:
         envs += [
             f'OSI_USER_NAME={_get("user_name")}',
+            f'OSI_USER_USERNAME={_get("user_username")}',
             f'OSI_USER_AUTOLOGIN={_get("user_autologin")}',
             f'OSI_USER_PASSWORD={_get("user_password")}',
             f'OSI_FORMATS={_get("formats")}',

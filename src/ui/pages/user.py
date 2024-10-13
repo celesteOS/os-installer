@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+import re
+
+from gi.repository import GLib, Gtk
 
 from .config import config
 
@@ -28,6 +30,17 @@ class UserPage(Gtk.Box):
         can_continue = has_user_name and (autologin or has_password)
         self.continue_button.set_sensitive(can_continue)
 
+    def _generate_username(self, name):
+        # This sticks to common linux username rules:
+        # * starts with a lowercase letter
+        # * only lowercase letters, numbers, underscore (_), and dash (-)
+        # If the generation fails, a fallback is used.
+        asciified = GLib.str_to_ascii(name).lower()
+        filtered = re.sub(r'[^a-z0-9-_]+', '', asciified)
+        if (position := re.search(r'[a-z]', filtered)) is None:
+            return 'user'
+        return filtered[position.start():].lower()
+
     ### callbacks ###
 
     @Gtk.Template.Callback('autologin_row_clicked')
@@ -41,7 +54,10 @@ class UserPage(Gtk.Box):
 
     @Gtk.Template.Callback('user_name_changed')
     def _user_name_changed(self, editable):
-        config.set('user_name', editable.get_text().strip())
+        name = editable.get_text().strip()
+        config.set('user_name', name)
+        username = self._generate_username(name)
+        config.set('user_username', username)
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')

@@ -5,6 +5,7 @@
 # The script gets called with the environment variables from the install script
 # (see install.sh) and these additional variables:
 # OSI_USER_NAME          : User's name. Not ASCII-fied
+# OSI_USER_USERNAME      : Linux username. ASCII-fied
 # OSI_USER_AUTOLOGIN     : Whether to autologin the user
 # OSI_USER_PASSWORD      : User's password. Can be empty if autologin is set.
 # OSI_FORMATS            : Locale of formats to be used
@@ -21,6 +22,7 @@ if [ -z ${OSI_LOCALE+x} ] || \
    [ -z ${OSI_USE_ENCRYPTION+x} ] || \
    [ -z ${OSI_ENCRYPTION_PIN+x} ] || \
    [ -z ${OSI_USER_NAME+x} ] || \
+   [ -z ${OSI_USER_USERNAME+x} ] || \
    [ -z ${OSI_USER_AUTOLOGIN+x} ] || \
    [ -z ${OSI_USER_PASSWORD+x} ] || \
    [ -z ${OSI_FORMATS+x} ] || \
@@ -43,6 +45,7 @@ echo 'OSI_DEVICE_EFI_PARTITION ' $OSI_DEVICE_EFI_PARTITION
 echo 'OSI_USE_ENCRYPTION       ' $OSI_USE_ENCRYPTION
 echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo 'OSI_USER_NAME            ' $OSI_USER_NAME
+echo 'OSI_USER_USERNAME        ' $OSI_USER_USERNAME
 echo 'OSI_USER_AUTOLOGIN       ' $OSI_USER_AUTOLOGIN
 echo 'OSI_USER_PASSWORD        ' $OSI_USER_PASSWORD
 echo 'OSI_FORMATS              ' $OSI_FORMATS
