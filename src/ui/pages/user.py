@@ -15,6 +15,7 @@ class UserPage(Gtk.Box):
     username_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
     password_row = Gtk.Template.Child()
+    password_error_indicator = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -26,7 +27,9 @@ class UserPage(Gtk.Box):
 
         self.name_ok = False
         self.username_ok = False
+        self.username_error = None
         self.password_ok = self.min_password_length <= 0
+        self.password_error = None
 
         self.name_row.set_text(config.get('user_name'))
         if user_setting['provide_autologin']:
@@ -86,9 +89,14 @@ class UserPage(Gtk.Box):
         self.username_ok = bool(re.match('^[a-z][a-z0-9_-]*$', username))
         if self.username_ok:
             config.set('user_username', username)
-            self.username_row.remove_css_class('error')
-        elif len(username) > 0:
+            if self.username_error:
+                self.username_row.remove_css_class('error')
+                self.username_row.remove(self.username_error)
+                self.username_error = None
+        elif len(username) > 0 and not self.username_error:
             self.username_row.add_css_class('error')
+            self.username_error = Gtk.Image.new_from_icon_name('dialog-warning-symbolic')
+            self.username_row.add_suffix(self.username_error)
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')
@@ -97,10 +105,14 @@ class UserPage(Gtk.Box):
         self.password_ok = len(password) >= self.min_password_length
         if self.password_ok:
             config.set('user_password', password)
-            self.password_row.remove_css_class('error')
-        elif len(password) > 0:
+            if self.password_error:
+                self.password_row.remove_css_class('error')
+                self.password_row.remove(self.password_error)
+                self.password_error = None
+        elif len(password) > 0 and not self.password_error:
             self.password_row.add_css_class('error')
-
+            self.password_error = Gtk.Image.new_from_icon_name('dialog-warning-symbolic')
+            self.password_row.add_suffix(self.password_error)
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
