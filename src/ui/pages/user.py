@@ -2,7 +2,7 @@
 
 import re
 
-from gi.repository import GLib, Gtk
+from gi.repository import Gtk
 
 from .config import config
 
@@ -35,6 +35,8 @@ class UserPage(Gtk.Box):
         self.username_row.set_visible(self.request_username)
         if self.request_username:
             self.username_row.set_text(config.get('user_username'))
+        else:
+            self.username_ok = True
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
             self.autologin_row.set_active(config.get('user_autologin'))
@@ -45,17 +47,6 @@ class UserPage(Gtk.Box):
 
     def _set_continue_button(self):
         self.continue_button.set_sensitive(self.name_ok and self.username_ok and self.password_ok)
-
-    def _generate_username(self, name):
-        # This sticks to common linux username rules:
-        # * starts with a lowercase letter
-        # * only lowercase letters, numbers, underscore (_), and dash (-)
-        # If the generation fails, a fallback is used.
-        asciified = GLib.str_to_ascii(name).lower()
-        filtered = re.sub(r'[^a-z0-9-_]+', '', asciified)
-        if (position := re.search(r'[a-z]', filtered)) is None:
-            return 'user'
-        return filtered[position.start():].lower()
 
     ### callbacks ###
 
@@ -79,10 +70,6 @@ class UserPage(Gtk.Box):
     def _name_changed(self, editable):
         name = editable.get_text().strip()
         config.set('user_name', name)
-        if not self.request_username:
-            username = self._generate_username(name)
-            config.set('user_username', username)
-            self.username_ok = True
         self.name_ok = len(name) > 0
         self._set_continue_button()
 

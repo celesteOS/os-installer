@@ -1,5 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import re
+
+from gi.repository import GLib, Gtk
+
 from .config import config
 from .installation_step import InstallationStep
 
@@ -17,6 +21,21 @@ def _get(var):
             value[0]
         else:
             return value
+
+
+def _get_username():
+    if config.has('user_username'):
+        return config.get('user_username')
+    else:
+        # This sticks to common linux username rules:
+        # * starts with a lowercase letter
+        # * only lowercase letters, numbers, underscore (_), and dash (-)
+        # If the generation fails, a fallback is used.
+        asciified = GLib.str_to_ascii(config.get('user_name')).lower()
+        filtered = re.sub(r'[^a-z0-9-_]+', '', asciified)
+        if (position := re.search(r'[a-z]', filtered)) is None:
+            return 'user'
+        return filtered[position.start():]
 
 
 def _parse_choices(choices_var):
