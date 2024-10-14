@@ -89,9 +89,11 @@ desktop:
 
 # User setup requests a printable name and a password by default.
 #
+# request_username    Request a username. Otherwise generated from name.
 # provide_autologin   Whether to present an autologin option.
 # min_password_length Minimal password length.
 user:
+  request_username: True
   provide_autologin: True
   min_password_length: 1
 

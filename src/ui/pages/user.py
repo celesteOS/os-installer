@@ -12,6 +12,7 @@ class UserPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     name_row = Gtk.Template.Child()
+    username_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
     password_row = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
@@ -21,8 +22,10 @@ class UserPage(Gtk.Box):
 
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']
+        self.request_username = user_setting['request_username']
 
         self.name_ok = False
+        self.username_ok = False
         self.password_ok = self.min_password_length <= 0
 
         self.name_row.set_text(config.get('user_name'))
@@ -35,7 +38,7 @@ class UserPage(Gtk.Box):
         self.password_row.set_text(config.get('user_password'))
 
     def _set_continue_button(self):
-        self.continue_button.set_sensitive(self.name_ok and self.password_ok)
+        self.continue_button.set_sensitive(self.name_ok and self.username_ok and self.password_ok)
 
     def _generate_username(self, name):
         # This sticks to common linux username rules:
@@ -59,13 +62,30 @@ class UserPage(Gtk.Box):
     def _focus_password(self, row):
         self.password_row.grab_focus()
 
+    @Gtk.Template.Callback('focus_next_from_name')
+    def _focus_next_from_name(self, row):
+        if self.request_username:
+            self.username_row.grab_focus()
+        else:
+            self.password_row.grab_focus()
+
     @Gtk.Template.Callback('name_changed')
     def _name_changed(self, editable):
         name = editable.get_text().strip()
         config.set('user_name', name)
-        username = self._generate_username(name)
-        config.set('user_username', username)
+        if not self.request_username:
+            username = self._generate_username(name)
+            config.set('user_username', username)
+            self.username_ok = True
         self.name_ok = not editable.get_text().strip() == ''
+        self._set_continue_button()
+
+    @Gtk.Template.Callback('username_changed')
+    def _username_changed(self, editable):
+        username = editable.get_text().strip()
+        self.username_ok = bool(re.match('^[a-z][a-z0-9_-]*$', username))
+        if self.username_ok:
+            config.set('user_username', username)
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')

@@ -14,8 +14,17 @@ template $UserPage : Box {
       /* Translators: Used with entry field for User's name */
       title: _("_Name");
       use-underline: true;
-      entry-activated => $focus_password();
+      entry-activated => $focus_next_from_name();
       changed => $name_changed();
+    }
+
+    Adw.EntryRow username_row {
+      activatable: true;
+      /* Translators: Used with entry field for linux username */
+      title: _("_Username");
+      use-underline: true;
+      entry-activated => $focus_password();
+      changed => $username_changed();
     }
 
     Adw.SwitchRow autologin_row {
