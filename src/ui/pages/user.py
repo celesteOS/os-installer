@@ -86,12 +86,21 @@ class UserPage(Gtk.Box):
         self.username_ok = bool(re.match('^[a-z][a-z0-9_-]*$', username))
         if self.username_ok:
             config.set('user_username', username)
+            self.username_row.remove_css_class('error')
+        elif len(username) > 0:
+            self.username_row.add_css_class('error')
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')
     def _password_changedentry_changed(self, editable):
-        config.set('user_password', editable.get_text())
-        self.password_ok = len(editable.get_text()) >= self.min_password_length
+        password = editable.get_text()
+        self.password_ok = len(password) >= self.min_password_length
+        if self.password_ok:
+            config.set('user_password', password)
+            self.password_row.remove_css_class('error')
+        elif len(password) > 0:
+            self.password_row.add_css_class('error')
+
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
