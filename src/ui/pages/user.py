@@ -69,8 +69,9 @@ class UserPage(Gtk.Box):
     @Gtk.Template.Callback('name_changed')
     def _name_changed(self, editable):
         name = editable.get_text().strip()
-        config.set('user_name', name)
         self.name_ok = len(name) > 0
+        if self.name_ok:
+            config.set('user_name', name)
         self._set_continue_button()
 
     @Gtk.Template.Callback('username_changed')
