@@ -32,6 +32,9 @@ class UserPage(Gtk.Box):
         self.password_error = None
 
         self.name_row.set_text(config.get('user_name'))
+        self.username_row.set_visible(self.request_username)
+        if self.request_username:
+            self.username_row.set_text(config.get('user_username'))
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
             self.autologin_row.set_active(config.get('user_autologin'))
