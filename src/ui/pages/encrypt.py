@@ -23,6 +23,9 @@ class EncryptPage(Gtk.Box):
         if encryption_setting['forced']:
             self.switch_row.set_active(True)
             self.switch_row.set_visible(False)
+        else:
+            self.switch_row.set_active(config.get('use_encryption'))
+        self.pin_row.set_text(config.get('encryption_pin'))
 
     def _set_continue_button(self):
         needs_pin = self.switch_row.get_active()
