@@ -45,12 +45,11 @@ for device in devices:
     if not drive:
         print(f'Not a drive: {block}')
         continue
-    if drive.props.size <= 0:
-        print(f'Drive is of size zero ({drive.props.vendor} {drive.props.model})')
-        continue
     if drive.props.optical:
         print(f'Drive is considered optical ({drive.props.vendor} {drive.props.model})')
         continue
+    if drive.props.size <= 0:
+        print(f'(ignored) drive is of size {drive.props.size} ({drive.props.vendor} {drive.props.model})')
 
     print(f'* Disk ({drive.props.vendor} {drive.props.model}), '
           f'size {size_to_str(block.props.size)}, path {block.props.device}:')
