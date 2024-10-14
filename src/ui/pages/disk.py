@@ -32,7 +32,7 @@ class DiskPage(Gtk.Stack):
             self.set_visible_child_name('no-disks')
 
     def _create_device_row(self, info: DeviceInfo):
-        if info.size >= self.minimum_disk_size:
+        if info.size <= 0 or info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
             required_size_str = disk_provider.disk_size_to_str(
