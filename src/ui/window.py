@@ -86,7 +86,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if config.get('test_mode'):
             def show_failed(_, __): return self._load_page('failed')
             self._add_action('fail-page', show_failed, '<Alt>F')
-            def skip_page(_, __): return self.advance(None)
+            def skip_page(_, __):
+                with self.navigation_lock:
+                    return self._advance(None)
             self._add_action('skip', skip_page, '<Alt>S')
 
         self.insert_action_group('win', self.action_group)
