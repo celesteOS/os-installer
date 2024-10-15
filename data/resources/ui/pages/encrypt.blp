@@ -13,19 +13,16 @@ template $EncryptPage : Box {
       activatable: true;
       /* Translators: Used with option to enable disk encryption */
       title: _("Encrypt Files");
-      notify::active => $encryption_row_clicked();
+      notify::active => $switch_row_clicked();
     }
 
     Adw.PasswordEntryRow pin_row {
-      sensitive: false;
       activates-default: true;
       use-underline: true;
       width-chars: 10;
       max-width-chars: 16;
-      /* Translators: Description of entry field for pin/password used for disk encryption */
+      /* Translators: Disk encryption pin confirmation entry field */
       title: _("Encryption PIN");
-      /* Translators: Hint for disk encryption */
-      /*input-hints: _("Memorize this PIN well. Without it you will not be able to access your files.");*/
       changed => $pin_changed();
       entry-activated => $continue();
     }

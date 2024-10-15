@@ -3,6 +3,7 @@
 from gi.repository import Gtk
 
 from .config import config
+from .widgets import EntryErrorEnhancer
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/encrypt.ui')
@@ -20,36 +21,45 @@ class EncryptPage(Gtk.Box):
 
         encryption_setting = config.get('disk_encryption')
         self.min_pin_length = max(1, encryption_setting['min_length'])
+
         if encryption_setting['forced']:
-            self.switch_row.set_active(True)
             self.switch_row.set_visible(False)
+            self.active = True
         else:
-            self.switch_row.set_active(config.get('use_encryption'))
+            self.active = config.get('use_encryption')
+            self.switch_row.set_active(self.active)
+        self._adjust_pin_state()
+
+        self.pin = EntryErrorEnhancer(
+            self.pin_row, lambda text: len(text) > self.min_pin_length)
         self.pin_row.set_text(config.get('encryption_pin'))
 
+    def _adjust_pin_state(self):
+        self.pin_row.set_sensitive(self.active)
+        self.info_revealer.set_reveal_child(self.active)
+        self._set_continue_button()
+
     def _set_continue_button(self):
-        needs_pin = self.switch_row.get_active()
-        has_pin = len(self.pin_row.get_text()) >= self.min_pin_length
-        self.continue_button.set_sensitive(not needs_pin or has_pin)
+        self.continue_button.set_sensitive(not self.active or self.pin)
 
     ### callbacks ###
 
-    @Gtk.Template.Callback('encryption_row_clicked')
-    def _encryption_row_clicked(self, row, state):
-        state = self.switch_row.get_active()
-        config.set('use_encryption', state)
-        self.pin_row.set_sensitive(state)
-        self.info_revealer.set_reveal_child(state)
-        self._set_continue_button()
+    @ Gtk.Template.Callback('switch_row_clicked')
+    def _switch_row_clicked(self, row, state):
+        self.active = self.switch_row.get_active()
+        config.set('use_encryption', self.active)
+        self._adjust_pin_state()
 
-        if state:
+        if self.active:
             self.pin_row.grab_focus()
         else:
             config.set('encryption_pin', '')
 
     @Gtk.Template.Callback('pin_changed')
     def _pin_changed(self, editable):
-        config.set('encryption_pin', editable.get_text())
+        pin = editable.get_text()
+        if self.pin.update_row(pin):
+            config.set('encryption_pin', pin)
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
