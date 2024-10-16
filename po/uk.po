@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-07-29 11:09+0000\n"
-"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
+"PO-Revision-Date: 2024-10-16 18:27+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -59,8 +59,9 @@ msgid "_Confirm"
 msgstr "_Підтвердити"
 
 #. Translators: On button, brackets will be replaced with desktop name.
+#, fuzzy
 msgid "_Use {}"
-msgstr ""
+msgstr "_Use {}"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -193,16 +194,19 @@ msgid "  • BIOS boot partition"
 msgstr "  • Завантажувальний розділ BIOS"
 
 #. Translators: Title of a hint page
+#, fuzzy
 msgid "Disk Not Found"
-msgstr ""
+msgstr "Disk Not Found"
 
 #. Translators: Body of a hint page
+#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr ""
+msgstr "Assure that the disk is still avaliable and has not been removed."
 
 #. Translators: On button.
+#, fuzzy
 msgid "_Return to Disk List"
-msgstr ""
+msgstr "_Return to Disk List"
 
 #. Translators: Description of selected language.
 msgid "Language"
