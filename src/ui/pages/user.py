@@ -15,7 +15,6 @@ class UserPage(Gtk.Box):
     username_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
     password_row = Gtk.Template.Child()
-    password_error_indicator = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
