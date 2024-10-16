@@ -38,9 +38,19 @@ template $UserPage : Box {
       activatable: true;
       activates-default: true;
       use-underline: true;
-      /* Translators: Used with entry field for setting a password for new user */
+      /* Translators: User password entry field */
       title: _("_Password");
       changed => $password_changed();
+      entry-activated => $password_active();
+    }
+
+    Adw.PasswordEntryRow password_confirm_row {
+      activatable: true;
+      activates-default: true;
+      use-underline: true;
+      /* Translators: Used password confirmation entry field */
+      title: _("_Confirm Password");
+      changed => $password_confirm_changed();
       entry-activated => $continue();
     }
   }

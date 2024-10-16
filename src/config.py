@@ -25,7 +25,7 @@ default_config = {
     # desktop
     'desktop': [],
     # user
-    'user': {'min_password_length': 1, 'request_username': False, 'provide_autologin': True},
+    'user': {'min_password_length': 1, 'request_username': False, 'provide_autologin': True, 'password_confirmation': False},
     # optional pages
     'skip_user': False,
     'skip_locale': False,
@@ -111,6 +111,7 @@ def _validate(variables):
         _match(variables['user'], 'min_password_length', int) and
         _match(variables['user'], 'request_username', bool) and
         _match(variables['user'], 'provide_autologin', bool) and
+        _match(variables['user'], 'password_confirmation', bool) and
         _match(variables, 'additional_software', list) and
         _match(variables, 'additional_features', list) and
         _match(variables, 'distribution_name', str) and

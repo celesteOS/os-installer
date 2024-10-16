@@ -16,6 +16,7 @@ class UserPage(Gtk.Box):
     username_row = Gtk.Template.Child()
     autologin_row = Gtk.Template.Child()
     password_row = Gtk.Template.Child()
+    password_confirm_row = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -24,31 +25,39 @@ class UserPage(Gtk.Box):
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']
         self.request_username = user_setting['request_username']
+        self.use_confirmation = user_setting['password_confirmation']
 
         self.name_ok = False
         self.username = EntryErrorEnhancer(
             self.username_row, lambda text: bool(re.match('^[a-z][a-z0-9_-]*$', text)))
         self.password = EntryErrorEnhancer(
             self.password_row, lambda text: len(text) >= self.min_password_length)
+        self.confirmation = EntryErrorEnhancer(
+            self.password_confirm_row, lambda text: text >= self.password_row.get_text())
 
         self.name_row.set_text(config.get('user_name'))
         self.username_row.set_visible(self.request_username)
         if self.request_username:
             self.username_row.set_text(config.get('user_username'))
         else:
-            self.username.empty = False
-            self.username.ok = True
+            self.username = True
+
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
             self.autologin_row.set_active(config.get('user_autologin'))
         else:
             self.autologin_row.set_visible(False)
             self.autologin_row.set_active(False)
-        self.password_row.set_text(config.get('user_password'))
+
+        password = config.get('user_password')
+        self.password_row.set_text(password)
+        self.password_confirm_row.set_visible(self.use_confirmation)
+        if self.use_confirmation:
+            self.password_confirm_row.set_text(password)
 
     def _set_continue_button(self):
         self.continue_button.set_sensitive(
-            self.name_ok and self.username and self.password)
+            self.name_ok and self.username and self.password and self.confirmation)
 
     ### callbacks ###
 
@@ -84,10 +93,21 @@ class UserPage(Gtk.Box):
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')
-    def _password_changedentry_changed(self, editable):
+    def _password_changed(self, editable):
         password = editable.get_text()
         if self.password.update_row(password):
             config.set('user_password', password)
+        self._password_confirm_changed(self.password_confirm_row)
+
+    @Gtk.Template.Callback('password_active')
+    def _password_active(self, object):
+        if self.continue_button.get_sensitive():
+            config.set_next_page(self)
+
+    @Gtk.Template.Callback('password_confirm_changed')
+    def _password_confirm_changed(self, editable):
+        password = editable.get_text()
+        self.confirmation.update_row(password)
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
