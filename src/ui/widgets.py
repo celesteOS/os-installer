@@ -12,6 +12,34 @@ def reset_model(model, new_values):
     model.splice(0, n_prev_items, new_values)
 
 
+class EntryErrorEnhancer():
+    def __init__(self, row, condition):
+        self.row = row
+        self.condition = condition
+        self.error = None
+
+        self.update_row(self.row.get_text())
+
+    def __bool__(self):
+        return self.ok
+
+    def update_row(self, text):
+        self.empty = len(text) == 0
+        self.ok = self.condition(text)
+
+        if self.error and (self.empty or self.ok):
+            self.row.remove_css_class('error')
+            self.row.remove(self.error)
+            del self.error
+            self.error = None
+        elif not self.error and not self.empty and not self.ok:
+            self.row.add_css_class('error')
+            self.error = Gtk.Image.new_from_icon_name(
+                'dialog-warning-symbolic')
+            self.row.add_suffix(self.error)
+        return bool(self)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/desktop_entry.ui')
 class DesktopEntry(Gtk.Button):
     __gtype_name__ = __qualname__

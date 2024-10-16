@@ -5,6 +5,7 @@ import re
 from gi.repository import Gtk
 
 from .config import config
+from .widgets import EntryErrorEnhancer
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
@@ -25,17 +26,18 @@ class UserPage(Gtk.Box):
         self.request_username = user_setting['request_username']
 
         self.name_ok = False
-        self.username_ok = False
-        self.username_error = None
-        self.password_ok = self.min_password_length <= 0
-        self.password_error = None
+        self.username = EntryErrorEnhancer(
+            self.username_row, lambda text: bool(re.match('^[a-z][a-z0-9_-]*$', text)))
+        self.password = EntryErrorEnhancer(
+            self.password_row, lambda text: len(text) >= self.min_password_length)
 
         self.name_row.set_text(config.get('user_name'))
         self.username_row.set_visible(self.request_username)
         if self.request_username:
             self.username_row.set_text(config.get('user_username'))
         else:
-            self.username_ok = True
+            self.username.empty = False
+            self.username.ok = True
         if user_setting['provide_autologin']:
             self.autologin_row.set_visible(True)
             self.autologin_row.set_active(config.get('user_autologin'))
@@ -45,7 +47,8 @@ class UserPage(Gtk.Box):
         self.password_row.set_text(config.get('user_password'))
 
     def _set_continue_button(self):
-        self.continue_button.set_sensitive(self.name_ok and self.username_ok and self.password_ok)
+        self.continue_button.set_sensitive(
+            self.name_ok and self.username and self.password)
 
     ### callbacks ###
 
@@ -76,33 +79,15 @@ class UserPage(Gtk.Box):
     @Gtk.Template.Callback('username_changed')
     def _username_changed(self, editable):
         username = editable.get_text().strip()
-        self.username_ok = bool(re.match('^[a-z][a-z0-9_-]*$', username))
-        if self.username_ok:
+        if self.username.update_row(username):
             config.set('user_username', username)
-            if self.username_error:
-                self.username_row.remove_css_class('error')
-                self.username_row.remove(self.username_error)
-                self.username_error = None
-        elif len(username) > 0 and not self.username_error:
-            self.username_row.add_css_class('error')
-            self.username_error = Gtk.Image.new_from_icon_name('dialog-warning-symbolic')
-            self.username_row.add_suffix(self.username_error)
         self._set_continue_button()
 
     @Gtk.Template.Callback('password_changed')
     def _password_changedentry_changed(self, editable):
         password = editable.get_text()
-        self.password_ok = len(password) >= self.min_password_length
-        if self.password_ok:
+        if self.password.update_row(password):
             config.set('user_password', password)
-            if self.password_error:
-                self.password_row.remove_css_class('error')
-                self.password_row.remove(self.password_error)
-                self.password_error = None
-        elif len(password) > 0 and not self.password_error:
-            self.password_row.add_css_class('error')
-            self.password_error = Gtk.Image.new_from_icon_name('dialog-warning-symbolic')
-            self.password_row.add_suffix(self.password_error)
         self._set_continue_button()
 
     @Gtk.Template.Callback('continue')
