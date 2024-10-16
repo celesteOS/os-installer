@@ -25,7 +25,7 @@ default_config = {
     # desktop
     'desktop': [],
     # user
-    'user': {'min_password_length': 1, 'request_username': False, 'provide_autologin': True, 'password_confirmation': False},
+    'user': {'min_password_length': 1, 'request_username': False, 'provide_autologin': False, 'password_confirmation': False},
     # optional pages
     'skip_user': False,
     'skip_locale': False,
