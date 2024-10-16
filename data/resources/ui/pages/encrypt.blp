@@ -24,6 +24,17 @@ template $EncryptPage : Box {
       /* Translators: Disk encryption pin confirmation entry field */
       title: _("Encryption PIN");
       changed => $pin_changed();
+      entry-activated => $pin_activated();
+    }
+
+    Adw.PasswordEntryRow pin_confirm_row {
+      activates-default: true;
+      use-underline: true;
+      width-chars: 10;
+      max-width-chars: 16;
+      /* Translators: Disk encryption pin confirmation entry field */
+      title: _("Confirm PIN");
+      changed => $pin_confirm_changed();
       entry-activated => $continue();
     }
   }

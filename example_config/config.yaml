@@ -55,11 +55,12 @@ welcome_page:
 minimum_disk_size: 5
 
 # Disk encryption PIN setup.
-# Default: offered: yes, forced: no, min_length: 1
+# Default: offered: yes, forced: no, min_length: 1, confirmation: no
 disk_encryption:
   offered: yes
   forced: no
   min_length: 1
+  confirmation: yes
 
 # Provide multiple desktop environments to choose from
 #

@@ -12,6 +12,7 @@ class EncryptPage(Gtk.Box):
 
     switch_row = Gtk.Template.Child()
     pin_row = Gtk.Template.Child()
+    pin_confirm_row = Gtk.Template.Child()
     info_revealer = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
@@ -21,6 +22,7 @@ class EncryptPage(Gtk.Box):
 
         encryption_setting = config.get('disk_encryption')
         self.min_pin_length = max(1, encryption_setting['min_length'])
+        self.use_confirmation = encryption_setting['confirmation']
 
         if encryption_setting['forced']:
             self.switch_row.set_visible(False)
@@ -34,13 +36,22 @@ class EncryptPage(Gtk.Box):
             self.pin_row, lambda text: len(text) > self.min_pin_length)
         self.pin_row.set_text(config.get('encryption_pin'))
 
+        self.pin_confirm_row.set_visible(self.use_confirmation)
+        if self.use_confirmation:
+            self.confirmation = EntryErrorEnhancer(
+                self.pin_confirm_row, lambda text: text == self.pin_row.get_text())
+            self.pin_confirm_row.set_text(config.get('encryption_pin'))
+        else:
+             self.confirmation = True
+
     def _adjust_pin_state(self):
         self.pin_row.set_sensitive(self.active)
+        self.pin_confirm_row.set_sensitive(self.active)
         self.info_revealer.set_reveal_child(self.active)
         self._set_continue_button()
 
     def _set_continue_button(self):
-        self.continue_button.set_sensitive(not self.active or self.pin)
+        self.continue_button.set_sensitive(not self.active or (self.pin and self.confirmation))
 
     ### callbacks ###
 
@@ -60,7 +71,20 @@ class EncryptPage(Gtk.Box):
         pin = editable.get_text()
         if self.pin.update_row(pin):
             config.set('encryption_pin', pin)
+        self._pin_confirm_changed(self.pin_confirm_row)
+
+    @Gtk.Template.Callback('pin_confirm_changed')
+    def _pin_confirm_changed(self, editable):
+        pin = editable.get_text()
+        self.confirmation.update_row(pin)
         self._set_continue_button()
+
+    @Gtk.Template.Callback('pin_activated')
+    def _pin_activated(self, object):
+        if self.use_confirmation:
+            self.pin_confirm_row.grab_focus()
+        else:
+            self._continue(None)
 
     @Gtk.Template.Callback('continue')
     def _continue(self, object):
