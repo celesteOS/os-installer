@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-28 12:09+0200\n"
+"POT-Creation-Date: 2024-10-16 14:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,15 +67,22 @@ msgstr ""
 msgid "_Confirm"
 msgstr ""
 
+#. Translators: On button, brackets will be replaced with desktop name.
+#: data/resources/ui/pages/desktop.blp
+msgid "_Use {}"
+msgstr ""
+
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr ""
 
+#. Translators: Title of a hint page
 #: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
 msgstr ""
 
+#. Translators: Body of a hint page
 #: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
 msgstr ""
@@ -105,9 +112,14 @@ msgstr ""
 msgid "Encrypt Files"
 msgstr ""
 
-#. Translators: Description of entry field for pin/password used for disk encryption
+#. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
+msgstr ""
+
+#. Translators: Disk encryption pin confirmation entry field
+#: data/resources/ui/pages/encrypt.blp
+msgid "Confirm PIN"
 msgstr ""
 
 #. Translators: Hint for disk encryption
@@ -213,6 +225,21 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr ""
 
+#. Translators: Title of a hint page
+#: data/resources/ui/pages/partition.blp
+msgid "Disk Not Found"
+msgstr ""
+
+#. Translators: Body of a hint page
+#: data/resources/ui/pages/partition.blp
+msgid "Assure that the disk is still avaliable and has not been removed."
+msgstr ""
+
+#. Translators: On button.
+#: data/resources/ui/pages/partition.blp
+msgid "_Return to Disk List"
+msgstr ""
+
 #. Translators: Description of selected language.
 #: data/resources/ui/pages/summary.blp
 msgid "Language"
@@ -258,14 +285,24 @@ msgstr ""
 msgid "_Name"
 msgstr ""
 
+#. Translators: Used with entry field for linux username
+#: data/resources/ui/pages/user.blp
+msgid "_Username"
+msgstr ""
+
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
 msgstr ""
 
-#. Translators: Used with entry field for setting a password for new user
+#. Translators: User password entry field
 #: data/resources/ui/pages/user.blp
 msgid "_Password"
+msgstr ""
+
+#. Translators: Used password confirmation entry field
+#: data/resources/ui/pages/user.blp
+msgid "_Confirm Password"
 msgstr ""
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
@@ -275,7 +312,7 @@ msgid ""
 "system."
 msgstr ""
 
-#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#. Translators: Fallback name for partitions that don't have a name.
 #: data/resources/ui/widgets/device_row.blp
 msgid "Unnamed Partition"
 msgstr ""
@@ -289,6 +326,11 @@ msgstr ""
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Confirmation"
+msgstr ""
+
+#. Translators: Page title
+#: src/ui/page_wrapper.py
+msgid "Desktop Selection"
 msgstr ""
 
 #. Translators: Page title
@@ -307,8 +349,7 @@ msgid "Disk Encryption"
 msgstr ""
 
 #. Translators: Page title
-#. Translators: Notification text
-#: src/ui/page_wrapper.py src/util/installation_scripting.py
+#: src/ui/page_wrapper.py
 msgid "Installation Failed"
 msgstr ""
 
