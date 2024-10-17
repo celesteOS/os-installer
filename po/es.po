@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-10-17 19:15+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/es/>\n"
 "Language: es\n"
@@ -63,9 +63,8 @@ msgid "_Confirm"
 msgstr "_Confirmar"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "_Usar {}"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -104,9 +103,8 @@ msgid "Encryption PIN"
 msgstr "PIN de cifrado"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "Confirmar"
+msgstr "Confirmar el pin"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -194,19 +192,16 @@ msgid "  • BIOS boot partition"
 msgstr "  • Partición de arranque BIOS"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "Disco no encontrado"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "Asegúrate de que el disco sigue disponible y no ha sido retirado."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_Volver a la lista de discos"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -246,9 +241,8 @@ msgid "_Name"
 msgstr "_Nombre"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "Usuario"
+msgstr "_Nombre de usuario"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -259,9 +253,8 @@ msgid "_Password"
 msgstr "_Contraseña"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Contraseña"
+msgstr "_Confirmar contraseña"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
@@ -283,9 +276,8 @@ msgid "Confirmation"
 msgstr "Confirmar"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Selecciona un disco"
+msgstr "Selección de escritorio"
 
 #. Translators: Page title
 msgid "Disk Selection"
