@@ -56,11 +56,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._update_page()
 
     def _initialize_first_page(self):
-        self._remove_all_pages()
-        page_name = self.available_pages[0]
-        initial_page = PageWrapper(page_name)
+        initial_page = PageWrapper(self.available_pages[0])
         initial_page.permanent = True
-        self.navigation_view.replace([initial_page])
+        self.navigation_view.add(initial_page)
 
     def _add_action(self, action_name, callback, keybinding):
         action = Gio.SimpleAction.new(action_name, None)
@@ -124,15 +122,18 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 config.set('fixed_language', '')
         return True
 
-    def _remove_all_pages(self):
+    def _remove_all_pages(self, exception=None):
         for page_name in self.available_pages:
+            if page_name == exception:
+                continue
             if page := self.navigation_view.find_page(page_name):
                 self.navigation_view.remove(page)
                 del page
-        self.navigation_view.replace([])
 
-        if page := self.navigation_view.find_page('language'):
-            self.navigation_view.replace([page])
+        replacement = []
+        if exception:
+            replacement = [self.navigation_view.find_page(exception)]
+        self.navigation_view.replace(replacement)
 
     def _get_next_page_name(self, offset: int = forward):
         current_page = self.navigation_view.get_visible_page()
@@ -153,7 +154,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 case 'no_return':
                     self._remove_all_pages()
                 case 'retranslate':
-                    self._initialize_first_page()
+                    self._remove_all_pages('language')
 
             self._load_page(next_page_name)
 
@@ -204,7 +205,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _change_page(self, value):
         with self.navigation_lock:
-            match value:
+            match value := config.steal('displayed-page'):
                 case 'next', page:
                     self._advance(page)
                 case _:
