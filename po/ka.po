@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-10-17 19:15+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/ka/>\n"
 "Language: ka\n"
@@ -58,9 +58,8 @@ msgid "_Confirm"
 msgstr "_დადასტურება"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "{}-ის გამოყენებ_ა"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -99,9 +98,8 @@ msgid "Encryption PIN"
 msgstr "დაშიფვრის PIN"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "_დადასტურება"
+msgstr "დაადასტურეთ PIN"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -189,19 +187,16 @@ msgid "  • BIOS boot partition"
 msgstr "  • BIOS ჩატვირთვადი დანაყოფი"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "დისკი ვერ ვიპოვე"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "დარწმუნდით, რომ დისკი ჯერ კიდევ ხელმისაწვდომია და არ წაშლილა."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "დაბ_რუნება დისკების სიაზე"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -241,9 +236,8 @@ msgid "_Name"
 msgstr "_სახელი"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "მომხმარებელი"
+msgstr "მომხმარებ_ლის სახელი"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -254,9 +248,8 @@ msgid "_Password"
 msgstr "_პაროლი"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_პაროლი"
+msgstr "_პაროლის დადასტურება"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
@@ -278,9 +271,8 @@ msgid "Confirmation"
 msgstr "დადასტურება"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "დისკის არჩევანი"
+msgstr "სამუშაო მაგიდის არჩევანი"
 
 #. Translators: Page title
 msgid "Disk Selection"
