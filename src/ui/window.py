@@ -82,8 +82,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
 
         if config.get('test_mode'):
-            def show_failed(_, __): return self._load_page('failed')
+            def show_failed(_, __):
+                with self.navigation_lock:
+                    return self._load_page('failed', permanent=False)
             self._add_action('fail-page', show_failed, '<Alt>F')
+
             def skip_page(_, __):
                 with self.navigation_lock:
                     return self._advance(None)
