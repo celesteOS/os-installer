@@ -34,7 +34,6 @@ class InstallationScripting():
         terminal.set_scroll_on_output(True)
         terminal.set_hexpand(True)
         terminal.set_vexpand(True)
-        terminal.connect('child-exited', self._on_child_exited)
         return terminal
 
     def _fail_installation(self):
@@ -60,15 +59,15 @@ class InstallationScripting():
         # start script
         file_name = f'/etc/os-installer/scripts/{next_step.name}.sh'
         if os.path.exists(file_name):
-            started_script, _ = self.terminal.spawn_sync(
-                Vte.PtyFlags.DEFAULT, '/', ['sh', file_name],
-                envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
-            if not started_script:
-                print(f'Could not start {self.finished_step.name} script! '
-                      'Ignoring.')
-                self._try_start_next_script()
-            else:
-                self.running_step = next_step
+            self.terminal.spawn_async(
+                Vte.PtyFlags.DEFAULT,
+                '/', ['sh', file_name], envs,
+                GLib.SpawnFlags.DEFAULT,
+                None, None, -1, self.cancel,
+                lambda _, pid, __, ___: GLib.child_watch_add(
+                    pid, self._on_child_exited, None),
+                None)
+            self.running_step = next_step
         else:
             print(f'No script for step {next_step.name} exists.')
             self.finished_step = next_step
@@ -76,7 +75,7 @@ class InstallationScripting():
 
     ### callbacks ###
 
-    def _on_child_exited(self, terminal, status):
+    def _on_child_exited(self, pid, status, _):
         with self.lock:
             self.finished_step = self.running_step
             self.running_step = InstallationStep.none
