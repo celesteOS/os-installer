@@ -5,35 +5,19 @@ template $InstallPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Stack stack {
+  Adw.StatusPage {
+    hexpand: true;
     vexpand: true;
-    transition-type: crossfade;
-
-    StackPage {
-      name: "spinner";
-      child: Adw.Spinner {};
-    }
-
-    StackPage {
-      name: "terminal";
-      child: Box {
-        overflow: hidden;
-        styles ["card", "terminal-box"]
-
-        Box terminal_box {
-          margin-end: 12;
-          margin-start: 12;
-        }
-      };
-    }
+    child: Adw.Spinner {
+    };
   }
 
-  ToggleButton {
+  Button {
+    action-name: "win.show-terminal";
     focusable: true;
-    /* Translators: Hover information on toggle button that shows terminal output during installation. */
+    /* Translators: Hover information on toggle button that shows terminal output. */
     tooltip-text: _("Show Terminal Output");
     halign: center;
-    clicked => $terminal_button_toggled();
     styles ["pill"]
 
     Image {

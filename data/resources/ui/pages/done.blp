@@ -5,61 +5,40 @@ template $DonePage : Box {
   halign: center;
   spacing: 12;
 
-  Stack stack {
-    vexpand: true;
-    transition-type: crossfade;
+  Box {
+    orientation: vertical;
+    spacing: 12;
 
-    StackPage {
-      name: "buttons";
-      child: Box {
-        orientation: vertical;
-        spacing: 12;
-
-        Button {
-          /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
-          label: _("_Restart System");
-          focusable: true;
-          halign: center;
-          receives-default: true;
-          use-underline: true;
-          clicked => $restart_button_clicked();
-          styles ["suggested-action", "pill"]
-        }
-
-        Button {
-          /* Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'. */
-          label: _("Restart _Later");
-          focusable: true;
-          halign: center;
-          receives-default: true;
-          action-name: "win.quit";
-          use-underline: true;
-
-          styles ["pill"]
-        }
-      };
+    Button {
+      /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
+      label: _("_Restart System");
+      focusable: true;
+      halign: center;
+      receives-default: true;
+      use-underline: true;
+      clicked => $restart_button_clicked();
+      styles ["suggested-action", "pill"]
     }
 
-    StackPage {
-      name: "terminal";
-      child: Box {
-        overflow: hidden;
-        styles ["card", "terminal-box"]
+    Button {
+      /* Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'. */
+      label: _("Restart _Later");
+      focusable: true;
+      halign: center;
+      receives-default: true;
+      action-name: "win.quit";
+      use-underline: true;
 
-        Box terminal_box {
-          margin-end: 12;
-          margin-start: 12;
-        }
-      };
+      styles ["pill"]
     }
   }
 
   ToggleButton {
+    action-name: "win.show-terminal";
     focusable: true;
-    /* Translators: Hover information on toggle button that shows terminal output during installation. */
+    /* Translators: Hover information on toggle button that shows terminal output. */
     tooltip-text: _("Show Terminal Output");
     halign: center;
-    clicked => $terminal_button_toggled();
     styles ["pill"]
 
     Image {

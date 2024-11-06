@@ -51,6 +51,7 @@ os_installer_sources = [
   'ui/pages/summary.py',
   'ui/pages/user.py',
   'ui/pages/welcome.py',
+  'ui/terminal_dialog.py',
   'ui/widgets.py',
   'ui/window.py',
   'util/envvar_creator.py',

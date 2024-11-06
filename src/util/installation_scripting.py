@@ -20,21 +20,14 @@ class InstallationScripting():
     '''
 
     def __init__(self):
-        self.terminal = self._setup_terminal()
         self.cancel = Gio.Cancellable()
+        self.pty = Vte.Pty.new_sync(Vte.PtyFlags.NO_CTTY, self.cancel)
+        config.set('script_pty', self.pty)
 
         self.lock = Lock()
         self.ready_step = InstallationStep.none
         self.running_step = InstallationStep.none
         self.finished_step = InstallationStep.none
-
-    def _setup_terminal(self):
-        terminal = Vte.Terminal()
-        terminal.set_input_enabled(False)
-        terminal.set_scroll_on_output(True)
-        terminal.set_hexpand(True)
-        terminal.set_vexpand(True)
-        return terminal
 
     def _fail_installation(self):
         config.set('installation_running', False)
@@ -59,13 +52,11 @@ class InstallationScripting():
         # start script
         file_name = f'/etc/os-installer/scripts/{next_step.name}.sh'
         if os.path.exists(file_name):
-            self.terminal.spawn_async(
-                Vte.PtyFlags.DEFAULT,
+            self.pty.spawn_async(
                 '/', ['sh', file_name], envs,
                 GLib.SpawnFlags.DEFAULT,
                 None, None, -1, self.cancel,
-                lambda _, pid, __, ___: GLib.child_watch_add(
-                    pid, self._on_child_exited, None),
+                self._on_child_spawned,
                 None)
             self.running_step = next_step
         else:
@@ -75,7 +66,15 @@ class InstallationScripting():
 
     ### callbacks ###
 
-    def _on_child_exited(self, pid, status, _):
+    def _on_child_spawned(self, pty, task, data):
+        success, pid = pty.spawn_finish(task)
+        if success:
+            GLib.child_watch_add(pid, self._on_child_exited, None)
+        else:
+            print(f'Error starting {self.running_step}')
+            self._fail_installation()
+
+    def _on_child_exited(self, pid, status, data):
         with self.lock:
             self.finished_step = self.running_step
             self.running_step = InstallationStep.none

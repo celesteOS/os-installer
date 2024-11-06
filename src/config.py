@@ -63,6 +63,7 @@ internal_values = {
     'timezone': 'UTC',
     'feature_choices': {},
     'software_choices': {},
+    'stashed-terminal': None,
     'version': -1,
 }
 

@@ -3,13 +3,14 @@
 from threading import Lock
 from os.path import exists
 
-from gi.repository import Gio, Gtk, Adw
+from gi.repository import Adw, Gio, Gtk, Vte
 
 from .config import config
 from .language_provider import language_provider
 from .page_wrapper import PageWrapper
 from .state_machine import page_order, state_machine
 from .system_calls import set_system_language
+from .terminal_dialog import TerminalDialog
 
 
 forward = 1
@@ -21,6 +22,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
 
     navigation_view = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
 
     navigation_lock = Lock()
     pages = []
@@ -38,6 +40,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.navigation_view.connect('get-next-page', self._add_next_page)
 
         config.subscribe('displayed-page', self._change_page, delayed=True)
+        config.subscribe('stashed-terminal', self._stash_terminal, delayed=True)
 
     def _add_next_page(self, _):
         current_page = self.navigation_view.get_visible_page()
@@ -54,6 +57,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _pushed_page(self, _):
         self._update_page()
+
+    def _stash_terminal(self, terminal):
+        # VteTerminal widget needs to exist somewhere in the widget tree once
+        # created. Keep it around as a stack page that never gets revealed.
+        terminal = config.steal('stashed-terminal')
+        self.stack.add_named(terminal, 'terminal')
 
     def _initialize_first_page(self):
         initial_page = PageWrapper(self.available_pages[0])
@@ -79,6 +88,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('previous-page', self._navigate_backward, '<Alt>Left')
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
+        self._add_action('show-terminal', self._show_terminal, '<Ctl>t')
         self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
 
         if config.get('test_mode'):
@@ -257,3 +267,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             popup.present(self)
 
         return True
+
+    def _show_terminal(self, _, __):
+        with self.navigation_lock:
+            terminal = self.stack.get_child_by_name('terminal')
+            if terminal:
+                self.stack.remove(terminal)
+            TerminalDialog(terminal).present(self)

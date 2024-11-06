@@ -2,7 +2,6 @@
 
 from gi.repository import Gtk
 
-from .installation_scripting import installation_scripting
 from .system_calls import open_internet_search
 
 
@@ -10,11 +9,8 @@ from .system_calls import open_internet_search
 class FailedPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
-    terminal_box = Gtk.Template.Child()
-
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        self.terminal_box.append(installation_scripting.terminal)
 
     ### callbacks ###
 

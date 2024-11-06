@@ -1,21 +1,30 @@
 using Gtk 4.0;
+using Adw 1;
 
 template $FailedPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Box {
-    overflow: hidden;
+  Adw.StatusPage {
+    /* Translators: Title of installation failure page.*/
+    title: _("Error During Installation");
+    /* Translators: Installation failure description. Brackets will be replaced by the distribution name. */
+    description: _("Details on the error that occured can be found in the installation logs. Please report this error to {}.");
+    child: Button {
+      action-name: "win.show-terminal";
+      focusable: true;
+      /* Translators: Hover information on toggle button that shows terminal output. */
+      tooltip-text: _("Show Terminal Output");
+      halign: center;
+      styles ["pill"]
 
-    Box terminal_box {
-      margin-end: 12;
-      margin-start: 12;
-    }
-
-    styles ["card", "terminal-box"]
+      Image {
+        icon-name: "utilities-terminal-symbolic";
+      }
+    };
   }
 
-  Button search_button {
+  Button {
     focusable: true;
     receives-default: true;
     halign: center;

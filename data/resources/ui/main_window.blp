@@ -7,5 +7,9 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 640;
 
-  Adw.NavigationView navigation_view {}
+  Stack stack {
+    StackPage {
+      child: Adw.NavigationView navigation_view {};
+    }
+  }
 }
