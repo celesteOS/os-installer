@@ -11,7 +11,7 @@ from .preloadable import Preloadable
 class Desktop(NamedTuple):
     name: str
     description: str
-    texture: str
+    texture: Gdk.Texture
     keyword: str
 
 
