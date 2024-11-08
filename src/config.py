@@ -33,6 +33,8 @@ default_config = {
     'additional_software': [],
     # feature
     'additional_features': [],
+    # install
+    'install_slideshow': [],
     # fail
     'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
     # commands
@@ -115,6 +117,7 @@ def _validate(variables):
         _match(variables['user'], 'password_confirmation', bool) and
         _match(variables, 'additional_software', list) and
         _match(variables, 'additional_features', list) and
+        _match(variables, 'install_slideshow', list) and
         _match(variables, 'distribution_name', str) and
         _match(variables, 'fixed_language', bool, str))
 

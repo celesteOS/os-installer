@@ -30,6 +30,7 @@ os_installer_sources = [
   'provider/keyboard_layout_provider.py',
   'provider/language_provider.py',
   'provider/preload_manager.py',
+  'provider/slideshow_provider.py',
   'provider/timezone_provider.py',
   'provider/welcome_provider.py',
   'ui/page_wrapper.py',

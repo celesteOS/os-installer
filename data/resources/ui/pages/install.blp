@@ -5,11 +5,24 @@ template $InstallPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Adw.StatusPage {
-    hexpand: true;
-    vexpand: true;
-    child: Adw.Spinner {
-    };
+  Stack stack {
+    StackPage {
+      name: "slideshow";
+      child: Adw.Carousel carousel {
+        spacing: 18;
+        page-changed => $page_changed();
+      };
+    }
+
+    StackPage {
+      name: "spinner";
+      child: Adw.StatusPage {
+        hexpand: true;
+        vexpand: true;
+        child: Adw.Spinner {
+        };
+      };
+    }
   }
 
   Button {
