@@ -12,3 +12,8 @@
 .selected-card {
   background: @accent_bg_color;
 }
+
+/* Match outline of buttons */
+.extended-outline {
+  outline-offset: 2px;
+}
