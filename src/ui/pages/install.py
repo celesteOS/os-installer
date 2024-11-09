@@ -30,10 +30,10 @@ class InstallPage(Gtk.Box):
         self.slideshow_position = 0
 
         for slide in slideshow:
-            image = Gtk.Image.new_from_paintable(slide.image)
-            image.set_hexpand(True)
-            image.add_css_class('card')
-            self.carousel.append(image)
+            picture = Gtk.Picture.new_for_paintable(slide.image)
+            picture.add_css_class('card')
+            picture.set_valign(Gtk.Align.CENTER)
+            self.carousel.append(picture)
             self.durations.append(slide.duration)
 
         self.lock = Lock()
