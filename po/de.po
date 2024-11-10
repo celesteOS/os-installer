@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-11-10 05:00+0000\n"
+"Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.8.2\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -59,9 +59,8 @@ msgid "_Confirm"
 msgstr "_Bestätigen"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "_Nutze {}"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -100,9 +99,8 @@ msgid "Encryption PIN"
 msgstr "Verschlüsselungs-PIN"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "_Bestätigen"
+msgstr "PIN bestätigen"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -126,17 +124,15 @@ msgstr "Keine Ergebnisse"
 msgid "Try a different search"
 msgstr "Versuchen Sie eine andere Suche"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Keine Verbindung."
+msgstr "Keine Verbindung erkannt."
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Einstellungen öffnen"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Verbindung erkannt"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -194,19 +190,18 @@ msgid "  • BIOS boot partition"
 msgstr "  • BIOS Boot-Partition"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "Laufwerk nicht gefunden"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr ""
+"Stellen Sie sicher, dass das Laufwerk noch verfügbar ist und nicht entfernt "
+"wurde."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_Zurück zur Laufwerksauswahl"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -246,9 +241,8 @@ msgid "_Name"
 msgstr "_Name"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "User"
+msgstr "Nutzername"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -259,9 +253,8 @@ msgid "_Password"
 msgstr "_Passwort"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Passwort"
+msgstr "_Passwort Bestätigen"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
@@ -284,9 +277,8 @@ msgid "Confirmation"
 msgstr "Bestätigung"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Laufwerksauswahl"
+msgstr "Desktop-Auswahl"
 
 #. Translators: Page title
 msgid "Disk Selection"
@@ -341,9 +333,8 @@ msgid "Welcome"
 msgstr "Willkommen"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "Installation _fortsetzen"
+msgstr "Installation beendet"
 
 #, fuzzy
 #~ msgid "Disk"
