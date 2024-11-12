@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-11-12 23:05+0000\n"
+"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/et/>\n"
 "Language: et\n"
@@ -17,18 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
 
 msgid "Install an Operating System"
-msgstr "Paigaldage opsüsteemi"
+msgstr "Paigalda opsüsteem"
 
 #. Translators: Dialog title
-#, fuzzy
 msgid "Installation Running"
-msgstr "Paigaldamine ebaõnnestus"
+msgstr "Paigaldamine on käimas"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
@@ -52,37 +51,35 @@ msgstr "_Jätka"
 
 #. Translators: Followed by a disk or partition name
 msgid "This will delete all data on"
-msgstr "See kustutab kõik andmed"
+msgstr "Järgnevaga kustutame siin kõik andmed"
 
 #. Translators: On button.
 msgid "_Confirm"
 msgstr "_Kinnita"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "Kas_uta {}"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
-msgstr "_Ketaste haldamine"
+msgstr "_Halda kettaid"
 
 #. Translators: Title of a hint page
 msgid "No Disks avaliable"
-msgstr "Ühtegi ketast ei ole saadaval"
+msgstr "Ühtegi ketast ei leidu"
 
 #. Translators: Body of a hint page
 msgid "Connect a disk and reload this page."
-msgstr "Ühenda ketas ja värskenda see lehekülg."
+msgstr "Ühenda ketas ja laadi see leht uuesti."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_Laadi uuesti"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 msgid "_Restart System"
-msgstr "_Taaskäivita süsteem"
+msgstr "_Taaskäivita arvuti"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 msgid "Restart _Later"
@@ -94,16 +91,15 @@ msgstr "Näita terminali väljundit"
 
 #. Translators: Used with option to enable disk encryption
 msgid "Encrypt Files"
-msgstr "Failide krüpteerimine"
+msgstr "Krüpti failid"
 
 #. Translators: Disk encryption pin confirmation entry field
 msgid "Encryption PIN"
-msgstr "Krüpteerimise PIN-kood"
+msgstr "Krüptimise PIN-kood"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "_Kinnita"
+msgstr "Kinnita PIN-kood"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -115,31 +111,26 @@ msgstr ""
 msgid "Search for Help on the Internet"
 msgstr "Otsi abi internetist"
 
-#, fuzzy
 msgid "Filter"
 msgstr "Filter"
 
 #. Translators: Empty result placeholder title
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Tulemused puuduvad"
 
 #. Translators: Empty result placeholder, meant as a suggestion
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Proovi teistsugust otsingut"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Ei ole võrguga ühendatud."
+msgstr "Võrguühendust ei õnnestunud tuvastada"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Ava sätted"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Võrguühendus on tuvastatud"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -149,7 +140,7 @@ msgstr "Sisestuskeel"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 msgid "Test the Keyboard Layout Here"
-msgstr "Testi klaviatuuri siin"
+msgstr "Testi klaviatuuri paigutust siin"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
@@ -173,9 +164,8 @@ msgstr "Kasuta tervet ketast"
 msgid "Partitions"
 msgstr "Partitsioonid"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Kettal ei ole partitsioone."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -198,30 +188,25 @@ msgid "  • BIOS boot partition"
 msgstr "  • BIOS boot partitsiooni"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "Ketast ei leidu"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "Palun kontrolli, et ketas on jätkuvalt olemas, ega pole eemaldatud."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_Tagasi ketaste loendisse"
 
 #. Translators: Description of selected language.
-#, fuzzy
 msgid "Language"
-msgstr "Sisestuskeel"
+msgstr "Keel"
 
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
-#, fuzzy
 msgid "Keyboard Layout"
-msgstr "Klaviatuuri paigutuse valik"
+msgstr "Klaviatuuri paigutus"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -229,9 +214,8 @@ msgid "User Account"
 msgstr "Kasutajakonto"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
 msgid "(Automatic Login)"
-msgstr "Automaatne sisselogimine"
+msgstr "(Automaatne sisselogimine)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
@@ -240,45 +224,39 @@ msgstr "Lisa tarkvara"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Puudub"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
-#, fuzzy
 msgid "Additional Features"
-msgstr "Lisa tarkvara"
+msgstr "Lisatarkvara"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
 msgid "_Name"
-msgstr "Nimi"
+msgstr "_Nimi"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "User"
+msgstr "Kas_utajanimi"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
-msgstr "Automaatne sisselogimine"
+msgstr "Logi sisse automaatselt"
 
 #. Translators: User password entry field
-#, fuzzy
 msgid "_Password"
-msgstr "Parool"
+msgstr "_Salasõna"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "Parool"
+msgstr "_Kinnita salasõna"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr "See rakendus juhendab teid läbi {} paigaldamise."
+msgstr "See rakendus juhendab sind läbi {} paigaldamise."
 
 #. Translators: Fallback name for partitions that don't have a name.
 msgid "Unnamed Partition"
@@ -286,18 +264,16 @@ msgstr "Nimetu partitsioon"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
 msgid "Not enough space for installation ({} required)"
-msgstr "Paigaldamiseks ei ole piisavalt ruumi"
+msgstr "Paigaldamiseks ei ole piisavalt ruumi (vajalik on {})"
 
 #. Translators: Page title
 msgid "Confirmation"
 msgstr "Kinnitus"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Ketta valik"
+msgstr "Töölaua valik"
 
 #. Translators: Page title
 msgid "Disk Selection"
@@ -305,15 +281,15 @@ msgstr "Ketta valik"
 
 #. Translators: Page title
 msgid "Installation Complete"
-msgstr "Paigaldamine lõpetatud"
+msgstr "Paigaldamine lõppenud"
 
 #. Translators: Page title
 msgid "Disk Encryption"
-msgstr "Ketta krüpteerimine"
+msgstr "Ketta krüptimine"
 
 #. Translators: Page title
 msgid "Installation Failed"
-msgstr "Paigaldamine ebaõnnestus"
+msgstr "Paigaldamine ei õnnestunud"
 
 #. Translators: Page title
 msgid "Select Region"
@@ -333,16 +309,15 @@ msgstr "Klaviatuuri paigutuse valik"
 
 #. Translators: Page title
 msgid "Adapt to Location"
-msgstr "Asukoha sätted"
+msgstr "Asukoha valikud"
 
 #. Translators: Page title
 msgid "Restarting"
 msgstr "Taaskäivitamine"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Kokkuvõte"
 
 #. Translators: Page title
 msgid "Select Location"
@@ -353,9 +328,8 @@ msgid "Welcome"
 msgstr "Tere tulemast"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "_Jätka paigaldamist"
+msgstr "Paigaldamine on lõppenud"
 
 #, fuzzy
 #~ msgid "Disk"
