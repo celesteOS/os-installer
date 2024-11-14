@@ -10,7 +10,7 @@
 
 /* Distinction for a selected */
 .selected-card {
-  background: @accent_bg_color;
+  background: var(--accent-bg-color);
 }
 
 /* Match outline of buttons */
