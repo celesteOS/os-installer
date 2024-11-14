@@ -58,7 +58,7 @@ msgstr "_تأكد"
 #. Translators: On button, brackets will be replaced with desktop name.
 #, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "_استعمل {}"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -131,7 +131,7 @@ msgstr "_أفتح الإعدادات"
 
 #, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "عوثور على وسله"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -181,8 +181,8 @@ msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
+"  • GPT تقسيم\n"
+"  • EFI قسم"
 
 #. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
@@ -191,17 +191,17 @@ msgstr " • قسم تمهيد BIOS"
 #. Translators: Title of a hint page
 #, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "لم يجد قرص"
 
 #. Translators: Body of a hint page
 #, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "تأكد من استمرار وجود القرص و عدم فصله"
 
 #. Translators: On button.
 #, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_عوده إلى قإمات الإقرسه"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -341,11 +341,11 @@ msgstr "_استمر في التثبيت"
 
 #, fuzzy
 #~ msgid "Disk"
-#~ msgstr "Disk"
+#~ msgstr "قرص"
 
 #, fuzzy
 #~ msgid "Done"
-#~ msgstr "Done"
+#~ msgstr "انتهاء"
 
 #, fuzzy
 #~| msgid "Encrypt Files"
@@ -354,11 +354,11 @@ msgstr "_استمر في التثبيت"
 
 #, fuzzy
 #~ msgid "Failed"
-#~ msgstr "Failed"
+#~ msgstr "فشل"
 
 #, fuzzy
 #~ msgid "Feature"
-#~ msgstr "Feature"
+#~ msgstr "خصائص"
 
 #, fuzzy
 #~| msgid "Formats"
@@ -372,7 +372,7 @@ msgstr "_استمر في التثبيت"
 
 #, fuzzy
 #~ msgid "Internet"
-#~ msgstr "Internet"
+#~ msgstr "انترنت"
 
 #, fuzzy
 #~| msgid "Keyboard Language"
@@ -386,7 +386,7 @@ msgstr "_استمر في التثبيت"
 
 #, fuzzy
 #~ msgid "KeyboardOverview"
-#~ msgstr "KeyboardOverview"
+#~ msgstr "نظرة شامله لي للوحة المفاتيح"
 
 #, fuzzy
 #~ msgid "Locale"
@@ -404,4 +404,4 @@ msgstr "_استمر في التثبيت"
 
 #, fuzzy
 #~ msgid "Software"
-#~ msgstr "Software"
+#~ msgstr "برمجيات"
