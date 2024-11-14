@@ -24,7 +24,6 @@ class FilterPage(Gtk.Box):
     filter_list_model = Gtk.Template.Child()
 
     stack = Gtk.Template.Child()
-    list = Gtk.Template.Child()
     list_model = Gtk.Template.Child()
 
     def __init__(self, filter_type, **kwargs):
@@ -40,9 +39,6 @@ class FilterPage(Gtk.Box):
                 self.list_model.splice(0, 0, timezone_provider.get_timezones())
 
         self.search_entry.connect("search-changed", self._filter)
-
-        self.list.bind_model(
-            self.filter_list_model, lambda f: ProgressRow(f.name))
 
     def _filter(self, *args):
         self.search_text = self.search_entry.get_text().lower()
@@ -66,13 +62,14 @@ class FilterPage(Gtk.Box):
 
     ### callbacks ###
 
-    @Gtk.Template.Callback('row_selected')
-    def _row_selected(self, list_box, row):
+    @Gtk.Template.Callback('row_activated')
+    def _row_activated(self, list_view, pos):
+        item = self.list_model.get_item(pos)
         match self.type:
             case FilterType.format:
-                set_system_formats(row.info, row.get_title())
+                set_system_formats(item, item.name)
             case FilterType.timezone:
-                set_system_timezone(row.get_title())
+                set_system_timezone(item.name)
         config.set_next_page(self)
 
 

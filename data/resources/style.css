@@ -17,3 +17,26 @@
 .extended-outline {
   outline-offset: 2px;
 }
+
+.list-view-box {
+  background: transparent;
+  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.separated-list-view {
+  background: transparent;
+}
+
+.separated-list-view row{
+  padding: 0px;
+}
+
+.separated-list-view row > *{
+  background: var(--card-bg-color);
+  color: var(--card-fg-color);
+  padding: 18px;
+}

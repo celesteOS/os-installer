@@ -61,6 +61,10 @@ class Format(GObject.Object):
         self.lower_case_name = name.lower()
         self.locale = locale
 
+    @GObject.Property(type=str)
+    def title(self):
+        return self.name
+
 
 class FormatProvider(Preloadable):
     def __init__(self):

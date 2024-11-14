@@ -20,9 +20,46 @@ template $FilterPage : Box {
 
     StackPage {
       name: "list";
-      child: ListBox list {
-        row-activated => $row_selected();
-        styles ["boxed-list"]
+      child: Box {
+        overflow: hidden;
+        styles ["list-view-box"]
+
+        ScrolledWindow {
+          propagate-natural-height: true;
+
+          child: ListView {
+            hexpand: true;
+            show-separators: true;
+            single-click-activate: true;
+            tab-behavior: item;
+            styles ["separated-list-view"]
+            activate => $row_activated();
+
+            model: NoSelection {
+              model: FilterListModel filter_list_model {
+                filter: CustomFilter custom_filter {};
+                model: Gio.ListStore list_model {};
+              };
+            };
+
+            factory: BuilderListItemFactory {
+              template ListItem {
+                child: Box {
+                  Label {
+                    label: bind template.item as <$Timezone>.title;
+                  }
+
+                  [suffix]
+                  Image {
+                    halign: end;
+                    hexpand: true;
+                    icon-name: "go-next-symbolic";
+                  }
+                };
+              }
+            };
+          };
+        }
       };
     }
 
@@ -36,13 +73,4 @@ template $FilterPage : Box {
       };
     }
   }
-}
-
-Gio.ListStore list_model {}
-
-CustomFilter custom_filter {}
-
-FilterListModel filter_list_model {
-  filter: custom_filter;
-  model: list_model;
 }

@@ -18,6 +18,10 @@ class Timezone(GObject.Object):
         self.lower_case_name: str = name.lower()
         self.locations: set = set()
 
+    @GObject.Property(type=str)
+    def title(self):
+        return self.name
+
 
 def _get_location_children(location):
     current_child = None
