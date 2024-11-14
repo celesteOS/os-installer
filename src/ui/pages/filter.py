@@ -53,12 +53,7 @@ class FilterPage(Gtk.Box):
         return self.search_text in format.lower_case_name or format.locale.startswith(self.search_text)
 
     def _timezone_filter(self, timezone):
-        if self.search_text in timezone.lower_case_name:
-            return True
-        for location in timezone.locations:
-            if self.search_text in location:
-                return True
-        return False
+        return self.search_text in timezone.search_string
 
     ### callbacks ###
 

@@ -16,8 +16,8 @@ class Timezone(GObject.Object):
 
         self.id: str = id
         self.name: str = id.replace('_', ' ')
-        self.lower_case_name: str = id.lower()
         self.locations: set = set()
+        self.search_string = ''
 
     @GObject.Property(type=str)
     def title(self):
@@ -66,7 +66,13 @@ class TimezoneProvider(Preloadable):
             if not child.has_timezone():  # skips UTC and Etc/GMT+12
                 _recurse_location(child, timezone_map)
 
-        self.timezones = sorted(timezone_map.values(), key=lambda t: t.name)
+        self.timezones = []
+        for timezone in sorted(timezone_map.values(), key=lambda t: t.name):
+            locations_list = list(timezone.locations)
+            timezone.search_string = f'{timezone.name.lower()}🛑'
+            timezone.search_string += '🛑'.join(locations_list)
+            timezone.locations = None
+            self.timezones.append(timezone)
 
     ### public methods ###
 
