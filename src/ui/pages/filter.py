@@ -69,7 +69,7 @@ class FilterPage(Gtk.Box):
             case FilterType.format:
                 set_system_formats(item, item.name)
             case FilterType.timezone:
-                set_system_timezone(item.name)
+                set_system_timezone(item.id)
         config.set_next_page(self)
 
 

@@ -11,11 +11,12 @@ from .preloadable import Preloadable
 class Timezone(GObject.Object):
     __gtype_name__ = __qualname__
 
-    def __init__(self, name):
+    def __init__(self, id):
         super().__init__()
 
-        self.name: str = name
-        self.lower_case_name: str = name.lower()
+        self.id: str = id
+        self.name: str = id.replace('_', ' ')
+        self.lower_case_name: str = id.lower()
         self.locations: set = set()
 
     @GObject.Property(type=str)
