@@ -8,6 +8,10 @@ from .config import config
 from .preloadable import Preloadable
 
 
+def printable_timezone(id):
+    return id.replace('_', ' ')
+
+
 class Timezone(GObject.Object):
     __gtype_name__ = __qualname__
 
@@ -15,7 +19,7 @@ class Timezone(GObject.Object):
         super().__init__()
 
         self.id: str = id
-        self.name: str = id.replace('_', ' ')
+        self.name: str = printable_timezone(id)
         self.locations: set = set()
         self.search_string = ''
 
@@ -54,8 +58,8 @@ class TimezoneProvider(Preloadable):
         Preloadable.__init__(self, self._get_timezones)
 
     def _get_timezones(self):
-        current_timezone = GnomeDesktop.WallClock().get_timezone()
-        config.set('timezone', current_timezone.get_identifier())
+        current_id = GnomeDesktop.WallClock().get_timezone().get_identifier()
+        config.set('timezone', printable_timezone(current_id))
 
         timezone_map = dict()
         for timezone in GWeather.Location().get_world().get_timezones():
