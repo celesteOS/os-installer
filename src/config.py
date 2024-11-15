@@ -9,8 +9,6 @@ DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 default_config = {
     # general
     'distribution_name': 'Untitled',
-    'demo_mode': False,
-    'test_mode': False,
     # internet
     'internet_connection_required': True,
     'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
@@ -52,7 +50,10 @@ legacy_values = {
 
 # not configurable via config file
 internal_values = {
-    'installation_running': False,
+    # modes
+    'demo_mode': False,
+    'test_mode': False,
+    # configurations
     'internet_connection': False,
     'use_encryption': False,
     'encryption_pin': '',
@@ -65,6 +66,8 @@ internal_values = {
     'timezone': 'UTC',
     'feature_choices': {},
     'software_choices': {},
+    # other
+    'installation_running': False,
     'stashed-terminal': None,
     'version': -1,
 }
