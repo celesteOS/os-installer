@@ -122,6 +122,8 @@ class LanguageProvider(Preloadable):
                     self.suggested.append(language_info)
                 else:
                     self.other.append(language_info)
+        else:
+            self.other = self.all_languages
 
     ### public methods ###
 
