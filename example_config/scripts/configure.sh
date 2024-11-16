@@ -13,7 +13,8 @@
 # OSI_ADDITIONAL_FEATURES: Space-separated list of additional features chosen
 
 # sanity check that all variables were set
-if [ -z ${OSI_LOCALE+x} ] || \
+if [ -z ${OSI_DESKTOP+x} ] || \
+   [ -z ${OSI_LOCALE+x} ] || \
    [ -z ${OSI_KEYBOARD_LAYOUT+x} ] || \
    [ -z ${OSI_DEVICE_PATH+x} ] || \
    [ -z ${OSI_DEVICE_IS_PARTITION+x} ] || \
@@ -36,6 +37,7 @@ fi
 echo 'Configuration started.'
 echo ''
 echo 'Variables set to:'
+echo 'OSI_DESKTOP              ' $OSI_DESKTOP
 echo 'OSI_LOCALE               ' $OSI_LOCALE
 echo 'OSI_KEYBOARD_LAYOUT      ' $OSI_KEYBOARD_LAYOUT
 echo 'OSI_DEVICE_PATH          ' $OSI_DEVICE_PATH
