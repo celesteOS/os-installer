@@ -1,7 +1,6 @@
 #! /bin/sh
 
-# This is an example configuration script. For OS-Installer to use it, place it at:
-# /etc/os-installer/scripts/configure.sh
+# This is an example configuration script.
 # The script gets called with the environment variables from the install script
 # (see install.sh) and these additional variables:
 # OSI_USER_NAME          : User's name. Not ASCII-fied

@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import sys
 from threading import Lock
 import yaml
 
@@ -9,6 +10,7 @@ DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 default_config = {
     # general
     'distribution_name': 'Untitled',
+    'scripts': {'prepare': None, 'install': None, 'configure': None},
     # internet
     'internet_connection_required': True,
     'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
@@ -96,10 +98,20 @@ def _match(variables, var, *ok_types):
         return True
 
 
+def _validate_scripts(variables):
+    scripts = variables['scripts'] if 'scripts' in variables else None
+    if (not _match(variables, 'scripts', dict) or
+            (scripts['install'] is None and scripts['configure'] is None)):
+        print('Config error: Either install or configure script must exist')
+        sys.exit(1)
+    return True
+
+
 def _validate(variables):
     assert not variables['fixed_language'] == True, 'Need to specify or disable fixed language.'
 
     return (
+        _validate_scripts(variables) and
         _match(variables, 'welcome_page', dict) and
         _match(variables['welcome_page'], 'usage', bool) and
         _match(variables['welcome_page'], 'logo', str, type(None)) and

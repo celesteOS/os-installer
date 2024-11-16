@@ -12,6 +12,28 @@
 # Default: 'Untitled'
 distribution_name: 'Debuntorarch'
 
+# After gathering all configured information, os-installer runs the scripts
+# configured here. The installation can happen in up to three phases. A phase
+# will be skipped if no script is configured for it.
+#
+# To see what is available per phase, see the examples scripts. If an "install"
+# phase is configured, the installer behave slightly different:
+# * A separate confirmation page is shown before user configuration happens
+# * Navigating to pre-confirmation pages is not possible after confirmation
+# * Language, desktop and disk choices can not be changed from the summary page
+#
+# If an internet connection is required, it will be available for all phases.
+#
+# prepare   - Run directly or when an internet connection is available.
+# install   - Run with locale, disk and optional desktop configured.
+# configure - Run with everything configured.
+#
+# Default: None
+scripts:
+  prepare: /etc/os-installer/scripts/prepare.sh
+  install: /etc/os-installer/scripts/install.sh
+  configure: /etc/os-installer/scripts/configure.sh
+
 # Whether the installation needs an internet connection.
 # Default: yes
 internet_connection_required: yes

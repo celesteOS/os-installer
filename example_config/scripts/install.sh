@@ -1,7 +1,6 @@
 #! /bin/sh
 
-# This is an example installer script. For OS-Installer to use it, place it at:
-# /etc/os-installer/scripts/install.sh
+# This is an example installer script.
 # The script gets called with the following environment variables set:
 # OSI_DESKTOP             : Desktop keyword, or empty if 'desktop' was not configured
 # OSI_LOCALE              : Locale to be used in the new system

@@ -43,15 +43,15 @@ class InstallationScripting():
             return
 
         next_step = InstallationStep(self.finished_step.value + 1)
-        print(f'Starting step "{next_step.name}"...')
         if next_step != InstallationStep.prepare:
             config.set('installation_running', True)
 
         envs = create_envs(next_step)
 
         # start script
-        file_name = f'/etc/os-installer/scripts/{next_step.name}.sh'
-        if os.path.exists(file_name):
+        file_name = config.get('scripts')[next_step.name]
+        if file_name is not None and os.path.exists(file_name):
+            print(f'Starting step "{next_step.name}"...')
             self.pty.spawn_async(
                 '/', ['sh', file_name], envs,
                 GLib.SpawnFlags.DEFAULT,
@@ -59,8 +59,12 @@ class InstallationScripting():
                 self._on_child_spawned,
                 None)
             self.running_step = next_step
+        elif file_name:
+            print(f'Could not find configured script "{file_name}"')
+            print('Stopping installation')
+            self._fail_installation()
         else:
-            print(f'No script for step {next_step.name} exists.')
+            print(f'Skipping step "{next_step.name}"')
             self.finished_step = next_step
             self._try_start_next_script()
 
