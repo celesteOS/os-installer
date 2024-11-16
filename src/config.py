@@ -15,7 +15,7 @@ default_config = {
     'internet_connection_required': True,
     'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
     # language
-    'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
+    'suggested_languages': [],
     'fixed_language': False,
     # welcome
     'welcome_page': {'usage': True, 'logo': None, 'text': None},

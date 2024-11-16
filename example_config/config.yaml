@@ -46,10 +46,11 @@ internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 # Default: no (No fixed language, not Norwegian)
 fixed_language: no
 
-# A selection of languages the installer should present by default.
+# Some languages can be presented more prominently. All other languages are
+# shown in an alphabetical order.
 # Note: For a language to be available, it needs to be provided by the system
 # and the installer needs to have a translation into that language.
-# Default: ['ar', 'de', 'en', 'es', 'fr', 'ja', 'ru', 'zh']
+# Default: []
 suggested_languages:
   - 'ar'
   - 'de'
