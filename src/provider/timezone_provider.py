@@ -7,7 +7,7 @@ from .filterable_object import FilterableObject
 from .preloadable import Preloadable
 
 
-def printable_timezone(id):
+def _printable_timezone(id):
     return id.replace('_', ' ')
 
 
@@ -42,7 +42,7 @@ class TimezoneProvider(Preloadable):
 
     def _get_timezones(self):
         current_id = GnomeDesktop.WallClock().get_timezone().get_identifier()
-        config.set('timezone', printable_timezone(current_id))
+        config.set('timezone', _printable_timezone(current_id))
 
         timezone_map = dict()
         for timezone in GWeather.Location().get_world().get_timezones():
@@ -54,7 +54,7 @@ class TimezoneProvider(Preloadable):
 
         self.timezones = []
         for id, locations in sorted(timezone_map.items()):
-            printable_name = printable_timezone(id)
+            printable_name = _printable_timezone(id)
 
             search_string = f'{printable_name.lower()}🛑'
             search_string += '🛑'.join(list(locations))
