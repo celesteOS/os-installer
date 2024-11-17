@@ -45,7 +45,7 @@ class DesktopPage(Gtk.Box):
         entry.add_css_class('suggested-action')
         self.selected_entry = entry
 
-        config.set('desktop_chosen', desktop.keyword)
+        config.set('desktop_chosen', (desktop.keyword, desktop.name))
 
     ### callbacks ###
 
