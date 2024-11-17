@@ -151,7 +151,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _get_next_page_name(self, offset: int = forward):
         current_page = self.navigation_view.get_visible_page()
         current_index = self.available_pages.index(current_page.get_tag())
-        return self.available_pages[current_index + offset]
+        if (next_index := current_index + offset) < len(self.available_pages):
+            return self.available_pages[next_index]
+        else:
+            return None
 
     def _advance(self, page):
         # confirm calling page is current page to prevent incorrect navigation
