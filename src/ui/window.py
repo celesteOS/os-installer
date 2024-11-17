@@ -88,8 +88,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.shortcut_controller = Gtk.ShortcutController()
         self.shortcut_controller.set_scope(Gtk.ShortcutScope(1))
 
-        self._add_action('next-page', self._navigate_forward, '<Alt>Right')
-        self._add_action('previous-page', self._navigate_backward, '<Alt>Left')
+        self._add_action('next-page', self._navigate_forward)
+        self._add_action('previous-page', self._navigate_backward)
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
         self._add_action('show-terminal', self._show_terminal, '<Ctl>t')
