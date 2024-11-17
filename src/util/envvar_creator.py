@@ -55,25 +55,25 @@ def create_envs(installation_step: InstallationStep):
     envs = []
     if with_install_envs:
         envs += [
-            f'OSI_DESKTOP={_get("desktop_chosen")}',
-            f'OSI_LOCALE={_get("locale")}',
-            f'OSI_KEYBOARD_LAYOUT={_get("keyboard_layout")}',
-            f'OSI_DEVICE_PATH={_get("disk")}',
-            f'OSI_DEVICE_IS_PARTITION={_get("disk_is_partition")}',
-            f'OSI_DEVICE_EFI_PARTITION={_get("disk_efi_partition")}',
-            f'OSI_USE_ENCRYPTION={_get("use_encryption")}',
-            f'OSI_ENCRYPTION_PIN={_get("encryption_pin")}',
+            f"OSI_DESKTOP={_get('desktop_chosen')}",
+            f"OSI_LOCALE={_get('locale')}",
+            f"OSI_KEYBOARD_LAYOUT={_get('keyboard_layout')}",
+            f"OSI_DEVICE_PATH={_get('disk')}",
+            f"OSI_DEVICE_IS_PARTITION={_get('disk_is_partition')}",
+            f"OSI_DEVICE_EFI_PARTITION={_get('disk_efi_partition')}",
+            f"OSI_USE_ENCRYPTION={_get('use_encryption')}",
+            f"OSI_ENCRYPTION_PIN={_get('encryption_pin')}",
         ]
 
     if with_configure_envs:
         envs += [
-            f'OSI_USER_NAME={_get("user_name")}',
-            f'OSI_USER_USERNAME={_get("user_username")}',
-            f'OSI_USER_AUTOLOGIN={_get("user_autologin")}',
-            f'OSI_USER_PASSWORD={_get("user_password")}',
-            f'OSI_FORMATS={_get("formats")}',
-            f'OSI_TIMEZONE={_get("timezone")}',
-            f'OSI_ADDITIONAL_SOFTWARE={_parse_choices("software_choices")}',
-            f'OSI_ADDITIONAL_FEATURES={_parse_choices("feature_choices")}',
+            f"OSI_USER_NAME={_get('user_name')}",
+            f"OSI_USER_USERNAME={_get('user_username')}",
+            f"OSI_USER_AUTOLOGIN={_get('user_autologin')}",
+            f"OSI_USER_PASSWORD={_get('user_password')}",
+            f"OSI_FORMATS={_get('formats')}",
+            f"OSI_TIMEZONE={_get('timezone')}",
+            f"OSI_ADDITIONAL_SOFTWARE={_parse_choices('software_choices')}",
+            f"OSI_ADDITIONAL_FEATURES={_parse_choices('feature_choices')}",
         ]
     return envs + [None]
