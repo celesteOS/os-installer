@@ -35,6 +35,19 @@ template $SummaryPage : Box {
       }
     }
 
+    Adw.ActionRow desktop_row {
+      visible: false;
+      name: "desktop";
+      activatable: true;
+      /* Translators: Description of selected keyboard layout. */
+      title: _("Desktop");
+      styles ["property"]
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
     Adw.ActionRow user_row {
       name: "user";
       activatable: true;

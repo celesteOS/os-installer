@@ -17,6 +17,7 @@ class SummaryPage(Gtk.Box):
     # rows
     language_row = Gtk.Template.Child()
     keyboard_row = Gtk.Template.Child()
+    desktop_row = Gtk.Template.Child()
     user_row = Gtk.Template.Child()
     format_row = Gtk.Template.Child()
     timezone_row = Gtk.Template.Child()
@@ -39,6 +40,9 @@ class SummaryPage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        if config.get('desktop'):
+            self.desktop_row.set_visible(True)
+            config.subscribe('desktop_chosen', self._update_desktop)
         if not config.get('fixed_language'):
             self.language_row.set_visible(True)
             config.subscribe('language', self._update_language)
@@ -63,6 +67,10 @@ class SummaryPage(Gtk.Box):
         config.subscribe('keyboard_layout', self._update_keyboard_layout)
 
     ### callbacks ###
+
+    def _update_desktop(self, desktop):
+        _, name = desktop
+        self.desktop_row.set_subtitle(name)
 
     def _update_feature_choices(self, choices):
         if choices:
