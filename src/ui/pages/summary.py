@@ -64,6 +64,13 @@ class SummaryPage(Gtk.Box):
             self.timezone_row.set_visible(True)
             config.subscribe('timezone', self._update_timezone)
 
+        scripts = config.get('scripts')
+        if scripts['install'] is not None:
+            # These values can only be edited if install step has not already
+            # been started wtih them
+            self.language_row.set_sensitive(False)
+            self.desktop_row.set_sensitive(False)
+
         config.subscribe('keyboard_layout', self._update_keyboard_layout)
 
     ### callbacks ###
