@@ -71,12 +71,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         initial_page.permanent = True
         self.navigation_view.add(initial_page)
 
-    def _add_action(self, action_name, callback, keybinding):
+    def _add_action(self, action_name, callback, keybinding=None):
         action = Gio.SimpleAction.new(action_name, None)
         action.connect('activate', callback)
         self.action_group.add_action(action)
 
-        trigger = Gtk.ShortcutTrigger.parse_string(keybinding)
+        trigger = None
+        if keybinding:
+            trigger = Gtk.ShortcutTrigger.parse_string(keybinding)
         named_action = Gtk.NamedAction.new(f'win.{action_name}')
         shortcut = Gtk.Shortcut.new(trigger, named_action)
         self.shortcut_controller.add_shortcut(shortcut)
