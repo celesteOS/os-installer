@@ -43,12 +43,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         config.subscribe('stashed-terminal', self._stash_terminal, delayed=True)
 
     def _add_next_page(self, _):
-        current_page = self.navigation_view.get_visible_page()
-        next_index = self.available_pages.index(current_page.get_tag()) + 1
-        if next_index >= len(self.available_pages):
-            return None
-        next_page_name = self.available_pages[next_index]
-        return self.navigation_view.find_page(next_page_name)
+        with self.navigation_lock:
+            if self._current_is_last():
+                return None
+
+            if next_page_name := self._get_next_page_name(forward):
+                return self.navigation_view.find_page(next_page_name)
+            else:
+                return None
 
     def _popped_page(self, _, popped_page):
         if not popped_page.permanent:
