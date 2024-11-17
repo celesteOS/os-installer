@@ -15,17 +15,16 @@ def printable_timezone(id):
 class Timezone(GObject.Object):
     __gtype_name__ = __qualname__
 
-    def __init__(self, id):
+    def __init__(self, title, id, search_string):
         super().__init__()
 
+        self._title: str = title
         self.id: str = id
-        self.name: str = printable_timezone(id)
-        self.locations: set = set()
-        self.search_string = ''
+        self.search_string = search_string
 
     @GObject.Property(type=str)
     def title(self):
-        return self.name
+        return self._title
 
 
 def _get_location_children(location):
@@ -37,10 +36,10 @@ def _get_location_children(location):
     return children
 
 
-def _add_all_locations_to_timezone(timezone, location):
+def _add_all_locations_to_timezone(timezone_map, id, location):
     for child in _get_location_children(location):
-        timezone.locations.add(child.get_name().lower())
-        _add_all_locations_to_timezone(timezone, child)
+        timezone_map[id].add(child.get_name().lower())
+        _add_all_locations_to_timezone(timezone_map, id, child)
 
 
 def _recurse_location(location, timezone_map):
@@ -48,7 +47,7 @@ def _recurse_location(location, timezone_map):
         if not child.has_timezone():
             _recurse_location(child, timezone_map)
         elif (id := child.get_timezone().get_identifier()) in timezone_map:
-            _add_all_locations_to_timezone(timezone_map[id], child)
+            _add_all_locations_to_timezone(timezone_map, id, child)
         else:
             print(f'Developer hint: Unknown timezone {id} {child.get_name()}')
 
@@ -63,20 +62,20 @@ class TimezoneProvider(Preloadable):
 
         timezone_map = dict()
         for timezone in GWeather.Location().get_world().get_timezones():
-            id = timezone.get_identifier()
-            timezone_map[id] = Timezone(id)
+            timezone_map[timezone.get_identifier()] = set()
 
         for child in _get_location_children(GWeather.Location().get_world()):
             if not child.has_timezone():  # skips UTC and Etc/GMT+12
                 _recurse_location(child, timezone_map)
 
         self.timezones = []
-        for timezone in sorted(timezone_map.values(), key=lambda t: t.name):
-            locations_list = list(timezone.locations)
-            timezone.search_string = f'{timezone.name.lower()}🛑'
-            timezone.search_string += '🛑'.join(locations_list)
-            timezone.locations = None
-            self.timezones.append(timezone)
+        for id, locations in sorted(timezone_map.items()):
+            printable_name = printable_timezone(id)
+
+            search_string = f'{printable_name.lower()}🛑'
+            search_string += '🛑'.join(list(locations))
+
+            self.timezones.append(Timezone(printable_name, id, search_string))
 
     ### public methods ###
 
