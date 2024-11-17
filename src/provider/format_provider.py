@@ -59,7 +59,7 @@ class Format(GObject.Object):
 
         self.name = name
         self.lower_case_name = name.lower()
-        self.locale = locale
+        self.id = locale
 
     @GObject.Property(type=str)
     def title(self):
