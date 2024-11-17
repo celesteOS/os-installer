@@ -204,10 +204,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         is_first, is_last = self._current_is_first(), self._current_is_last()
         current_page.update_navigation_buttons(is_first, is_last)
 
-    def _load_next_page(self, offset: int = forward):
-        page_name = self._get_next_page_name(offset)
-        self._load_page(page_name, offset)
-
     def _current_is_first(self):
         return len(self.navigation_view.get_navigation_stack()) == 1
 
@@ -234,17 +230,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                     self._load_page(page_name, permanent=False)
 
     def _navigate_backward(self, _, __):
-        with self.navigation_lock:
-            page = self.navigation_view.get_visible_page()
-            if not page.permanent:
-                self.navigation_view.pop()
-            elif not self._current_is_first():
-                self._load_next_page(backwards)
+        self.navigation_view.pop()
 
     def _navigate_forward(self, _, __):
-        with self.navigation_lock:
-            if not self._current_is_last():
-                self._load_next_page()
+        self._add_next_page(None)
 
     def _reload_page(self, _, __):
         with self.navigation_lock:
