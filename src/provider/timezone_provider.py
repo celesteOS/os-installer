@@ -1,30 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from time import time
-
-from gi.repository import GnomeDesktop, GObject, GWeather
+from gi.repository import GnomeDesktop, GWeather
 
 from .config import config
+from .filterable_object import FilterableObject
 from .preloadable import Preloadable
 
 
 def printable_timezone(id):
     return id.replace('_', ' ')
-
-
-class Timezone(GObject.Object):
-    __gtype_name__ = __qualname__
-
-    def __init__(self, title, id, search_string):
-        super().__init__()
-
-        self._title: str = title
-        self.id: str = id
-        self.search_string = search_string
-
-    @GObject.Property(type=str)
-    def title(self):
-        return self._title
 
 
 def _get_location_children(location):
@@ -75,7 +59,8 @@ class TimezoneProvider(Preloadable):
             search_string = f'{printable_name.lower()}🛑'
             search_string += '🛑'.join(list(locations))
 
-            self.timezones.append(Timezone(printable_name, id, search_string))
+            timezone = FilterableObject(printable_name, id, search_string)
+            self.timezones.append(timezone)
 
     ### public methods ###
 
