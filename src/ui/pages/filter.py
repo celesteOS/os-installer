@@ -50,7 +50,7 @@ class FilterPage(Gtk.Box):
             self.stack.set_visible_child_name('none')
 
     def _format_filter(self, format):
-        return self.search_text in format.lower_case_name or format.id.startswith(self.search_text)
+        return self.search_text in format.search_string
 
     def _timezone_filter(self, timezone):
         return self.search_text in timezone.search_string

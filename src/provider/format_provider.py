@@ -2,9 +2,9 @@
 
 import locale as Locale
 
-from gi.repository import GnomeDesktop, GObject
+from gi.repository import GnomeDesktop
 
-from .config import config
+from .filterable_object import FilterableObject
 from .preloadable import Preloadable
 from .system_calls import set_system_formats
 
@@ -48,24 +48,6 @@ locales = {
     'aa_DJ.UTF-8', 'so_SO.UTF-8'}
 
 
-class Format(GObject.Object):
-    __gtype_name__ = __qualname__
-    name: str
-    lower_case_name: str
-    locale: str
-
-    def __init__(self, name, locale):
-        super().__init__()
-
-        self.name = name
-        self.lower_case_name = name.lower()
-        self.id = locale
-
-    @GObject.Property(type=str)
-    def title(self):
-        return self.name
-
-
 class FormatProvider(Preloadable):
     def __init__(self):
         Preloadable.__init__(self, self._initialize_formats, 'locale')
@@ -87,7 +69,10 @@ class FormatProvider(Preloadable):
             name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
             if name and not name in names:
                 names.add(name)
-                self.formats.append(Format(name, locale))
+                short_locale = locale.split(".")[0]
+                search_string = f'{name.lower()}🛑{short_locale}'
+                format = FilterableObject(name, locale, search_string)
+                self.formats.append(format)
 
         # return sorted (considers umlauts and such)
         self.formats.sort(key=lambda t: Locale.strxfrm(t.name))
