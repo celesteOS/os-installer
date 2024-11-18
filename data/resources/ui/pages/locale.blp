@@ -7,58 +7,54 @@ template $LocalePage : Box {
 
   ListBox {
     selection-mode: none;
-    row-activated => $overview_row_activated();
     styles ["boxed-list"]
 
-    Adw.ActionRow {
+    Adw.ActionRow timezone_row {
       name: "timezone";
       activatable: true;
-      focusable: true;
       selectable: false;
       /* Translators: Presented next to the current Timezone. */
       title: _("Timezone");
+      styles ["property"]
 
-      Box {
-        spacing: 12;
-
-        Label timezone_label {
-          ellipsize: end;
-          hexpand: true;
-          lines: 2;
-          wrap: true;
-          xalign: 1;
-        }
-
-        Image {
-          icon-name: "emblem-system-symbolic";
-        }
+      [suffix]
+      Image {
+        icon-name: "emblem-system-symbolic";
       }
     }
+  }
 
-    Adw.ActionRow {
+  ListBox {
+    selection-mode: none;
+    styles ["boxed-list"]
+
+    Adw.ActionRow formats_row {
       name: "format";
       activatable: true;
-      focusable: true;
       selectable: false;
       /* Translators: Presented next to the current Formats. */
       title: _("Formats");
       /* Translators: Description of what is covered by formats. */
-      subtitle: _("Defines the default format used for dates, times, numbers, etc.");
+      styles ["property"]
+      activated => $row_activated();
 
-      Box {
-        spacing: 12;
+      [suffix]
+      Image {
+        icon-name: "emblem-system-symbolic";
+      }
+    }
 
-        Label formats_label {
-          ellipsize: end;
-          hexpand: true;
-          lines: 2;
-          wrap: true;
-          xalign: 1;
-        }
+    Adw.ActionRow {
+      activatable: false;
+      focusable: false;
+      selectable: false;
+      /* Translators: Description of what is covered by formats. */
+      title: _("Defines the default format used for dates, times, numbers, etc.");
 
-        Image {
-          icon-name: "emblem-system-symbolic";
-        }
+      [prefix]
+      Image {
+        icon-name: "dialog-information-symbolic";
+        styles ["dim-label"]
       }
     }
   }

@@ -9,8 +9,8 @@ from .config import config
 class LocalePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
-    formats_label = Gtk.Template.Child()
-    timezone_label = Gtk.Template.Child()
+    formats_row = Gtk.Template.Child()
+    timezone_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
@@ -21,15 +21,15 @@ class LocalePage(Gtk.Box):
     ### callbacks ###
 
     def _update_formats(self, formats):
-        self.formats_label.set_label(formats[1])
+        self.formats_row.set_subtitle(formats[1])
 
     def _update_timezone(self, timezone):
-        self.timezone_label.set_label(timezone)
+        self.timezone_row.set_subtitle(timezone)
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
         config.set_next_page(self)
 
-    @Gtk.Template.Callback('overview_row_activated')
-    def _overview_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('row_activated')
+    def _row_activated(self, row):
         config.set('displayed-page', row.get_name())
