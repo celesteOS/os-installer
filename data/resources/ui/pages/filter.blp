@@ -47,6 +47,8 @@ template $FilterPage : Box {
                 child: Box {
                   Label {
                     label: bind template.item as <$FilterableObject>.title;
+                    hexpand: true;
+                    wrap: true;
                   }
 
                   [suffix]
