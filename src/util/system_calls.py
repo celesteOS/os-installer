@@ -33,7 +33,7 @@ def open_disks():
 def open_internet_search():
     browser_cmd = config.get('browser_cmd').split()
     failure_help_url = config.get('failure_help_url')
-    version = config.get("version")
+    version = config.get('version')
     browser_cmd.append(failure_help_url.format(version))
     _run_program(browser_cmd)
 
