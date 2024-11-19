@@ -33,7 +33,7 @@ class DiskPage(Gtk.Stack):
 
     def _create_device_row(self, info: DeviceInfo):
         if info.size <= 0 or info.size >= self.minimum_disk_size:
-            return DeviceRow(info)
+            return DeviceChoiceRow(info)
         else:
             return DeviceTooSmallRow(info)
 

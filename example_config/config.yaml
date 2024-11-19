@@ -130,8 +130,8 @@ desktop:
 #
 # Default: request_username: no, provide_autologin: no, min_password_length: 1, password_confirmation: no
 user:
-  request_username: True
-  provide_autologin: True
+  request_username: yes
+  provide_autologin: yes
   min_password_length: 1
   password_confirmation: yes
 
@@ -158,7 +158,7 @@ skip_locale: no
 #                         Value of 'option' is used when not given.
 #     option      string  Like 'keyword' for non-options, forwarded as-is when chosen.
 #
-# Default: [], suggested: False, description: '', icon_path: fallback icon
+# Default: [], suggested: no, description: '', icon_path: fallback icon
 additional_software:
   - name           : 'Firefox'
     description    : 'Popular Web Browser from Mozilla'
