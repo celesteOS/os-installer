@@ -50,9 +50,14 @@ class DiskProvider(Preloadable):
         Preloadable.__init__(self, self._init_client)
 
     def _init_client(self):
+        min_disk_size = config.get('minimum_disk_size')
+
         # avoids initializing udisks client in demo mode
         self.use_dummy_implementation = config.get('demo_mode')
         if self.use_dummy_implementation:
+            # fake it till you make it
+            min_disk_size_str = f'{min_disk_size / 1000000000:.1f} GB'
+            config.set('min_disk_size_str', min_disk_size_str)
             return
 
         import gi                            # noqa: E402
@@ -61,12 +66,17 @@ class DiskProvider(Preloadable):
         self.EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
         self.udisks_client = UDisks.Client.new_sync()
 
+        config.set('min_disk_size_str', self._disk_size_to_str(min_disk_size))
+
+    def _disk_size_to_str(self, size):
+        return self.udisks_client.get_size_for_display(size, False, False)
+
     def _get_one_partition(self, partition, block):
         # partition info
         partition_info = DeviceInfo(
             name=block.props.id_label,
             size=block.props.size,
-            size_text=self.disk_size_to_str(block.props.size),
+            size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
             is_efi=partition.props.type.upper() == self.EFI_PARTITION_GUID)
 
@@ -96,7 +106,7 @@ class DiskProvider(Preloadable):
         disk = Disk(
             name=(drive.props.vendor + ' ' + drive.props.model).strip(),
             size=block.props.size,
-            size_text=self.disk_size_to_str(block.props.size),
+            size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
             partitions=self._get_partitions(partition_table))
 
@@ -137,15 +147,6 @@ class DiskProvider(Preloadable):
                 return True
 
         return False
-
-    def disk_size_to_str(self, size):
-        self.assert_preloaded()
-
-        if self.use_dummy_implementation:
-            # fake it till you make it
-            return f"{size / 1000000000:.1f} GB"
-
-        return self.udisks_client.get_size_for_display(size, False, False)
 
     def get_disks(self):
         self.assert_preloaded()

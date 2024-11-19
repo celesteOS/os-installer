@@ -70,6 +70,7 @@ internal_values = {
     'software_choices': {},
     # other
     'installation_running': False,
+    'min_disk_size_str': '',
     'stashed-terminal': None,
     'version': -1,
 }

@@ -35,9 +35,7 @@ class DiskPage(Gtk.Stack):
         if info.size <= 0 or info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            required_size_str = disk_provider.disk_size_to_str(
-                self.minimum_disk_size)
-            return DeviceRow(info, required_size_str)
+            return DeviceRow(info, config.get('min_disk_size_str'))
 
     ### callbacks ###
 
