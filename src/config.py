@@ -172,10 +172,20 @@ class Config:
                 self.variables[config_property] = config_from_file[config_property]
 
     def _handle_legacy(self, legacy_prop, legacy_val):
-        print(f'Developer hint: "{legacy_prop}" is deprecated, '
-              f'use "{new_var}" instead')
-        new_var, compare_val, new1, new2 = legacy_values[legacy_prop]
-        self.variables[new_var] = new1 if legacy_val == compare_val else new2
+        replacement = legacy_values[legacy_prop]
+
+        # moved
+        if type(replacement) == list:
+            # hardcoded for depth of 2, can be made variable if needed
+            print(f'Developer hint: "{legacy_prop}" is deprecated, '
+                  f'use "{replacement[0]} -> {replacement[1]}" instead')
+            self.variables[replacement[0]][replacement[1]] = legacy_val
+        # conditional replacement
+        elif len(replacement) == 4:
+            print(f'Developer hint: "{legacy_prop}" is deprecated, '
+                  f'use "{new_var}" instead')
+            new_var, compare_val, new1, new2 = replacement
+            self.variables[new_var] = new1 if legacy_val == compare_val else new2
 
     def _preprocess_values(self):
         GIGABYTE_FACTOR = 1000 * 1000 * 1000
