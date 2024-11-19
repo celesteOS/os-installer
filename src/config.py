@@ -92,7 +92,7 @@ def _match(variables, var, *ok_types):
         return False
     elif type(variables[var]) not in ok_types:
         print(f'Config error: {var} not of expected type (expected ',
-              f'{ok_types}, but got {has_type})')
+              f'{ok_types}, but got {type(variables[var])})')
         return False
     else:
         return True
