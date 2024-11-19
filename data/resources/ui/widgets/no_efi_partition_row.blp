@@ -1,0 +1,57 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $NoEfiPartitionRow : Adw.ActionRow {
+  activatable: false;
+  focusable: false;
+  selectable: false;
+
+  [prefix]
+  Image {
+    icon-name: "dialog-information-symbolic";
+    styles ["dim-label"]
+  }
+
+  Box {
+    hexpand: true;
+    orientation: vertical;
+    Label {
+      /* Translators: Shown if a disk is currently not compatible with the way a system was booted. */
+      label: _("Selecting a partition is not possible.");
+      wrap: true;
+      xalign: 0;
+      styles ["dim-label"]
+    }
+    Label {
+      /* Translators: Followed by a list of requirements */
+      label: _("The disk requires:");
+      wrap: true;
+      xalign: 0;
+      styles ["dim-label"]
+    }
+    Stack {
+      hhomogeneous: false;
+      vhomogeneous: false;
+      StackPage {
+        name: "efi";
+        child: Label {
+          /* Translators: Bullet point listing. */
+          label: _("  • GPT partitioning\n  • EFI partition");
+          wrap: true;
+          xalign: 0;
+          styles ["dim-label"]
+        };
+      }
+      StackPage {
+        name: "bios";
+        child: Label {
+          /* Translators: Bullet point listing. */
+          label: _("  • BIOS boot partition");
+          wrap: true;
+          xalign: 0;
+          styles ["dim-label"]
+        };
+      }
+    }
+  }
+}

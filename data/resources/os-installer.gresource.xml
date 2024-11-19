@@ -49,6 +49,7 @@
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_too_small_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/multi_selection_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/no_efi_partition_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
