@@ -59,6 +59,29 @@ class DesktopEntry(Gtk.Button):
         self.image.set_paintable(desktop.texture)
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_choice_row.ui')
+class DeviceChoiceRow(Adw.ExpanderRow):
+    __gtype_name__ = __qualname__
+
+    size_label = Gtk.Template.Child()
+    whole_disk_row = Gtk.Template.Child()
+
+    def __init__(self, info, callback, **kwargs):
+        super().__init__(**kwargs)
+
+        self.info = info
+        self.size_label.set_label(info.size_text)
+        # Translators: Fallback name for partitions that don't have a name
+        self.set_title(info.name if info.name else _('Unnamed Partition'))
+        self.set_subtitle(info.device_path)
+
+        self.callback = callback
+
+    @Gtk.Template.Callback('use_whole_disk')
+    def _use_whole_disk(self, row):
+        self.callback(self)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__

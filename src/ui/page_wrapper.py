@@ -20,7 +20,6 @@ from .internet import InternetPage
 from .keyboard import KeyboardLanguagePage, KeyboardLayoutPage, KeyboardOverviewPage
 from .language import LanguagePage
 from .locale import LocalePage
-from .partition import PartitionPage
 from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
@@ -57,8 +56,6 @@ page_name_to_page_title = {
     'language':             ' ',
     # Translators: Page title
     'locale':               _('Adapt to Location'),
-    # Special-cased: Partition page shows disk name as title
-    'partition':            None,
     # Translators: Page title
     'restart':              _('Restarting'),
     # Translators: Page title
@@ -88,7 +85,6 @@ page_name_to_image = {
     'keyboard-overview':    'input-keyboard-symbolic',
     'language':             'language-symbolic',
     'locale':               'globe-symbolic',
-    'partition':            'drive-harddisk-system-symbolic',
     'restart':              'system-reboot-symbolic',
     'software':             'system-software-install-symbolic',
     'summary':              'checkbox-checked-symbolic',
@@ -114,7 +110,6 @@ page_name_to_type = {
     'keyboard-overview':    KeyboardOverviewPage,
     'language':             LanguagePage,
     'locale':               LocalePage,
-    'partition':            PartitionPage,
     'restart':              RestartPage,
     'software':             SoftwarePage,
     'summary':              SummaryPage,
@@ -123,7 +118,7 @@ page_name_to_type = {
     'welcome':              WelcomePage,
 }
 
-reloadable_pages = ['disk', 'partition']
+reloadable_pages = ['disk']
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
@@ -165,11 +160,8 @@ class PageWrapper(Adw.NavigationPage):
 
     def _get_page_title(self):
         page_title = page_name_to_page_title[self.page_name]
-        if page_title == None:
-            assert self.page_name == 'partition'
-            page_title = config.get('selected_disk').name
         # only translate translatable strings
-        elif page_title != ' ':
+        if page_title != ' ':
             page_title = _(page_title)
         return page_title
 

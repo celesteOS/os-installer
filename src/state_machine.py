@@ -11,7 +11,6 @@ page_order = [
     'keyboard-overview',
     'internet',
     'disk',
-    'partition',
     'encrypt',
     'desktop',
     'confirm',

@@ -3,9 +3,9 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .disk_provider import DeviceInfo, disk_provider
-from .system_calls import open_disks
-from .widgets import reset_model, DeviceRow, DeviceTooSmallRow
+from .disk_provider import DeviceInfo, Disk, disk_provider
+from .system_calls import is_booted_with_uefi, open_disks
+from .widgets import reset_model, DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -31,11 +31,31 @@ class DiskPage(Gtk.Stack):
         else:
             self.set_visible_child_name('no-disks')
 
+    def _is_big_enough(self, size):
+        return size <= 0 or size >= self.minimum_disk_size
+
     def _create_device_row(self, info: DeviceInfo):
-        if info.size <= 0 or info.size >= self.minimum_disk_size:
-            return DeviceChoiceRow(info)
-        else:
+        if not self._is_big_enough(info.size):
             return DeviceTooSmallRow(info)
+        if not info.partitions:
+            return DeviceRow(info)
+
+        expander_row = DeviceChoiceRow(info, self._row_activated)
+
+        can_use_partitions = True
+        if is_booted_with_uefi() and info.efi_partition is None:
+            expander_row.add_row(NoEfiPartitionRow())
+            can_use_partitions = False
+
+        for partition in info.partitions:
+            if self._is_big_enough(partition.size):
+                row = DeviceRow(partition)
+                row.connect('activated', self._row_activated)
+                row.set_sensitive(can_use_partitions and not partition.is_efi)
+                expander_row.add_row(row)
+            else:
+                expander_row.add_row(DeviceTooSmallRow(partition))
+        return expander_row
 
     ### callbacks ###
 
@@ -45,5 +65,10 @@ class DiskPage(Gtk.Stack):
 
     @Gtk.Template.Callback('disk_selected')
     def _disk_selected(self, list_box, row):
-        config.set('selected_disk', row.info)
+        self._row_activated(row)
+
+    def _row_activated(self, row):
+        config.set('chosen_device', (row.info.device_path, row.info.name))
+        config.set('disk_is_partition', not type(row.info) == Disk)
+        config.set('disk_efi_partition', row.info.efi_partition)
         config.set_next_page(self)

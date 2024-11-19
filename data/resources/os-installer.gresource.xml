@@ -39,13 +39,13 @@
     <file preprocess="xml-stripblanks">ui/pages/keyboard_overview.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/language.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
-    <file preprocess="xml-stripblanks">ui/pages/partition.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/summary.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
 
     <file preprocess="xml-stripblanks">ui/widgets/desktop_entry.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/device_choice_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_too_small_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/multi_selection_row.ui</file>

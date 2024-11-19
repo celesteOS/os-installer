@@ -1,0 +1,35 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DeviceChoiceRow : Adw.ExpanderRow {
+  activatable: false;
+  selectable: false;
+
+  [prefix]
+  Label size_label {
+    width-chars: 5;
+    max-width-chars: 7;
+    xalign: 1;
+    styles ["dim-label"]
+  }
+
+  Adw.ActionRow whole_disk_row {
+    /* Translators: Label to use whole disk rather than a single partition. */
+    title: _("Use Whole Disk");
+    activatable: true;
+    selectable: false;
+    activated => $use_whole_disk();
+
+    [prefix]
+    Label disk_size {
+      width-chars: 5;
+      max-width-chars: 7;
+      xalign: 1;
+      styles ["dim-label"]
+    }
+
+    Image {
+      icon-name: "go-next-symbolic";
+    }
+  }
+}

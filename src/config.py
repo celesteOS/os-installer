@@ -81,10 +81,9 @@ fallback_values = {
     'locale': 'en_US.UTF-8',
     'keyboard_language': ('en_US' 'English (US)'),
     'keyboard_layout': ('us', 'English (US)'),
-    'disk': ('/dev/null', 'Test Dummy'),
+    'chosen_device': ('/dev/null', 'Test Dummy'),
     'disk_is_partition': False,
     'disk_efi_partition': '/dev/null',
-    'selected_disk': 'Unknown',
 }
 
 

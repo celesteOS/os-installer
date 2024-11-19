@@ -14,7 +14,7 @@ class ConfirmPage(Gtk.Box):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        config.subscribe('disk', self._update_disk_row)
+        config.subscribe('chosen_device', self._update_disk_row)
 
     ### callbacks ###
 
