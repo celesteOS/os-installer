@@ -16,6 +16,7 @@ class DeviceInfo(GObject.Object):
     size_text: str
     device_path: str
     is_efi: bool
+    efi_partition: str = ''
 
     def __init__(self, name, size, size_text, device_path, is_efi=False):
         super().__init__()
@@ -30,15 +31,16 @@ class DeviceInfo(GObject.Object):
 
 class Disk(DeviceInfo):
     partitions: list = []
-    efi_partition: str = ''
 
     def __init__(self, name, size, size_text, device_path, partitions):
         super().__init__(name, size, size_text, device_path)
 
         if partitions:
-            self.partitions = partitions
             efis = [partition for partition in partitions if partition.is_efi]
-            efi_partition = efis[0].name if len(efis) > 0 else ''
+            self.efi_partition = efis[0].name if len(efis) > 0 else ''
+            for partition in partitions:
+                partition.efi_partition = self.efi_partition
+            self.partitions = partitions
 
 
 class DiskProvider(Preloadable):
