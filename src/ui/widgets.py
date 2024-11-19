@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
+
 from gi.repository import Adw, Gtk
 
 
@@ -68,8 +70,8 @@ class DeviceRow(Adw.ActionRow):
 
         self.info = info
         self.size_label.set_label(info.size_text)
-        if info.name:
-            self.set_title(info.name)
+        # Translators: Fallback name for partitions that don't have a name
+        self.set_title(info.name if info.name else _('Unnamed Partition'))
 
         self.set_subtitle(info.device_path)
 
