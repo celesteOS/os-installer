@@ -5,7 +5,7 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .disk_provider import DeviceInfo, disk_provider
 from .system_calls import open_disks
-from .widgets import reset_model, DeviceRow
+from .widgets import reset_model, DeviceRow, DeviceTooSmallRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -35,7 +35,7 @@ class DiskPage(Gtk.Stack):
         if info.size <= 0 or info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            return DeviceRow(info, config.get('min_disk_size_str'))
+            return DeviceTooSmallRow(info)
 
     ### callbacks ###
 

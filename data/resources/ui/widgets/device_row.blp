@@ -14,30 +14,9 @@ template $DeviceRow : Adw.ActionRow {
     styles ["dim-label"]
   }
 
-  Stack stack {
+  [suffix]
+  Image {
     halign: end;
-    hhomogeneous: false;
-    vhomogeneous: false;
-
-    StackPage {
-      name: "ok";
-      child:
-      Image {
-        halign: end;
-        icon-name: "go-next-symbolic";
-      };
-    }
-
-    StackPage {
-      name: "too_small";
-      child: Label too_small_label {
-        /* Translators: Shown for partitions that are not big enough to be installed on.
-        * "{}" is replaced by a disk size value, e.g. "21.3 GB". */
-        label: _("Not enough space for installation ({} required)");
-        justify: center;
-        wrap: true;
-        styles ["dim-label"]
-      };
-    }
+    icon-name: "go-next-symbolic";
   }
 }

@@ -4,6 +4,8 @@ from locale import gettext as _
 
 from gi.repository import Adw, Gtk
 
+from .config import config
+
 
 def reset_model(model, new_values):
     '''
@@ -61,26 +63,36 @@ class DesktopEntry(Gtk.Button):
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
-    stack = Gtk.Template.Child()
     size_label = Gtk.Template.Child()
-    too_small_label = Gtk.Template.Child()
 
-    def __init__(self, info, required_size_str=None, **kwargs):
+    def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
         self.size_label.set_label(info.size_text)
         # Translators: Fallback name for partitions that don't have a name
         self.set_title(info.name if info.name else _('Unnamed Partition'))
-
         self.set_subtitle(info.device_path)
 
-        if required_size_str:
-            smol = self.too_small_label.get_label()
-            self.too_small_label.set_label(smol.format(required_size_str))
-            self.set_activatable(False)
-            self.set_sensitive(False)
-            self.stack.set_visible_child_name('too_small')
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_too_small_row.ui')
+class DeviceTooSmallRow(Adw.ActionRow):
+    __gtype_name__ = __qualname__
+
+    size_label = Gtk.Template.Child()
+    too_small_label = Gtk.Template.Child()
+
+    def __init__(self, info, **kwargs):
+        super().__init__(**kwargs)
+
+        self.size_label.set_label(info.size_text)
+        # Translators: Fallback name for partitions that don't have a name
+        self.set_title(info.name if info.name else _('Unnamed Partition'))
+        self.set_subtitle(info.device_path)
+
+        smol = self.too_small_label.get_label()
+        required_size_str = config.get('min_disk_size_str')
+        self.too_small_label.set_label(smol.format(required_size_str))
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')

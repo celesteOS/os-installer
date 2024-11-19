@@ -7,7 +7,7 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .disk_provider import disk_provider
 from .system_calls import is_booted_with_uefi
-from .widgets import reset_model, DeviceRow
+from .widgets import reset_model, DeviceRow, DeviceTooSmallRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/partition.ui')
@@ -40,7 +40,7 @@ class PartitionPage(Gtk.Stack):
         if info.size >= self.minimum_disk_size:
             return DeviceRow(info)
         else:
-            return DeviceRow(info, config.get('min_disk_size_str'))
+            return DeviceTooSmallRow(info)
 
     def disk_exists(self, disk):
         if config.get('demo_mode'):
