@@ -20,7 +20,7 @@ default_config = {
     # welcome
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
     # disk
-    'minimum_disk_size': 5,
+    'disk': {'min_size': 5},
     'disk_encryption': {'offered': True, 'forced': False, 'min_length': 1, 'confirmation': False},
     # desktop
     'desktop': [],
@@ -48,6 +48,7 @@ legacy_values = {
                               True,
                               {'offered': True, 'forced': False, 'min_length': 1},
                               {'offered': False, 'forced': False, 'min_length': 1}),
+    'minimum_disk_size': ['disk', 'min_size'],
 }
 
 # not configurable via config file
@@ -120,7 +121,8 @@ def _validate(variables):
         _match(variables, 'internet_connection_required', bool) and
         _match(variables, 'internet_checker_url', str) and
         _match(variables, 'suggested_languages', list) and
-        _match(variables, 'minimum_disk_size', int) and
+        _match(variables, 'disk', dict) and
+        _match(variables['disk'], 'min_size', int, float) and
         _match(variables, 'disk_encryption', dict) and
         _match(variables['disk_encryption'], 'offered', bool) and
         _match(variables['disk_encryption'], 'forced', bool) and
@@ -189,7 +191,7 @@ class Config:
 
     def _preprocess_values(self):
         GIGABYTE_FACTOR = 1000 * 1000 * 1000
-        self.variables['minimum_disk_size'] *= GIGABYTE_FACTOR
+        self.variables['disk']['min_size'] *= GIGABYTE_FACTOR
 
     ### public methods ###
 

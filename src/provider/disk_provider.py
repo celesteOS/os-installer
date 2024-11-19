@@ -50,7 +50,7 @@ class DiskProvider(Preloadable):
         Preloadable.__init__(self, self._init_client)
 
     def _init_client(self):
-        min_disk_size = config.get('minimum_disk_size')
+        min_disk_size = config.get('disk')['min_size']
 
         # avoids initializing udisks client in demo mode
         self.use_dummy_implementation = config.get('demo_mode')

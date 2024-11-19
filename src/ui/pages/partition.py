@@ -27,7 +27,7 @@ class PartitionPage(Gtk.Stack):
         super().__init__(**kwargs)
 
         self.disk = None
-        self.minimum_disk_size = config.get('minimum_disk_size')
+        self.minimum_disk_size = config.get('disk')['min_size']
         self.set_visible_child_name("default")
 
         # models

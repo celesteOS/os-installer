@@ -19,7 +19,7 @@ class DiskPage(Gtk.Stack):
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
 
-        self.minimum_disk_size = config.get('minimum_disk_size')
+        self.minimum_disk_size = config.get('disk')['min_size']
 
         # models
         self.disk_list.bind_model(

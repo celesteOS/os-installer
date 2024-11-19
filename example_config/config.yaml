@@ -73,9 +73,13 @@ welcome_page:
   text    : 'A welcoming text to inform about the installation.'
   usage   : yes
 
-# Minimum disk size needed for the installation (in Gigabyte)
-# Default: 5
-minimum_disk_size: 5
+# Disk requirements for installation
+#
+# min_size   Minimum size needed for installation (in Gigabyte)
+#
+# Default: min_size: 5
+disk:
+  min_size: 5
 
 # Disk encryption PIN setup.
 #
