@@ -15,7 +15,7 @@ class Slide(NamedTuple):
 
 class SlideshowProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._load_slideshow)
+        super().__init__(self._load_slideshow)
 
     def _load_slideshow(self):
         entries = config.get('install_slideshow')

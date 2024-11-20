@@ -50,7 +50,7 @@ locales = {
 
 class FormatProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._initialize_formats, 'locale')
+        super().__init__(self._initialize_formats, 'locale')
 
     def _initialize_formats(self, translation_locale):
         name = GnomeDesktop.get_country_from_locale(translation_locale)

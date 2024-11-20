@@ -14,7 +14,7 @@ class InternetPage(Gtk.Stack):
     image = 'network-wireless-disabled-symbolic'
 
     def __init__(self, **kwargs):
-        Gtk.Stack.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         self.update_lock = Lock()
         self.has_advanced = False

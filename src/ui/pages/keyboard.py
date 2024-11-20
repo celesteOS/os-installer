@@ -17,7 +17,7 @@ class KeyboardLanguagePage(Gtk.Box):
     model = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         self.model.splice(0, 0, language_provider.get_all_languages())
         self.list.bind_model(self.model, lambda o: ProgressRow(o.name, o))
@@ -40,7 +40,7 @@ class KeyboardLayoutPage(Gtk.Box):
     model = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         self.layout_list.bind_model(
             self.model, lambda o: ProgressRow(o.name, o))
@@ -72,7 +72,7 @@ class KeyboardOverviewPage(Gtk.Box):
     primary_layout_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         if not config.has('keyboard_layout'):
             language_code, language = config.get('language')

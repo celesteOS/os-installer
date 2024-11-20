@@ -27,7 +27,7 @@ class FilterPage(Gtk.Box):
     list_model = Gtk.Template.Child()
 
     def __init__(self, filter_type, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         self.type = filter_type
         match self.type:

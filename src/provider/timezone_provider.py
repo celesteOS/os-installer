@@ -38,7 +38,7 @@ def _recurse_location(location, timezone_map):
 
 class TimezoneProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._get_timezones)
+        super().__init__(self._get_timezones)
 
     def _get_timezones(self):
         current_id = GnomeDesktop.WallClock().get_timezone().get_identifier()

@@ -12,7 +12,7 @@ class ConfirmPage(Gtk.Box):
     disk_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         config.subscribe('chosen_device', self._update_disk_row)
 

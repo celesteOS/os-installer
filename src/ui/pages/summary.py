@@ -38,7 +38,7 @@ class SummaryPage(Gtk.Box):
     feature_model = Gio.ListStore()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         if config.get('desktop'):
             self.desktop_row.set_visible(True)

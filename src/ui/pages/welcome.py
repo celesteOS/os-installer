@@ -16,7 +16,7 @@ class WelcomePage(Gtk.Box):
     description = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         welcome = config.get('welcome_page')
         language_code = config.get('language')[0]

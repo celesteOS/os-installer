@@ -19,7 +19,7 @@ class LanguagePage(Gtk.Box):
     other_model = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         if suggested_languages := language_provider.get_suggested_languages():
             self.suggested_model.splice(0, 0, suggested_languages)

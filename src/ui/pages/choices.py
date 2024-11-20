@@ -21,7 +21,7 @@ class ChoicesPage(Gtk.Box):
     model = Gtk.Template.Child()
 
     def __init__(self, choice_type, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         match choice_type:
             case ChoiceType.feature:

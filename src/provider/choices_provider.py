@@ -88,7 +88,7 @@ def handle_choices(config_entries):
 
 class ChoicesProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._get_choices)
+        super().__init__(self._get_choices)
 
     def _get_choices(self):
         feature_choices = handle_choices(config.get('additional_features'))

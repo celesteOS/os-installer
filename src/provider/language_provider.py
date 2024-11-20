@@ -64,7 +64,7 @@ class LanguageInfo(GObject.Object):
 
 class LanguageProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._get_languages)
+        super().__init__(self._get_languages)
 
     def _get_default_locale(self, language):
         if language in language_to_default_locale:

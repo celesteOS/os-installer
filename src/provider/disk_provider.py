@@ -49,7 +49,7 @@ class DiskProvider(Preloadable):
     EFI_PARTITON_FLAGS = None
 
     def __init__(self):
-        Preloadable.__init__(self, self._init_client)
+        super().__init__(self._init_client)
 
     def _init_client(self):
         min_disk_size = config.get('disk')['min_size']

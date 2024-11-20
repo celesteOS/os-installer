@@ -20,7 +20,7 @@ class UserPage(Gtk.Box):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']

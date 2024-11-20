@@ -14,7 +14,7 @@ class TerminalDialog(Adw.Dialog):
     placeholder = Gtk.Template.Child()
 
     def __init__(self, terminal, **kwargs):
-        Adw.Dialog.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         if not terminal:
             terminal = Vte.Terminal()

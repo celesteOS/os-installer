@@ -8,7 +8,7 @@ from .preloadable import Preloadable
 
 class WelcomeProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._load_image)
+        super().__init__(self._load_image)
 
     def _load_image(self):
         welcome = config.get('welcome_page')

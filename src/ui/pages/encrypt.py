@@ -18,7 +18,7 @@ class EncryptPage(Gtk.Box):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         encryption_setting = config.get('disk_encryption')
         self.min_pin_length = max(1, encryption_setting['min_length'])

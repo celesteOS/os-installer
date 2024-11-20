@@ -13,7 +13,7 @@ class LocalePage(Gtk.Box):
     timezone_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         config.subscribe('formats', self._update_formats)
         config.subscribe('timezone', self._update_timezone)

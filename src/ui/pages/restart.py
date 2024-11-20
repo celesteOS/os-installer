@@ -10,5 +10,5 @@ class RestartPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         reboot_system()

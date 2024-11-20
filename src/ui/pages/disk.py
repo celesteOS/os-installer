@@ -17,7 +17,7 @@ class DiskPage(Gtk.Stack):
     disk_list_model = Gio.ListStore()
 
     def __init__(self, **kwargs):
-        Gtk.Stack.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         disk_conf = config.get('disk')
         self.minimum_disk_size = disk_conf['min_size']

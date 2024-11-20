@@ -10,7 +10,7 @@ from .preloadable import Preloadable
 
 class InternetProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._run_connection_checker)
+        super().__init__(self._run_connection_checker)
 
     def _run_connection_checker(self):
         Thread(target=self._check_connection, daemon=True).start()

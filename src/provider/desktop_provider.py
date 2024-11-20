@@ -17,7 +17,7 @@ class Desktop(NamedTuple):
 
 class DesktopProvider(Preloadable):
     def __init__(self):
-        Preloadable.__init__(self, self._get_desktops)
+        super().__init__(self._get_desktops)
 
     def _get_desktops(self):
         self.desktops: list = []

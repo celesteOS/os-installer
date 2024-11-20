@@ -16,7 +16,7 @@ class InstallPage(Gtk.Box):
     carousel = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
         if slideshow := slideshow_provider.get_slideshow():
             self.stack.set_visible_child_name('slideshow')
