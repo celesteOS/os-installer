@@ -75,10 +75,13 @@ welcome_page:
 
 # Disk requirements for installation
 #
-# min_size   Minimum size needed for installation (in Gigabyte)
+# partition_ok  Whether partitions are accepted as installation targets
+#                (Otherwise only complete disks can be used)
+# min_size       Minimum size needed for installation (in Gigabyte)
 #
-# Default: min_size: 5
+# Default: partition_ok: no, min_size: 5
 disk:
+  partition_ok: yes
   min_size: 5
 
 # Disk encryption PIN setup.

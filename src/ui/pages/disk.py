@@ -19,7 +19,9 @@ class DiskPage(Gtk.Stack):
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
 
-        self.minimum_disk_size = config.get('disk')['min_size']
+        disk_conf = config.get('disk')
+        self.minimum_disk_size = disk_conf['min_size']
+        self.partition_ok = disk_conf['partition_ok']
 
         # models
         self.disk_list.bind_model(
@@ -37,7 +39,7 @@ class DiskPage(Gtk.Stack):
     def _create_device_row(self, info: DeviceInfo):
         if not self._is_big_enough(info.size):
             return DeviceTooSmallRow(info)
-        if not info.partitions:
+        if not self.partition_ok or not info.partitions:
             return DeviceRow(info)
 
         expander_row = DeviceChoiceRow(info, self._row_activated)
