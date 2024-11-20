@@ -116,7 +116,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             'internet': config.get('internet_connection_required'),
             'encrypt': config.get('disk_encryption')['offered'],
             'desktop': config.get('desktop'),
-            'confirm': exists('/etc/os-installer/scripts/install.sh'),
+            'confirm': config.get('scripts')['install'],
             'user': not config.get('skip_user'),
             'locale': not config.get('skip_locale'),
             'software': config.get('additional_software'),
