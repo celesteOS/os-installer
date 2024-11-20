@@ -73,17 +73,13 @@ class DiskProvider(Preloadable):
     def _disk_size_to_str(self, size):
         return self.udisks_client.get_size_for_display(size, False, False)
 
-    def _get_one_partition(self, partition, block):
-        # partition info
-        partition_info = DeviceInfo(
+    def _get_partition_info(self, partition, block):
+        return DeviceInfo(
             name=block.props.id_label,
             size=block.props.size,
             size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
             is_efi=partition.props.type.upper() == self.EFI_PARTITION_GUID)
-
-        # add to disk info
-        return partition_info
 
     def _get_partitions(self, partition_table):
         if not partition_table:
@@ -97,22 +93,19 @@ class DiskProvider(Preloadable):
             block = partition_object.get_block()
             partition = partition_object.get_partition()
             if block and partition:
-                partitions.append(self._get_one_partition(partition, block))
+                partitions.append(self._get_partition_info(partition, block))
             else:
                 print('Unhandled partiton in partition table, ignoring.')
 
         return partitions
 
     def _get_disk_info(self, block, drive, partition_table):
-        # disk info
-        disk = Disk(
+        return Disk(
             name=(drive.props.vendor + ' ' + drive.props.model).strip(),
             size=block.props.size,
             size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
             partitions=self._get_partitions(partition_table))
-
-        return disk
 
     def _get_dummy_disks(self):
         return [
