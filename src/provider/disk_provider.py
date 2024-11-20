@@ -117,7 +117,7 @@ class DiskProvider(Preloadable):
                            "/dev/sda_yes"),
                 DeviceInfo(None, 20000000000, "30 GB", "/dev/sda_unnamed"),
                 DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2"),
-                DeviceInfo("Swap", 20000000000, "8 GB", None),
+                DeviceInfo("Swap", 20000000000, "8 GB", '/dev/sda_swap'),
             ]),
             Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
                  "/dev/sdb_very_big", []),
