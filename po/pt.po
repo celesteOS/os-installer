@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-11-21 23:42+0000\n"
+"Last-Translator: Gabriel Elyas <gabrielelyas@protonmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid "OS-Installer"
 msgstr "Instalador de SO"
@@ -25,9 +25,8 @@ msgid "Install an Operating System"
 msgstr "Instale um Sistema Operacional"
 
 #. Translators: Dialog title
-#, fuzzy
 msgid "Installation Running"
-msgstr "Instalação Falhada"
+msgstr "Instalação em execução"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
 msgid ""
@@ -58,7 +57,6 @@ msgid "_Confirm"
 msgstr "_Confirmar"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
 msgstr "_Use {}"
 
@@ -75,9 +73,8 @@ msgid "Connect a disk and reload this page."
 msgstr "Conecte um disco e recarregue essa página."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_Recarregar"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 msgid "_Restart System"
@@ -100,9 +97,8 @@ msgid "Encryption PIN"
 msgstr "Palavra-passe de criptografia"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "_Confirmar"
+msgstr "Confirmar PIN"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -126,17 +122,15 @@ msgstr "Nenhum resultado"
 msgid "Try a different search"
 msgstr "Tente uma pesquisa diferente"
 
-#, fuzzy
 msgid "No connection detected"
-msgstr "Nenhuma conexão."
+msgstr "Nenhuma conexão detectada"
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
 msgstr "_Abrir Configurações"
 
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "Conexão detectada"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
@@ -194,19 +188,18 @@ msgid "  • BIOS boot partition"
 msgstr "  • Partição de boot BIOS"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "Disco não encontrado"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr ""
+"Certifique-se de que o disco ainda esteja disponível e não tenha sido "
+"removido."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_Retornar à lista de discos"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -223,9 +216,8 @@ msgid "User Account"
 msgstr "Conta do utilizador"
 
 #. Translators: Gets shown when autologin is enabled.
-#, fuzzy
 msgid "(Automatic Login)"
-msgstr "Login automático"
+msgstr "(Login automático)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
@@ -247,9 +239,8 @@ msgid "_Name"
 msgstr "_Nome"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "User"
+msgstr "_Nome do Usuário"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -260,9 +251,8 @@ msgid "_Password"
 msgstr "_Senha"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Senha"
+msgstr "_Confime a senha"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
@@ -276,18 +266,16 @@ msgstr "Partição sem nome"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#, fuzzy
 msgid "Not enough space for installation ({} required)"
-msgstr "Não há espaço suficiente para a instalação"
+msgstr "Não há espaço suficiente para a instalação ({} necessário)"
 
 #. Translators: Page title
 msgid "Confirmation"
 msgstr "Confirmação"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Seleção de disco"
+msgstr "Seleção de Desktop"
 
 #. Translators: Page title
 msgid "Disk Selection"
@@ -342,9 +330,8 @@ msgid "Welcome"
 msgstr "Bem-vindo"
 
 #. Translators: Notification text
-#, fuzzy
 msgid "Finished Installation"
-msgstr "_Continuar a Instalação"
+msgstr "Instalação Finalizada"
 
 #, fuzzy
 #~ msgid "Disk"
