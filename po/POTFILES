@@ -27,6 +27,6 @@ data/resources/ui/widgets/device_choice_row.blp
 data/resources/ui/widgets/device_too_small_row.blp
 data/resources/ui/widgets/no_efi_partition_row.blp
 
+src/provider/disk_provider.py
 src/ui/page_wrapper.py
-src/ui/widgets.py
 src/util/installation_scripting.py

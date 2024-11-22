@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
 from random import getrandbits
 
 from gi.repository import GLib, GObject
@@ -21,8 +22,7 @@ class DeviceInfo(GObject.Object):
     def __init__(self, name, size, size_text, device_path, is_efi=False):
         super().__init__()
 
-        if name:
-            self.name = name.strip()
+        self.name = name
         self.size = size
         self.size_text = size_text
         self.device_path = device_path
@@ -74,8 +74,11 @@ class DiskProvider(Preloadable):
         return self.udisks_client.get_size_for_display(size, False, False)
 
     def _get_partition_info(self, partition, block):
+        if not (name := block.props.id_label.strip()):
+            # Translators: Fallback name for partitions that don't have a name
+            name = _('Unnamed Partition')
         return DeviceInfo(
-            name=block.props.id_label,
+            name=name,
             size=block.props.size,
             size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
@@ -100,8 +103,11 @@ class DiskProvider(Preloadable):
         return partitions
 
     def _get_disk_info(self, block, drive, partition_table):
+        if not (name := (f'{drive.props.vendor} {drive.props.model}'.strip())):
+            # Translators: Fallback name for partitions that don't have a name
+            name = _('Unnamed Disk')
         return Disk(
-            name=(drive.props.vendor + ' ' + drive.props.model).strip(),
+            name=name,
             size=block.props.size,
             size_text=self._disk_size_to_str(block.props.size),
             device_path=block.props.device,
@@ -115,8 +121,8 @@ class DiskProvider(Preloadable):
                 DeviceInfo("EFI", 200000000, "2 GB", "/dev/sda_efi", True),
                 DeviceInfo("Previous Installation", 20000000000, "40 GB",
                            "/dev/sda_yes"),
-                DeviceInfo(None, 20000000000, "30 GB", "/dev/sda_unnamed"),
-                DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2"),
+                DeviceInfo(_('Unnamed Partition'), 20000000000, "30 GB", "/dev/sda_unnamed"),
+                DeviceInfo(_('Unnamed Partition'), 20000000000, "20 GB", "/dev/sda_unnamed2"),
                 DeviceInfo("Swap", 20000000000, "8 GB", '/dev/sda_swap'),
             ]),
             Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
