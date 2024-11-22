@@ -19,9 +19,12 @@ class ConfirmPage(Gtk.Box):
     ### callbacks ###
 
     def _update_disk_row(self, disk):
-        name, path = disk
-        self.disk_row.set_title(name)
-        self.disk_row.set_subtitle(path)
+        if disk == None:
+            if not config.get('test_mode'):
+                print('Critical: Disk was not set before confirm page')
+            return
+        self.disk_row.set_title(disk.name)
+        self.disk_row.set_subtitle(disk.device_path)
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):

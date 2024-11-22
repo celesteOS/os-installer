@@ -70,7 +70,7 @@ class DiskPage(Gtk.Stack):
         self._row_activated(row)
 
     def _row_activated(self, row):
-        config.set('chosen_device', (row.info.device_path, row.info.name))
+        config.set('chosen_device', row.info)
         config.set('disk_is_partition', not type(row.info) == Disk)
         config.set('disk_efi_partition', row.info.efi_partition)
         config.set_next_page(self)

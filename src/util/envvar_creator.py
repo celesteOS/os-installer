@@ -23,6 +23,11 @@ def _get(var):
             return value
 
 
+def _get_device_path():
+    disk = config.get('chosen_device')
+    return disk.device_path
+
+
 def _get_username():
     if config.has('user_username'):
         return config.get('user_username')
@@ -58,7 +63,7 @@ def create_envs(installation_step: InstallationStep):
             f"OSI_DESKTOP={_get('desktop_chosen')}",
             f"OSI_LOCALE={_get('locale')}",
             f"OSI_KEYBOARD_LAYOUT={_get('keyboard_layout')}",
-            f"OSI_DEVICE_PATH={_get('chosen_device')}",
+            f"OSI_DEVICE_PATH={_get_device_path()}",
             f"OSI_DEVICE_IS_PARTITION={_get('disk_is_partition')}",
             f"OSI_DEVICE_EFI_PARTITION={_get('disk_efi_partition')}",
             f"OSI_USE_ENCRYPTION={_get('use_encryption')}",
