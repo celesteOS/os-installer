@@ -74,9 +74,15 @@ class DiskProvider(Preloadable):
         return self.udisks_client.get_size_for_display(size, False, False)
 
     def _get_partition_info(self, partition, block):
-        if not (name := block.props.id_label.strip()):
+        partition_label = block.props.id_label.strip()
+        if not partition_label:
             # Translators: Fallback name for partitions that don't have a name
             name = _('Unnamed Partition')
+        else:
+            # Translators: Squiggly brackets are replaced with partition name
+            partition_str = _("{} (Partition)")
+            name = partition_str.format(partition_label)
+
         return DeviceInfo(
             name=name,
             size=block.props.size,
