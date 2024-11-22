@@ -21,9 +21,11 @@ template $ConfirmPage : Box {
       focusable: false;
 
       [prefix]
-      Image {
-        pixel-size: 16;
-        icon-name: "drive-harddisk-system-symbolic";
+      Label size_label {
+        width-chars: 5;
+        max-width-chars: 7;
+        xalign: 1;
+        styles ["dim-label"]
       }
     }
   }

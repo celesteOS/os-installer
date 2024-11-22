@@ -10,6 +10,7 @@ class ConfirmPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     disk_row = Gtk.Template.Child()
+    size_label = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -25,6 +26,7 @@ class ConfirmPage(Gtk.Box):
             return
         self.disk_row.set_title(disk.name)
         self.disk_row.set_subtitle(disk.device_path)
+        self.size_label.set_label(disk.size_text)
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
