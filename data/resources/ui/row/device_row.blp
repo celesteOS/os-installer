@@ -18,5 +18,6 @@ template $DeviceRow : Adw.ActionRow {
   Image {
     halign: end;
     icon-name: "go-next-symbolic";
+    visible: bind template.activatable;
   }
 }
