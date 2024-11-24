@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-11-23 12:51+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2024-11-24 14:00+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: none\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -19,43 +19,37 @@ msgstr ""
 "X-Generator: Weblate 5.9-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
-#, fuzzy
 msgid "OS-Installer"
-msgstr "OS-Installer"
+msgstr "نصب کنندهٔ سیستم‌عامل"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
-#, fuzzy
 msgid "Install an Operating System"
-msgstr "Install an Operating System"
+msgstr "نصب سیستم‌عامل"
 
 #. Translators: Dialog title
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "Installation Running"
-msgstr "Installation Running"
+msgstr "اجرا شدن نصب"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
+"توقّف نصب در حال انجام، دیسک را در وضعیتی تعریف نشده قرار داده و می‌تواند آسیب‌"
+"زا باشد"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "_Continue Installation"
-msgstr "_Continue Installation"
+msgstr "_ادامهٔ نصب"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "_Stop Installation"
-msgstr "_Stop Installation"
+msgstr "_توقّف نصب"
 
 #. Translators: On button.
 #: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
@@ -63,424 +57,355 @@ msgstr "_Stop Installation"
 #: data/resources/ui/pages/keyboard_overview.blp
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid "_Continue"
-msgstr "_Continue"
+msgstr "_ادامه‌"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
-#, fuzzy
 msgid "This will delete all data on"
-msgstr "This will delete all data on"
+msgstr "این کار همهٔ داده‌های دیسک یا افراز زیر را حذف خواهد کرد"
 
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "_Confirm"
-msgstr "_Confirm"
+msgstr "_تأیید"
 
 #. Translators: On button, brackets will be replaced with desktop name.
 #: data/resources/ui/pages/desktop.blp
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "_استفاده از {}"
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "_Manage Disks"
-msgstr "_Manage Disks"
+msgstr "_مدیریت دیسک‌ه"
 
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "No Disks avaliable"
-msgstr "No Disks avaliable"
+msgstr "هیچ دیسکی موجود نیست"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Connect a disk and reload this page."
-msgstr "Connect a disk and reload this page."
+msgstr "وصل کردن دیسک و بازخوانی این صفحه."
 
 #. Translators: On button.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "_‌بازخوانی"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "_Restart System"
-msgstr "_Restart System"
+msgstr "_آغاز دوبارهٔ سامانه"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "Restart _Later"
-msgstr "Restart _Later"
+msgstr "_بعداً دوباره آغاز شود"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
-#, fuzzy
 msgid "Show Terminal Output"
-msgstr "Show Terminal Output"
+msgstr "نمایش خروجی پایانه"
 
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encrypt Files"
-msgstr "Encrypt Files"
+msgstr "رمزنگاری پرونده‌ها"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encryption PIN"
-msgstr "Encryption PIN"
+msgstr "پین رمزنگاری"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "Confirm PIN"
+msgstr "تأیید پین"
 
 #. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Memorize this PIN well. Without it you will not be able to access your files."
+"این پین را خوب به خاطر بسپارید. بدون آن قادر به دسترسی به پرونده‌هایتان "
+"نخواهید بود."
 
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
-#, fuzzy
 msgid "Search for Help on the Internet"
-msgstr "Search for Help on the Internet"
+msgstr "جست‌وجوی راهنمایی روی اینترنت"
 
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "پالایش"
 
 #. Translators: Empty result placeholder title
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "بدون نتیجه"
 
 #. Translators: Empty result placeholder, meant as a suggestion
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "جست‌وجویی دیگر را بیازمایید"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "No connection detected"
-msgstr "No connection detected"
+msgstr "اتّصالی تشخیص داده نشد"
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "_Open Settings"
-msgstr "_Open Settings"
+msgstr "_گشودن تنظیمات"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "اتّصال تشخیص داده شد"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
 #. Translators: Page title
 #: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Language"
-msgstr "Keyboard Language"
+msgstr "زبان صفحه‌کلید"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_overview.blp
-#, fuzzy
 msgid "Test the Keyboard Layout Here"
-msgstr "Test the Keyboard Layout Here"
+msgstr "آزمایش چیدمان صفحه‌کلید در این‌جا"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "منطقهٔ زمانی"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Formats"
-msgstr "Formats"
+msgstr "قالب‌ها"
 
 #. Translators: Description of what is covered by formats.
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Defines the default format used for dates, times, numbers, etc."
+msgstr "قالب پیش‌گزیده برای تاریخ، زبان، اعداد و… را تعریف می‌کند."
 
 #. Translators: Label to use whole disk rather than a single partition.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Use Whole Disk"
-msgstr "Use Whole Disk"
+msgstr "استفاده از کل دیسک"
 
 #. Translators: Heading of list of partitions
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Partitions"
-msgstr "Partitions"
+msgstr "افرازها"
 
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "دیسک هیچ افرازی ندارد."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Selecting a partition is not possible."
-msgstr "Selecting a partition is not possible."
+msgstr "گزینش افراز ممکن نیست."
 
 #. Translators: Followed by a list of requirements
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "The disk requires:"
-msgstr "The disk requires:"
+msgstr "نیازمندی‌های دیسک:"
 
 #. Translators: Bullet point listing.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
+"  • افرازش GPT\n"
+"  • افراز EFI"
 
 #. Translators: Bullet point listing.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partition"
+msgstr "  • افراز راه‌اندازی بایوس"
 
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "دیسک پیدا نشد"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "اطمینان از موجود بودن و برداشته نشدن دیسک."
 
 #. Translators: On button.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_بازگشت به سیاههٔ‌دیسک‌ها"
 
 #. Translators: Description of selected language.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Language"
-msgstr "Language"
+msgstr "زبان"
 
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Layout"
-msgstr "Keyboard Layout"
+msgstr "چیدمان صفحه‌کلید"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "User Account"
-msgstr "User Account"
+msgstr "حساب کاربری"
 
 #. Translators: Gets shown when autologin is enabled.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "(Automatic Login)"
-msgstr "(Automatic Login)"
+msgstr "(ورود خودکار)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Additional Software"
-msgstr "Additional Software"
+msgstr "نرم‌افزارهای اضافی"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "هیچ‌کدام"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Additional Features"
-msgstr "Additional Features"
+msgstr "ویژگی‌های اضافی"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Name"
-msgstr "_Name"
+msgstr "_نام"
 
 #. Translators: Used with entry field for linux username
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Username"
-msgstr "_Username"
+msgstr "_نام کاربری"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Automatic Login"
-msgstr "Automatic Login"
+msgstr "ورود خودکار"
 
 #. Translators: User password entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Password"
-msgstr "_Password"
+msgstr "_گذر‌واژه"
 
 #. Translators: Used password confirmation entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Confirm Password"
+msgstr "تأیید _گذرواژه"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "این برنامه در طول نصب {} روی سامانه راهنماییتان خواهد کرد."
 
 #. Translators: Fallback name for partitions that don't have a name.
 #: data/resources/ui/widgets/device_row.blp
-#, fuzzy
 msgid "Unnamed Partition"
-msgstr "Unnamed Partition"
+msgstr "افراز بی‌نام"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 #: data/resources/ui/widgets/device_row.blp
-#, fuzzy
 msgid "Not enough space for installation ({} required)"
-msgstr "Not enough space for installation ({} required)"
+msgstr "بدون فضای کافی برای نصب ({} لازم)"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Confirmation"
-msgstr "Confirmation"
+msgstr "تایید"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Desktop Selection"
+msgstr "گزینش میزکار"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Disk Selection"
-msgstr "Disk Selection"
+msgstr "گزینش دیسک"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installation Complete"
-msgstr "Installation Complete"
+msgstr "نصب کامل شد"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Disk Encryption"
-msgstr "Disk Encryption"
+msgstr "رمزنگاری دیسک"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installation Failed"
-msgstr "Installation Failed"
+msgstr "نصب شکست خورد"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Select Region"
-msgstr "Select Region"
+msgstr "گزینش ناحیه"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installing"
-msgstr "Installing"
+msgstr "نصب کردن"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Internet Connection Check"
-msgstr "Internet Connection Check"
+msgstr "بررسی اتّصال اینترنتی"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Layout Selection"
-msgstr "Keyboard Layout Selection"
+msgstr "گزینش چیدمان صفحه‌کلید"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Adapt to Location"
-msgstr "Adapt to Location"
+msgstr "سازگاری با مکان"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Restarting"
-msgstr "Restarting"
+msgstr "راه انداختن دوباره"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "خلاصه"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Select Location"
-msgstr "Select Location"
+msgstr "گزینش مکان"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "خوش آمدید"
 
 #. Translators: Notification text
 #: src/util/installation_scripting.py
-#, fuzzy
 msgid "Finished Installation"
-msgstr "Finished Installation"
+msgstr "نصب پایان یافت"
