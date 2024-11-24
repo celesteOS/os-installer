@@ -12,21 +12,15 @@ from .preloadable import Preloadable
 class DeviceInfo(GObject.Object):
     __gtype_name__ = __qualname__
 
-    name: str = None
-    size: int
-    size_text: str
-    device_path: str
-    is_efi: bool
-    efi_partition: str = ''
-
     def __init__(self, name, size, size_text, device_path, is_efi=False):
         super().__init__()
 
-        self.name = name
-        self.size = size
-        self.size_text = size_text
-        self.device_path = device_path
-        self.is_efi = is_efi
+        self.name: str = name
+        self.size: int = size
+        self.size_text: str = size_text
+        self.device_path: str = device_path
+        self.is_efi: bool = is_efi
+        self.efi_partition: str = ''
 
 
 class Disk(DeviceInfo):
