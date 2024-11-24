@@ -3,7 +3,6 @@ data/com.github.p3732.OS-Installer.appdata.xml.in
 data/com.github.p3732.OS-Installer.gschema.xml
 
 data/resources/ui/confirm_quit_dialog.blp
-data/resources/ui/main_window.blp
 
 data/resources/ui/pages/choices.blp
 data/resources/ui/pages/confirm.blp
