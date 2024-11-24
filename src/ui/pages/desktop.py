@@ -4,7 +4,21 @@ from gi.repository import Gtk
 
 from .config import config
 from .desktop_provider import desktop_provider
-from .widgets import DesktopEntry
+
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/desktop_entry.ui')
+class DesktopEntry(Gtk.Button):
+    __gtype_name__ = __qualname__
+
+    image = Gtk.Template.Child()
+    name = Gtk.Template.Child()
+
+    def __init__(self, desktop, **kwargs):
+        super().__init__(**kwargs)
+
+        self.desktop = desktop
+        self.name.set_label(desktop.name)
+        self.image.set_paintable(desktop.texture)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/desktop.ui')
