@@ -57,7 +57,7 @@ class DesktopEntry(Gtk.Button):
         self.image.set_paintable(desktop.texture)
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_choice_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_choice_row.ui')
 class DeviceChoiceRow(Adw.ExpanderRow):
     __gtype_name__ = __qualname__
 
@@ -79,7 +79,7 @@ class DeviceChoiceRow(Adw.ExpanderRow):
         self.callback(self)
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_row.ui')
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
@@ -94,7 +94,7 @@ class DeviceRow(Adw.ActionRow):
         self.set_subtitle(info.device_path)
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_too_small_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_too_small_row.ui')
 class DeviceTooSmallRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
@@ -113,7 +113,7 @@ class DeviceTooSmallRow(Adw.ActionRow):
         self.too_small_label.set_label(smol.format(required_size_str))
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/multi_selection_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/multi_selection_row.ui')
 class MultiSelectionRow(Adw.ComboRow):
     __gtype_name__ = __qualname__
 
@@ -149,7 +149,7 @@ class MultiSelectionRow(Adw.ComboRow):
                 return
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/no_efi_partition_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/no_efi_partition_row.ui')
 class NoEfiPartitionRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
@@ -157,7 +157,7 @@ class NoEfiPartitionRow(Adw.ActionRow):
         super().__init__(**kwargs)
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/progress_row.ui')
 class ProgressRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
@@ -168,7 +168,7 @@ class ProgressRow(Adw.ActionRow):
         self.info = additional_info
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/selection_row.ui')
 class SelectionRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
@@ -198,7 +198,7 @@ class SelectionRow(Adw.ActionRow):
         self.choice.state = new_state
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/summary_row.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/summary_row.ui')
 class SummaryRow(Gtk.ListBoxRow):
     __gtype_name__ = __qualname__
 

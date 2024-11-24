@@ -313,13 +313,13 @@ msgid ""
 msgstr ""
 
 #. Translators: Fallback name for partitions that don't have a name.
-#: data/resources/ui/widgets/device_row.blp
+#: data/resources/ui/row/device_row.blp
 msgid "Unnamed Partition"
 msgstr ""
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
-#: data/resources/ui/widgets/device_row.blp
+#: data/resources/ui/row/device_row.blp
 msgid "Not enough space for installation ({} required)"
 msgstr ""
 
