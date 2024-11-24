@@ -27,47 +27,47 @@ from .welcome import WelcomePage
 
 page_name_to_page_title = {
     # Translators: Page title
-    'confirm':              _('Confirmation'),
+    'confirm':              _("Confirmation"),
     # Translators: Page title
-    'desktop':              _('Desktop Selection'),
+    'desktop':              _("Desktop Selection"),
     # Translators: Page title
-    'disk':                 _('Disk Selection'),
+    'disk':                 _("Disk Selection"),
     # Translators: Page title
-    'done':                 _('Installation Complete'),
+    'done':                 _("Installation Complete"),
     # Translators: Page title
-    'encrypt':              _('Disk Encryption'),
+    'encrypt':              _("Disk Encryption"),
     # Translators: Page title
-    'failed':               _('Installation Failed'),
+    'failed':               _("Installation Failed"),
     # Translators: Page title
-    'feature':              _('Additional Features'),
+    'feature':              _("Additional Features"),
     # Translators: Page title
-    'format':               _('Select Region'),
+    'format':               _("Select Region"),
     # Translators: Page title
-    'install':              _('Installing'),
+    'install':              _("Installing"),
     # Translators: Page title
-    'internet':             _('Internet Connection Check'),
+    'internet':             _("Internet Connection Check"),
     # Translators: Page title
-    'keyboard-language':    _('Keyboard Language'),
+    'keyboard-language':    _("Keyboard Language"),
     # Translators: Page title
-    'keyboard-layout':      _('Keyboard Layout Selection'),
+    'keyboard-layout':      _("Keyboard Layout Selection"),
     # Translators: Page title
-    'keyboard-overview':    _('Keyboard Layout'),
+    'keyboard-overview':    _("Keyboard Layout"),
     # Language page has no title
     'language':             ' ',
     # Translators: Page title
-    'locale':               _('Adapt to Location'),
+    'locale':               _("Adapt to Location"),
     # Translators: Page title
-    'restart':              _('Restarting'),
+    'restart':              _("Restarting"),
     # Translators: Page title
-    'software':             _('Additional Software'),
+    'software':             _("Additional Software"),
     # Translators: Page title
-    'summary':              _('Summary'),
+    'summary':              _("Summary"),
     # Translators: Page title
-    'timezone':             _('Select Location'),
+    'timezone':             _("Select Location"),
     # Translators: Page title
-    'user':                 _('User Account'),
+    'user':                 _("User Account"),
     # Translators: Page title
-    'welcome':              _('Welcome'),
+    'welcome':              _("Welcome"),
 }
 
 page_name_to_image = {

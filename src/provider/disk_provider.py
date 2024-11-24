@@ -71,7 +71,7 @@ class DiskProvider(Preloadable):
         partition_label = block.props.id_label.strip()
         if not partition_label:
             # Translators: Fallback name for partitions that don't have a name
-            name = _('Unnamed Partition')
+            name = _("Unnamed Partition")
         else:
             # Translators: Squiggly brackets are replaced with partition name
             partition_str = _("{} (Partition)")
@@ -105,7 +105,7 @@ class DiskProvider(Preloadable):
     def _get_disk_info(self, block, drive, partition_table):
         if not (name := (f'{drive.props.vendor} {drive.props.model}'.strip())):
             # Translators: Fallback name for partitions that don't have a name
-            name = _('Unnamed Disk')
+            name = _("Unnamed Disk")
         return Disk(
             name=name,
             size=block.props.size,
@@ -121,8 +121,8 @@ class DiskProvider(Preloadable):
                 DeviceInfo("EFI", 200000000, "2 GB", "/dev/sda_efi", True),
                 DeviceInfo("Previous Installation", 20000000000, "40 GB",
                            "/dev/sda_yes"),
-                DeviceInfo(_('Unnamed Partition'), 20000000000, "30 GB", "/dev/sda_unnamed"),
-                DeviceInfo(_('Unnamed Partition'), 20000000000, "20 GB", "/dev/sda_unnamed2"),
+                DeviceInfo(_("Unnamed Partition"), 20000000000, "30 GB", "/dev/sda_unnamed"),
+                DeviceInfo(_("Unnamed Partition"), 20000000000, "20 GB", "/dev/sda_unnamed2"),
                 DeviceInfo("Swap", 20000000000, "8 GB", '/dev/sda_swap'),
             ]),
             Disk("VERY BIG DISK", 1000000000000000, "1000 TB",
