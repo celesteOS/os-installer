@@ -3,7 +3,8 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
-from .widgets import reset_model, SummaryRow
+from .summary_row import SummaryRow
+from .widgets import reset_model
 
 
 def _filter_chosen_choices(choices):

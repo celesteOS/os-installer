@@ -5,8 +5,9 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
+from .progress_row import ProgressRow
 from .system_calls import set_system_keyboard_layout
-from .widgets import reset_model, ProgressRow
+from .widgets import reset_model
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')

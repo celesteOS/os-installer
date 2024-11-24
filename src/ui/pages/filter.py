@@ -7,7 +7,6 @@ from .config import config
 from .format_provider import format_provider
 from .system_calls import set_system_formats, set_system_timezone
 from .timezone_provider import timezone_provider
-from .widgets import ProgressRow
 
 
 class FilterType(Enum):

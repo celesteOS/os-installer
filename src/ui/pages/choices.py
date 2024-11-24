@@ -5,7 +5,7 @@ from gi.repository import Gio, Gtk
 
 from .choices_provider import choices_provider
 from .config import config
-from .widgets import MultiSelectionRow, SelectionRow
+from .selection_row import MultiSelectionRow, SelectionRow
 
 
 class ChoiceType(Enum):
