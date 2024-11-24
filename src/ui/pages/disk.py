@@ -5,8 +5,8 @@ from gi.repository import Gio, Gtk
 from .config import config
 from .device_rows import DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
 from .disk_provider import DeviceInfo, Disk, disk_provider
+from .functions import reset_model
 from .system_calls import is_booted_with_uefi, open_disks
-from .widgets import reset_model
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')

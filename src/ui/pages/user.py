@@ -5,7 +5,7 @@ import re
 from gi.repository import Gtk
 
 from .config import config
-from .widgets import EntryErrorEnhancer
+from .entry_error_enhancer import EntryErrorEnhancer
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
