@@ -42,6 +42,25 @@ class DeviceRow(Adw.ActionRow):
         self.set_subtitle(info.device_path)
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_summary_row.ui')
+class DeviceSummaryRow(Adw.ExpanderRow):
+    __gtype_name__ = __qualname__
+
+    def __init__(self, device, **kwargs):
+        super().__init__(**kwargs)
+
+        self.set_subtitle(device.name)
+
+        # Hacky workaround to make AdwExpanderRow have property style
+        # box -> list_box -> action row
+        first_row = self.get_child().get_first_child().get_first_child()
+        first_row.add_css_class('property')
+
+        row = DeviceRow(device)
+        row.set_activatable(False)
+        self.add_row(row)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_too_small_row.ui')
 class DeviceTooSmallRow(Adw.ActionRow):
     __gtype_name__ = __qualname__

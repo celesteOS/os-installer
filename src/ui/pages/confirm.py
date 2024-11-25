@@ -1,20 +1,23 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from gi.repository import Gio, Gtk
 
 from .config import config
+from .device_rows import DeviceSummaryRow
+from .functions import reset_model
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
 class ConfirmPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
-    disk_row = Gtk.Template.Child()
-    size_label = Gtk.Template.Child()
+    list = Gtk.Template.Child()
+    model = Gio.ListStore()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self.list.bind_model(self.model, lambda d: DeviceSummaryRow(d))
         config.subscribe('chosen_device', self._update_disk_row)
 
     ### callbacks ###
@@ -23,10 +26,8 @@ class ConfirmPage(Gtk.Box):
         if disk == None:
             if not config.get('test_mode'):
                 print('Critical: Disk was not set before confirm page')
-            return
-        self.disk_row.set_title(disk.name)
-        self.disk_row.set_subtitle(disk.device_path)
-        self.size_label.set_label(disk.size_text)
+        else:
+            reset_model(self.model, [disk])
 
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):

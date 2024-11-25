@@ -1,5 +1,4 @@
 using Gtk 4.0;
-using Adw 1;
 
 template $ConfirmPage : Box {
   orientation: vertical;
@@ -12,22 +11,10 @@ template $ConfirmPage : Box {
     styles ["heading"]
   }
 
-  ListBox {
+  ListBox list {
+    receives-default: true;
     selection-mode: none;
     styles ["boxed-list"]
-
-    Adw.ActionRow disk_row {
-      selectable: false;
-      focusable: false;
-
-      [prefix]
-      Label size_label {
-        width-chars: 5;
-        max-width-chars: 7;
-        xalign: 1;
-        styles ["dim-label"]
-      }
-    }
   }
 
   Button {
