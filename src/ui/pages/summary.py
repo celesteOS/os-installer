@@ -69,8 +69,8 @@ class SummaryPage(Gtk.Box):
         if scripts['install'] is not None:
             # These values can only be edited if install step has not already
             # been started wtih them
-            self.language_row.set_sensitive(False)
-            self.desktop_row.set_sensitive(False)
+            self.language_row.set_activatable(False)
+            self.desktop_row.set_activatable(False)
 
         config.subscribe('keyboard_layout', self._update_keyboard_layout)
 
