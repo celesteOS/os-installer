@@ -8,14 +8,25 @@ class DeviceInfo(GObject.Object):
     __gtype_name__ = __qualname__
 
     def __init__(self, name, size, size_text, device_path, is_efi=False):
-        super().__init__()
-
         self._name: str = name
-        self.size_number: int = size
         self._size_text: str = size_text
         self._device_path: str = device_path
+        self.size_number: int = size
         self.is_efi: bool = is_efi
         self.efi_partition: str = ''
+        super().__init__()
+
+    @GObject.Property(type=str)
+    def device_path(self):
+        return self._device_path
+
+    @GObject.Property(type=str)
+    def name(self):
+        return self._name
+
+    @GObject.Property(type=str)
+    def size(self):
+        return self._size_text
 
     @GObject.Property(type=str)
     def device_path(self):

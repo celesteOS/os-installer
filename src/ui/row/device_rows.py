@@ -42,6 +42,7 @@ class DeviceSummaryRow(Adw.ExpanderRow):
     __gtype_name__ = __qualname__
 
     def __init__(self, device, nested_activatable=False, **kwargs):
+        self._device = device
         super().__init__(**kwargs)
 
         # Hacky workaround to make AdwExpanderRow have property style
