@@ -3,6 +3,7 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
+from .device_rows import DeviceSummaryRow
 from .functions import reset_model
 from .summary_row import SummaryRow
 
@@ -14,6 +15,10 @@ def _filter_chosen_choices(choices):
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
 class SummaryPage(Gtk.Box):
     __gtype_name__ = __qualname__
+
+    list = Gtk.Template.Child()
+
+    disk_row_index = 2
 
     # rows
     language_row = Gtk.Template.Child()
@@ -65,20 +70,32 @@ class SummaryPage(Gtk.Box):
             self.timezone_row.set_visible(True)
             config.subscribe('timezone', self._update_timezone)
 
-        scripts = config.get('scripts')
-        if scripts['install'] is not None:
+        self.has_install = config.get('scripts')['install'] is not None
+        if self.has_install:
             # These values can only be edited if install step has not already
             # been started wtih them
             self.language_row.set_activatable(False)
             self.desktop_row.set_activatable(False)
 
         config.subscribe('keyboard_layout', self._update_keyboard_layout)
+        config.subscribe('chosen_device', self._update_device_row)
 
     ### callbacks ###
 
     def _update_desktop(self, desktop):
         _, name = desktop
         self.desktop_row.set_subtitle(name)
+
+    def _update_device_row(self, device):
+        if device == None:
+            if not config.get('test_mode'):
+                print('Critical: Disk was not set before summary page')
+        else:
+            row = self.list.get_row_at_index(self.disk_row_index)
+            if type(row) == DeviceSummaryRow:
+                self.list.remove(row)
+            row = DeviceSummaryRow(device, not self.has_install)
+            self.list.insert(row, self.disk_row_index)
 
     def _update_feature_choices(self, choices):
         if choices:

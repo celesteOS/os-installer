@@ -46,7 +46,7 @@ class DeviceRow(Adw.ActionRow):
 class DeviceSummaryRow(Adw.ExpanderRow):
     __gtype_name__ = __qualname__
 
-    def __init__(self, device, **kwargs):
+    def __init__(self, device, nested_activatable=False, **kwargs):
         super().__init__(**kwargs)
 
         self.set_subtitle(device.name)
@@ -57,8 +57,12 @@ class DeviceSummaryRow(Adw.ExpanderRow):
         first_row.add_css_class('property')
 
         row = DeviceRow(device)
-        row.set_activatable(False)
+        row.set_activatable(nested_activatable)
+        row.connect('activated', self._row_activated)
         self.add_row(row)
+
+    def _row_activated(self, _):
+        config.set('displayed-page', 'disk')
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_too_small_row.ui')
