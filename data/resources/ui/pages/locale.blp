@@ -16,6 +16,7 @@ template $LocalePage : Box {
       /* Translators: Presented next to the current Timezone. */
       title: _("Timezone");
       styles ["property"]
+      activated => $row_activated();
 
       [suffix]
       Image {
