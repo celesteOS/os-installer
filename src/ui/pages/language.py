@@ -23,15 +23,13 @@ class LanguagePage(Gtk.Box):
 
         if suggested_languages := language_provider.get_suggested_languages():
             self.suggested_model.splice(0, 0, suggested_languages)
-            self.suggested_list.bind_model(
-                self.suggested_model, lambda o: ProgressRow(o.name, o))
+            self.suggested_list.bind_model(self.suggested_model, ProgressRow)
         else:
             self.suggested_list.set_visible(False)
 
         if other_languages := language_provider.get_other_languages():
             self.other_model.splice(0, 0, other_languages)
-            self.other_list.bind_model(
-                self.other_model, lambda o: ProgressRow(o.name, o))
+            self.other_list.bind_model(self.other_model, ProgressRow)
         else:
             self.other_list.set_visible(False)
 

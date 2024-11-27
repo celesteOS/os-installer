@@ -21,7 +21,7 @@ class KeyboardLanguagePage(Gtk.Box):
         super().__init__(**kwargs)
 
         self.model.splice(0, 0, language_provider.get_all_languages())
-        self.list.bind_model(self.model, lambda o: ProgressRow(o.name, o))
+        self.list.bind_model(self.model, ProgressRow)
 
     ### callbacks ###
 
@@ -43,8 +43,7 @@ class KeyboardLayoutPage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.layout_list.bind_model(
-            self.model, lambda o: ProgressRow(o.name, o))
+        self.layout_list.bind_model(self.model, ProgressRow)
 
         config.subscribe('keyboard_language', self._update_keyboard_language)
 

@@ -4,6 +4,7 @@ using Adw 1;
 template $ProgressRow : Adw.ActionRow {
   activatable: true;
   focusable: true;
+  title: bind template.name;
 
   [suffix]
   Image {
