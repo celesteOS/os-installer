@@ -3,8 +3,9 @@
 from gi.repository import Gio, Gtk
 
 from .config import config
+from .device_info import DeviceInfo, Disk
 from .device_rows import DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
-from .disk_provider import DeviceInfo, Disk, disk_provider
+from .disk_provider import disk_provider
 from .functions import reset_model
 from .system_calls import is_booted_with_uefi, open_disks
 

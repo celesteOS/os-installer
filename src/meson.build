@@ -57,6 +57,7 @@ os_installer_sources = [
   'ui/row/summary_row.py',
   'ui/terminal_dialog.py',
   'ui/window.py',
+  'util/device_info.py',
   'util/entry_error_enhancer.py',
   'util/envvar_creator.py',
   'util/filterable_object.py',
