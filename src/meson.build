@@ -19,9 +19,13 @@ configure_file(
 
 os_installer_sources = [
   '__init__.py',
-  'config.py',
   'main.py',
-  'state_machine.py',
+  'core/config.py',
+  'core/envvar_creator.py',
+  'core/installation_scripting.py',
+  'core/preload_manager.py',
+  'core/state_machine.py',
+  'core/system_calls.py',
   'provider/choices_provider.py',
   'provider/desktop_provider.py',
   'provider/disk_provider.py',
@@ -29,7 +33,6 @@ os_installer_sources = [
   'provider/internet_provider.py',
   'provider/keyboard_layout_provider.py',
   'provider/language_provider.py',
-  'provider/preload_manager.py',
   'provider/slideshow_provider.py',
   'provider/timezone_provider.py',
   'provider/welcome_provider.py',
@@ -59,13 +62,10 @@ os_installer_sources = [
   'ui/window.py',
   'util/device_info.py',
   'util/entry_error_enhancer.py',
-  'util/envvar_creator.py',
   'util/filterable_object.py',
   'util/functions.py',
-  'util/installation_scripting.py',
   'util/installation_step.py',
   'util/preloadable.py',
-  'util/system_calls.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)
