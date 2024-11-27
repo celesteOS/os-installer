@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from gi.repository import Gdk, GObject, Gtk
 
 from .config import config
 from .desktop_provider import desktop_provider
@@ -10,15 +10,17 @@ from .desktop_provider import desktop_provider
 class DesktopEntry(Gtk.Button):
     __gtype_name__ = __qualname__
 
-    image = Gtk.Template.Child()
-    name = Gtk.Template.Child()
-
     def __init__(self, desktop, **kwargs):
+        self.desktop = desktop
         super().__init__(**kwargs)
 
-        self.desktop = desktop
-        self.name.set_label(desktop.name)
-        self.image.set_paintable(desktop.texture)
+    @GObject.Property(type=Gdk.Texture)
+    def texture(self):
+        return self.desktop.texture
+
+    @GObject.Property(type=str)
+    def name(self):
+        return self.desktop.name
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/desktop.ui')

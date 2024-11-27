@@ -8,13 +8,15 @@ template $DesktopEntry: Button {
     halign: center;
     orientation: vertical;
 
-    Picture image {
+    Picture {
+      paintable: bind template.texture;
       content-fit: cover;
       halign: center;
       height-request: 90;
     }
 
-    Label name {
+    Label {
+      label: bind template.name;
       ellipsize: none;
       margin-start: 12;
       margin-end: 12;
