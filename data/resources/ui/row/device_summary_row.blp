@@ -6,6 +6,7 @@ template $DeviceSummaryRow : Adw.ExpanderRow {
   selectable: false;
   /* Translators: Description of selected disk. */
   title: _("Disk");
+  subtitle: bind template.device as <$DeviceInfo>.name;
   show-enable-switch: false;
   styles ["property"]
 }

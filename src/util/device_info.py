@@ -10,12 +10,24 @@ class DeviceInfo(GObject.Object):
     def __init__(self, name, size, size_text, device_path, is_efi=False):
         super().__init__()
 
-        self.name: str = name
-        self.size: int = size
-        self.size_text: str = size_text
-        self.device_path: str = device_path
+        self._name: str = name
+        self.size_number: int = size
+        self._size_text: str = size_text
+        self._device_path: str = device_path
         self.is_efi: bool = is_efi
         self.efi_partition: str = ''
+
+    @GObject.Property(type=str)
+    def device_path(self):
+        return self._device_path
+
+    @GObject.Property(type=str)
+    def name(self):
+        return self._name
+
+    @GObject.Property(type=str)
+    def size(self):
+        return self._size_text
 
 
 class Disk(DeviceInfo):

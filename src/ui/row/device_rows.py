@@ -1,45 +1,40 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 from .config import config
+from .device_info import DeviceInfo
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_choice_row.ui')
 class DeviceChoiceRow(Adw.ExpanderRow):
     __gtype_name__ = __qualname__
 
-    size_label = Gtk.Template.Child()
-    whole_disk_row = Gtk.Template.Child()
-
-    def __init__(self, info, callback, **kwargs):
-        super().__init__(**kwargs)
-
-        self.info = info
-        self.size_label.set_label(info.size_text)
-        self.set_title(info.name)
-        self.set_subtitle(info.device_path)
-
+    def __init__(self, device, callback, **kwargs):
+        self._device = device
         self.callback = callback
+        super().__init__(**kwargs)
 
     @Gtk.Template.Callback('use_whole_disk')
     def _use_whole_disk(self, row):
         self.callback(self)
+
+    @GObject.Property(type=DeviceInfo)
+    def device(self):
+        return self._device
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_row.ui')
 class DeviceRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
-    size_label = Gtk.Template.Child()
-
-    def __init__(self, info, **kwargs):
+    def __init__(self, device, **kwargs):
+        self._device = device
         super().__init__(**kwargs)
 
-        self.info = info
-        self.size_label.set_label(info.size_text)
-        self.set_title(info.name)
-        self.set_subtitle(info.device_path)
+    @GObject.Property(type=DeviceInfo)
+    def device(self):
+        return self._device
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_summary_row.ui')
@@ -48,8 +43,6 @@ class DeviceSummaryRow(Adw.ExpanderRow):
 
     def __init__(self, device, nested_activatable=False, **kwargs):
         super().__init__(**kwargs)
-
-        self.set_subtitle(device.name)
 
         # Hacky workaround to make AdwExpanderRow have property style
         # box -> list_box -> action row
@@ -64,24 +57,28 @@ class DeviceSummaryRow(Adw.ExpanderRow):
     def _row_activated(self, _):
         config.set('displayed-page', 'disk')
 
+    @GObject.Property(type=DeviceInfo)
+    def device(self):
+        return self._device
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_too_small_row.ui')
 class DeviceTooSmallRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
-    size_label = Gtk.Template.Child()
     too_small_label = Gtk.Template.Child()
 
-    def __init__(self, info, **kwargs):
+    def __init__(self, device, **kwargs):
+        self._device = device
         super().__init__(**kwargs)
-
-        self.size_label.set_label(info.size_text)
-        self.set_title(info.name)
-        self.set_subtitle(info.device_path)
 
         smol = self.too_small_label.get_label()
         required_size_str = config.get('min_disk_size_str')
         self.too_small_label.set_label(smol.format(required_size_str))
+
+    @GObject.Property(type=DeviceInfo)
+    def device(self):
+        return self._device
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/no_efi_partition_row.ui')

@@ -38,21 +38,21 @@ class DiskPage(Gtk.Stack):
     def _is_big_enough(self, size):
         return size <= 0 or size >= self.minimum_disk_size
 
-    def _create_device_row(self, info: DeviceInfo):
-        if not self._is_big_enough(info.size):
-            return DeviceTooSmallRow(info)
-        if not self.partition_ok or not info.partitions:
-            return DeviceRow(info)
+    def _create_device_row(self, device: DeviceInfo):
+        if not self._is_big_enough(device.size_number):
+            return DeviceTooSmallRow(device)
+        if not self.partition_ok or not device.partitions:
+            return DeviceRow(device)
 
-        expander_row = DeviceChoiceRow(info, self._row_activated)
+        expander_row = DeviceChoiceRow(device, self._row_activated)
 
         can_use_partitions = True
-        if is_booted_with_uefi() and info.efi_partition is None:
+        if is_booted_with_uefi() and device.efi_partition is None:
             expander_row.add_row(NoEfiPartitionRow())
             can_use_partitions = False
 
-        for partition in info.partitions:
-            if self._is_big_enough(partition.size):
+        for partition in device.partitions:
+            if self._is_big_enough(partition.size_number):
                 row = DeviceRow(partition)
                 row.connect('activated', self._row_activated)
                 row.set_sensitive(can_use_partitions and not partition.is_efi)
@@ -72,7 +72,7 @@ class DiskPage(Gtk.Stack):
         self._row_activated(row)
 
     def _row_activated(self, row):
-        config.set('chosen_device', row.info)
-        config.set('disk_is_partition', not type(row.info) == Disk)
-        config.set('disk_efi_partition', row.info.efi_partition)
+        config.set('chosen_device', row.device)
+        config.set('disk_is_partition', not type(row.device) == Disk)
+        config.set('disk_efi_partition', row.device.efi_partition)
         config.set_next_page(self)

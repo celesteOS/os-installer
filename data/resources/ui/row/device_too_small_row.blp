@@ -6,9 +6,12 @@ template $DeviceTooSmallRow : Adw.ActionRow {
   focusable: false;
   selectable: false;
   sensitive: false;
+  title: bind template.device as <$DeviceInfo>.name;
+  subtitle: bind template.device as <$DeviceInfo>.device_path;
 
   [prefix]
-  Label size_label {
+  Label {
+    label: bind template.device as <$DeviceInfo>.size;
     width-chars: 5;
     max-width-chars: 7;
     xalign: 1;
