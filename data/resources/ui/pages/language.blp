@@ -8,11 +8,13 @@ template $LanguagePage : Box {
     /* Margin is set here, in case this list is empty */
     margin-bottom: 12;
     row-activated => $language_row_activated();
+    selection-mode: none;
     styles ["boxed-list"]
   }
 
   ListBox other_list {
     row-activated => $language_row_activated();
+    selection-mode: none;
     styles ["boxed-list"]
   }
 }
