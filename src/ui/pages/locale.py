@@ -26,10 +26,6 @@ class LocalePage(Gtk.Box):
     def _update_timezone(self, timezone):
         self.timezone_row.set_subtitle(timezone)
 
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        config.set_next_page(self)
-
     @Gtk.Template.Callback('row_activated')
     def _row_activated(self, row):
         config.set('displayed-page', row.get_name())

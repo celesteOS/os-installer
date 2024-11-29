@@ -88,10 +88,6 @@ class KeyboardOverviewPage(Gtk.Box):
         _, name = keyboard_layout
         self.primary_layout_row.set_title(name)
 
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        config.set_next_page(self)
-
     @Gtk.Template.Callback('show_layout_selection')
     def _show_layout_selection(self, row):
         config.set('displayed-page', 'keyboard-layout')

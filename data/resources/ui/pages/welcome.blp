@@ -23,13 +23,13 @@ template $WelcomePage : Box {
 
     [center]
     Button {
+      action-name: "win.advance";
       /* Translators: On button. */
       label: _("_Continue");
       focusable: true;
       valign: start;
       receives-default: true;
       use-underline: true;
-      clicked => $continue();
       styles ["suggested-action", "pill"]
     }
 

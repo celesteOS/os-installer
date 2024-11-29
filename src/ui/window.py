@@ -90,6 +90,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._add_action('next-page', self._navigate_forward)
         self._add_action('previous-page', self._navigate_backward)
+        self._add_action('advance', self._advance)
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
         self._add_action('show-terminal', self._show_terminal, '<Ctl>t')
@@ -160,10 +161,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         else:
             return None
 
-    def _advance(self, page):
+    def _advance(self, page, dummy=None):
         # confirm calling page is current page to prevent incorrect navigation
         current_page = self.navigation_view.get_visible_page()
-        if page != None and not current_page.has_same_type(page):
+        if type(page) == PageWrapper and not current_page.has_same_type(page):
             return
 
         if not current_page.permanent:

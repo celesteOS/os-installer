@@ -28,7 +28,3 @@ class ConfirmPage(Gtk.Box):
                 print('Critical: Disk was not set before confirm page')
         else:
             reset_model(self.model, [disk])
-
-    @Gtk.Template.Callback('confirmed')
-    def _confirmed(self, button):
-        config.set_next_page(self)

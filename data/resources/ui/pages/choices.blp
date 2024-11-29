@@ -11,12 +11,12 @@ template $ChoicesPage : Box {
   }
 
   Button {
+    action-name: "win.advance";
     /* Translators: On button. */
     label: _("_Continue");
     focusable: true;
     halign: center;
     use-underline: true;
-    clicked => $continue();
     styles ["suggested-action", "pill"]
   }
 }

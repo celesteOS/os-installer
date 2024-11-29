@@ -52,10 +52,6 @@ class ChoicesPage(Gtk.Box):
     def _switch_flipped(self, row):
         row.flip_switch()
 
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        config.set_next_page(self)
-
 
 FeaturePage = lambda **args: ChoicesPage(ChoiceType.feature, **args)
 SoftwarePage = lambda **args: ChoicesPage(ChoiceType.software, **args)

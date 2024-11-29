@@ -41,7 +41,3 @@ class InternetPage(Gtk.Stack):
                 self.set_visible_child_name('not-connected')
                 config.set('internet_page_image',
                            'network-wireless-disabled-symbolic')
-
-    @Gtk.Template.Callback('continue')
-    def _continue(self, object):
-        config.set_next_page(self)

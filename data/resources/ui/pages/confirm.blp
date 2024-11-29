@@ -18,13 +18,13 @@ template $ConfirmPage : Box {
   }
 
   Button {
+    action-name: "win.advance";
     /* Translators: On button. */
     label: _("_Confirm");
     focusable: true;
     receives-default: true;
     halign: center;
     use-underline: true;
-    clicked => $confirmed();
     styles ["destructive-action", "pill"]
   }
 }

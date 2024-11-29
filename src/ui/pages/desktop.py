@@ -67,8 +67,3 @@ class DesktopPage(Gtk.Box):
 
     def _desktop_activated(self, button):
         self._set_selected_desktop(button)
-
-    @Gtk.Template.Callback('continue')
-    def _continue(self, object):
-        if self.continue_button.is_sensitive():
-            config.set_next_page(self)

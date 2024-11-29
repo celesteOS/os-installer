@@ -40,12 +40,12 @@ template $KeyboardOverviewPage : Box {
     }
 
     Button continue_button {
+      action-name: "win.advance";
       /* Translators: On button. */
       label: _("_Continue");
       halign: center;
       receives-default: true;
       use-underline: true;
-      clicked => $continue();
       styles ["suggested-action", "pill"]
     }
   }

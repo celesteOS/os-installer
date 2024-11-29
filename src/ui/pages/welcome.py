@@ -31,9 +31,3 @@ class WelcomePage(Gtk.Box):
         self.description.set_label(text)
 
         welcome_provider.assert_preloaded()
-
-    ### callbacks ###
-
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        config.set_next_page(self)

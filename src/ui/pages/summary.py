@@ -131,10 +131,6 @@ class SummaryPage(Gtk.Box):
     def _update_user_name(self, user_name):
         self.user_row.set_subtitle(user_name)
 
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        config.set_next_page(self)
-
     @Gtk.Template.Callback('summary_row_activated')
     def _summary_row_activated(self, list_box, row):
         config.set('displayed-page', row.get_name())

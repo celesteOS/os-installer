@@ -11,9 +11,3 @@ class DonePage(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-    ### callbacks ###
-
-    @Gtk.Template.Callback('restart_button_clicked')
-    def _restart_button_clicked(self, button):
-        config.set_next_page(self)

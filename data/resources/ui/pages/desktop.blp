@@ -22,6 +22,7 @@ template $DesktopPage: Box {
   }
 
   Button continue_button {
+    action-name: "win.advance";
     /* Translators: On button, brackets will be replaced with desktop name. */
     label: _("_Use {}");
     focusable: true;
@@ -29,7 +30,6 @@ template $DesktopPage: Box {
     halign: center;
     valign: center;
     use-underline: true;
-    clicked => $continue();
     styles ["suggested-action", "pill"]
   }
 
