@@ -18,6 +18,8 @@ class WelcomePage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        welcome_provider.assert_preloaded()
+
         welcome = config.get('welcome_page')
         language_code = config.get('language')[0]
 
@@ -29,5 +31,3 @@ class WelcomePage(Gtk.Box):
             text = self.description.get_label()
             text = text.format(config.get('distribution_name'))
         self.description.set_label(text)
-
-        welcome_provider.assert_preloaded()
