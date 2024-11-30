@@ -12,8 +12,10 @@ default_config = {
     'distribution_name': 'Untitled',
     'scripts': {'prepare': None, 'install': None, 'configure': None},
     # internet
-    'internet_connection_required': True,
-    'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
+    'internet': {
+        'connection_required': True,
+        'checker_url': 'http://nmcheck.gnome.org/check_network_status.txt'
+    },
     # language
     'suggested_languages': [],
     'fixed_language': False,
@@ -49,6 +51,8 @@ legacy_values = {
                               {'offered': True, 'forced': False, 'min_length': 1},
                               {'offered': False, 'forced': False, 'min_length': 1}),
     'minimum_disk_size': ['disk', 'min_size'],
+    'internet_connection_required': ['internet', 'connection_required'],
+    'internet_checker_url': ['internet', 'checker_url'],
 }
 
 # not configurable via config file
@@ -117,8 +121,9 @@ def _validate(variables):
         _match(variables['welcome_page'], 'usage', bool) and
         _match(variables['welcome_page'], 'logo', str, type(None)) and
         _match(variables['welcome_page'], 'text', str, type(None)) and
-        _match(variables, 'internet_connection_required', bool) and
-        _match(variables, 'internet_checker_url', str) and
+        _match(variables, 'internet', dict) and
+        _match(variables['internet'], 'connection_required', bool) and
+        _match(variables['internet'], 'checker_url', str) and
         _match(variables, 'suggested_languages', list) and
         _match(variables, 'disk', dict) and
         _match(variables['disk'], 'min_size', int, float) and

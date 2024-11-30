@@ -34,13 +34,13 @@ scripts:
   install: /etc/os-installer/scripts/install.sh
   configure: /etc/os-installer/scripts/configure.sh
 
-# Whether the installation needs an internet connection.
-# Default: yes
-internet_connection_required: yes
-
-# A URL/IP address to be used to check for an existing internet connection.
-# Default: 'http://nmcheck.gnome.org/check_network_status.txt'
-internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
+# Configure whether an internet connection is required. Optionally set what
+# URL/IP address is used to check for an existing internet connection.
+#
+# Default: connection_required: yes, checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
+internet:
+  connection_required: yes
+  checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 
 # Skip the language selection dialog by specifing a language, e.g. 'pt_BR'
 # Default: no (No fixed language, not Norwegian)

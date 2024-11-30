@@ -29,7 +29,7 @@ page_order = [
 class StateMachine:
     def __init__(self):
         self.latest_page = 0
-        if not config.get('internet_connection_required'):
+        if not config.get('internet')['connection_required']:
             installation_scripting.can_run_prepare()
 
     def transition(self, prev_page, reached_page):

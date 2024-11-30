@@ -114,7 +114,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_conditions = {
             'language': self._offer_language_selection(),
             'welcome': config.get('welcome_page')['usage'],
-            'internet': config.get('internet_connection_required'),
+            'internet': config.get('internet')['connection_required'],
             'encrypt': config.get('disk_encryption')['offered'],
             'desktop': config.get('desktop'),
             'confirm': config.get('scripts')['install'],

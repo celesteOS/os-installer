@@ -16,7 +16,7 @@ class InternetProvider(Preloadable):
         Thread(target=self._check_connection, daemon=True).start()
 
     def _check_connection(self):
-        url = config.get('internet_checker_url')
+        url = config.get('internet')['checker_url']
 
         while not config.get('installation_running'):
             try:

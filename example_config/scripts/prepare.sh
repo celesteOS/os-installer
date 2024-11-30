@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # This is an example preparation script.
-# If `internet_connection_required` is enabled in the config, this script gets
+# If `internet > connection_required` is enabled in the config, this script gets
 # called once an internet connection is established, otherwise it's called
 # immediately.
 
