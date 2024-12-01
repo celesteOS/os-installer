@@ -29,6 +29,8 @@ class SystemCaller:
 
         app_window.insert_action_group('external', self.action_group)
 
+        config.subscribe('keyboard_layout', self._set_system_keyboard_layout)
+
     def _add_syscall_action(self, action_name, callback):
         action = Gio.SimpleAction.new(action_name, None)
         action.connect('activate', callback)
@@ -47,15 +49,13 @@ class SystemCaller:
     def _open_wifi_settings(self, _, __):
         _run_program(config.get('commands')['wifi'].split())
 
+    def _set_system_keyboard_layout(self, keyboard):
+        keyboard_layout, _ = keyboard
+        execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
+                 f"[('xkb','{keyboard_layout}')]"])
+
 
 ### public methods ###
-
-def set_system_keyboard_layout(keyboard_info):
-    config.set('keyboard_layout', (keyboard_info.layout, keyboard_info.name))
-    # set system input
-    execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
-             f"[('xkb','{keyboard_info.layout}')]"])
-
 
 def set_system_language(language_info):
     locale = Locale.normalize(language_info.locale)

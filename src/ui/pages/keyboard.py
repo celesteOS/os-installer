@@ -7,7 +7,6 @@ from .functions import reset_model
 from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
 from .progress_row import ProgressRow
-from .system_calls import set_system_keyboard_layout
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')
@@ -56,8 +55,8 @@ class KeyboardLayoutPage(Gtk.Box):
 
     @Gtk.Template.Callback('layout_row_activated')
     def _layout_row_activated(self, list_box, row):
-        # use selected keyboard layout
-        set_system_keyboard_layout(keyboard_info=row.info)
+        keyboard = row.info
+        config.set('keyboard_layout', (keyboard.layout, keyboard.name))
         config.set_next_page(self)
 
     @Gtk.Template.Callback('show_language_selection')
@@ -78,7 +77,7 @@ class KeyboardOverviewPage(Gtk.Box):
             language_code, language = config.get('language')
             config.set('keyboard_language', (language_code, language))
             keyboard = get_default_layout(language_code)
-            set_system_keyboard_layout(keyboard_info=keyboard)
+            config.set('keyboard_layout', (keyboard.layout, keyboard.name))
 
         config.subscribe('keyboard_layout', self._update_primary_layout)
 
