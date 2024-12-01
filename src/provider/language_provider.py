@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Lock
 import os
 
 from gi.repository import GObject, GnomeDesktop
@@ -50,9 +49,6 @@ language_to_default_locale = {
 
 class LanguageInfo(GObject.Object):
     __gtype_name__ = __qualname__
-    name: str
-    language_code: str
-    locale: str
 
     def __init__(self, name, language_code, locale):
         super().__init__()
