@@ -40,9 +40,7 @@ default_config = {
     # fail
     'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
     # commands
-    'browser_cmd': 'epiphany',
-    'disks_cmd': 'gnome-disks',
-    'wifi_cmd': 'gnome-control-center wifi',
+    'commands': {'browser': 'epiphany', 'disks': 'gnome-disks', 'wifi': 'gnome-control-center wifi'},
 }
 
 legacy_values = {
@@ -53,6 +51,9 @@ legacy_values = {
     'minimum_disk_size': ['disk', 'min_size'],
     'internet_connection_required': ['internet', 'connection_required'],
     'internet_checker_url': ['internet', 'checker_url'],
+    'browser_cmd': ['commands', 'browser'],
+    'disks_cmd': ['commands', 'disks'],
+    'wifi_cmd': ['commands', 'wifi'],
 }
 
 # not configurable via config file

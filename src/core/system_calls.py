@@ -39,17 +39,17 @@ class SystemCaller:
         self.action_group.add_action(action)
 
     def _open_disks(self, _, __):
-        _run_program(config.get('disks_cmd').split())
+        _run_program(config.get('commands')['disks'].split())
 
     def _open_internet_search(self, _, __):
-        browser_cmd = config.get('browser_cmd').split()
+        browser_cmd = config.get('commands')['browser'].split()
         failure_help_url = config.get('failure_help_url')
         version = config.get('version')
         browser_cmd.append(failure_help_url.format(version))
         _run_program(browser_cmd)
 
     def _open_wifi_settings(self, _, __):
-        _run_program(config.get('wifi_cmd').split())
+        _run_program(config.get('commands')['wifi'].split())
 
 
 ### public methods ###
