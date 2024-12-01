@@ -1,5 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import subprocess
+
+from .config import config
+
+
+def execute(args):
+    if not config.get('demo_mode') and not config.get('test_mode'):
+        subprocess.run(args)
+
+
 def reset_model(model, new_values):
     '''
     Reset given model to contain the passed new values.

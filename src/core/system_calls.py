@@ -10,11 +10,7 @@ import subprocess
 from gi.repository import Gio
 
 from .config import config
-
-
-def _exec(args):
-    if not config.get('demo_mode') and not config.get('test_mode'):
-        subprocess.run(args)
+from .functions import execute
 
 
 def _run_program(args):
@@ -55,14 +51,14 @@ class SystemCaller:
 ### public methods ###
 
 def reboot_system():
-    _exec(config.get('commands')['reboot'].split())
+    execute(config.get('commands')['reboot'].split())
 
 
 def set_system_keyboard_layout(keyboard_info):
     config.set('keyboard_layout', (keyboard_info.layout, keyboard_info.name))
     # set system input
-    _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
-           f"[('xkb','{keyboard_info.layout}')]"])
+    execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
+             f"[('xkb','{keyboard_info.layout}')]"])
 
 
 def set_system_language(language_info):
@@ -80,13 +76,13 @@ def set_system_language(language_info):
         Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
     # TODO find correct way to set system locale without user authentication
-    _exec(['localectl', '--no-ask-password', 'set-locale', f'LANG={locale}'])
+    execute(['localectl', '--no-ask-password', 'set-locale', f'LANG={locale}'])
 
 
 def set_system_formats(locale, formats_label):
     config.set('formats', (locale, formats_label))
-    _exec(['gsettings', 'set', 'org.gnome.system.locale',
-          'region', f"'{locale}'"])
+    execute(['gsettings', 'set', 'org.gnome.system.locale', 'region',
+             f"'{locale}'"])
 
 
 def set_system_timezone(timezone):
