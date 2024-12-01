@@ -17,6 +17,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 # local, import order is important
 from .config import config
 from .preload_manager import preload_manager
+from .system_calls import SystemCaller
 from .window import OsInstallerWindow
 
 APP_ID = 'com.github.p3732.OS-Installer'
@@ -56,6 +57,7 @@ class Application(Adw.Application):
             window.present()
         else:
             self.window = OsInstallerWindow(application=self)
+            self.system_caller = SystemCaller(self.window)
             self._setup_icons()
             self.window.present()
 

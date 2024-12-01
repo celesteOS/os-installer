@@ -25,13 +25,13 @@ template $DiskPage : Stack {
         }
 
         Button {
+          action-name: "external.manage-disks";
           /* Translators: Button label to open disk management tool. */
           label: _("_Manage Disks");
           focusable: true;
           halign: center;
           valign: end;
           use-underline: true;
-          clicked => $clicked_disks_button();
           styles ["pill"]
         }
       }

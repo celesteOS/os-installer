@@ -5,7 +5,7 @@ from threading import Lock, Thread
 from gi.repository import Gtk
 
 from .config import config
-from .system_calls import open_wifi_settings, start_system_timesync
+from .system_calls import start_system_timesync
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
@@ -22,10 +22,6 @@ class InternetPage(Gtk.Stack):
         config.subscribe('internet_connection', self._connection_state_changed)
 
     ### callbacks ###
-
-    @Gtk.Template.Callback('clicked_settings_button')
-    def _clicked_settings_button(self, button):
-        open_wifi_settings()
 
     def _connection_state_changed(self, connected):
         with self.update_lock:

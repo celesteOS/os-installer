@@ -9,7 +9,6 @@ from .device_info import DeviceInfo, Disk
 from .device_rows import DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
 from .disk_provider import disk_provider
 from .functions import reset_model
-from .system_calls import open_disks
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -65,10 +64,6 @@ class DiskPage(Gtk.Stack):
         return expander_row
 
     ### callbacks ###
-
-    @Gtk.Template.Callback('clicked_disks_button')
-    def _clicked_disks_button(self, button):
-        open_disks()
 
     @Gtk.Template.Callback('disk_selected')
     def _disk_selected(self, list_box, row):

@@ -25,10 +25,10 @@ template $FailedPage : Box {
   }
 
   Button {
+    action-name: "external.error-search";
     focusable: true;
     receives-default: true;
     halign: center;
-    clicked => $search_button_clicked();
     styles ["pill"]
 
     Label {

@@ -19,11 +19,11 @@ template $InternetPage : Stack {
       }
 
       Button {
+        action-name: "external.wifi-settings";
         receives-default: true;
         halign: center;
         valign: center;
         use-underline: true;
-        clicked => $clicked_settings_button();
         styles ["suggested-action", "pill"]
 
         Label {

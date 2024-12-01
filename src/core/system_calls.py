@@ -2,10 +2,12 @@
 
 ''' All calls to other programs are encapsulated here. '''
 
+import locale as Locale
 import os
 from subprocess import Popen
 import subprocess
-import locale as Locale
+
+from gi.repository import Gio
 
 from .config import config
 
@@ -21,23 +23,36 @@ def _run_program(args):
     Popen(args, env=env)
 
 
+class SystemCaller:
+    def __init__(self, app_window):
+        self.action_group = Gio.SimpleActionGroup()
+
+        self._add_syscall_action('error-search', self._open_internet_search)
+        self._add_syscall_action('manage-disks', self._open_disks)
+        self._add_syscall_action('wifi-settings', self._open_wifi_settings)
+
+        app_window.insert_action_group('external', self.action_group)
+
+    def _add_syscall_action(self, action_name, callback):
+        action = Gio.SimpleAction.new(action_name, None)
+        action.connect('activate', callback)
+        self.action_group.add_action(action)
+
+    def _open_disks(self, _, __):
+        _run_program(config.get('disks_cmd').split())
+
+    def _open_internet_search(self, _, __):
+        browser_cmd = config.get('browser_cmd').split()
+        failure_help_url = config.get('failure_help_url')
+        version = config.get('version')
+        browser_cmd.append(failure_help_url.format(version))
+        _run_program(browser_cmd)
+
+    def _open_wifi_settings(self, _, __):
+        _run_program(config.get('wifi_cmd').split())
+
+
 ### public methods ###
-
-def open_disks():
-    _run_program(config.get('disks_cmd').split())
-
-
-def open_internet_search():
-    browser_cmd = config.get('browser_cmd').split()
-    failure_help_url = config.get('failure_help_url')
-    version = config.get('version')
-    browser_cmd.append(failure_help_url.format(version))
-    _run_program(browser_cmd)
-
-
-def open_wifi_settings():
-    _run_program(config.get('wifi_cmd').split())
-
 
 def reboot_system():
     _exec(['reboot'])
