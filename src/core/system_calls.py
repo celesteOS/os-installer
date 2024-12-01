@@ -50,10 +50,6 @@ class SystemCaller:
 
 ### public methods ###
 
-def reboot_system():
-    execute(config.get('commands')['reboot'].split())
-
-
 def set_system_keyboard_layout(keyboard_info):
     config.set('keyboard_layout', (keyboard_info.layout, keyboard_info.name))
     # set system input

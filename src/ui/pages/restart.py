@@ -2,8 +2,6 @@
 
 from gi.repository import Gtk
 
-from .system_calls import reboot_system
-
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/restart.ui')
 class RestartPage(Gtk.Box):
@@ -11,4 +9,3 @@ class RestartPage(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        reboot_system()

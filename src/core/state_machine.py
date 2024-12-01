@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .config import config
+from .functions import reboot_system
 from .installation_scripting import installation_scripting
 
 
@@ -53,7 +54,10 @@ class StateMachine:
                 case 'install':
                     installation_scripting.can_run_configure()
                     ret_val = 'no_return'
-                case 'done' | 'failed' | 'restart' | 'summary':
+                case 'restart':
+                    reboot_system()
+                    ret_val = 'no_return'
+                case 'done' | 'failed' | 'summary':
                     ret_val = 'no_return'
         self.latest_page = new_index
 
