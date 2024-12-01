@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
+
 from gi.repository import Gio, Gtk
 
 from .config import config
@@ -7,7 +9,7 @@ from .device_info import DeviceInfo, Disk
 from .device_rows import DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
 from .disk_provider import disk_provider
 from .functions import reset_model
-from .system_calls import is_booted_with_uefi, open_disks
+from .system_calls import open_disks
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -47,7 +49,8 @@ class DiskPage(Gtk.Stack):
         expander_row = DeviceChoiceRow(device, self._row_activated)
 
         can_use_partitions = True
-        if is_booted_with_uefi() and device.efi_partition is None:
+        is_booted_with_uefi = os.path.isdir("/sys/firmware/efi/efivars")
+        if is_booted_with_uefi and device.efi_partition is None:
             expander_row.add_row(NoEfiPartitionRow())
             can_use_partitions = False
 
