@@ -55,7 +55,7 @@ class SystemCaller:
 ### public methods ###
 
 def reboot_system():
-    _exec(['reboot'])
+    _exec(config.get('commands')['reboot'].split())
 
 
 def set_system_keyboard_layout(keyboard_info):

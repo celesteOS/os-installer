@@ -237,8 +237,9 @@ failure_help_url: 'https://support.dist.ro/new_issue?q="failed"+"os-installer {}
 #
 # The browser_cmd will be called followed by a url.
 #
-# Default: browser: 'epiphany', disks: 'gnome-disks', wifi: 'gnome-control-center wifi'
+# Default: browser: 'epiphany', disks: 'gnome-disks', reboot: 'reboot', wifi: 'gnome-control-center wifi'
 commands:
   browser: 'firefox'
   disks  : 'gnome-disks'
+  reboot : 'shutdown -r now'
   wifi   : 'gnome-control-center wifi'

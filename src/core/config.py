@@ -40,7 +40,7 @@ default_config = {
     # fail
     'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
     # commands
-    'commands': {'browser': 'epiphany', 'disks': 'gnome-disks', 'wifi': 'gnome-control-center wifi'},
+    'commands': {'browser': 'epiphany', 'disks': 'gnome-disks', 'reboot': 'reboot', 'wifi': 'gnome-control-center wifi'},
 }
 
 legacy_values = {
