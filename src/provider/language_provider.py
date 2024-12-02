@@ -62,12 +62,6 @@ class LanguageProvider(Preloadable):
     def __init__(self):
         super().__init__(self._get_languages)
 
-    def _get_default_locale(self, language):
-        if language in language_to_default_locale:
-            return language_to_default_locale[language]
-        else:
-            return None
-
     def _get_existing_translations(self, localedir):
         # English always exists
         existing_translations = {'en'}
@@ -96,7 +90,7 @@ class LanguageProvider(Preloadable):
         self.all_languages = []
         unavailable_languages = []
         for language_code in translations:
-            locale = self._get_default_locale(language_code)
+            locale = language_to_default_locale.get(language_code, None)
 
             if name := self._get_language_name_localized(locale, locale, language_code):
                 language_info = LanguageInfo(name, language_code, locale)
