@@ -5,7 +5,6 @@ from gi.repository import Gtk
 
 from .config import config
 from .format_provider import format_provider
-from .system_calls import set_system_timezone
 from .timezone_provider import timezone_provider
 
 
@@ -63,7 +62,7 @@ class FilterPage(Gtk.Box):
             case FilterType.format:
                 config.set('formats', (item.id, item.name))
             case FilterType.timezone:
-                set_system_timezone(item.id)
+                config.set('timezone', item.id)
         config.set_next_page(self)
 
 

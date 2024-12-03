@@ -32,6 +32,7 @@ class SystemCaller:
         config.subscribe('formats', self._set_system_formats)
         config.subscribe('keyboard_layout', self._set_system_keyboard_layout)
         config.subscribe('language_chosen', self._set_system_language)
+        config.subscribe('timezone', self._set_system_timezone)
 
     def _add_syscall_action(self, action_name, callback):
         action = Gio.SimpleAction.new(action_name, None)
@@ -73,11 +74,9 @@ class SystemCaller:
         execute(['localectl', '--no-ask-password', 'set-locale',
                  f'LANG={locale}'])
 
-
-def set_system_timezone(timezone):
-    config.set('timezone', timezone)
-    # TODO find correct way to set timezone without user authentication
-    Popen(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
+    def _set_system_timezone(self, timezone):
+        # TODO find correct way to set timezone without user authentication
+        Popen(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
 
 
 def start_system_timesync():
