@@ -29,6 +29,7 @@ class SystemCaller:
 
         app_window.insert_action_group('external', self.action_group)
 
+        config.subscribe('formats', self._set_system_formats)
         config.subscribe('keyboard_layout', self._set_system_keyboard_layout)
         config.subscribe('language_chosen', self._set_system_language)
 
@@ -50,6 +51,11 @@ class SystemCaller:
     def _open_wifi_settings(self, _, __):
         _run_program(config.get('commands')['wifi'].split())
 
+    def _set_system_formats(self, formats):
+        locale, _ = formats
+        execute(['gsettings', 'set', 'org.gnome.system.locale', 'region',
+                f"'{locale}'"])
+
     def _set_system_keyboard_layout(self, keyboard):
         keyboard_layout, _ = keyboard
         execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
@@ -66,12 +72,6 @@ class SystemCaller:
         # TODO find correct way to set system locale without user authentication
         execute(['localectl', '--no-ask-password', 'set-locale',
                  f'LANG={locale}'])
-
-
-def set_system_formats(locale, formats_label):
-    config.set('formats', (locale, formats_label))
-    execute(['gsettings', 'set', 'org.gnome.system.locale', 'region',
-             f"'{locale}'"])
 
 
 def set_system_timezone(timezone):

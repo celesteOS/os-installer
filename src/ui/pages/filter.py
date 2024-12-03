@@ -5,7 +5,7 @@ from gi.repository import Gtk
 
 from .config import config
 from .format_provider import format_provider
-from .system_calls import set_system_formats, set_system_timezone
+from .system_calls import set_system_timezone
 from .timezone_provider import timezone_provider
 
 
@@ -61,7 +61,7 @@ class FilterPage(Gtk.Box):
         item = self.list_model.get_item(pos)
         match self.type:
             case FilterType.format:
-                set_system_formats(item.id, item.name)
+                config.set('formats', (item.id, item.name))
             case FilterType.timezone:
                 set_system_timezone(item.id)
         config.set_next_page(self)

@@ -4,9 +4,10 @@ import locale as Locale
 
 from gi.repository import GnomeDesktop
 
+from .config import config
 from .filterable_object import FilterableObject
 from .preloadable import Preloadable
-from .system_calls import set_system_formats
+
 
 locales = {
     'as_IN.UTF-8', 'pt_BR.UTF-8', 'am_ET.UTF-8', 'os_RU.UTF-8', 'ta_LK.UTF-8', 'ka_GE.UTF-8', 'ar_DZ.UTF-8',
@@ -59,7 +60,7 @@ class FormatProvider(Preloadable):
             # solely to prevent crashes, e.g. for Esperanto
             # TODO add to translatation
             name = 'Undefined'
-        set_system_formats(trans_locale, name)
+        config.set('formats', (trans_locale, name))
 
         self.formats = []
         # separate name set to prevent duplicates in list
@@ -83,5 +84,6 @@ class FormatProvider(Preloadable):
     def get_formats(self):
         self.assert_preloaded()
         return self.formats
+
 
 format_provider = FormatProvider()
