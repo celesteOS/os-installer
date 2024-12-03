@@ -126,7 +126,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             page for page in page_order if page not in page_conditions or page_conditions[page]]
 
     def _offer_language_selection(self):
-        return config.get('fixed_language')
+        use_fixed_language = config.get('language_use_fixed')
+        if type(use_fixed_language) is not bool:
+            use_fixed_language = use_fixed_language.result()
+            config.set('language_use_fixed', use_fixed_language)
+        return not use_fixed_language
 
     def _remove_all_pages(self, exception=None):
         for page_name in self.available_pages:

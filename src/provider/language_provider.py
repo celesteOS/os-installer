@@ -63,6 +63,25 @@ class LanguageProvider(Preloadable):
     def __init__(self):
         super().__init__(self._get_languages)
 
+        future = self.thread_pool.submit(self._determine_fixed_language)
+        config.set('language_use_fixed', future)
+
+    def _determine_fixed_language(self):
+        fixed_language = config.get('fixed_language')
+        if not fixed_language:
+            return False
+
+        if fixed_info := self._create_info(fixed_language):
+            config.set('language_chosen', fixed_info)
+            set_system_language(fixed_info)
+            return True
+        else:
+            print('Distribution developer hint: Fixed language '
+                  f'{fixed_language} is not available in current system. '
+                  'Falling back to default language selection.')
+            config.set('fixed_language', False)
+            return False
+
     def _get_existing_translations(self, localedir):
         # English always exists
         existing_translations = {'en'}
@@ -90,19 +109,8 @@ class LanguageProvider(Preloadable):
             return LanguageInfo(name, language_code, locale)
 
     def _get_languages(self):
-        if fixed_language := config.get('fixed_language'):
-            if fixed_info := self._create_info(fixed_language):
-                config.set('language_chosen', fixed_info)
-                set_system_language(fixed_info)
-            else:
-                print('Distribution developer hint: Fixed language '
-                    f'{fixed_language} is not available in current system. '
-                    'Falling back to default language selection.')
-                config.set('fixed_language', False)
-                fixed_language = None
-
         # Assure that some language is set in testing mode
-        if not fixed_language and config.get('test_mode'):
+        if config.get('test_mode') and not config.get('language_chosen'):
             config.set('language_chosen', self._create_info('en'))
 
         localedir = config.get('localedir')
