@@ -77,11 +77,16 @@ class LanguageProvider(Preloadable):
                             existing_translations.add(language)
         return existing_translations
 
-    def _get_language_name_localized(self, lang_locale, localization, lang_code):
-        if name := GnomeDesktop.get_language_from_locale(lang_locale, localization):
-            return name
-        elif lang := GnomeDesktop.get_language_from_code(lang_code.split('_')[0], localization):
-            return f'{lang} ({lang_code})'
+    def _create_info(self, language_code):
+        locale = language_to_default_locale.get(language_code, None)
+
+        if name := GnomeDesktop.get_language_from_locale(locale, locale):
+            return LanguageInfo(name, language_code, locale)
+
+        national_code = language_code.split('_')[0]
+        if lang := GnomeDesktop.get_language_from_code(national_code, locale):
+            name = f'{lang} ({language_code})'
+            return LanguageInfo(name, language_code, locale)
 
     def _get_languages(self):
         localedir = config.get('localedir')
@@ -90,11 +95,8 @@ class LanguageProvider(Preloadable):
         self.all_languages = []
         unavailable_languages = []
         for language_code in translations:
-            locale = language_to_default_locale.get(language_code, None)
-
-            if name := self._get_language_name_localized(locale, locale, language_code):
-                language_info = LanguageInfo(name, language_code, locale)
-                self.all_languages.append(language_info)
+            if info := self._create_info(language_code):
+                self.all_languages.append(info)
             else:
                 unavailable_languages.append(language_code)
 
