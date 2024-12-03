@@ -2,8 +2,6 @@
 
 from threading import Thread
 
-from .config import config
-
 from .choices_provider import choices_provider
 from .desktop_provider import desktop_provider
 from .disk_provider import disk_provider
@@ -26,10 +24,6 @@ class PreloadManager:
     def _preload(self):
         for provider in providers:
             provider.preload()
-
-        # in testing mode locale might not get set, update it here
-        if config.get('test_mode'):
-            config.set('locale', config.get('locale'))
 
         for provider in providers:
             provider.assert_preloaded()

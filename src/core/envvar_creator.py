@@ -28,6 +28,11 @@ def _get_device_path():
     return disk.device_path
 
 
+def _get_locale():
+    language = config.get('language_chosen')
+    return language.locale
+
+
 def _get_username():
     if config.has('user_username'):
         return config.get('user_username')
@@ -61,7 +66,7 @@ def create_envs(installation_step: InstallationStep):
     if with_install_envs:
         envs += [
             f"OSI_DESKTOP={_get('desktop_chosen')}",
-            f"OSI_LOCALE={_get('locale')}",
+            f"OSI_LOCALE={_get_locale()}",
             f"OSI_KEYBOARD_LAYOUT={_get('keyboard_layout')}",
             f"OSI_DEVICE_PATH={_get_device_path()}",
             f"OSI_DEVICE_IS_PARTITION={_get('disk_is_partition')}",

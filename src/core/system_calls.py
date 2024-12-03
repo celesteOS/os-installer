@@ -15,7 +15,7 @@ from .functions import execute
 
 def _run_program(args):
     env = os.environ.copy()
-    env["LANG"] = config.get('locale')
+    env["LANG"] = config.get('language_chosen').locale
     Popen(args, env=env)
 
 
@@ -58,8 +58,7 @@ class SystemCaller:
 ### public methods ###
 
 def set_system_language(language_info):
-    locale = Locale.normalize(language_info.locale)
-    config.set('locale', locale)
+    locale = language_info.locale
 
     # set app language
     was_set = Locale.setlocale(Locale.LC_ALL, locale)

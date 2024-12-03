@@ -50,9 +50,10 @@ locales = {
 
 class FormatProvider(Preloadable):
     def __init__(self):
-        super().__init__(self._initialize_formats, 'locale')
+        super().__init__(self._initialize_formats, 'language_chosen')
 
-    def _initialize_formats(self, translation_locale):
+    def _initialize_formats(self, language_info):
+        translation_locale = language_info.locale
         name = GnomeDesktop.get_country_from_locale(translation_locale)
         if not name:
             # solely to prevent crashes, e.g. for Esperanto
