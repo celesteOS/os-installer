@@ -53,13 +53,13 @@ class FormatProvider(Preloadable):
         super().__init__(self._initialize_formats, 'language_chosen')
 
     def _initialize_formats(self, language_info):
-        translation_locale = language_info.locale
-        name = GnomeDesktop.get_country_from_locale(translation_locale)
+        trans_locale = language_info.locale
+        name = GnomeDesktop.get_country_from_locale(trans_locale)
         if not name:
             # solely to prevent crashes, e.g. for Esperanto
             # TODO add to translatation
             name = 'Undefined'
-        set_system_formats(translation_locale, name)
+        set_system_formats(trans_locale, name)
 
         self.formats = []
         # separate name set to prevent duplicates in list
@@ -67,7 +67,7 @@ class FormatProvider(Preloadable):
         names = set()
 
         for locale in locales:
-            name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
+            name = GnomeDesktop.get_country_from_locale(locale, trans_locale)
             if name and not name in names:
                 names.add(name)
                 short_locale = locale.split(".")[0]
