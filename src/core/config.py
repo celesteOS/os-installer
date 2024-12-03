@@ -82,7 +82,7 @@ internal_values = {
 }
 
 fallback_values = {
-    'language': ('en_US', 'English for Dummies'),
+    'language_chosen': None,
     'locale': 'en_US.UTF-8',
     'keyboard_language': ('en_US' 'English (US)'),
     'keyboard_layout': ('us', 'English (US)'),

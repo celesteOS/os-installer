@@ -21,7 +21,7 @@ class WelcomePage(Gtk.Box):
         welcome_provider.assert_preloaded()
 
         welcome = config.get('welcome_page')
-        language_code = config.get('language')[0]
+        language_code = config.get('language_chosen').code
 
         if (text_key := f'text_{language_code}') in welcome:
             text = welcome[text_key]

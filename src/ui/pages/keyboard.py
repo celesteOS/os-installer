@@ -74,9 +74,9 @@ class KeyboardOverviewPage(Gtk.Box):
         super().__init__(**kwargs)
 
         if not config.has('keyboard_layout'):
-            language_code, language = config.get('language')
-            config.set('keyboard_language', (language_code, language))
-            keyboard = get_default_layout(language_code)
+            language = config.get('language_chosen')
+            config.set('keyboard_language', (language.code, language.name))
+            keyboard = get_default_layout(language.code)
             config.set('keyboard_layout', (keyboard.layout, keyboard.name))
 
         config.subscribe('keyboard_layout', self._update_primary_layout)

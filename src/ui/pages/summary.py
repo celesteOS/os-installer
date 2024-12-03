@@ -51,7 +51,7 @@ class SummaryPage(Gtk.Box):
             config.subscribe('desktop_chosen', self._update_desktop)
         if not config.get('fixed_language'):
             self.language_row.set_visible(True)
-            config.subscribe('language', self._update_language)
+            config.subscribe('language_chosen', self._update_language)
         if config.get('additional_features'):
             self.feature_list.bind_model(self.feature_model, SummaryRow)
             self.feature_row.set_visible(True)
@@ -112,8 +112,7 @@ class SummaryPage(Gtk.Box):
         self.keyboard_row.set_subtitle(name)
 
     def _update_language(self, language):
-        _, name = language
-        self.language_row.set_subtitle(name)
+        self.language_row.set_subtitle(language.name)
 
     def _update_software_choices(self, choices):
         if choices:

@@ -131,8 +131,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # only initialize language page, others depend on chosen language
         if fixed_language := config.get('fixed_language'):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
-                config.set('language',
-                           (fixed_info.code, fixed_info.name))
+                config.set('language_chosen', fixed_info)
                 set_system_language(fixed_info)
                 return False
             else:
