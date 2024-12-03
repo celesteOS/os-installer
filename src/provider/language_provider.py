@@ -50,11 +50,11 @@ language_to_default_locale = {
 class LanguageInfo(GObject.Object):
     __gtype_name__ = __qualname__
 
-    def __init__(self, name, language_code, locale):
+    def __init__(self, name, code, locale):
         super().__init__()
 
         self.name = name
-        self.language_code = language_code
+        self.code = code
         self.locale = locale
 
 
@@ -110,7 +110,7 @@ class LanguageProvider(Preloadable):
         suggested_codes = config.get('suggested_languages')
         if suggested_codes and len(suggested_codes) > 0:
             for language_info in self.all_languages:
-                if language_info.language_code in suggested_codes:
+                if language_info.code in suggested_codes:
                     self.suggested.append(language_info)
                 else:
                     self.other.append(language_info)
@@ -127,7 +127,7 @@ class LanguageProvider(Preloadable):
         self.assert_preloaded()
 
         fixed = [info for info in self.all_languages
-                 if info.language_code == fixed_language]
+                 if info.code == fixed_language]
         if len(fixed) == 1:
             return fixed[0]
         else:

@@ -37,6 +37,6 @@ class LanguagePage(Gtk.Box):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        if config.set('language', (row.info.language_code, row.info.name)):
+        if config.set('language', (row.info.code, row.info.name)):
             set_system_language(row.info)
         config.set_next_page(self)

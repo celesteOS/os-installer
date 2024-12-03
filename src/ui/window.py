@@ -132,7 +132,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         if fixed_language := config.get('fixed_language'):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
                 config.set('language',
-                           (fixed_info.language_code, fixed_info.name))
+                           (fixed_info.code, fixed_info.name))
                 set_system_language(fixed_info)
                 return False
             else:

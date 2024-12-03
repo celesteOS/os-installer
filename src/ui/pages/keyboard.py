@@ -27,7 +27,7 @@ class KeyboardLanguagePage(Gtk.Box):
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
         info = row.info
-        config.set('keyboard_language', (info.language_code, info.name))
+        config.set('keyboard_language', (info.code, info.name))
         config.set_next_page(self)
 
 
