@@ -25,7 +25,7 @@ class SlideshowProvider(Preloadable):
                 print(f'Ignoring faulty slideshow entry "{entry}"')
                 continue
             image = Gdk.Texture.new_from_filename(entry['image_path'])
-            seconds = entry['seconds'] if 'seconds' in entry else 5
+            seconds = entry.get('seconds', 5)
             self.slideshow.append(Slide(image, seconds))
 
     ### public methods ###

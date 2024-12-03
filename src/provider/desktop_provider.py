@@ -25,7 +25,7 @@ class DesktopProvider(Preloadable):
             if not set(entry).issuperset(['name', 'keyword', 'image_path']):
                 print(f'Desktop choice not correctly configured: {entry}')
                 continue
-            description = entry['description'] if 'description' in entry else ''
+            description = entry.get('description', '')
             texture = Gdk.Texture.new_from_filename(entry['image_path'])
             desktop = Desktop(entry['name'], description,
                               texture, entry['keyword'])

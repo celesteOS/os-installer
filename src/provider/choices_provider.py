@@ -29,8 +29,8 @@ class Choice(GObject.Object):
 
 def handle_choice(choice):
     name = choice['name']
-    description = choice['description'] if 'description' in choice else ''
-    icon_path = choice['icon_path'] if 'icon_path' in choice else ''
+    description = choice.get('description', '')
+    icon_path = choice.get('icon_path', '')
 
     if 'options' in choice:
         if 'keyword' in choice or 'suggested' in choice:
@@ -43,7 +43,7 @@ def handle_choice(choice):
             if not 'option' in option:
                 print(f'Option for {name} not correctly configured: {option}')
                 continue
-            option_name = option['name'] if 'name' in option else option['option']
+            option_name = option.get('name', option['option'])
             options.append(Option(option_name, option['option']))
 
         if len(options) == 0:
@@ -53,7 +53,7 @@ def handle_choice(choice):
             return Choice(name, description, icon_path, options=options)
     else:
         if 'keyword' in choice:
-            suggested = choice['suggested'] if 'suggested' in choice else False
+            suggested = choice.get('suggested', False)
             return Choice(name, description, icon_path, suggested=suggested, keyword=choice['keyword'])
         else:
             print(f'No keyword found for {name}')

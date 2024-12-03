@@ -105,7 +105,7 @@ def _match(variables, var, *ok_types):
 
 
 def _validate_scripts(variables):
-    scripts = variables['scripts'] if 'scripts' in variables else None
+    scripts = variables.get('scripts', None)
     if (not _match(variables, 'scripts', dict) or
             (scripts['install'] is None and scripts['configure'] is None)):
         print('Config error: Either install or configure script must exist')
