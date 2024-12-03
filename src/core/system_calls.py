@@ -30,6 +30,7 @@ class SystemCaller:
         app_window.insert_action_group('external', self.action_group)
 
         config.subscribe('keyboard_layout', self._set_system_keyboard_layout)
+        config.subscribe('language_chosen', self._set_system_language)
 
     def _add_syscall_action(self, action_name, callback):
         action = Gio.SimpleAction.new(action_name, None)
@@ -54,24 +55,17 @@ class SystemCaller:
         execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
                  f"[('xkb','{keyboard_layout}')]"])
 
+    def _set_system_language(self, language_info):
+        locale = language_info.locale
 
-### public methods ###
+        if not Locale.setlocale(Locale.LC_ALL, locale):
+            print(f'Could not set locale {locale}, falling back to English. '
+                  'Developer hint: make sure you set up locales correctly.')
+            Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
-def set_system_language(language_info):
-    locale = language_info.locale
-
-    # set app language
-    was_set = Locale.setlocale(Locale.LC_ALL, locale)
-    if not was_set:
-        print(f'Could not set locale to {language_info.name}, '
-              'falling back to English.')
-        print('Installation medium creators, check that you have correctly set up the locales',
-              f'to support {language_info.name}.')
-        # fallback
-        Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
-
-    # TODO find correct way to set system locale without user authentication
-    execute(['localectl', '--no-ask-password', 'set-locale', f'LANG={locale}'])
+        # TODO find correct way to set system locale without user authentication
+        execute(['localectl', '--no-ask-password', 'set-locale',
+                 f'LANG={locale}'])
 
 
 def set_system_formats(locale, formats_label):

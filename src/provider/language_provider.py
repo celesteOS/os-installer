@@ -6,7 +6,6 @@ from gi.repository import GObject, GnomeDesktop
 
 from .config import config
 from .preloadable import Preloadable
-from .system_calls import set_system_language
 
 
 # generated via language_codes_to_x_generator.py
@@ -73,7 +72,6 @@ class LanguageProvider(Preloadable):
 
         if fixed_info := self._create_info(fixed_language):
             config.set('language_chosen', fixed_info)
-            set_system_language(fixed_info)
             return True
         else:
             print('Distribution developer hint: Fixed language '

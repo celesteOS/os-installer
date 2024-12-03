@@ -5,7 +5,6 @@ from gi.repository import Gtk
 from .config import config
 from .language_provider import language_provider
 from .progress_row import ProgressRow
-from .system_calls import set_system_language
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
@@ -37,6 +36,5 @@ class LanguagePage(Gtk.Box):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        if config.set('language_chosen', row.info):
-            set_system_language(row.info)
+        config.set('language_chosen', row.info)
         config.set_next_page(self)
