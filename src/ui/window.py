@@ -3,13 +3,11 @@
 from threading import Lock
 from os.path import exists
 
-from gi.repository import Adw, Gio, Gtk, Vte
+from gi.repository import Adw, Gio, Gtk
 
 from .config import config
-from .language_provider import language_provider
 from .page_wrapper import PageWrapper
 from .state_machine import page_order, state_machine
-from .system_calls import set_system_language
 from .terminal_dialog import TerminalDialog
 
 
@@ -128,16 +126,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             page for page in page_order if page not in page_conditions or page_conditions[page]]
 
     def _offer_language_selection(self):
-        # only initialize language page, others depend on chosen language
-        if fixed_language := config.get('fixed_language'):
-            if fixed_info := language_provider.get_fixed_language(fixed_language):
-                config.set('language_chosen', fixed_info)
-                set_system_language(fixed_info)
-                return False
-            else:
-                print('Developer hint: defined fixed language not available')
-                config.set('fixed_language', '')
-        return True
+        return config.get('fixed_language')
 
     def _remove_all_pages(self, exception=None):
         for page_name in self.available_pages:

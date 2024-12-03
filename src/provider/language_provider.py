@@ -6,6 +6,7 @@ from gi.repository import GObject, GnomeDesktop
 
 from .config import config
 from .preloadable import Preloadable
+from .system_calls import set_system_language
 
 
 # generated via language_codes_to_x_generator.py
@@ -89,9 +90,20 @@ class LanguageProvider(Preloadable):
             return LanguageInfo(name, language_code, locale)
 
     def _get_languages(self):
+        if fixed_language := config.get('fixed_language'):
+            if fixed_info := self._create_info(fixed_language):
+                config.set('language_chosen', fixed_info)
+                set_system_language(fixed_info)
+            else:
+                print('Distribution developer hint: Fixed language '
+                    f'{fixed_language} is not available in current system. '
+                    'Falling back to default language selection.')
+                config.set('fixed_language', False)
+                fixed_language = None
+
         # Assure that some language is set in testing mode
-        if config.get('test_mode'):
-            config.set('language_chosen', self._create_info('en_US.UTF-8'))
+        if not fixed_language and config.get('test_mode'):
+            config.set('language_chosen', self._create_info('en'))
 
         localedir = config.get('localedir')
         translations = self._get_existing_translations(localedir)
