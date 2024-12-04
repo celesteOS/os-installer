@@ -37,11 +37,25 @@ def handle_choices(choices, pot_file):
                     print(f'Invalid option: {option}')
 
 
+def handle_desktop(desktops, pot_file):
+    for desktop in desktops:
+        if 'name' in desktop:
+            add_to_pot(desktop['name'], pot_file)
+        else:
+            print(f'Invalid desktop: {desktop}')
+        if 'description' in desktop:
+            add_to_pot(desktop['description'], pot_file)
+
+
 def handle_config(config, pot_file):
     if 'welcome_page' in config:
         welcome_page = config['welcome_page']
         if 'text' in welcome_page:
             add_to_pot(welcome_page['text'], pot_file)
+
+    if 'desktop' in config:
+        handle_desktop(config['desktop'], pot_file)
+
     if 'additional_software' in config:
         handle_choices(config['additional_software'], pot_file)
 
