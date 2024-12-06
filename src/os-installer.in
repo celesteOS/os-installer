@@ -1,6 +1,5 @@
 #!@PYTHON@
 
-import gettext
 import locale
 import os
 import signal
@@ -12,12 +11,10 @@ VERSION = '@VERSION@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-gettext.install('os-installer', localedir)
 
 # Tell GTK and Python to use our translations
-for translation_system in [gettext, locale]:
-    translation_system.bindtextdomain('os-installer', localedir)
-    translation_system.textdomain('os-installer')
+locale.bindtextdomain('os-installer', localedir)
+locale.textdomain('os-installer')
 
 if __name__ == '__main__':
     import gi
