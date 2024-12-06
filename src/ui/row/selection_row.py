@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
+
 from gi.repository import Adw, Gtk
 
 
@@ -15,15 +17,16 @@ class MultiSelectionRow(Adw.ComboRow):
 
         self.choice = choice
 
-        self.set_title(choice.name)
-        self.set_subtitle(choice.description)
+        self.set_title(_(choice.name))
+        if choice.description:
+            self.set_subtitle(_(choice.description))
         if choice.icon_path:
             self.icon.set_from_file(choice.icon_path)
         else:
             self.icon.set_from_icon_name(choice.icon_name)
             self.icon.set_icon_size(Gtk.IconSize.LARGE)
 
-        self.list.splice(0, 0, [option.display for option in choice.options])
+        self.list.splice(0, 0, [_(option.display) for option in choice.options])
         self.set_model(self.list)
         self.update_choice()
 
@@ -51,8 +54,9 @@ class SelectionRow(Adw.ActionRow):
 
         self.choice = choice
 
-        self.set_title(choice.name)
-        self.set_subtitle(choice.description)
+        self.set_title(_(choice.name))
+        if choice.description:
+            self.set_subtitle(_(choice.description))
         self.switch.set_active(choice.state)
         if choice.icon_path:
             self.icon.set_from_file(choice.icon_path)
