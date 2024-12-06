@@ -169,8 +169,8 @@ additional_software:
     icon_path      : '/etc/os-installer/icons/firefox.png'
     keyword        : 'firefox'
     suggested      : yes
-  - name           : 'Chröm'
-    description    : 'HIDEOUS browser made by big brother'
+  - name           : 'Chr👁️me'
+    description    : 'Spyware made by big brother'
     keyword        : 'börk'
     suggested      : no
   - name           : 'Files'

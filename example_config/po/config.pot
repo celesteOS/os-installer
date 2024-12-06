@@ -49,10 +49,10 @@ msgstr ""
 msgid "Popular Web Browser from Mozilla"
 msgstr ""
 
-msgid "Chröm"
+msgid "Chr👁️me"
 msgstr ""
 
-msgid "HIDEOUS browser made by big brother"
+msgid "Spyware made by big brother"
 msgstr ""
 
 msgid "Files"
@@ -65,6 +65,9 @@ msgid "Optional Option"
 msgstr ""
 
 msgid "Select your favorite option"
+msgstr ""
+
+msgid "Nothing"
 msgstr ""
 
 msgid "Option 1"

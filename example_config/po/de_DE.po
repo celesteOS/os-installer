@@ -50,11 +50,11 @@ msgstr "Firefox"
 msgid "Popular Web Browser from Mozilla"
 msgstr "Beliebter Internet-Browser von Mozilla"
 
-msgid "Chröm"
+msgid "Chr👁️me"
 msgstr ""
 
-msgid "HIDEOUS browser made by big brother"
-msgstr "SCHRECKLICHER Browser hergestellt von Big Brother"
+msgid "Spyware made by big brother"
+msgstr "Spyware hergestellt von Big Brother"
 
 msgid "Files"
 msgstr "Dateien"
@@ -67,6 +67,9 @@ msgstr "Optionale Option"
 
 msgid "Select your favorite option"
 msgstr "Wählen Sie Ihre bevorzugte Option aus"
+
+msgid "Nothing"
+msgstr "Nichts"
 
 msgid "Option 1"
 msgstr "Option 1"
