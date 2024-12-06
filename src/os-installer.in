@@ -6,6 +6,7 @@ import signal
 import sys
 
 localedir = '@localedir@'
+config_localedir="/etc/os-installer/po/"
 pkgdatadir = '@pkgdatadir@'
 VERSION = '@VERSION@'
 
@@ -14,6 +15,7 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 # Tell GTK and Python to use our translations
 locale.bindtextdomain('os-installer', localedir)
+locale.bindtextdomain('os-installer-config', config_localedir)
 locale.textdomain('os-installer')
 
 if __name__ == '__main__':
