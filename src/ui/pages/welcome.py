@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import locale
 from pathlib import Path
 
 from gi.repository import Gtk
@@ -21,12 +22,11 @@ class WelcomePage(Gtk.Box):
         welcome_provider.assert_preloaded()
 
         welcome = config.get('welcome_page')
-        language_code = config.get('language_chosen').code
 
-        if (text_key := f'text_{language_code}') in welcome:
-            text = welcome[text_key]
-        elif welcome['text']:
-            text = welcome['text']
+        if text := welcome.get('text', None):
+            locale.textdomain('os-installer-config')
+            text = locale.gettext(text)
+            locale.textdomain('os-installer')
         else:
             text = self.description.get_label()
             text = text.format(config.get('distribution_name'))
