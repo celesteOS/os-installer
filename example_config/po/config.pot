@@ -19,10 +19,40 @@ msgstr ""
 msgid "A welcoming text to inform about the installation."
 msgstr ""
 
+msgid "GNOME"
+msgstr ""
+
+msgid "Simple desktop that can be personalized with extensions."
+msgstr ""
+
+msgid "KDE Plasma"
+msgstr ""
+
+msgid "Configurable desktop that is similar to Windows."
+msgstr ""
+
+msgid "Xfce"
+msgstr ""
+
+msgid "Lightweight desktop with focus on modularity."
+msgstr ""
+
+msgid "Enlightenment"
+msgstr ""
+
+msgid "Highly configurable, lightweight desktop for tinkerers."
+msgstr ""
+
 msgid "Firefox"
 msgstr ""
 
 msgid "Popular Web Browser from Mozilla"
+msgstr ""
+
+msgid "Chröm"
+msgstr ""
+
+msgid "HIDEOUS browser made by big brother"
 msgstr ""
 
 msgid "Files"
