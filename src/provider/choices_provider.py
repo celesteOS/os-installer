@@ -40,11 +40,12 @@ def handle_choice(choice):
 
         options = []
         for option in choice['options']:
-            if not 'option' in option:
-                print(f'Option for {name} not correctly configured: {option}')
+            if not 'name' in option and not 'option' in option:
+                print(f'Incorrectly configured option: {option}')
                 continue
-            option_name = option.get('name', option['option'])
-            options.append(Option(option_name, option['option']))
+            option_option = option.get('option', '')
+            option_name = option.get('name', option_option)
+            options.append(Option(option_name, option_option))
 
         if len(options) == 0:
             print(f'No valid options found for {name}')

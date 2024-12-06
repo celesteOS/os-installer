@@ -159,7 +159,8 @@ skip_locale: no
 # options         list    A list of options, with each option having:
 #     name        string  Optional. Name presented to user. Translatable.
 #                         Value of 'option' is used when not given.
-#     option      string  Like 'keyword' for non-options, forwarded as-is when chosen.
+#     option      string  Optional. Like 'keyword' for non-options, forwarded as-is when chosen.
+#                         Empty string is used when not given.
 #
 # Default: [], suggested: no, description: '', icon_path: fallback icon
 additional_software:
@@ -181,7 +182,7 @@ additional_software:
     description    : 'Select your favorite option'
     icon_path      : '/etc/os-installer/icons/options-symbolic.svg'
     options        :
-      - option     : 'Nothing'
+      - name       : 'Nothing'
       - name       : 'Option 1'
         option     : 'package_1'
       - name       : 'Option 2'

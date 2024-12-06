@@ -35,7 +35,7 @@ def handle_choices(choices, pot_file):
             for option in options:
                 if 'name' in option:
                     add_to_pot(option['name'], pot_file)
-                elif not 'option' in option:
+                elif not 'name' in option and not 'option' in option:
                     print(f'Invalid option: {option}')
 
 
