@@ -88,7 +88,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._add_action('next-page', self._navigate_forward)
         self._add_action('previous-page', self._navigate_backward)
-        self._add_action('advance', self._advance)
+        self._add_action('advance', self._advance_wrapper)
         self._add_action('reload-page', self._reload_page, 'F5')
         self._add_action('about-page', self._show_about_page, '<Alt>Return')
         self._add_action('show-terminal', self._show_terminal, '<Ctl>t')
@@ -99,11 +99,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 with self.navigation_lock:
                     return self._load_page('failed', permanent=False)
             self._add_action('fail-page', show_failed, '<Alt>F')
-
-            def skip_page(_, __):
-                with self.navigation_lock:
-                    return self._advance(None)
-            self._add_action('skip', skip_page, '<Alt>S')
+            self._add_action('skip', self._advance_wrapper, '<Alt>S')
 
         self.insert_action_group('win', self.action_group)
         self.add_controller(self.shortcut_controller)
@@ -153,7 +149,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         else:
             return None
 
-    def _advance(self, page, dummy=None):
+    def _advance_wrapper(self, page=None, dummy=None):
+        with self.navigation_lock:
+            self._advance(self, page)
+
+    def _advance(self, page):
         # confirm calling page is current page to prevent incorrect navigation
         current_page = self.navigation_view.get_visible_page()
         if type(page) == PageWrapper and not current_page.has_same_type(page):
