@@ -1,8 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from locale import gettext as _
+
 from gi.repository import Gdk, GObject, Gtk
 
 from .config import config
+from .config_translation import config_translation
 from .desktop_provider import desktop_provider
 
 
@@ -12,6 +15,7 @@ class DesktopEntry(Gtk.Button):
 
     def __init__(self, desktop, **kwargs):
         self.desktop = desktop
+        self._name = _(self.desktop.name)
         super().__init__(**kwargs)
 
     @GObject.Property(type=Gdk.Texture)
@@ -20,7 +24,7 @@ class DesktopEntry(Gtk.Button):
 
     @GObject.Property(type=str)
     def name(self):
-        return self.desktop.name
+        return self._name
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/desktop.ui')
@@ -39,20 +43,24 @@ class DesktopPage(Gtk.Box):
         self.selected_entry = None
 
         number = 0
-        for desktop in desktop_provider.get_desktops():
-            entry = DesktopEntry(desktop)
-            entry.connect('clicked', self._desktop_activated)
-            if number == 0:
-                self._set_selected_desktop(entry)
-            self.grid.attach(entry, number % 3, int(number/3), 1, 1)
-            number += 1
+        with config_translation:
+            for desktop in desktop_provider.get_desktops():
+                entry = DesktopEntry(desktop)
+                entry.connect('clicked', self._desktop_activated)
+                if number == 0:
+                    self._set_selected_desktop(entry)
+                self.grid.attach(entry, number % 3, int(number/3), 1, 1)
+                number += 1
 
     def _set_selected_desktop(self, entry):
         desktop = entry.desktop
         self.continue_button.set_label(self.button_label.format(desktop.name))
         self.selected_image.set_paintable(None)
         self.selected_image.set_paintable(desktop.texture)
-        self.selected_description.set_label(desktop.description)
+
+        with config_translation:
+            description = _(desktop.description)
+        self.selected_description.set_label(description)
 
         if self.selected_entry:
             self.selected_entry.remove_css_class('selected-card')
