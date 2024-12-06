@@ -12,7 +12,7 @@ Help with translations is always welcome! The simplest way is via [__Weblate__](
 Alternatively you could try the autonomous way:
 * Fork, clone and build this repository.
 * Add your [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `xx` to the `po/LINGUAS` file.
-* Generate a new translation file with `ninja -C build os-installer-update-po` and [edit it](https://gitlab.gnome.org/GNOME/gtranslator/).
+* Generate a new translation file with `ninja -C build os-installer-update-po` and [edit it](https://flathub.org/apps/org.gnome.Gtranslator).
 * Test the translation, commit and push the changes to your fork and create a merge request. Thank you!
 
 # Testing
