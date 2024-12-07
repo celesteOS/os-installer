@@ -145,19 +145,6 @@ class LanguageProvider(Preloadable):
         self.assert_preloaded()
         return self.all_languages
 
-    def get_fixed_language(self, fixed_language):
-        self.assert_preloaded()
-
-        fixed = [info for info in self.all_languages
-                 if info.code == fixed_language]
-        if len(fixed) == 1:
-            return fixed[0]
-        else:
-            print('Distribution developer hint: Fixed language '
-                  f'{fixed_language} is not available in current system. '
-                  'Falling back to default language selection.')
-            return None
-
     def get_suggested_languages(self):
         self.assert_preloaded()
         return self.suggested
