@@ -77,6 +77,7 @@ internal_values = {
     # other
     'installation_running': False,
     'min_disk_size_str': '',
+    'send_notification': None,
     'stashed-terminal': None,
     'version': -1,
 }

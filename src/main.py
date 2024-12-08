@@ -40,7 +40,6 @@ class Application(Adw.Application):
                              GLib.OptionArg.NONE, "Run in testing mode. Does not alter the system, but runs scripts.", None)
 
         config.set('version', version)
-        config.set('send_notification', None)
         config.subscribe('send_notification', self._send_notification)
 
     def _setup_icons(self):
