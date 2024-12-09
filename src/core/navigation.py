@@ -9,10 +9,6 @@ from .page_wrapper import PageWrapper
 from .state_machine import page_order, state_machine
 
 
-forward = 1
-backwards = -1
-
-
 class Navigation(Adw.Bin):
     __gtype_name__ = __qualname__
 
@@ -37,7 +33,7 @@ class Navigation(Adw.Bin):
             if self._current_is_last():
                 return None
 
-            if next_page_name := self._get_next_page_name(forward):
+            if next_page_name := self._get_next_page_name():
                 return self.navigation_view.find_page(next_page_name)
             else:
                 return None
@@ -92,10 +88,10 @@ class Navigation(Adw.Bin):
             replacement = [self.navigation_view.find_page(exception)]
         self.navigation_view.replace(replacement)
 
-    def _get_next_page_name(self, offset: int = forward):
+    def _get_next_page_name(self):
         current_page = self.navigation_view.get_visible_page()
         current_index = self.available_pages.index(current_page.get_tag())
-        if (next_index := current_index + offset) < len(self.available_pages):
+        if (next_index := current_index + 1) < len(self.available_pages):
             return self.available_pages[next_index]
         else:
             return None
@@ -122,9 +118,11 @@ class Navigation(Adw.Bin):
 
             self._load_page(next_page_name)
 
-    def _load_page(self, page_name: str, offset: int = forward, permanent: bool = True):
-        page_to_load = self.navigation_view.find_page(page_name)
-        if not page_to_load:
+    def _load_page(self, page_name: str, permanent: bool = True):
+        if self.navigation_view.find_page(page_name):
+            # reuse existing page is still in stack
+            self.navigation_view.push_by_tag(page_name)
+        else:
             page_to_load = PageWrapper(page_name)
             page_to_load.permanent = permanent
 
@@ -134,12 +132,6 @@ class Navigation(Adw.Bin):
                     self.navigation_view.push_by_tag(page_name)
             else:
                 self.navigation_view.push(page_to_load)
-        else:
-            # in case page is still in stack, but not in internal list
-            if offset >= forward:
-                self.navigation_view.push_by_tag(page_name)
-            else:
-                self.navigation_view.pop_to_tag(page_name)
 
         self._update_page()
 
