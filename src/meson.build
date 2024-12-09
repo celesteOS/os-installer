@@ -23,6 +23,7 @@ os_installer_sources = [
   'core/config.py',
   'core/envvar_creator.py',
   'core/installation_scripting.py',
+  'core/navigation.py',
   'core/preload_manager.py',
   'core/state_machine.py',
   'core/system_calls.py',
