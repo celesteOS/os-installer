@@ -21,6 +21,7 @@ class Navigation(Adw.Bin):
 
         self.navigation_lock = Lock()
         self.navigation_view = Adw.NavigationView()
+        self.navigation_view.set_pop_on_escape(False)
         self.set_child(self.navigation_view)
 
         self._determine_available_pages()
