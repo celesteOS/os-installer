@@ -107,9 +107,11 @@ class LanguageProvider(Preloadable):
             return LanguageInfo(name, language_code, locale)
 
     def _get_languages(self):
+        self.english_info = self._create_info('en')
+
         # Assure that some language is set in testing mode
-        if config.get('test_mode') and not config.get('language_chosen'):
-            config.set('language_chosen', self._create_info('en'))
+        if not config.get('language_chosen'):
+            config.set('language_chosen', self.english_info)
 
         localedir = config.get('localedir')
         translations = self._get_existing_translations(localedir)
