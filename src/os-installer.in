@@ -6,6 +6,9 @@ import signal
 import sys
 
 localedir = '@localedir@'
+# TODO: Flatten this string in meson?
+po_files='''@po_files@'''.split('\n')
+available_translations = [po[:-3] for po in po_files if po.endswith('.po')]
 config_localedir="/etc/os-installer/po/"
 pkgdatadir = '@pkgdatadir@'
 VERSION = '@VERSION@'
@@ -26,7 +29,7 @@ if __name__ == '__main__':
     resource = Gio.Resource.load(resource_file)
     resource._register()
     from os_installer.config import config
-    config.set('localedir', localedir)
+    config.set('available_translations', available_translations)
 
     from os_installer import main
     sys.exit(main.main(VERSION))

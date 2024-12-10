@@ -19,7 +19,7 @@ application_id = 'com.github.p3732.OS-Installer'
 
 subdir('misc-build-files')
 subdir('data')
-subdir('src')
 subdir('po')
+subdir('src')
 
 meson.add_install_script('misc-build-files/postinstall.py')

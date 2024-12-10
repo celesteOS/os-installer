@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import os
-
 from gi.repository import GObject, GnomeDesktop
 
 from .config import config
@@ -80,21 +78,6 @@ class LanguageProvider(Preloadable):
             config.set('fixed_language', False)
             return False
 
-    def _get_existing_translations(self, localedir):
-        # English always exists
-        existing_translations = {'en'}
-
-        # check what translations exist in the locale folder
-        for file in os.scandir(localedir):
-            if file.is_dir():
-                locale_folder = os.path.join(file.path, 'LC_MESSAGES')
-                if os.path.isdir(locale_folder):
-                    for locale_file in os.scandir(locale_folder):
-                        if locale_file.name == 'os-installer.mo':
-                            language = os.path.basename(file.path)
-                            existing_translations.add(language)
-        return existing_translations
-
     def _create_info(self, language_code):
         locale = language_to_default_locale.get(language_code, None)
 
@@ -113,10 +96,9 @@ class LanguageProvider(Preloadable):
         if not config.get('language_chosen'):
             config.set('language_chosen', self.english_info)
 
-        localedir = config.get('localedir')
-        translations = self._get_existing_translations(localedir)
+        translations = config.get('available_translations')
 
-        self.all_languages = []
+        self.all_languages = [self.english_info]
         unavailable_languages = []
         for language_code in translations:
             if info := self._create_info(language_code):
