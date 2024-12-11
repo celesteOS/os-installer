@@ -1,5 +1,5 @@
-project('os-installer',  
-          version: '0.4.0',
+project('os-installer',
+          version: '0.5.0',
     meson_version: '>= 0.55.0',
   default_options: [ 'warning_level=2',
                    ],
