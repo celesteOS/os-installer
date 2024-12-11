@@ -189,6 +189,12 @@ class Config:
             print(f'Developer hint: "{legacy_prop}" is deprecated, '
                   f'use "{replacement[0]} -> {replacement[1]}" instead')
             self.variables[replacement[0]][replacement[1]] = legacy_val
+        # removed
+        elif replacement == None:
+            match legacy_prop:
+                case _:
+                    reason = ' without replacement'
+            print(f'Developer hint: "{legacy_prop}" has been removed{reason}')
         # conditional replacement
         elif len(replacement) == 4:
             print(f'Developer hint: "{legacy_prop}" is deprecated, '
