@@ -111,31 +111,15 @@ class LanguageProvider(Preloadable):
                   sorted(unavailable_languages))
         self.all_languages.sort(key=lambda k: k.name)
 
-        self.suggested = []
-        self.other = []
-        suggested_codes = config.get('suggested_languages')
-        if suggested_codes and len(suggested_codes) > 0:
-            for language_info in self.all_languages:
-                if language_info.code in suggested_codes:
-                    self.suggested.append(language_info)
-                else:
-                    self.other.append(language_info)
-        else:
-            self.other = self.all_languages
-
     ### public methods ###
 
     def get_all_languages(self):
         self.assert_preloaded()
         return self.all_languages
 
-    def get_suggested_languages(self):
+    def get_available_languages(self):
         self.assert_preloaded()
-        return self.suggested
-
-    def get_other_languages(self):
-        self.assert_preloaded()
-        return self.other
+        return self.all_languages
 
 
 language_provider = LanguageProvider()

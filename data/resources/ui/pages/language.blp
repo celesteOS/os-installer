@@ -4,20 +4,13 @@ using Gio 2.0;
 template $LanguagePage : Box {
   orientation: vertical;
 
-  ListBox suggested_list {
+  ListBox list {
     /* Margin is set here, in case this list is empty */
     margin-bottom: 12;
-    row-activated => $language_row_activated();
-    selection-mode: none;
-    styles ["boxed-list"]
-  }
-
-  ListBox other_list {
-    row-activated => $language_row_activated();
+    row-activated => $row_activated();
     selection-mode: none;
     styles ["boxed-list"]
   }
 }
 
-Gio.ListStore suggested_model {}
-Gio.ListStore other_model {}
+Gio.ListStore model {}

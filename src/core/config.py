@@ -17,7 +17,6 @@ default_config = {
         'checker_url': 'http://nmcheck.gnome.org/check_network_status.txt'
     },
     # language
-    'suggested_languages': [],
     'fixed_language': False,
     # welcome
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
@@ -54,6 +53,7 @@ legacy_values = {
     'browser_cmd': ['commands', 'browser'],
     'disks_cmd': ['commands', 'disks'],
     'wifi_cmd': ['commands', 'wifi'],
+    'suggested_languages': None,
 }
 
 # not configurable via config file
@@ -126,7 +126,6 @@ def _validate(variables):
         _match(variables, 'internet', dict) and
         _match(variables['internet'], 'connection_required', bool) and
         _match(variables['internet'], 'checker_url', str) and
-        _match(variables, 'suggested_languages', list) and
         _match(variables, 'disk', dict) and
         _match(variables['disk'], 'min_size', int, float) and
         _match(variables['disk'], 'partition_ok', bool) and
@@ -192,6 +191,8 @@ class Config:
         # removed
         elif replacement == None:
             match legacy_prop:
+                case 'suggested_languages':
+                    reason = ', instead all languages with translations are listed'
                 case _:
                     reason = ' without replacement'
             print(f'Developer hint: "{legacy_prop}" has been removed{reason}')

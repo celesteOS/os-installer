@@ -49,21 +49,6 @@ internet:
 # Default: no (No fixed language, not Norwegian)
 fixed_language: no
 
-# Some languages can be presented more prominently. All other languages are
-# shown in an alphabetical order.
-# Note: For a language to be available, it needs to be provided by the system
-# and the installer needs to have a translation into that language.
-# Default: []
-suggested_languages:
-  - 'ar'
-  - 'de'
-  - 'en'
-  - 'es'
-  - 'fr'
-  - 'ja'
-  - 'ru'
-  - 'zh'
-
 # Show a welcome page after language selection.
 #
 # logo    string  Optional. Path to a logo (e.g. distribution logo)
