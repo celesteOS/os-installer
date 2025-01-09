@@ -198,9 +198,9 @@ class Config:
             print(f'Developer hint: "{legacy_prop}" has been removed{reason}')
         # conditional replacement
         elif len(replacement) == 4:
+            new_var, compare_val, new1, new2 = replacement
             print(f'Developer hint: "{legacy_prop}" is deprecated, '
                   f'use "{new_var}" instead')
-            new_var, compare_val, new1, new2 = replacement
             self.variables[new_var] = new1 if legacy_val == compare_val else new2
 
     def _preprocess_values(self):
