@@ -48,7 +48,6 @@ class Navigation(Adw.Bin):
 
     def _initialize_first_page(self):
         initial_page = PageWrapper(self.available_pages[0])
-        initial_page.permanent = True
         self.navigation_view.add(initial_page)
 
     def _determine_available_pages(self):
@@ -123,8 +122,7 @@ class Navigation(Adw.Bin):
             # reuse existing page is still in stack
             self.navigation_view.push_by_tag(page_name)
         else:
-            page_to_load = PageWrapper(page_name)
-            page_to_load.permanent = permanent
+            page_to_load = PageWrapper(page_name, permanent)
 
             if permanent:
                 self.navigation_view.add(page_to_load)

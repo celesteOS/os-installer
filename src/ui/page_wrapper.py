@@ -133,9 +133,10 @@ class PageWrapper(Adw.NavigationPage):
 
     content = Gtk.Template.Child()
 
-    def __init__(self, page_name, **kwargs):
+    def __init__(self, page_name, permanent=True, **kwargs):
         super().__init__(**kwargs)
         self._set_new_page(page_name)
+        self.permanent = permanent
         self.reload_button.set_visible(page_name in reloadable_pages)
 
     def __del__(self):
