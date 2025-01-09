@@ -146,7 +146,7 @@ class PageWrapper(Adw.NavigationPage):
     def _set_new_page(self, page_name):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
-        self.content.set_child(self.page)
+        self.content.add(self.page)
         if self.page_name in special_image_pages:
             config_value = f'{self.page_name}_page_image'
             config.subscribe(config_value, self._set_title_image)
@@ -187,6 +187,7 @@ class PageWrapper(Adw.NavigationPage):
         if not self.page_name in reloadable_pages:
             return
         config.unsubscribe(self.page)
+        self.content.remove(self.page)
         del self.page
         self._set_new_page(self.page_name)
 

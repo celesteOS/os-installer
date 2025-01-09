@@ -73,16 +73,8 @@ template $PageWrapper : Adw.NavigationPage {
       }
     }
 
-    content: ScrolledWindow {
-      child: Adw.Clamp content {
-        margin-start: 12;
-        margin-end: 12;
-        margin-top: 12;
-        margin-bottom: 12;
-        maximum-size: 600;
-        tightening-threshold: 352;
-        hexpand: true;
-      };
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup content {}
     };
   };
 }
