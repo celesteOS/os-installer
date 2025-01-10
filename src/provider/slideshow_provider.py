@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from typing import NamedTuple
+import os
 
 from gi.repository import Gdk
 
@@ -21,12 +22,16 @@ class SlideshowProvider(Preloadable):
         entries = config.get('install_slideshow')
         self.slideshow = []
         for entry in entries:
-            if not 'image_path' in entry:
-                print(f'Ignoring faulty slideshow entry "{entry}"')
-                continue
-            image = Gdk.Texture.new_from_filename(entry['image_path'])
-            seconds = entry.get('seconds', 5)
-            self.slideshow.append(Slide(image, seconds))
+            image_path = entry.get('image_path', None)
+
+            if not image_path:
+                print(f'Ignoring slideshow entry due to missing image: "{entry}"')
+            if not os.path.exists(image_path):
+                print(f'Could not find slideshow image "{image_path}"')
+            else:
+                image = Gdk.Texture.new_from_filename(image_path)
+                seconds = entry.get('seconds', 5)
+                self.slideshow.append(Slide(image, seconds))
 
     ### public methods ###
 
