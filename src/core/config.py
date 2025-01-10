@@ -43,10 +43,7 @@ default_config = {
 }
 
 legacy_values = {
-    'offer_disk_encryption': ('disk_encryption',
-                              True,
-                              {'offered': True, 'forced': False, 'min_length': 1},
-                              {'offered': False, 'forced': False, 'min_length': 1}),
+    'offer_disk_encryption': ['disk_encryption', 'offered'],
     'minimum_disk_size': ['disk', 'min_size'],
     'internet_connection_required': ['internet', 'connection_required'],
     'internet_checker_url': ['internet', 'checker_url'],
