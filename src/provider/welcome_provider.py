@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
+
 from gi.repository import Gdk
 
 from .config import config
@@ -13,9 +15,13 @@ class WelcomeProvider(Preloadable):
     def _load_image(self):
         welcome = config.get('welcome_page')
 
-        if welcome['logo']:
-            texture = Gdk.Texture.new_from_filename(welcome['logo'])
-            config.set('welcome_page_image', texture)
+        if logo := welcome['logo']:
+            if os.path.exists(logo):
+                texture = Gdk.Texture.new_from_filename(logo)
+                config.set('welcome_page_image', texture)
+            else:
+                print(f'Could not find welcome logo "{logo}"')
+
 
 
 welcome_provider = WelcomeProvider()
