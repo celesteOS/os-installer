@@ -7,9 +7,16 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 640;
 
-  Stack stack {
+  content: Stack {
+    hhomogeneous: false;
+    vhomogeneous: false;
+
     StackPage {
       child: $Navigation navigation {};
     }
-  }
+
+    StackPage {
+      child: Adw.Bin terminal_holder {};
+    }
+  };
 }

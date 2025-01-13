@@ -14,7 +14,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
 
     navigation: Navigation = Gtk.Template.Child()
-    stack = Gtk.Template.Child()
+    terminal_holder = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -28,7 +28,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # VteTerminal widget needs to exist somewhere in the widget tree once
         # created. Keep it around as a stack page that never gets revealed.
         terminal = config.steal('stashed-terminal')
-        self.stack.add_named(terminal, 'terminal')
+        self.terminal_holder.set_child(terminal)
 
     def _add_action(self, action_name, callback, keybinding=None):
         action = Gio.SimpleAction.new(action_name, None)
@@ -87,7 +87,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         return True
 
     def _show_terminal(self, _, __):
-        terminal = self.stack.get_child_by_name('terminal')
-        if terminal:
-            self.stack.remove(terminal)
+        terminal = self.terminal_holder.get_child()
+        self.terminal_holder.set_child(None)
         TerminalDialog(terminal).present(self)
