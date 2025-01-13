@@ -17,12 +17,14 @@ class TerminalDialog(Adw.Dialog):
         super().__init__(**kwargs)
 
         if not terminal:
+            # create a new terminal and use existing PTY for it
             terminal = Vte.Terminal()
             terminal.set_allow_hyperlink(True)
             terminal.set_input_enabled(False)
             terminal.set_scroll_on_output(True)
             terminal.set_scrollback_lines(10000)
 
+            # add empty line on top for margin
             new_line = (ctypes.c_char * 1).from_buffer_copy(b'\n')
             terminal.feed(new_line)
 
