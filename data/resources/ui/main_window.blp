@@ -12,7 +12,9 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
     vhomogeneous: false;
 
     StackPage {
-      child: $Navigation navigation {};
+      child: Adw.ToastOverlay toaster {
+        child: $Navigation navigation {};
+      };
     }
 
     StackPage {

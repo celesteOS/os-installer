@@ -15,6 +15,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     navigation: Navigation = Gtk.Template.Child()
     terminal_holder = Gtk.Template.Child()
+    toaster = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -23,6 +24,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.connect('close-request', self._show_confirm_dialog, None)
 
         config.subscribe('stashed-terminal', self._stash_terminal, delayed=True)
+        config.subscribe('display-toast', self._show_toast, delayed=True)
 
     def _stash_terminal(self, terminal):
         # VteTerminal widget needs to exist somewhere in the widget tree once
@@ -64,6 +66,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.add_controller(self.shortcut_controller)
 
     ### callbacks ###
+
+    def _show_toast(self, toast_text):
+        if toast_text := config.steal('display-toast'):
+            toast = Adw.Toast.new(toast_text)
+            self.toaster.add_toast(toast)
 
     def _show_about_page(self, _, __):
         builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/about_dialog.ui')
