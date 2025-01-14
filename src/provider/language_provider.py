@@ -48,12 +48,13 @@ language_to_default_locale = {
 class LanguageInfo(GObject.Object):
     __gtype_name__ = __qualname__
 
-    def __init__(self, name, code, locale):
+    def __init__(self, name, code, locale, available=True):
         super().__init__()
 
-        self.name = name
+        self.available = available
         self.code = code
         self.locale = locale
+        self.name = name
 
 
 class LanguageProvider(Preloadable):
@@ -91,6 +92,9 @@ class LanguageProvider(Preloadable):
 
         if name := GnomeDesktop.get_language_from_locale(locale, locale):
             return LanguageInfo(name, language_code, locale)
+
+        if name := GnomeDesktop.get_language_from_locale(locale):
+            return LanguageInfo(name, language_code, locale, False)
 
         national_code = language_code.split('_')[0]
         if lang := GnomeDesktop.get_language_from_code(national_code, locale):
