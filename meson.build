@@ -12,6 +12,7 @@ dependency('gnome-desktop-4', version: '>= 43')
 dependency('gtk4', version: '>= 4.10.0')
 dependency('gweather4', version: '>= 4.4.0')
 dependency('libadwaita-1', version: '>= 1.6.0')
+dependency('vte-2.91-gtk4', version: '>= 0.75.0')
 
 i18n = import('i18n')
 
