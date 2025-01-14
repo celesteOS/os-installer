@@ -79,7 +79,15 @@ class LanguageProvider(Preloadable):
             return False
 
     def _create_info(self, language_code):
-        locale = language_to_default_locale.get(language_code, None)
+        if '_' in language_code:
+            # already has territory, use as-is
+            locale = f'{language_code}.UTF-8'
+        else:
+            locale = language_to_default_locale.get(language_code, None)
+
+        if not locale:
+            print(f"Can't determine locale for {language_code}")
+            return None
 
         if name := GnomeDesktop.get_language_from_locale(locale, locale):
             return LanguageInfo(name, language_code, locale)
