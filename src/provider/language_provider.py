@@ -30,7 +30,7 @@ language_to_default_locale = {
     'ne': 'ne_NP.UTF-8', 'ng_NG': 'en_NG.UTF-8', 'nb': 'nb_NO.UTF-8', 'nn': 'nn_NO.UTF-8', 'no': 'no_NO.UTF-8',
     'nr': 'nr_ZA.UTF-8', 'oc': 'oc_FR.UTF-8', 'cu_CU': 'es_CU.UTF-8', 'om': 'om_ET.UTF-8', 'or': 'or_IN.UTF-8',
     'os': 'os_RU.UTF-8', 'pa': 'pa_IN.UTF-8', 'fa': 'fa_IR.UTF-8', 'pl': 'pl_PL.UTF-8', 'ps': 'ps_AF.UTF-8',
-    'pt': 'pt_BR.UTF-8', 'ro': 'ro_RO.UTF-8', 'ru': 'ru_RU.UTF-8', 'sa': 'sa_IN.UTF-8', 'sc': 'sc_IT.UTF-8',
+    'pt': 'pt_PT.UTF-8', 'ro': 'ro_RO.UTF-8', 'ru': 'ru_RU.UTF-8', 'sa': 'sa_IN.UTF-8', 'sc': 'sc_IT.UTF-8',
     'sd': 'sd_IN.UTF-8', 'se': 'se_NO.UTF-8', 'sm': 'sm_WS.UTF-8', 'sg_SG': 'en_SG.UTF-8', 'sr': 'sr_RS.UTF-8',
     'gd': 'gd_GB.UTF-8', 'sn_SN': 'wo_SN.UTF-8', 'si': 'si_LK.UTF-8', 'sk': 'sk_SK.UTF-8', 'sl': 'sl_SI.UTF-8',
     'so': 'so_SO.UTF-8', 'st': 'st_ZA.UTF-8', 'es': 'es_ES.UTF-8', 'sw': 'sw_KE.UTF-8', 'ss': 'ss_ZA.UTF-8',

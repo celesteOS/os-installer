@@ -61,6 +61,9 @@ code_to_locale, locale_dups = language_2_x(langtable.list_locales)
 code_to_keyboard, keyboard_dups = language_2_x(langtable.list_common_keyboards)
 code_to_keyboard = normalize_keyboards(code_to_keyboard)
 
+# manual overrides
+code_to_locale['pt'] = 'pt_PT.UTF-8'
+
 print('-------------')
 print('---Results---')
 print('-------------')
