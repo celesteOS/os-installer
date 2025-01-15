@@ -65,10 +65,12 @@ class SystemCaller:
     def _set_system_language(self, language_info):
         locale = language_info.locale
 
-        if not Locale.setlocale(Locale.LC_ALL, locale):
-            print(f'Could not set locale {locale}, falling back to English. '
-                  'Developer hint: make sure you set up locales correctly.')
-            Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
+        if language_info.available:
+            try:
+                Locale.setlocale(Locale.LC_MESSAGES, locale)
+                print(f'Set locale to "{locale}".')
+            except Locale.Error:
+                print(f'Failed setting locale to "{locale}", not available in system.')
 
         # TODO find correct way to set system locale without user authentication
         execute(['localectl', '--no-ask-password', 'set-locale',
