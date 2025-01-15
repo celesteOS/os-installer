@@ -92,14 +92,16 @@ class LanguageProvider(Preloadable):
 
         if name := GnomeDesktop.get_language_from_locale(locale, locale):
             return LanguageInfo(name, language_code, locale)
-
-        if name := GnomeDesktop.get_language_from_locale(locale):
+        elif name := GnomeDesktop.get_language_from_locale(locale):
             return LanguageInfo(name, language_code, locale, False)
 
         national_code = language_code.split('_')[0]
         if lang := GnomeDesktop.get_language_from_code(national_code, locale):
             name = f'{lang} ({language_code})'
             return LanguageInfo(name, language_code, locale)
+        elif lang := GnomeDesktop.get_language_from_code(national_code):
+            name = f'{lang} ({language_code})'
+            return LanguageInfo(name, language_code, locale, False)
 
     def _get_languages(self):
         self.english_info = self._create_info('en')
