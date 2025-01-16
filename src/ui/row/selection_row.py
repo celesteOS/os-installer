@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from locale import gettext as _
-
 from gi.repository import Adw, Gtk
+
+from .translator import config_gettext as _
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/multi_selection_row.ui')

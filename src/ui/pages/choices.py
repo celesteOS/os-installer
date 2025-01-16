@@ -1,11 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import Enum
-from gi.repository import Gio, Gtk
+from gi.repository import Gtk
 
 from .choices_provider import choices_provider
-from .config import config
-from .config_translation import config_translation
 from .selection_row import MultiSelectionRow, SelectionRow
 
 
@@ -34,18 +32,16 @@ class ChoicesPage(Gtk.Box):
                 exit(0)
 
         self.model.splice(0, 0, self.list_provider())
-        with config_translation:
-            self.list.bind_model(self.model, self._create_row)
+        self.list.bind_model(self.model, self._create_row)
 
     def _create_row(self, choice):
-        with config_translation:
-            if choice.options:
-                row = MultiSelectionRow(choice)
-                row.connect("notify::selected-item", self._option_chosen)
-            else:
-                row = SelectionRow(choice)
-                row.connect("activated", self._switch_flipped)
-            return row
+        if choice.options:
+            row = MultiSelectionRow(choice)
+            row.connect("notify::selected-item", self._option_chosen)
+        else:
+            row = SelectionRow(choice)
+            row.connect("activated", self._switch_flipped)
+        return row
 
     ### callbacks ###
 

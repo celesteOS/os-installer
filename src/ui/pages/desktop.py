@@ -1,12 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from locale import gettext as _
-
 from gi.repository import Gdk, GObject, Gtk
 
 from .config import config
-from .config_translation import config_translation
 from .desktop_provider import desktop_provider
+from .translator import config_gettext as _
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/desktop_entry.ui')
@@ -43,14 +41,13 @@ class DesktopPage(Gtk.Box):
         self.selected_entry = None
 
         number = 0
-        with config_translation:
-            for desktop in desktop_provider.get_desktops():
-                entry = DesktopEntry(desktop)
-                entry.connect('clicked', self._desktop_activated)
-                if number == 0:
-                    self._set_selected_desktop(entry)
-                self.grid.attach(entry, number % 3, int(number/3), 1, 1)
-                number += 1
+        for desktop in desktop_provider.get_desktops():
+            entry = DesktopEntry(desktop)
+            entry.connect('clicked', self._desktop_activated)
+            if number == 0:
+                self._set_selected_desktop(entry)
+            self.grid.attach(entry, number % 3, int(number/3), 1, 1)
+            number += 1
 
     def _set_selected_desktop(self, entry):
         desktop = entry.desktop
@@ -58,8 +55,7 @@ class DesktopPage(Gtk.Box):
         self.selected_image.set_paintable(None)
         self.selected_image.set_paintable(desktop.texture)
 
-        with config_translation:
-            description = _(desktop.description)
+        description = _(desktop.description)
         self.selected_description.set_label(description)
 
         if self.selected_entry:
