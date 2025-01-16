@@ -62,7 +62,6 @@ os_installer_sources = [
   'ui/row/device_rows.py',
   'ui/row/progress_row.py',
   'ui/row/selection_row.py',
-  'ui/row/summary_row.py',
   'ui/terminal_dialog.py',
   'ui/window.py',
   'util/device_info.py',
