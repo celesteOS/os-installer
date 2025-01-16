@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .buttons import ContinueButton
 from .config import config
 from .entry_error_enhancer import EntryErrorEnhancer
 

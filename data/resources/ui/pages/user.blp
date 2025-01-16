@@ -55,15 +55,9 @@ template $UserPage : Box {
     }
   }
 
-  Button continue_button {
-    /* Translators: On button. */
-    label: _("_Continue");
+  $ContinueButton continue_button {
     sensitive: false;
-    focusable: true;
     receives-default: true;
-    halign: center;
-    use-underline: true;
     clicked => $continue();
-    styles ["suggested-action", "pill"]
   }
 }

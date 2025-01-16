@@ -3,6 +3,7 @@
 from enum import Enum
 from gi.repository import Gtk
 
+from .buttons import ContinueButton
 from .choices_provider import choices_provider
 from .selection_row import MultiSelectionRow, SelectionRow
 

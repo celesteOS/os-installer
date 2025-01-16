@@ -2,6 +2,7 @@
 
 from gi.repository import Gio, Gtk
 
+from .buttons import ContinueButton
 from .config import config
 from .functions import reset_model
 from .keyboard_layout_provider import get_default_layout, get_layouts_for

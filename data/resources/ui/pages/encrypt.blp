@@ -62,15 +62,8 @@ template $EncryptPage : Box {
     }
   }
 
-  Button continue_button {
-    /* Translators: On button. */
-    label: _("_Continue");
-    focusable: true;
+  $ContinueButton continue_button {
     receives-default: true;
-    halign: center;
-    valign: center;
-    use-underline: true;
     clicked => $continue();
-    styles ["suggested-action", "pill"]
   }
 }

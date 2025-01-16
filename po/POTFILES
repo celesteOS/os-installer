@@ -25,5 +25,6 @@ data/resources/ui/row/no_efi_partition_row.blp
 
 src/core/installation_scripting.py
 src/provider/disk_provider.py
+src/ui/buttons.py
 src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py

@@ -39,14 +39,9 @@ template $KeyboardOverviewPage : Box {
       }
     }
 
-    Button continue_button {
+    $ContinueButton {
       action-name: "win.advance";
-      /* Translators: On button. */
-      label: _("_Continue");
-      halign: center;
       receives-default: true;
-      use-underline: true;
-      styles ["suggested-action", "pill"]
     }
   }
 }

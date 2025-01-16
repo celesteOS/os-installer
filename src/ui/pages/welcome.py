@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .buttons import ContinueButton
 from .config import config
 from .translator import config_gettext as _
 from .welcome_provider import welcome_provider

@@ -4,6 +4,7 @@ from threading import Lock, Thread
 
 from gi.repository import Gtk
 
+from .buttons import ContinueButton
 from .config import config
 from .system_calls import start_system_timesync
 

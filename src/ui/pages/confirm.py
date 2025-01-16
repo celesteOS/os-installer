@@ -2,6 +2,7 @@
 
 from gi.repository import Gio, Gtk
 
+from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
 from .functions import reset_model

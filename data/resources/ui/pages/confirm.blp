@@ -17,14 +17,9 @@ template $ConfirmPage : Box {
     styles ["boxed-list"]
   }
 
-  Button {
+  $ConfirmButton {
     action-name: "win.advance";
-    /* Translators: On button. */
-    label: _("_Confirm");
-    focusable: true;
     receives-default: true;
-    halign: center;
-    use-underline: true;
     styles ["destructive-action", "pill"]
   }
 }

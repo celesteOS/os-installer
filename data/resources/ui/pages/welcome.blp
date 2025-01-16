@@ -22,15 +22,9 @@ template $WelcomePage : Box {
     vexpand: true;
 
     [center]
-    Button {
+    $ContinueButton {
       action-name: "win.advance";
-      /* Translators: On button. */
-      label: _("_Continue");
-      focusable: true;
-      valign: start;
       receives-default: true;
-      use-underline: true;
-      styles ["suggested-action", "pill"]
     }
 
     [end]
