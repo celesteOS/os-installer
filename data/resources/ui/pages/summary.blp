@@ -100,50 +100,12 @@ template $SummaryPage : Box {
     }
 
     Adw.ActionRow software_row {
-      margin-top: 6;
       name: "software";
       activatable: true;
       visible: false;
-
-      [prefix]
-      Box {
-        orientation: vertical;
-        halign: start;
-        spacing: 3;
-
-        Label {
-          /* Translators: Description of selected additional software. */
-          label: _("Additional Software");
-          xalign: 0;
-          styles ["dim-label", "caption"]
-        }
-
-        Stack software_stack {
-          margin-bottom: 6;
-          vhomogeneous: false;
-          transition-type: crossfade;
-
-          StackPage {
-            name: "used";
-            child: ListBox software_list {
-              halign: start;
-              margin-bottom: 6;
-              selection-mode: none;
-              styles ["nested-list"]
-            };
-          }
-
-          StackPage {
-            name: "none";
-            child: Label {
-              /* Translators: Shown when list of selected software is empty. */
-              label: _("None");
-              xalign: 0;
-              styles ["dim-label"]
-            };
-          }
-        }
-      }
+      /* Translators: Description of selected additional software. */
+      title: _("Additional Software");
+      styles ["property"]
 
       Image {
         icon-name: "go-next-symbolic";
@@ -154,50 +116,9 @@ template $SummaryPage : Box {
       name: "feature";
       activatable: true;
       visible: false;
-      /* Translators: Description of selected additional software. */
-
-      [prefix]
-      Box {
-        margin-top: 6;
-        orientation: vertical;
-        halign: start;
-        spacing: 3;
-
-        Label {
-          /* Translators: Description of selected additional software. */
-          label: _("Additional Features");
-          xalign: 0;
-          styles ["dim-label", "caption"]
-        }
-
-
-        Stack feature_stack {
-          margin-bottom: 6;
-          vhomogeneous: false;
-          transition-type: crossfade;
-
-          StackPage {
-            name: "used";
-            child: ListBox feature_list {
-              halign: start;
-              margin-bottom: 6;
-              selection-mode: none;
-              styles ["nested-list"]
-            };
-          }
-
-          StackPage {
-            name: "none";
-            child: Label {
-              /* Translators: Shown when list of selected features is empty. */
-              label: _("None");
-              hexpand: true;
-              xalign: 0;
-              styles ["dim-label"]
-            };
-          }
-        }
-      }
+      /* Translators: Description of selected additional features. */
+      title: _("Additional Features");
+      styles ["property"]
 
       Image {
         icon-name: "go-next-symbolic";

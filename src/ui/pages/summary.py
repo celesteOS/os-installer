@@ -1,16 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gio, Gtk
+from gi.repository import Gtk
 
 from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
-from .functions import reset_model
-from .summary_row import SummaryRow
-
-
-def _filter_chosen_choices(choices):
-    return [choice for choice in choices if choice.options or choice.state]
+from .translator import config_gettext
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
@@ -34,16 +29,6 @@ class SummaryPage(Gtk.Box):
     # user row specific
     user_autologin = Gtk.Template.Child()
 
-    # software list
-    software_stack = Gtk.Template.Child()
-    software_list = Gtk.Template.Child()
-    software_model = Gio.ListStore()
-
-    # feature list
-    feature_stack = Gtk.Template.Child()
-    feature_list = Gtk.Template.Child()
-    feature_model = Gio.ListStore()
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -54,11 +39,9 @@ class SummaryPage(Gtk.Box):
             self.language_row.set_visible(True)
             config.subscribe('language_chosen', self._update_language)
         if config.get('additional_features'):
-            self.feature_list.bind_model(self.feature_model, SummaryRow)
             self.feature_row.set_visible(True)
             config.subscribe('feature_choices', self._update_feature_choices)
         if config.get('additional_software'):
-            self.software_list.bind_model(self.software_model, SummaryRow)
             self.software_row.set_visible(True)
             config.subscribe('software_choices', self._update_software_choices)
         if not config.get('skip_user'):
@@ -81,6 +64,23 @@ class SummaryPage(Gtk.Box):
         config.subscribe('keyboard_layout', self._update_keyboard_layout)
         config.subscribe('chosen_device', self._update_device_row)
 
+    def _update_choices(self, row, choices):
+        if not choices:
+            # Translators: Shown when list of selected software is empty.
+            row.set_subtitle(_("None"))
+            return
+
+        _ = config_gettext
+        choice_texts = []
+        for choice in choices:
+            if choice.options:
+                text = f'{_(choice.name)} – {_(choice.state.display)}'
+                choice_texts.append(text)
+            elif choice.state:
+                choice_texts.append(_(choice.name))
+
+        row.set_subtitle(', '.join(choice_texts))
+
     ### callbacks ###
 
     def _update_desktop(self, desktop):
@@ -99,11 +99,7 @@ class SummaryPage(Gtk.Box):
             self.list.insert(row, self.disk_row_index)
 
     def _update_feature_choices(self, choices):
-        if choices:
-            self.feature_stack.set_visible_child_name('used')
-            reset_model(self.feature_model, _filter_chosen_choices(choices))
-        else:
-            self.feature_stack.set_visible_child_name('none')
+        self._update_choices(self.feature_row, choices)
 
     def _update_formats(self, formats):
         self.format_row.set_subtitle(formats[1])
@@ -116,11 +112,7 @@ class SummaryPage(Gtk.Box):
         self.language_row.set_subtitle(language.name)
 
     def _update_software_choices(self, choices):
-        if choices:
-            self.software_stack.set_visible_child_name('used')
-            reset_model(self.software_model, _filter_chosen_choices(choices))
-        else:
-            self.software_stack.set_visible_child_name('none')
+        self._update_choices(self.software_row, choices)
 
     def _update_timezone(self, timezone):
         self.timezone_row.set_subtitle(timezone)
