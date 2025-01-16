@@ -32,7 +32,7 @@ class InstallationScripting():
         config.set('installation_running', False)
         config.set('displayed-page', 'failed')
         # Translators: Notification text
-        config.set('send_notification', _("Finished Installation"))
+        config.set('send_notification', _("Installation Failed"))
 
     def _try_start_next_script(self):
         if self.running_step != InstallationStep.none:
