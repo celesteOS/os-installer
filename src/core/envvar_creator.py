@@ -18,7 +18,7 @@ def _get(var):
         if isinstance(value, bool):
             return 1 if value else 0
         elif isinstance(value, tuple):
-            value[0]
+            return value[0]
         else:
             return value
 
