@@ -221,7 +221,7 @@ class Config:
 
     def set(self, variable, new_value):
         '''Returns whether config was changed.'''
-        if variable in self.variables and (old_value := self.variables[variable]) == new_value:
+        if self.variables.get(variable, None) == new_value:
             return False
 
         self.variables[variable] = new_value
