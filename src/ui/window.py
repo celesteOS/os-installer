@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Lock
-
 from gi.repository import Adw, Gio, Gtk
 
 from .config import config
+from .confirm_quit_dialog import ConfirmQuitDialog
 from .navigation import Navigation
 from .terminal_dialog import TerminalDialog
 
@@ -78,20 +77,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         popup.present(self)
 
     def _show_confirm_dialog(self, _, __):
-        def check_quit(_, response, self):
-            if response == 'stop':
-                self.get_application().quit()
-
         if not config.get('installation_running'):
             self.get_application().quit()
             return False
-
-        builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/ui/confirm_quit_dialog.ui')
-        popup = builder.get_object('popup')
-        popup.connect('response', check_quit, self)
-        popup.present(self)
-
-        return True
+        else:
+            ConfirmQuitDialog(self.get_application().quit).present(self)
+            return True
 
     def _show_terminal(self, _, __):
         terminal = self.terminal_holder.get_child()

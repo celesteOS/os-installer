@@ -39,6 +39,7 @@ os_installer_sources = [
   'provider/slideshow_provider.py',
   'provider/timezone_provider.py',
   'provider/welcome_provider.py',
+  'ui/confirm_quit_dialog.py',
   'ui/page_wrapper.py',
   'ui/pages/choices.py',
   'ui/pages/confirm.py',

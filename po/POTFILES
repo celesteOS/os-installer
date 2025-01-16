@@ -2,8 +2,6 @@ data/com.github.p3732.OS-Installer.desktop.in
 data/com.github.p3732.OS-Installer.appdata.xml.in
 data/com.github.p3732.OS-Installer.gschema.xml
 
-data/resources/ui/confirm_quit_dialog.blp
-
 data/resources/ui/pages/choices.blp
 data/resources/ui/pages/confirm.blp
 data/resources/ui/pages/desktop.blp
@@ -27,4 +25,5 @@ data/resources/ui/row/no_efi_partition_row.blp
 
 src/core/installation_scripting.py
 src/provider/disk_provider.py
+src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py
