@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from locale import gettext as _
 from threading import Lock
 import os
 
