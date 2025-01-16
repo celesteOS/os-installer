@@ -28,6 +28,7 @@ os_installer_sources = [
   'core/preload_manager.py',
   'core/state_machine.py',
   'core/system_calls.py',
+  'core/translator.py',
   'provider/choices_provider.py',
   'provider/desktop_provider.py',
   'provider/disk_provider.py',

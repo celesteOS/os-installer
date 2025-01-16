@@ -1,6 +1,5 @@
 #!@PYTHON@
 
-import locale
 import os
 import signal
 import sys
@@ -16,10 +15,9 @@ VERSION = '@VERSION@'
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-# Tell GTK and Python to use our translations
-locale.bindtextdomain('os-installer', localedir)
-locale.bindtextdomain('os-installer-config', config_localedir)
-locale.textdomain('os-installer')
+# Setup translations for  GTK and Python
+from os_installer.translator import initialize_translator
+initialize_translator(localedir)
 
 if __name__ == '__main__':
     import gi
