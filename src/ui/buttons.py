@@ -30,3 +30,20 @@ class ConfirmButton(ContinueButton):
         self.set_label(_("_Confirm"))
 
         self.set_css_classes(["destructive-action", "pill"])
+
+
+class TerminalButton(Gtk.Button):
+    __gtype_name__ = __qualname__
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.set_action_name('win.show-terminal')
+        self.set_icon_name('utilities-terminal-symbolic')
+
+        # Translators: Hover information on toggle button that shows terminal output.
+        self.set_tooltip_text(_("Show Terminal Output"))
+
+        self.set_css_classes(["pill"])
+        self.set_halign(Gtk.Align.CENTER)
+        self.set_focusable(True)

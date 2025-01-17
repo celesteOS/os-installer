@@ -10,18 +10,7 @@ template $FailedPage : Box {
     title: _("Error During Installation");
     /* Translators: Installation failure description. Brackets will be replaced by the distribution name. */
     description: _("Details on the error that occured can be found in the installation logs. Please report this error to {}.");
-    child: Button {
-      action-name: "win.show-terminal";
-      focusable: true;
-      /* Translators: Hover information on toggle button that shows terminal output. */
-      tooltip-text: _("Show Terminal Output");
-      halign: center;
-      styles ["pill"]
-
-      Image {
-        icon-name: "utilities-terminal-symbolic";
-      }
-    };
+    child: $TerminalButton {};
   }
 
   Button {

@@ -33,16 +33,5 @@ template $DonePage : Box {
     }
   }
 
-  ToggleButton {
-    action-name: "win.show-terminal";
-    focusable: true;
-    /* Translators: Hover information on toggle button that shows terminal output. */
-    tooltip-text: _("Show Terminal Output");
-    halign: center;
-    styles ["pill"]
-
-    Image {
-      icon-name: "utilities-terminal-symbolic";
-    }
-  }
+  $TerminalButton {}
 }

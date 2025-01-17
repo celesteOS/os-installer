@@ -2,6 +2,7 @@
 
 from gi.repository import Gtk
 
+from .buttons import TerminalButton
 from .config import config
 
 

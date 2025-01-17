@@ -4,6 +4,7 @@ from threading import Condition, Lock, Thread
 
 from gi.repository import Gtk
 
+from .buttons import TerminalButton
 from .config import config
 from .slideshow_provider import slideshow_provider
 

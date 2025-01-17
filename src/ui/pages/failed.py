@@ -2,6 +2,8 @@
 
 from gi.repository import Gtk
 
+from .buttons import TerminalButton
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/failed.ui')
 class FailedPage(Gtk.Box):
