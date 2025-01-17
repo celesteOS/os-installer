@@ -15,8 +15,10 @@ class Translator:
 
         self._setup_module()
 
+        self._setup_language('en_US')
         config.subscribe('language_chosen',
-                         lambda info: self._setup_language(info.code))
+                         lambda info: self._setup_language(info.code),
+                         delayed=True)
 
     def _setup_module(self):
         for module in [gettext, locale]:
