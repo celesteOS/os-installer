@@ -55,7 +55,10 @@ class FormatProvider(Preloadable):
 
     def _initialize_formats(self, language_info):
         trans_locale = language_info.locale
-        name = GnomeDesktop.get_country_from_locale(trans_locale)
+        name = GnomeDesktop.get_country_from_locale(trans_locale, trans_locale)
+        if not name:
+            # Fallback translation from current locale
+            name = GnomeDesktop.get_country_from_locale(trans_locale)
         if not name:
             # solely to prevent crashes, e.g. for Esperanto
             # TODO add to translatation
@@ -67,8 +70,14 @@ class FormatProvider(Preloadable):
         # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
         names = set()
 
+        # Test once if GnomeDesktop supports translation locale
+        has_translation = GnomeDesktop.get_country_from_locale('en_US.UTF-8', trans_locale)
+
         for locale in locales:
-            name = GnomeDesktop.get_country_from_locale(locale, trans_locale)
+            if has_translation:
+                name = GnomeDesktop.get_country_from_locale(locale, trans_locale)
+            else: # use fallback
+                name = GnomeDesktop.get_country_from_locale(locale)
             if name and not name in names:
                 names.add(name)
                 short_locale = locale.split(".")[0]
