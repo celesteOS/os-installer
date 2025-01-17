@@ -12,13 +12,13 @@ template $InternetPage : Stack {
       margin-top: 12;
       spacing: 18;
 
-      Label {
+      Label no_connection_label {
         label:_("No connection detected");
         justify: center;
         styles ["heading"]
       }
 
-      Button {
+      Button settings_button {
         action-name: "external.wifi-settings";
         /* Translators: On button for opening wifi settings. */
         label: _("_Open Settings");
@@ -38,7 +38,7 @@ template $InternetPage : Stack {
       margin-top: 12;
       spacing: 18;
 
-      Label {
+      Label yes_connection_label {
         label:_("Connection detected");
         justify: center;
         styles ["heading"]

@@ -4,16 +4,21 @@ from gi.repository import Adw, GObject, Gtk
 
 from .config import config
 from .device_info import DeviceInfo
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/device_choice_row.ui')
 class DeviceChoiceRow(Adw.ExpanderRow):
     __gtype_name__ = __qualname__
 
+    whole_disk_row = Gtk.Template.Child()
+
     def __init__(self, device, callback, **kwargs):
         self._device = device
         self.callback = callback
         super().__init__(**kwargs)
+
+        translate_widgets(self.whole_disk_row)
 
     @Gtk.Template.Callback('use_whole_disk')
     def _use_whole_disk(self, row):
@@ -45,6 +50,8 @@ class DeviceSummaryRow(Adw.ExpanderRow):
         self._device = device
         super().__init__(**kwargs)
 
+        translate_widgets(self)
+
         # Hacky workaround to make AdwExpanderRow have property style
         # box -> list_box -> action row
         first_row = self.get_child().get_first_child().get_first_child()
@@ -73,6 +80,8 @@ class DeviceTooSmallRow(Adw.ActionRow):
         self._device = device
         super().__init__(**kwargs)
 
+        translate_widgets(self.too_small_label)
+
         smol = self.too_small_label.get_label()
         required_size_str = config.get('min_disk_size_str')
         self.too_small_label.set_label(smol.format(required_size_str))
@@ -86,5 +95,12 @@ class DeviceTooSmallRow(Adw.ActionRow):
 class NoEfiPartitionRow(Adw.ActionRow):
     __gtype_name__ = __qualname__
 
+    label_1 = Gtk.Template.Child()
+    label_2 = Gtk.Template.Child()
+    label_3 = Gtk.Template.Child()
+    label_4 = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.label_1, self.label_2, self.label_3, self.label_4)

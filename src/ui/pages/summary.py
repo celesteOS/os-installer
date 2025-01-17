@@ -6,6 +6,7 @@ from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
 from .translator import config_gettext
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/summary.ui')
@@ -31,6 +32,10 @@ class SummaryPage(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.language_row, self.keyboard_row, self.desktop_row, self.user_row,
+                          self.user_autologin, self.format_row, self.timezone_row, self.software_row,
+                          self.feature_row)
 
         if config.get('desktop'):
             self.desktop_row.set_visible(True)

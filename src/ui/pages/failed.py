@@ -3,11 +3,16 @@
 from gi.repository import Gtk
 
 from .buttons import TerminalButton
-
+from .translations import translate_widgets
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/failed.ui')
 class FailedPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
+    failure_page = Gtk.Template.Child()
+    search_button = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.failure_page, self.search_button)

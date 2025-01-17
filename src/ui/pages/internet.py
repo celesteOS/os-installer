@@ -7,6 +7,7 @@ from gi.repository import Gtk
 from .buttons import ContinueButton
 from .config import config
 from .system_calls import start_system_timesync
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
@@ -14,8 +15,15 @@ class InternetPage(Gtk.Stack):
     __gtype_name__ = __qualname__
     image = 'network-wireless-disabled-symbolic'
 
+    no_connection_label = Gtk.Template.Child()
+    settings_button = Gtk.Template.Child()
+    yes_connection_label = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.no_connection_label, self.settings_button,
+                          self.yes_connection_label)
 
         self.update_lock = Lock()
         self.has_advanced = False

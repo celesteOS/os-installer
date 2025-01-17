@@ -9,6 +9,7 @@ from .device_info import DeviceInfo, Disk
 from .device_rows import DeviceChoiceRow, DeviceRow, DeviceTooSmallRow, NoEfiPartitionRow
 from .disk_provider import disk_provider
 from .functions import reset_model
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -16,11 +17,17 @@ class DiskPage(Gtk.Stack):
     __gtype_name__ = __qualname__
 
     disk_list = Gtk.Template.Child()
+    disks_button = Gtk.Template.Child()
+    no_disks_page = Gtk.Template.Child()
+    reload_button = Gtk.Template.Child()
 
     disk_list_model = Gio.ListStore()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.disks_button, self.no_disks_page,
+                          self.reload_button)
 
         disk_conf = config.get('disk')
         self.minimum_disk_size = disk_conf['min_size']

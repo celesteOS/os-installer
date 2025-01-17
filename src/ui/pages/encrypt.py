@@ -5,6 +5,7 @@ from gi.repository import Gtk
 from .buttons import ContinueButton
 from .config import config
 from .entry_error_enhancer import EntryErrorEnhancer
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/encrypt.ui')
@@ -15,11 +16,14 @@ class EncryptPage(Gtk.Box):
     pin_row = Gtk.Template.Child()
     pin_confirm_row = Gtk.Template.Child()
     info_revealer = Gtk.Template.Child()
+    info_label = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.switch_row, self.pin_row, self.pin_confirm_row, self.info_label)
 
         encryption_setting = config.get('disk_encryption')
         self.min_pin_length = max(1, encryption_setting['min_length'])

@@ -7,6 +7,7 @@ from gi.repository import Gtk
 from .buttons import ContinueButton
 from .config import config
 from .entry_error_enhancer import EntryErrorEnhancer
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
@@ -22,6 +23,9 @@ class UserPage(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.name_row, self.username_row, self.autologin_row,
+                          self.password_row, self.password_confirm_row)
 
         user_setting = config.get('user')
         self.min_password_length = user_setting['min_password_length']

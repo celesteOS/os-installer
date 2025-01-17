@@ -15,14 +15,14 @@ template $NoEfiPartitionRow : Adw.ActionRow {
   Box {
     hexpand: true;
     orientation: vertical;
-    Label {
+    Label label_1 {
       /* Translators: Shown if a disk is currently not compatible with the way a system was booted. */
       label: _("Selecting a partition is not possible.");
       wrap: true;
       xalign: 0;
       styles ["dim-label"]
     }
-    Label {
+    Label label_2 {
       /* Translators: Followed by a list of requirements */
       label: _("The disk requires:");
       wrap: true;
@@ -34,7 +34,7 @@ template $NoEfiPartitionRow : Adw.ActionRow {
       vhomogeneous: false;
       StackPage {
         name: "efi";
-        child: Label {
+        child: Label label_3 {
           /* Translators: Bullet point listing. */
           label: _("  • GPT partitioning\n  • EFI partition");
           wrap: true;
@@ -44,7 +44,7 @@ template $NoEfiPartitionRow : Adw.ActionRow {
       }
       StackPage {
         name: "bios";
-        child: Label {
+        child: Label label_4 {
           /* Translators: Bullet point listing. */
           label: _("  • BIOS boot partition");
           wrap: true;

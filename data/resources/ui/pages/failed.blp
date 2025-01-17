@@ -5,7 +5,7 @@ template $FailedPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Adw.StatusPage {
+  Adw.StatusPage failure_page {
     /* Translators: Title of installation failure page.*/
     title: _("Error During Installation");
     /* Translators: Installation failure description. Brackets will be replaced by the distribution name. */
@@ -20,7 +20,7 @@ template $FailedPage : Box {
     halign: center;
     styles ["pill"]
 
-    Label {
+    Label search_button {
       /* Translators: Shown if installation fails. */
       label: _("Search for Help on the Internet");
       use-markup: true;

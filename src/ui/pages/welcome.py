@@ -25,6 +25,6 @@ class WelcomePage(Gtk.Box):
         if text := welcome.get('text', None):
             text = _(text)
         else:
-            text = self.description.get_label()
+            text = _(self.description.get_label())
             text = text.format(config.get('distribution_name'))
         self.description.set_label(text)

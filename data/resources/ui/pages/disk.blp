@@ -24,7 +24,7 @@ template $DiskPage : Stack {
           styles ["boxed-list"]
         }
 
-        Button {
+        Button disks_button {
           action-name: "external.manage-disks";
           /* Translators: Button label to open disk management tool. */
           label: _("_Manage Disks");
@@ -40,13 +40,13 @@ template $DiskPage : Stack {
 
   StackPage {
     name: "no-disks";
-    child: Adw.StatusPage {
+    child: Adw.StatusPage no_disks_page {
       /* Translators: Title of a hint page */
       title: _("No Disks avaliable");
       /* Translators: Body of a hint page */
       description: _("Connect a disk and reload this page.");
       valign: start;
-      child: Button {
+      child: Button reload_button {
         action-name: "win.reload-page";
         /* Translators: On button. */
         label: _("_Reload");

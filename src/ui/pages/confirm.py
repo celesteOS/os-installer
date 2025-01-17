@@ -6,17 +6,21 @@ from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
 from .functions import reset_model
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
 class ConfirmPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
+    explanation_label = Gtk.Template.Child()
     list = Gtk.Template.Child()
     model = Gio.ListStore()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.explanation_label)
 
         self.list.bind_model(self.model, lambda d: DeviceSummaryRow(d))
         config.subscribe('chosen_device', self._update_disk_row)

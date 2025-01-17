@@ -8,6 +8,7 @@ from .functions import reset_model
 from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
 from .progress_row import ProgressRow
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_language.ui')
@@ -43,6 +44,8 @@ class KeyboardLayoutPage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        translate_widgets(self.language_row)
+
         self.layout_list.bind_model(self.model, ProgressRow)
 
         config.subscribe('keyboard_language', self._update_keyboard_language)
@@ -70,9 +73,12 @@ class KeyboardOverviewPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     primary_layout_row = Gtk.Template.Child()
+    test_entry_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.test_entry_row)
 
         if not config.has('keyboard_layout'):
             language = config.get('language_chosen')

@@ -70,6 +70,7 @@ os_installer_sources = [
   'util/functions.py',
   'util/installation_step.py',
   'util/preloadable.py',
+  'util/translations.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)

@@ -4,17 +4,21 @@ from gi.repository import Gtk
 
 from .buttons import ContinueButton
 from .config import config
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
 class LocalePage(Gtk.Box):
     __gtype_name__ = __qualname__
 
+    format_hint_row = Gtk.Template.Child()
     formats_row = Gtk.Template.Child()
     timezone_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.format_hint_row, self.formats_row, self.timezone_row)
 
         config.subscribe('formats', self._update_formats)
         config.subscribe('timezone', self._update_timezone)

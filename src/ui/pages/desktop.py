@@ -5,6 +5,7 @@ from gi.repository import Gdk, GObject, Gtk
 from .config import config
 from .desktop_provider import desktop_provider
 from .translator import config_gettext as _
+from .translations import translate_widgets
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/desktop_entry.ui')
@@ -36,6 +37,8 @@ class DesktopPage(Gtk.Box):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.continue_button)
 
         self.button_label = self.continue_button.get_label()
         self.selected_entry = None

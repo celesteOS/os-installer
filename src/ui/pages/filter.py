@@ -6,6 +6,7 @@ from gi.repository import Gtk
 from .config import config
 from .format_provider import format_provider
 from .timezone_provider import timezone_provider
+from .translations import translate_widgets
 
 
 class FilterType(Enum):
@@ -20,12 +21,15 @@ class FilterPage(Gtk.Box):
     search_entry = Gtk.Template.Child()
     custom_filter = Gtk.Template.Child()
     filter_list_model = Gtk.Template.Child()
+    list_model = Gtk.Template.Child()
 
     stack = Gtk.Template.Child()
-    list_model = Gtk.Template.Child()
+    no_results_page = Gtk.Template.Child()
 
     def __init__(self, filter_type, **kwargs):
         super().__init__(**kwargs)
+
+        translate_widgets(self.search_entry, self.no_results_page)
 
         self.type = filter_type
         match self.type:
