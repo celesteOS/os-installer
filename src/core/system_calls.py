@@ -73,6 +73,9 @@ class SystemCaller:
         execute(['localectl', '--no-ask-password', 'set-locale',
                  f'LANG={language_info.locale}'])
 
+        Popen(['gsettings', 'set', 'org.gnome.system.locale',
+               'region', language_info.locale])
+
     def _set_system_timezone(self, timezone):
         # TODO find correct way to set timezone without user authentication
         Popen(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
