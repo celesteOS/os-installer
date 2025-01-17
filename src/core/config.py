@@ -260,7 +260,7 @@ class Config:
         with self.subscription_lock:
             for subs in self.subscriptions.values():
                 for func in subs:
-                    if func.__self__ == obj:
+                    if hasattr(func, '__self__') and func.__self__ == obj:
                         subs.remove(func)
 
 
