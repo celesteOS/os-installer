@@ -31,7 +31,7 @@ class SystemCaller:
 
         config.subscribe('formats', self._set_system_formats, delayed=True)
         config.subscribe('keyboard_layout', self._set_system_keyboard_layout, delayed=True)
-        config.subscribe('language_chosen', self._set_system_language, delayed=True)
+        config.subscribe('language_chosen', self._set_system_language)
         config.subscribe('timezone', self._set_system_timezone, delayed=True)
 
     def _add_syscall_action(self, action_name, callback):
