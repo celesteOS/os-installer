@@ -20,19 +20,13 @@ template $InternetPage : Stack {
 
       Button {
         action-name: "external.wifi-settings";
+        /* Translators: On button for opening wifi settings. */
+        label: _("_Open Settings");
         receives-default: true;
         halign: center;
         valign: center;
         use-underline: true;
         styles ["suggested-action", "pill"]
-
-        Label {
-          /* Translators: On button for opening wifi settings. */
-          label: _("_Open Settings");
-          use-underline: true;
-          justify: center;
-          wrap: true;
-        }
       }
     };
   }
