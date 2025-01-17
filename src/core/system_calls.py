@@ -2,10 +2,9 @@
 
 ''' All calls to other programs are encapsulated here. '''
 
-import locale as Locale
+import locale
 import os
 from subprocess import Popen
-import subprocess
 
 from gi.repository import Gio
 
@@ -63,18 +62,16 @@ class SystemCaller:
                  f"[('xkb','{keyboard_layout}')]"])
 
     def _set_system_language(self, language_info):
-        locale = language_info.locale
-
         if language_info.available:
             try:
-                Locale.setlocale(Locale.LC_MESSAGES, locale)
-                print(f'Set locale to "{locale}".')
-            except Locale.Error:
-                print(f'Failed setting locale to "{locale}", not available in system.')
+                locale.setlocale(locale.LC_MESSAGES, language_info.locale)
+                print(f'Set locale to "{language_info.locale}".')
+            except locale.Error:
+                print(f'Failed setting locale to "{language_info.locale}", not available in system.')
 
         # TODO find correct way to set system locale without user authentication
         execute(['localectl', '--no-ask-password', 'set-locale',
-                 f'LANG={locale}'])
+                 f'LANG={language_info.locale}'])
 
     def _set_system_timezone(self, timezone):
         # TODO find correct way to set timezone without user authentication
