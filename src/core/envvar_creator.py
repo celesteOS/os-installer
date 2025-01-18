@@ -24,8 +24,13 @@ def _get(var):
 
 
 def _get_device_path():
-    disk = config.get('chosen_device')
-    return disk.device_path
+    if disk := config.get('chosen_device'):
+        return disk.device_path
+    elif config.get('test_mode'):
+        return 'test-mode-dummy-disk'
+    else:
+        print('FATAL: No chosen disk set!')
+        return ''
 
 
 def _get_locale():
