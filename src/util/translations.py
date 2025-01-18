@@ -8,6 +8,8 @@ def translate_widgets(*widgets):
         match type(widget):
             case Adw.ActionRow | Adw.EntryRow | Adw.ExpanderRow | Adw.PasswordEntryRow | Adw.SwitchRow:
                 widget.set_title(_(widget.get_title()))
+            case Adw.ButtonContent:
+                widget.set_label(_(widget.get_label()))
             case Adw.StatusPage:
                 widget.set_title(_(widget.get_title()))
                 widget.set_description(_(widget.get_description()))

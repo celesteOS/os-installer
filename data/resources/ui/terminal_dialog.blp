@@ -6,6 +6,20 @@ template $TerminalDialog: Adw.Dialog {
     [top]
     Adw.HeaderBar {
       styles ["flat"]
+
+      [start]
+      Button {
+        action-name: 'terminal.copy';
+        styles ["flat"]
+
+        child: Adw.ButtonContent copy_button_content {
+          icon-name: "edit-copy-symbolic";
+          /* Translators: Label on button to copy terminal output. */
+          label: _("_Copy Output");
+          use-underline: true;
+          styles ["flat"]
+        };
+      }
     }
 
     content: Adw.Bin {
