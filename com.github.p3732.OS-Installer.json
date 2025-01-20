@@ -29,8 +29,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-                    "tag": "v0.14.0"
+                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
+                    "tag": "v0.16.0"
                 }
             ]
         },
@@ -39,48 +39,50 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Ddocs=false",
+                "-Dglade=false",
+                "-Dgnutls=false",
                 "-Dgtk3=false",
                 "-Dgtk4=true",
-                "-Dvapi=false",
-                "-Dglade=false"
+                "-Dicu=false",
+                "-Dvapi=false"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/vte.git",
-                    "commit": "3c29bfef30c34afec4982ba5ec37f944cfacbba2"
+                    "tag": "0.78.2"
                 }
             ]
         },
         {
             "name": "geocode-glib",
+            "buildsystem": "meson",
             "config-opts": [
                 "-Denable-gtk-doc=false",
                 "-Denable-installed-tests=false",
                 "-Dsoup2=false"
             ],
-            "buildsystem": "meson",
             "sources": [
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/geocode-glib.git",
-                    "commit": "210abe69d68e38947106f4680631c369b0c23189"
+                    "tag": "3.26.4"
                 }
             ]
         },
         {
             "name": "libgweather",
+            "buildsystem": "meson",
             "config-opts": [
                 "-Denable_vala=false",
                 "-Dgtk_doc=false",
                 "-Dtests=false"
             ],
-            "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.4.2/libgweather-4.4.2.tar.gz",
-                    "sha256": "e2890c2d0b587eae478e80a0de5f82e5514441733a0095974ff7825d804bd073"
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libgweather.git",
+                    "tag": "4.4.4"
                 }
             ]
         },
@@ -91,28 +93,38 @@
                 "-Ddebug_tools=false",
                 "-Ddesktop_docs=false",
                 "-Dudev=disabled",
+                "-Dsystemd=disabled",
+                "-Dinstalled_tests=false",
                 "-Dlegacy_library=false"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop/-/archive/44.0/gnome-desktop-44.0.tar.gz",
-                    "sha256": "73a1fb85c617bf24ede4cf2d630d46e46b5b20ac8c11e06a7685a50c643aa748"
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop.git",
+                    "tag": "44.1"
                 }
             ]
         },
         {
-            "name": "pyYAML",
+            "name": "PyYAML",
             "buildsystem": "simple",
             "build-commands": [
-                "pip install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pyYAML\" --no-build-isolation"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"PyYAML\" --no-build-isolation"
             ],
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz",
-                    "sha256": "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43"
+                    "url": "https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz",
+                    "sha256": "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "PyYAML"
+                    }
                 }
+            ],
+            "cleanup": [
+                "/bin",
+                "/share/man/man1"
             ]
         },
         {
