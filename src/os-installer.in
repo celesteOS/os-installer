@@ -5,9 +5,7 @@ import signal
 import sys
 
 localedir = '@localedir@'
-# TODO: Flatten this string in meson?
-po_files='''@po_files@'''.split('\n')
-available_translations = [po[:-3] for po in po_files if po.endswith('.po')]
+available_translations = @available_translations@
 config_localedir="/etc/os-installer/po/"
 pkgdatadir = '@pkgdatadir@'
 VERSION = '@VERSION@'
