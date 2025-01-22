@@ -8,6 +8,7 @@ from gi.repository import Gio, GLib, Vte
 from .config import config
 from .envvar_creator import create_envs
 from .installation_step import InstallationStep
+from .terminal_provider import terminal_provider
 
 
 class InstallationScripting():
@@ -20,8 +21,6 @@ class InstallationScripting():
 
     def __init__(self):
         self.cancel = Gio.Cancellable()
-        self.pty = Vte.Pty.new_sync(Vte.PtyFlags.NO_CTTY, self.cancel)
-        config.set('script_pty', self.pty)
 
         self.lock = Lock()
         self.ready_step = InstallationStep.none
@@ -51,12 +50,14 @@ class InstallationScripting():
         file_name = config.get('scripts')[next_step.name]
         if file_name is not None and os.path.exists(file_name):
             print(f'Starting step "{next_step.name}"...')
-            self.pty.spawn_async(
+            pty = Vte.Pty.new_sync(Vte.PtyFlags.NO_CTTY, self.cancel)
+            pty.spawn_async(
                 '/', ['sh', file_name], envs,
                 GLib.SpawnFlags.DEFAULT,
                 None, None, -1, self.cancel,
                 self._on_child_spawned,
                 None)
+            terminal_provider.set_pty(pty)
             self.running_step = next_step
         elif file_name:
             print(f'Could not find configured script "{file_name}"')

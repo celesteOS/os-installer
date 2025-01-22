@@ -75,7 +75,7 @@ internal_values = {
     'installation_running': False,
     'min_disk_size_str': '',
     'send_notification': None,
-    'stashed-terminal': None,
+    'terminal-placeholder': None,
     'display-toast': None,
     'version': -1,
 }

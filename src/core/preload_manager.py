@@ -9,10 +9,11 @@ from .format_provider import format_provider
 from .internet_provider import internet_provider
 from .language_provider import language_provider
 from .slideshow_provider import slideshow_provider
+from .terminal_provider import terminal_provider
 from .timezone_provider import timezone_provider
 from .welcome_provider import welcome_provider
 
-providers = [language_provider, welcome_provider, internet_provider, disk_provider,
+providers = [language_provider, terminal_provider, welcome_provider, internet_provider, disk_provider,
              desktop_provider, format_provider, timezone_provider, choices_provider,
              slideshow_provider]
 

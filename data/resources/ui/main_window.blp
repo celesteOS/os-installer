@@ -1,5 +1,6 @@
 using Gtk 4.0;
 using Adw 1;
+using Vte 3.91;
 
 template $OsInstallerWindow : Adw.ApplicationWindow {
   width-request: 340;
@@ -17,8 +18,17 @@ template $OsInstallerWindow : Adw.ApplicationWindow {
       };
     }
 
+    /* Vte.Terminal widget needs to exist somewhere in the widget tree once
+     * created. Keep it around as a stack page that never gets revealed. */
     StackPage {
-      child: Adw.Bin terminal_holder {};
+      child: Adw.Bin terminal_holder {
+        Vte.Terminal {
+          allow-hyperlink: true;
+          input-enabled: false;
+          scroll-on-output: true;
+          scrollback-lines: 10000;
+        }
+      };
     }
   };
 }

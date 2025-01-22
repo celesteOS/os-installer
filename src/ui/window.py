@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gio, GObject, Gtk, Vte
 
 from .config import config
 from .confirm_quit_dialog import ConfirmQuitDialog
@@ -17,19 +17,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     toaster = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
+        GObject.type_ensure(Vte.Terminal)
         super().__init__(**kwargs)
+
+        config.set('terminal-placeholder', self.terminal_holder)
 
         self._setup_actions()
         self.connect('close-request', self._show_confirm_dialog, None)
 
-        config.subscribe('stashed-terminal', self._stash_terminal, delayed=True)
         config.subscribe('display-toast', self._show_toast, delayed=True)
-
-    def _stash_terminal(self, terminal):
-        # VteTerminal widget needs to exist somewhere in the widget tree once
-        # created. Keep it around as a stack page that never gets revealed.
-        terminal = config.steal('stashed-terminal')
-        self.terminal_holder.set_child(terminal)
 
     def _add_action(self, action_name, callback, keybinding=None):
         action = Gio.SimpleAction.new(action_name, None)
