@@ -20,7 +20,7 @@ distribution_name: 'Debuntorarch'
 # will be skipped if no script is configured for it.
 #
 # To see what is available per phase, see the examples scripts. If an "install"
-# phase is configured, the installer behave slightly different:
+# phase is configured, the installer behaves slightly different:
 # * A separate confirmation page is shown before user configuration happens
 # * Navigating to pre-confirmation pages is not possible after confirmation
 # * Language, desktop and disk choices can not be changed from the summary page
