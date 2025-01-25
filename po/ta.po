@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2025-01-23 18:07+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2025-01-25 15:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
@@ -19,43 +19,37 @@ msgstr ""
 "X-Generator: Weblate 5.10-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
-#, fuzzy
 msgid "OS-Installer"
-msgstr "OS-Installer"
+msgstr "OS நிறுவி"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
-#, fuzzy
 msgid "Install an Operating System"
-msgstr "Install an Operating System"
+msgstr "இயக்க முறைமையை நிறுவவும்"
 
 #. Translators: Dialog title
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "Installation Running"
-msgstr "Installation Running"
+msgstr "நிறுவல் இயங்கும்"
 
 #. Translators: Text in dialog shown if user wants to close app with installation running
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
+"இயங்கும் நிறுவலை நிறுத்துவது வட்டை வரையறுக்கப்படாத நிலையில் விட்டுவிடும், அது தீங்கு "
+"விளைவிக்கும்"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "_Continue Installation"
-msgstr "_Continue Installation"
+msgstr "_ நிறுவல்"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
-#, fuzzy
 msgid "_Stop Installation"
-msgstr "_Stop Installation"
+msgstr "_ச்டாப் நிறுவல்"
 
 #. Translators: On button.
 #: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
@@ -63,424 +57,358 @@ msgstr "_Stop Installation"
 #: data/resources/ui/pages/keyboard_overview.blp
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid "_Continue"
-msgstr "_Continue"
+msgstr "_ கான்டினூ"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
-#, fuzzy
 msgid "This will delete all data on"
-msgstr "This will delete all data on"
+msgstr "இது எல்லா தரவையும் நீக்கிவிடும்"
 
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "_Confirm"
 msgstr "_Confirm"
 
 #. Translators: On button, brackets will be replaced with desktop name.
 #: data/resources/ui/pages/desktop.blp
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "_ Use {}"
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "_Manage Disks"
-msgstr "_Manage Disks"
+msgstr "_ மானேச் வட்டுகள்"
 
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "No Disks avaliable"
-msgstr "No Disks avaliable"
+msgstr "வட்டுகள் எதுவும் கிடைக்கவில்லை"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Connect a disk and reload this page."
-msgstr "Connect a disk and reload this page."
+msgstr "ஒரு வட்டை இணைத்து இந்த பக்கத்தை மீண்டும் ஏற்றவும்."
 
 #. Translators: On button.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "_Reload"
-msgstr "_Reload"
+msgstr "மறுஏற்றம் (_R)"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "_Restart System"
-msgstr "_Restart System"
+msgstr "_ ரெச்டார்ட் சிச்டம்"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "Restart _Later"
-msgstr "Restart _Later"
+msgstr "மறுதொடக்கம் _ லேட்டர்"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
-#, fuzzy
 msgid "Show Terminal Output"
-msgstr "Show Terminal Output"
+msgstr "முனைய வெளியீட்டைக் காட்டு"
 
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encrypt Files"
-msgstr "Encrypt Files"
+msgstr "கோப்புகளை குறியாக்கவும்"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encryption PIN"
-msgstr "Encryption PIN"
+msgstr "குறியாக்க முள்"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "Confirm PIN"
+msgstr "முள் உறுதிப்படுத்தவும்"
 
 #. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Memorize this PIN well. Without it you will not be able to access your files."
+"இந்த முள் நன்றாக மனப்பாடம் செய்யுங்கள். இது இல்லாமல் உங்கள் கோப்புகளை அணுக முடியாது."
 
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
-#, fuzzy
 msgid "Search for Help on the Internet"
-msgstr "Search for Help on the Internet"
+msgstr "இணையத்தில் உதவியைத் தேடுங்கள்"
 
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "வடிப்பி"
 
 #. Translators: Empty result placeholder title
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "முடிவுகள் இல்லை"
 
 #. Translators: Empty result placeholder, meant as a suggestion
 #: data/resources/ui/pages/filter.blp
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "வேறு தேடலை முயற்சிக்கவும்"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "No connection detected"
-msgstr "No connection detected"
+msgstr "எந்த தொடர்பும் கண்டறியப்படவில்லை"
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "_Open Settings"
-msgstr "_Open Settings"
+msgstr "_ ஆபென் அமைப்புகள்"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "Connection detected"
-msgstr "Connection detected"
+msgstr "இணைப்பு கண்டறியப்பட்டது"
 
 #. selectable: false;
 #. Translators: Followed by a language name.
 #. Translators: Page title
 #: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Language"
-msgstr "Keyboard Language"
+msgstr "விசைப்பலகை மொழி"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_overview.blp
-#, fuzzy
 msgid "Test the Keyboard Layout Here"
-msgstr "Test the Keyboard Layout Here"
+msgstr "விசைப்பலகை தளவமைப்பை இங்கே சோதிக்கவும்"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "நேர மண்டலம்"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Formats"
-msgstr "Formats"
+msgstr "வடிவங்கள்"
 
 #. Translators: Description of what is covered by formats.
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Defines the default format used for dates, times, numbers, etc."
+msgstr ""
+"தேதிகள், நேரங்கள், எண்கள் போன்றவற்றுக்கு பயன்படுத்தப்படும் இயல்புநிலை வடிவமைப்பை "
+"வரையறுக்கிறது."
 
 #. Translators: Label to use whole disk rather than a single partition.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Use Whole Disk"
-msgstr "Use Whole Disk"
+msgstr "முழு வட்டையும் பயன்படுத்தவும்"
 
 #. Translators: Heading of list of partitions
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Partitions"
-msgstr "Partitions"
+msgstr "பகிர்வுகள்"
 
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "வட்டுக்கு பகிர்வுகள் இல்லை."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Selecting a partition is not possible."
-msgstr "Selecting a partition is not possible."
+msgstr "ஒரு பகிர்வைத் தேர்ந்தெடுப்பது சாத்தியமில்லை."
 
 #. Translators: Followed by a list of requirements
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "The disk requires:"
-msgstr "The disk requires:"
+msgstr "வட்டு தேவை:"
 
 #. Translators: Bullet point listing.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
+"  • சிபிடி பகிர்வு\n"
+" • EFI பகிர்வு"
 
 #. Translators: Bullet point listing.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partition"
+msgstr "  • பயாச் துவக்க பகிர்வு"
 
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "வட்டு கிடைக்கவில்லை"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr ""
+"வட்டு இன்னும் கிடைக்கக்கூடியது மற்றும் அகற்றப்படவில்லை என்பதை உறுதிப்படுத்தவும்."
 
 #. Translators: On button.
 #: data/resources/ui/pages/partition.blp
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "_ வட்டு பட்டியலுக்கு திரும்பவும்"
 
 #. Translators: Description of selected language.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "Language"
-msgstr "Language"
+msgstr "மொழி"
 
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Layout"
-msgstr "Keyboard Layout"
+msgstr "விசைப்பலகை தளவமைப்பு"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "User Account"
-msgstr "User Account"
+msgstr "பயனர் கணக்கு"
 
 #. Translators: Gets shown when autologin is enabled.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "(Automatic Login)"
-msgstr "(Automatic Login)"
+msgstr "(தானியங்கி உள்நுழைவு)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Additional Software"
-msgstr "Additional Software"
+msgstr "கூடுதல் மென்பொருள்"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "எதுவுமில்லை"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-#, fuzzy
 msgid "Additional Features"
-msgstr "Additional Features"
+msgstr "கூடுதல் நற்பொருத்தங்கள்"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Name"
-msgstr "_Name"
+msgstr "_ பெயர்"
 
 #. Translators: Used with entry field for linux username
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Username"
 msgstr "_Username"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Automatic Login"
-msgstr "Automatic Login"
+msgstr "தானியங்கி உள்நுழைவு"
 
 #. Translators: User password entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Password"
-msgstr "_Password"
+msgstr "_PASSWORD"
 
 #. Translators: Used password confirmation entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Confirm Password"
+msgstr "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+"இந்த பயன்பாடு உங்கள் கணினியில் {} நிறுவுவதன் மூலம் உங்களுக்கு வழிகாட்டும்."
 
 #. Translators: Fallback name for partitions that don't have a name.
 #: data/resources/ui/row/device_row.blp
-#, fuzzy
 msgid "Unnamed Partition"
-msgstr "Unnamed Partition"
+msgstr "பெயரிடப்படாத பகிர்வு"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 #: data/resources/ui/row/device_row.blp
-#, fuzzy
 msgid "Not enough space for installation ({} required)"
-msgstr "Not enough space for installation ({} required)"
+msgstr "நிறுவலுக்கு போதுமான இடம் இல்லை ({} தேவை)"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Confirmation"
-msgstr "Confirmation"
+msgstr "உறுதிப்படுத்தல்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Desktop Selection"
+msgstr "டெச்க்டாப் தேர்வு"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Disk Selection"
-msgstr "Disk Selection"
+msgstr "வட்டு தேர்வு"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installation Complete"
-msgstr "Installation Complete"
+msgstr "நிறுவல் முடிந்தது"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Disk Encryption"
-msgstr "Disk Encryption"
+msgstr "வட்டு குறியாக்கம்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installation Failed"
-msgstr "Installation Failed"
+msgstr "நிறுவல் தோல்வியடைந்தது"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Select Region"
-msgstr "Select Region"
+msgstr "பிராந்தியத்தைத் தேர்ந்தெடுக்கவும்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Installing"
-msgstr "Installing"
+msgstr "நிறுவுகிறது"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Internet Connection Check"
-msgstr "Internet Connection Check"
+msgstr "இணைய இணைப்பு சோதனை"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Keyboard Layout Selection"
-msgstr "Keyboard Layout Selection"
+msgstr "விசைப்பலகை தளவமைப்பு தேர்வு"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Adapt to Location"
-msgstr "Adapt to Location"
+msgstr "இருப்பிடத்திற்கு ஏற்றவாறு"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Restarting"
-msgstr "Restarting"
+msgstr "மறுதொடக்கம்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "சுருக்கம்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Select Location"
-msgstr "Select Location"
+msgstr "இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "வரவேற்கிறோம்"
 
 #. Translators: Notification text
 #: src/util/installation_scripting.py
-#, fuzzy
 msgid "Finished Installation"
-msgstr "Finished Installation"
+msgstr "நிறுவல் முடிந்தது"
