@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-10-16 18:27+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/cs/>\n"
+"PO-Revision-Date: 2025-02-03 04:02+0000\n"
+"Last-Translator: AsciiWolf <mail@asciiwolf.com>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -99,9 +99,8 @@ msgid "Encryption PIN"
 msgstr "Šifrovací PIN"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "_Potvrdit"
+msgstr "Potvrdit PIN"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -191,19 +190,16 @@ msgid "  • BIOS boot partition"
 msgstr "  • Zaváděcí oddíl systému BIOS"
 
 #. Translators: Title of a hint page
-#, fuzzy
 msgid "Disk Not Found"
-msgstr "Disk Not Found"
+msgstr "Disk nebyl nalezen"
 
 #. Translators: Body of a hint page
-#, fuzzy
 msgid "Assure that the disk is still avaliable and has not been removed."
-msgstr "Assure that the disk is still avaliable and has not been removed."
+msgstr "Ujistěte se, že disk je stále dostupný a nebyl odstraněn."
 
 #. Translators: On button.
-#, fuzzy
 msgid "_Return to Disk List"
-msgstr "_Return to Disk List"
+msgstr "V_rátit se na seznam disků"
 
 #. Translators: Description of selected language.
 msgid "Language"
@@ -243,9 +239,8 @@ msgid "_Name"
 msgstr "_Jméno"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "User"
+msgstr "_Uživatel"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -256,9 +251,8 @@ msgid "_Password"
 msgstr "_Heslo"
 
 #. Translators: Used password confirmation entry field
-#, fuzzy
 msgid "_Confirm Password"
-msgstr "_Heslo"
+msgstr "_Potvrdit heslo"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 msgid ""
@@ -280,9 +274,8 @@ msgid "Confirmation"
 msgstr "Potvrzení"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Výběr disku"
+msgstr "Výběr prostředí"
 
 #. Translators: Page title
 msgid "Disk Selection"
