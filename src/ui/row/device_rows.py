@@ -50,7 +50,8 @@ class DeviceSummaryRow(Adw.ExpanderRow):
         self._device = device
         super().__init__(**kwargs)
 
-        translate_widgets(self)
+        # Translators: Description of selected disk.
+        self.set_title(_("Disk"))
 
         # Hacky workaround to make AdwExpanderRow have property style
         # box -> list_box -> action row

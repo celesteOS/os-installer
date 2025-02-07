@@ -27,4 +27,5 @@ src/provider/disk_provider.py
 src/ui/buttons.py
 src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py
+src/ui/row/device_rows.py
 src/ui/summary.py

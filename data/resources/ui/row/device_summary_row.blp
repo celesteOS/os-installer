@@ -4,8 +4,6 @@ using Adw 1;
 template $DeviceSummaryRow : Adw.ExpanderRow {
   activatable: false;
   selectable: false;
-  /* Translators: Description of selected disk. */
-  title: _("Disk");
   subtitle: bind template.device as <$DeviceInfo>.name;
   show-enable-switch: false;
   styles ["property"]
