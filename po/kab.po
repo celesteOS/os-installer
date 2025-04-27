@@ -8,22 +8,24 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-04-28 08:03+0000\n"
+"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: none\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
-msgstr ""
+msgstr "Amesbedday n inagrawen"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
-msgstr ""
+msgstr "Sebded anagraw n wammud"
 
 #. Translators: Dialog title
 #: data/resources/ui/confirm_quit_dialog.blp
@@ -40,12 +42,12 @@ msgstr ""
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Continue Installation"
-msgstr ""
+msgstr "_Kemmel asebded"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 #: data/resources/ui/confirm_quit_dialog.blp
 msgid "_Stop Installation"
-msgstr ""
+msgstr "_Seḥbes asebded"
 
 #. Translators: On button.
 #: data/resources/ui/pages/choices.blp data/resources/ui/pages/encrypt.blp
@@ -54,32 +56,32 @@ msgstr ""
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
-msgstr ""
+msgstr "_Kemmel"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
-msgstr ""
+msgstr "Aya ad yekkes akk isefka yella deg"
 
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
-msgstr ""
+msgstr "_Sentem"
 
 #. Translators: On button, brackets will be replaced with desktop name.
 #: data/resources/ui/pages/desktop.blp
 msgid "_Use {}"
-msgstr ""
+msgstr "_Seqdec {}"
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
-msgstr ""
+msgstr "Se_frek iḍebsiyen"
 
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
-msgstr ""
+msgstr "Ulac iḍebsiyen yettwafen"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/disk.blp
@@ -89,17 +91,17 @@ msgstr ""
 #. Translators: On button.
 #: data/resources/ui/pages/disk.blp
 msgid "_Reload"
-msgstr ""
+msgstr "Ales aεe_bbi"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
 msgid "_Restart System"
-msgstr ""
+msgstr "Ales ase_kker n unagraw"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 #: data/resources/ui/pages/done.blp
 msgid "Restart _Later"
-msgstr ""
+msgstr "Ales asekker _ticki"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/done.blp data/resources/ui/pages/install.blp
@@ -109,17 +111,17 @@ msgstr ""
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
-msgstr ""
+msgstr "Wgelhen ifuyla"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
-msgstr ""
+msgstr "PIN n uwgelhen"
 
 #. Translators: Disk encryption pin confirmation entry field
 #: data/resources/ui/pages/encrypt.blp
 msgid "Confirm PIN"
-msgstr ""
+msgstr "Sentem PIN"
 
 #. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
@@ -130,30 +132,30 @@ msgstr ""
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
-msgstr ""
+msgstr "Nadi tallalt ɣef Internet"
 
 #: data/resources/ui/pages/filter.blp
 msgid "Filter"
-msgstr ""
+msgstr "Imsizdeg"
 
 #. Translators: Empty result placeholder title
 #: data/resources/ui/pages/filter.blp
 msgid "No Results"
-msgstr ""
+msgstr "Ulac igmaḍ"
 
 #. Translators: Empty result placeholder, meant as a suggestion
 #: data/resources/ui/pages/filter.blp
 msgid "Try a different search"
-msgstr ""
+msgstr "Ɛreḍ anadi-nniḍen"
 
 #: data/resources/ui/pages/internet.blp
 msgid "No connection detected"
-msgstr ""
+msgstr "Ulac tuqqna yettwafen"
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
 msgid "_Open Settings"
-msgstr ""
+msgstr "_Ldi iɣewwaṛen"
 
 #: data/resources/ui/pages/internet.blp
 msgid "Connection detected"
@@ -164,24 +166,24 @@ msgstr ""
 #. Translators: Page title
 #: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
 msgid "Keyboard Language"
-msgstr ""
+msgstr "Tutlayt n unasiw"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_overview.blp
 msgid "Test the Keyboard Layout Here"
-msgstr ""
+msgstr "Sekyed taneɣruft n unasiw da"
 
 #. Translators: Presented next to the current Timezone.
 #. Translators: Description of selected timezone.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Timezone"
-msgstr ""
+msgstr "Tamnaḍt tasragant"
 
 #. Translators: Presented next to the current Formats.
 #. Translators: Description of selected format.
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Formats"
-msgstr ""
+msgstr "Imusal"
 
 #. Translators: Description of what is covered by formats.
 #: data/resources/ui/pages/locale.blp
@@ -196,11 +198,11 @@ msgstr ""
 #. Translators: Heading of list of partitions
 #: data/resources/ui/pages/partition.blp
 msgid "Partitions"
-msgstr ""
+msgstr "Iḥricen"
 
 #: data/resources/ui/pages/partition.blp
 msgid "Disk has no partitions."
-msgstr ""
+msgstr "Aḍebsi ur yesɛi ara iḥricen."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/pages/partition.blp
@@ -227,7 +229,7 @@ msgstr ""
 #. Translators: Title of a hint page
 #: data/resources/ui/pages/partition.blp
 msgid "Disk Not Found"
-msgstr ""
+msgstr "Ulac aḍebsi yettwafen"
 
 #. Translators: Body of a hint page
 #: data/resources/ui/pages/partition.blp
@@ -237,140 +239,140 @@ msgstr ""
 #. Translators: On button.
 #: data/resources/ui/pages/partition.blp
 msgid "_Return to Disk List"
-msgstr ""
+msgstr "_Uɣal ar tebdart n iḍebsiyen"
 
 #. Translators: Description of selected language.
 #: data/resources/ui/pages/summary.blp
 msgid "Language"
-msgstr ""
+msgstr "Tutlayt"
 
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Keyboard Layout"
-msgstr ""
+msgstr "Taneɣruft n unasiw"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "User Account"
-msgstr ""
+msgstr "Amiḍan n useqdac"
 
 #. Translators: Gets shown when autologin is enabled.
 #: data/resources/ui/pages/summary.blp
 msgid "(Automatic Login)"
-msgstr ""
+msgstr "(Tuqqna tawurmant)"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Additional Software"
-msgstr ""
+msgstr "Ahilen imernan"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
 msgid "None"
-msgstr ""
+msgstr "Ula yiwen"
 
 #. Translators: Description of selected additional software.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
 msgid "Additional Features"
-msgstr ""
+msgstr "Timahalin timernan"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
 msgid "_Name"
-msgstr ""
+msgstr "_Isem"
 
 #. Translators: Used with entry field for linux username
 #: data/resources/ui/pages/user.blp
 msgid "_Username"
-msgstr ""
+msgstr "I_sem n useqdac"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
-msgstr ""
+msgstr "Tuqqna tawurmant"
 
 #. Translators: User password entry field
 #: data/resources/ui/pages/user.blp
 msgid "_Password"
-msgstr ""
+msgstr "_Awal n uɛeddi"
 
 #. Translators: Used password confirmation entry field
 #: data/resources/ui/pages/user.blp
 msgid "_Confirm Password"
-msgstr ""
+msgstr "_Sentem awal n uɛeddi"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
+msgstr "Asnas-a ad k-iwelleh i usbeddi n {} ɣef unagraw-ik·im."
 
 #. Translators: Fallback name for partitions that don't have a name.
 #: data/resources/ui/row/device_row.blp
 msgid "Unnamed Partition"
-msgstr ""
+msgstr "Aḥric war isem"
 
 #. Translators: Shown for partitions that are not big enough to be installed on.
 #. * "{}" is replaced by a disk size value, e.g. "21.3 GB".
 #: data/resources/ui/row/device_row.blp
 msgid "Not enough space for installation ({} required)"
-msgstr ""
+msgstr "Ur d-keffu ara tallunt i usebded ({} yettwasra)"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Confirmation"
-msgstr ""
+msgstr "Sentem"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Desktop Selection"
-msgstr ""
+msgstr "Afran n tnarit"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Disk Selection"
-msgstr ""
+msgstr "Afran n uḍebsi"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Installation Complete"
-msgstr ""
+msgstr "Asebded yemmed"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Disk Encryption"
-msgstr ""
+msgstr "Awgelhen n uḍebsi"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Installation Failed"
-msgstr ""
+msgstr "Asebded ur yeddi ara"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Select Region"
-msgstr ""
+msgstr "Fren tamnaḍt"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Installing"
-msgstr ""
+msgstr "Asbeddi"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Internet Connection Check"
-msgstr ""
+msgstr "Asekyed n tuqqna ɣer Internet"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Keyboard Layout Selection"
-msgstr ""
+msgstr "Afran n tneɣruft n unasiw"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
@@ -380,24 +382,24 @@ msgstr ""
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Restarting"
-msgstr ""
+msgstr "Tulsa n usekker"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Summary"
-msgstr ""
+msgstr "Agzul"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Select Location"
-msgstr ""
+msgstr "Fren adig"
 
 #. Translators: Page title
 #: src/ui/page_wrapper.py
 msgid "Welcome"
-msgstr ""
+msgstr "Ansuf"
 
 #. Translators: Notification text
 #: src/util/installation_scripting.py
 msgid "Finished Installation"
-msgstr ""
+msgstr "Yemmed usebded"
