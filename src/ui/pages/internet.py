@@ -2,7 +2,7 @@
 
 from threading import Lock, Thread
 
-from gi.repository import Gtk
+from gi.repository import GLib, Gtk
 
 from .buttons import ContinueButton
 from .config import config
@@ -41,7 +41,7 @@ class InternetPage(Gtk.Stack):
                 start_system_timesync()
                 if not self.has_advanced:
                     self.has_advanced = True
-                    Thread(target=config.set_next_page, args=[self]).start()
+                    GLib.idle_add(config.set_next_page, self)
             else:
                 self.set_visible_child_name('not-connected')
                 config.set('internet_page_image',
