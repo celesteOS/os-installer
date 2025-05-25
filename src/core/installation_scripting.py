@@ -56,7 +56,7 @@ class InstallationScripting():
                 GLib.SpawnFlags.DEFAULT,
                 None, None, -1, self.cancel,
                 self._on_child_spawned,
-                None)
+                (None,))
             terminal_provider.set_pty(pty)
             self.running_step = next_step
         elif file_name:
