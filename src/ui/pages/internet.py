@@ -35,7 +35,7 @@ class InternetPage(Gtk.Stack):
     def _connection_state_changed(self, connected):
         with self.update_lock:
             if connected:
-                self.set_visible_child_name('connected')
+                GLib.idle_add(self.set_visible_child_name, 'connected')
                 config.set('internet_page_image',
                            'network-wireless-symbolic')
                 start_system_timesync()
@@ -43,6 +43,6 @@ class InternetPage(Gtk.Stack):
                     self.has_advanced = True
                     GLib.idle_add(config.set_next_page, self)
             else:
-                self.set_visible_child_name('not-connected')
+                GLib.idle_add(self.set_visible_child_name, 'not-connected')
                 config.set('internet_page_image',
                            'network-wireless-disabled-symbolic')
