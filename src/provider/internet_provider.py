@@ -20,7 +20,8 @@ class InternetProvider(Preloadable):
 
         while not config.get('installation_running'):
             try:
-                urlopen(url, timeout=50)
+                req = urlopen(url, timeout=5)
+                req.close()
                 config.set('internet_connection', True)
             except:
                 config.set('internet_connection', False)
