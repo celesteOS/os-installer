@@ -2,7 +2,7 @@
 
 from threading import Condition, Lock, Thread
 
-from gi.repository import Gtk
+from gi.repository import GLib, Gtk
 
 from .buttons import TerminalButton
 from .config import config
@@ -61,12 +61,10 @@ class InstallPage(Gtk.Box):
                     self.reset_timeout = False
                     continue
 
-                next_position = (self.current_pos + 1) % self.num_slides
-                next_page = self.carousel.get_nth_page(next_position)
-                self.carousel.scroll_to(next_page, True)
-                self.current_pos = int(next_position)
+                self.current_pos = (self.current_pos + 1) % self.num_slides
+                GLib.idle_add(self._ui_change_slide, self.current_pos)
 
-    def _stop_thread(self, value):
+    def _stop_slideshow(self, value):
         _, page = value
         # Relevant page change comes from scripting where page is None
         if page is None:
@@ -74,6 +72,11 @@ class InstallPage(Gtk.Box):
             with self.cv:
                 self.cv.notify_all()
             self.thread.join()
+
+    def _ui_change_slide(self, position):
+        slide = self.carousel.get_nth_page(position)
+        self.carousel.scroll_to(slide, True)
+        return False
 
     ### callbacks ###
 
