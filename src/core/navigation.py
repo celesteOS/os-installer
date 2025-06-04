@@ -88,8 +88,8 @@ class Navigation(Adw.Bin):
         self.navigation_view.replace(replacement)
 
     def _get_next_page_name(self):
-        current_page = self.navigation_view.get_visible_page()
-        current_index = self.available_pages.index(current_page.get_tag())
+        current_page_name = self.navigation_view.get_visible_page_tag()
+        current_index = self.available_pages.index(current_page_name)
         if (next_index := current_index + 1) < len(self.available_pages):
             return self.available_pages[next_index]
         else:
@@ -126,7 +126,7 @@ class Navigation(Adw.Bin):
 
             if permanent:
                 self.navigation_view.add(page_to_load)
-                if self.navigation_view.get_visible_page().get_tag() != page_name:
+                if self.navigation_view.get_visible_page_tag() != page_name:
                     self.navigation_view.push_by_tag(page_name)
             else:
                 self.navigation_view.push(page_to_load)
