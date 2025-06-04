@@ -94,7 +94,7 @@ class InstallationScripting():
                 config.set('installation_running', False)
                 # Translators: Notification text
                 config.set('send_notification', _("Finished Installation"))
-                config.set_next_page(None)
+                GLib.idle_add(config.set_next_page, None)
             else:
                 self._try_start_next_script()
 
