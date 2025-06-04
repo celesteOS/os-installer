@@ -18,7 +18,7 @@ from .install import InstallPage
 from .internet import InternetPage
 from .keyboard import KeyboardLanguagePage, KeyboardLayoutPage, KeyboardOverviewPage
 from .language import LanguagePage
-from .locale import LocalePage
+from .region import RegionPage
 from .restart import RestartPage
 from .summary import SummaryPage
 from .user import UserPage
@@ -54,7 +54,7 @@ page_name_to_page_title = {
     # Language page has no title
     'language':             ' ',
     # Translators: Page title
-    'locale':               _("Adapt to Location"),
+    'region':               _("Adapt to Location"),
     # Translators: Page title
     'restart':              _("Restarting"),
     # Translators: Page title
@@ -83,7 +83,7 @@ page_name_to_image = {
     'keyboard-layout':      'input-keyboard-symbolic',
     'keyboard-overview':    'input-keyboard-symbolic',
     'language':             'language-symbolic',
-    'locale':               'globe-symbolic',
+    'region':               'globe-symbolic',
     'restart':              'system-reboot-symbolic',
     'software':             'system-software-install-symbolic',
     'summary':              'checkbox-checked-symbolic',
@@ -108,7 +108,7 @@ page_name_to_type = {
     'keyboard-layout':      KeyboardLayoutPage,
     'keyboard-overview':    KeyboardOverviewPage,
     'language':             LanguagePage,
-    'locale':               LocalePage,
+    'region':               RegionPage,
     'restart':              RestartPage,
     'software':             SoftwarePage,
     'summary':              SummaryPage,

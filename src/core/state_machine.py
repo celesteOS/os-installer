@@ -17,7 +17,7 @@ page_order = [
     'confirm',
     # configuration
     'user',
-    'locale',
+    'region',
     'software',
     'feature',
     # fixed block towards end

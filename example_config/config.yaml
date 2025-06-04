@@ -126,12 +126,12 @@ user:
   min_password_length: 1
   password_confirmation: yes
 
-# gnome-initial-setup can handle user and locale setup.
+# gnome-initial-setup can handle user and region setup.
 # These settings allow to disable these pages.
 #
-# Default: skip_user: no, skip_locale: no
+# Default: skip_region: no, skip_user: no
+skip_region: no
 skip_user: no
-skip_locale: no
 
 # List of software that can additionally be selected for installation.
 # Each package requires a 'name' and one of either

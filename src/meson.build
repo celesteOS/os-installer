@@ -55,7 +55,7 @@ os_installer_sources = [
   'ui/pages/internet.py',
   'ui/pages/keyboard.py',
   'ui/pages/language.py',
-  'ui/pages/locale.py',
+  'ui/pages/region.py',
   'ui/pages/restart.py',
   'ui/pages/summary.py',
   'ui/pages/user.py',

@@ -53,7 +53,7 @@ class SummaryPage(Gtk.Box):
             self.user_row.set_visible(True)
             config.subscribe('user_autologin', self._update_user_autologin)
             config.subscribe('user_name', self._update_user_name)
-        if not config.get('skip_locale'):
+        if not config.get('skip_region'):
             self.format_row.set_visible(True)
             config.subscribe('formats', self._update_formats)
             self.timezone_row.set_visible(True)

@@ -28,8 +28,8 @@ default_config = {
     # user
     'user': {'min_password_length': 1, 'request_username': False, 'provide_autologin': False, 'password_confirmation': False},
     # optional pages
+    'skip_region': False,
     'skip_user': False,
-    'skip_locale': False,
     # software
     'additional_software': [],
     # feature
@@ -50,6 +50,7 @@ legacy_values = {
     'browser_cmd': ['commands', 'browser'],
     'disks_cmd': ['commands', 'disks'],
     'wifi_cmd': ['commands', 'wifi'],
+    'skip_locale': ['skip_region'],
     'suggested_languages': None,
 }
 

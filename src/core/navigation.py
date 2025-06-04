@@ -59,7 +59,7 @@ class Navigation(Adw.Bin):
             'desktop': config.get('desktop'),
             'confirm': config.get('scripts')['install'],
             'user': not config.get('skip_user'),
-            'locale': not config.get('skip_locale'),
+            'region': not config.get('skip_region'),
             'software': config.get('additional_software'),
             'feature': config.get('additional_features'),
         }

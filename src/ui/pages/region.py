@@ -7,8 +7,8 @@ from .config import config
 from .translations import translate_widgets
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
-class LocalePage(Gtk.Box):
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/region.ui')
+class RegionPage(Gtk.Box):
     __gtype_name__ = __qualname__
 
     format_hint_row = Gtk.Template.Child()
