@@ -9,7 +9,7 @@ template $NoEfiPartitionRow : Adw.ActionRow {
   [prefix]
   Image {
     icon-name: "dialog-information-symbolic";
-    styles ["dim-label"]
+    styles ["dimmed"]
   }
 
   Box {
@@ -20,14 +20,14 @@ template $NoEfiPartitionRow : Adw.ActionRow {
       label: _("Selecting a partition is not possible.");
       wrap: true;
       xalign: 0;
-      styles ["dim-label"]
+      styles ["dimmed"]
     }
     Label label_2 {
       /* Translators: Followed by a list of requirements */
       label: _("The disk requires:");
       wrap: true;
       xalign: 0;
-      styles ["dim-label"]
+      styles ["dimmed"]
     }
     Stack {
       hhomogeneous: false;
@@ -39,7 +39,7 @@ template $NoEfiPartitionRow : Adw.ActionRow {
           label: _("  • GPT partitioning\n  • EFI partition");
           wrap: true;
           xalign: 0;
-          styles ["dim-label"]
+          styles ["dimmed"]
         };
       }
       StackPage {
@@ -49,7 +49,7 @@ template $NoEfiPartitionRow : Adw.ActionRow {
           label: _("  • BIOS boot partition");
           wrap: true;
           xalign: 0;
-          styles ["dim-label"]
+          styles ["dimmed"]
         };
       }
     }
