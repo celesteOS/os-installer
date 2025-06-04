@@ -45,13 +45,14 @@ for device in devices:
     if not drive:
         print(f'Not a drive: {block}')
         continue
+    drive_name = f'{drive.props.vendor} {drive.props.model}'
     if drive.props.optical:
-        print(f'Drive is considered optical ({drive.props.vendor} {drive.props.model})')
+        print(f'Drive ({drive_name}) is considered optical')
         continue
     if drive.props.size <= 0:
-        print(f'(ignored) drive is of size {drive.props.size} ({drive.props.vendor} {drive.props.model})')
+        print(f'ignored drive ({drive_name}) size {drive.props.size}')4
 
-    print(f'* Disk ({drive.props.vendor} {drive.props.model}), '
+    print(f'* Disk ({drive_name}), '
           f'size {size_to_str(block.props.size)}, path {block.props.device}:')
 
     if not partition_table:
