@@ -47,7 +47,7 @@ class EncryptPage(Gtk.Box):
                 self.pin_confirm_row, lambda text: text == self.pin_row.get_text())
             self.pin_confirm_row.set_text(config.get('encryption_pin'))
         else:
-             self.confirmation = True
+            self.confirmation = True
 
     def _adjust_pin_state(self):
         self.pin_row.set_sensitive(self.active)
@@ -81,7 +81,8 @@ class EncryptPage(Gtk.Box):
     @Gtk.Template.Callback('pin_confirm_changed')
     def _pin_confirm_changed(self, editable):
         pin = editable.get_text()
-        self.confirmation.update_row(pin)
+        if self.use_confirmation:
+            self.confirmation.update_row(pin)
         self._set_continue_button()
 
     @Gtk.Template.Callback('pin_activated')
