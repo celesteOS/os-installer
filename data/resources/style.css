@@ -2,22 +2,12 @@
   background-color: #000;
 }
 
-/* Flat style for headerbar and nested-list. */
-.nested-list {
-  background: none;
-  box-shadow:none;
-}
-
 /* Distinction for a selected */
 .selected-card {
   background: var(--accent-bg-color);
 }
 
-/* Match outline of buttons */
-.extended-outline {
-  outline-offset: 2px;
-}
-
+/* Fake GtkListView into a GtkListBox as good as possible */
 .list-view-box {
   background: transparent;
   border-bottom: 1px solid var(--border-color);
