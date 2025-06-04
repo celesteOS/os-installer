@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Lock, Thread
+from threading import Lock
 
 from gi.repository import GLib, Gtk
 
