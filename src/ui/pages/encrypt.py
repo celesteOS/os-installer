@@ -26,7 +26,7 @@ class EncryptPage(Gtk.Box):
         translate_widgets(self.switch_row, self.pin_row, self.pin_confirm_row, self.info_label)
 
         encryption_setting = config.get('disk_encryption')
-        self.min_pin_length = max(1, encryption_setting['min_length'])
+        self.min_pin_length = encryption_setting['min_length']
         self.use_confirmation = encryption_setting['confirmation']
 
         if encryption_setting['forced']:
@@ -38,7 +38,7 @@ class EncryptPage(Gtk.Box):
         self._adjust_pin_state()
 
         self.pin = EntryErrorEnhancer(
-            self.pin_row, lambda text: len(text) > self.min_pin_length)
+            self.pin_row, lambda text: len(text) >= self.min_pin_length)
         self.pin_row.set_text(config.get('encryption_pin'))
 
         self.pin_confirm_row.set_visible(self.use_confirmation)
