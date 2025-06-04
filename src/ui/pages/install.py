@@ -52,9 +52,6 @@ class InstallPage(Gtk.Box):
     def _show_next_slide(self):
         with self.cv:
             while True:
-                if self.current_pos < 0:
-                    self.current_pos = int(self.carousel.get_position())
-
                 timeout = self.durations[self.current_pos] + self.extra_timeout
                 self.cv.wait(timeout=timeout)
 
@@ -86,7 +83,7 @@ class InstallPage(Gtk.Box):
             return
 
         with self.cv:
-            self.current_pos = -1
+            self.current_pos = max(0, int(self.carousel.get_position()))
             self.reset_timeout = True
             self.extra_timeout = 0
             self.cv.notify_all()
