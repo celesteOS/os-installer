@@ -29,7 +29,8 @@ class SystemCaller:
         app_window.insert_action_group('external', self.action_group)
 
         config.subscribe('formats', self._set_system_formats, delayed=True)
-        config.subscribe('keyboard_layout', self._set_system_keyboard_layout, delayed=True)
+        config.subscribe('keyboard_layout',
+                         self._set_system_keyboard_layout, delayed=True)
         config.subscribe('language_chosen', self._set_system_language)
         config.subscribe('timezone', self._set_system_timezone, delayed=True)
 
@@ -67,7 +68,7 @@ class SystemCaller:
                 locale.setlocale(locale.LC_MESSAGES, language_info.locale)
                 print(f'Set locale to "{language_info.locale}".')
             except locale.Error:
-                print(f'Failed setting locale to "{language_info.locale}", not available in system.')
+                print(f'Failed setting locale "{language_info.locale}", not available in system.')
 
         # TODO find correct way to set system locale without user authentication
         execute(['localectl', '--no-ask-password', 'set-locale',

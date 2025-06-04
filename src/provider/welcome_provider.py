@@ -23,5 +23,4 @@ class WelcomeProvider(Preloadable):
                 print(f'Could not find welcome logo "{logo}"')
 
 
-
 welcome_provider = WelcomeProvider()

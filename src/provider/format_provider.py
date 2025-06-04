@@ -76,7 +76,8 @@ class FormatProvider(Preloadable):
         for locale in locales:
             if has_translation:
                 name = GnomeDesktop.get_country_from_locale(locale, trans_locale)
-            else: # use fallback
+            else:
+                # use fallback
                 name = GnomeDesktop.get_country_from_locale(locale)
             if name and not name in names:
                 names.add(name)

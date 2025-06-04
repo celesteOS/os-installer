@@ -47,7 +47,7 @@ def language_2_x(func):
                 not GnomeDesktop.language_has_translations(language_code)):
             print('No translations exist.')
 
-    return results, sorted (duplicates_set)
+    return results, sorted(duplicates_set)
 
 
 def normalize_keyboards(keyboards):

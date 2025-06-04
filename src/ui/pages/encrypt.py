@@ -23,7 +23,8 @@ class EncryptPage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        translate_widgets(self.switch_row, self.pin_row, self.pin_confirm_row, self.info_label)
+        translate_widgets(self.switch_row, self.pin_row,
+                          self.pin_confirm_row, self.info_label)
 
         encryption_setting = config.get('disk_encryption')
         self.min_pin_length = encryption_setting['min_length']
@@ -69,7 +70,7 @@ class EncryptPage(Gtk.Box):
 
     ### callbacks ###
 
-    @ Gtk.Template.Callback('switch_row_clicked')
+    @Gtk.Template.Callback('switch_row_clicked')
     def _switch_row_clicked(self, row, state):
         self.active = self.switch_row.get_active()
         config.set('use_encryption', self.active)
