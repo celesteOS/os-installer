@@ -42,6 +42,7 @@ class InstallPage(Gtk.Box):
 
         self.stop_slideshow = False
         self.reset_timeout = False
+        # Add extra time when manually navigating to a page
         self.extra_timeout = 0
         self.current_pos = 0
 
@@ -53,6 +54,7 @@ class InstallPage(Gtk.Box):
         with self.cv:
             while True:
                 timeout = self.durations[self.current_pos] + self.extra_timeout
+                self.extra_timeout = 0
                 self.cv.wait(timeout=timeout)
 
                 if self.stop_slideshow:
@@ -88,5 +90,5 @@ class InstallPage(Gtk.Box):
         with self.cv:
             self.current_pos = max(0, int(self.carousel.get_position()))
             self.reset_timeout = True
-            self.extra_timeout = 0
+            self.extra_timeout = 5
             self.cv.notify_all()
