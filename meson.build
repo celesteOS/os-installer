@@ -6,6 +6,7 @@ project('os-installer',
   license: 'GPL-3.0-or-later',
 )
 
+dependency('blueprint-compiler', version: '>= 0.16')
 dependency('gio-2.0', version: '>= 2.60.0')
 dependency('glib-2.0', version: '>= 2.60.0')
 dependency('gnome-desktop-4', version: '>= 43')
