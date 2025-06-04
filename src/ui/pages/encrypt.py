@@ -35,6 +35,13 @@ class EncryptPage(Gtk.Box):
         else:
             self.active = config.get('use_encryption')
             self.switch_row.set_active(self.active)
+
+        self.generated = encryption_setting['generated']
+        if self.generated:
+            self.pin_row.set_visible(False)
+            self.pin_confirm_row.set_visible(False)
+            self.info_revealer.set_visible(False)
+
         self._adjust_pin_state()
 
         self.pin = EntryErrorEnhancer(
@@ -56,7 +63,9 @@ class EncryptPage(Gtk.Box):
         self._set_continue_button()
 
     def _set_continue_button(self):
-        self.continue_button.set_sensitive(not self.active or (self.pin and self.confirmation))
+        ok = (not self.active or self.generated or
+              (self.pin and self.confirmation))
+        self.continue_button.set_sensitive(ok)
 
     ### callbacks ###
 

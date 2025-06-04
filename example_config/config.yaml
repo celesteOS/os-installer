@@ -75,14 +75,17 @@ disk:
 # Disk encryption PIN setup.
 #
 # offered      Whether to offer disk encryption pin setup.
-# forced       Whether to requrie a disk encryption pin.
+# forced       To make disk encryption non-optional.
+# generated    To skip encryption pin entry.
 # min_length   Minimal encryption pin length.
 # confirmation Require pin to be entered a second time.
 #
-# Default: offered: yes, forced: no, min_length: 1, confirmation: no
+# Default: offered: yes, forced: no, generated: no,
+#          min_length: 1, confirmation: no
 disk_encryption:
   offered: yes
   forced: no
+  generated: no
   min_length: 1
   confirmation: yes
 

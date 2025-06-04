@@ -55,7 +55,7 @@ class Navigation(Adw.Bin):
             'language': self._offer_language_selection(),
             'welcome': config.get('welcome_page')['usage'],
             'internet': config.get('internet')['connection_required'],
-            'encrypt': config.get('disk_encryption')['offered'],
+            'encrypt': self._offer_encryption(),
             'desktop': config.get('desktop'),
             'confirm': config.get('scripts')['install'],
             'user': not config.get('skip_user'),
@@ -73,6 +73,16 @@ class Navigation(Adw.Bin):
             use_fixed_language = use_fixed_language.result()
             config.set('language_use_fixed', use_fixed_language)
         return not use_fixed_language
+
+    def _offer_encryption(self):
+        encryption_settings = config.get('disk_encryption')
+        if not encryption_settings['offered']:
+            return False
+        elif encryption_settings['forced'] and encryption_settings['generated']:
+            config.set('use_encryption', True)
+            return False
+        else:
+            return True
 
     def _remove_all_pages(self, exception=None):
         for page_name in self.available_pages:

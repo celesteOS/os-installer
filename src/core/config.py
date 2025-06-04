@@ -22,7 +22,7 @@ default_config = {
     'welcome_page': {'usage': True, 'logo': None, 'text': None},
     # disk
     'disk': {'partition_ok': False, 'min_size': 5},
-    'disk_encryption': {'offered': True, 'forced': False, 'min_length': 1, 'confirmation': False},
+    'disk_encryption': {'offered': True, 'forced': False, 'generated': False, 'min_length': 1, 'confirmation': False},
     # desktop
     'desktop': [],
     # user
@@ -131,6 +131,7 @@ def _validate(variables):
         _match(variables, 'disk_encryption', dict) and
         _match(variables['disk_encryption'], 'offered', bool) and
         _match(variables['disk_encryption'], 'forced', bool) and
+        _match(variables['disk_encryption'], 'generated', bool) and
         _match(variables['disk_encryption'], 'min_length', int) and
         _match(variables['disk_encryption'], 'confirmation', bool) and
         _match(variables, 'user', dict) and
