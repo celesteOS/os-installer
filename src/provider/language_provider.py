@@ -84,7 +84,7 @@ class LanguageProvider(Preloadable):
         if not locale and '_' in language_code:
             # already has territory, use as-is
             locale = f'{language_code}.UTF-8'
-        else:
+        elif not locale:
             print(f"Can't determine locale for {language_code}")
             return None
 
