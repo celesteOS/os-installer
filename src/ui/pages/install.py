@@ -45,11 +45,11 @@ class InstallPage(Gtk.Box):
         self.extra_timeout = 0
         self.current_pos = 0
 
-        self.thread = Thread(target=self._show_next_slide, daemon=True)
+        self.thread = Thread(target=self._run_slideshow, daemon=True)
         self.thread.start()
-        config.subscribe('displayed-page', self._stop_thread, delayed=True)
+        config.subscribe('displayed-page', self._stop_slideshow, delayed=True)
 
-    def _show_next_slide(self):
+    def _run_slideshow(self):
         with self.cv:
             while True:
                 timeout = self.durations[self.current_pos] + self.extra_timeout
