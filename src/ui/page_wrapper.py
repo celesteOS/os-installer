@@ -71,7 +71,7 @@ page_name_to_page_title = {
 
 page_name_to_image = {
     'confirm':              'question-round-symbolic',
-    'desktop':              'computer-symbolic',
+    'desktop':              None,
     'disk':                 'drive-harddisk-system-symbolic',
     'done':                 'success-symbolic',
     'encrypt':              'dialog-password-symbolic',
@@ -172,6 +172,8 @@ class PageWrapper(Adw.NavigationPage):
             self.title_image.set_from_paintable(image)
         elif isinstance(image, Path):
             self.title_image.set_from_file(str(image))
+        elif image is None:
+            self.title_image.set_visible(False)
         else:
             print('Developer hint: invalid title image')
             assert self.page_name == 'welcome'

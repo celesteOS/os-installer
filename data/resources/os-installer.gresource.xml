@@ -9,7 +9,6 @@
     <file>style.css</file>
 
     <!-- Icons -->
-    <file preprocess="xml-stripblanks">icon/scalable/actions/computer-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/map-symbolic.svg</file>
