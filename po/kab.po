@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2025-04-28 08:03+0000\n"
+"PO-Revision-Date: 2025-06-23 08:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: none\n"
 "Language: kab\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
@@ -91,7 +91,7 @@ msgstr ""
 #. Translators: On button.
 #: data/resources/ui/pages/disk.blp
 msgid "_Reload"
-msgstr "Ales aεe_bbi"
+msgstr "Ales aɛe_bbi"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
