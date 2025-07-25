@@ -137,7 +137,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/p3732/os-installer.git"
+                    "url": "https://gitlab.gnome.org/p3732/os-installer.git",
+                    "branch": "main"
                 }
             ]
         }
