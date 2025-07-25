@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.p3732.OS-Installer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "47",
+    "runtime-version": "48",
     "sdk": "org.gnome.Sdk",
     "command": "os-installer-demo",
     "finish-args": [
