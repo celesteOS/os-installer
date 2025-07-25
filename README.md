@@ -1,6 +1,8 @@
 A simple operating system installer, intended to be used with live install systems.
-Provides bootstrapping through language, keyboard, internet connection and disk selection.
-Allows defining of optional additional software to be installed.
+It provides a GNOME Adwaita-style interface for:
+* Bootstrapping: Language, keyboard, internet connection, disk selection, user configuration
+* Customazibility: Welcome page, installation slideshow, additional software options, all fully translatable
+* Over 25 translations
 
 # Translations
 <a href="https://hosted.weblate.org/engage/os-installer/">
@@ -16,12 +18,11 @@ Alternatively you could try the autonomous way:
 * Test the translation, commit and push the changes to your fork and create a merge request. Thank you!
 
 # Testing
-Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will not make changes to your system).
+Clone the project with [GNOME Builder](https://apps.gnome.org/Builder/) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will not make changes to your system).
 
 ## Development Setup
-Install the following dependencies: `gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
-Note that GTK4 compatible versions of `gnome-desktop` and `vte` are required.
-Then clone and install OS-Installer:
+Install the dependencies: `blueprint-compiler gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
+Then clone and install:
 
 ```
 git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
@@ -30,8 +31,8 @@ meson setup build
 sudo meson install -C build
 ```
 
-To try OS-Installer, without modifying any system settings, run it in debug mode with
-`os-installer -d`.
+To try OS-Installer, without modifying any system settings, run it in test mode with `os-installer -t`.
+Running in GNOME Builder uses the demo mode (`os-installer -d`) and shows test dummy disks.
 Uninstall with `sudo ninja -C build uninstall `
 
 # Distributions
@@ -39,18 +40,13 @@ The following describes how to use this in a distribution.
 
 ## Configuration
 Place a configuration and installation scripts under `/etc/os-installer` (or symlink it to another folder).
-An example structure is given in the `example_config` folder.
-General usage of these files is:
-1) Read configuration from `config.yaml`
-1) After establishing an internet connection `prepare.sh` is started.
-    * Useful for starting mirror updates, getting package lists or pre-caching packages.
-1) After chosing a disk and confirming the deletion of files on it, `install.sh` is started.
-    * Can be used to write basic system and other data onto disk, installing kernel, packages, bootloader, etc.
-    * If `install.sh` does not exist, there will be no confirmation page.
-1) After giving all other information is confirmed via the summary page, `configure.sh` is started.
-    * This can be used to either handle the full installation or to finish up configuring the system according to selected preferences (account, locale, additional packages and features)
-
-Not all scripts need to exist, if one does not, this step is simply skipped.
+An example structure is given in the `example_config` folder,
+where `config.yaml` is the config file.
+In it scripts for up to 3 stages of an installation can be set:
+* Preparation - Testing mirrors, package pre-fetching
+* Installation - Bootstrap system and write to disk
+* Configuration - Apply user choices to new system
+Any later stage can do what a previous stage can do, so only the last one is needed.
 The example scripts list which environment variables are made available to each script.
 
 The scripts can be written in any language as long as a shell can correctly execute them.
@@ -59,10 +55,10 @@ If they require elevated priviledges (hint: they probably do),
 these need to be granted to the script through other means.
 
 ## Dependencies
-In addition to the dependencies [listed under Testing](#manually),
+In addition to the dependencies listed under Development Setup,
 the default OS-Installer config also expects these GNOME apps to be available:
 `epiphany`, `gnome-disk-utility`, `gnome-control-center`
-(These can be changed via `config.yaml`)
+Alternatives can be specified in the config.
 
 Similarly `systemd` is expected to be available, i.e. `localectl` and `timedatectl`.
 
