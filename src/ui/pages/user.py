@@ -38,7 +38,7 @@ class UserPage(Gtk.Box):
         self.password = EntryErrorEnhancer(
             self.password_row, lambda text: len(text) >= self.min_password_length)
         self.confirmation = EntryErrorEnhancer(
-            self.password_confirm_row, lambda text: text >= self.password_row.get_text())
+            self.password_confirm_row, lambda text: text == self.password_row.get_text())
 
         self.name_row.set_text(config.get('user_name'))
         self.username_row.set_visible(self.request_username)
