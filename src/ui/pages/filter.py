@@ -61,7 +61,7 @@ class FilterPage(Gtk.Box):
 
     @Gtk.Template.Callback('row_activated')
     def _row_activated(self, list_view, pos):
-        item = self.list_model.get_item(pos)
+        item = self.filter_list_model.get_item(pos)
         match self.type:
             case FilterType.format:
                 config.set('formats', (item.id, item.name))
