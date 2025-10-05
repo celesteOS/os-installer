@@ -50,11 +50,11 @@ class Application(Adw.Application):
     ### parent functions ###
 
     def do_activate(self):
-        preload_manager.start()
         # create window if not existing
         if window := self.props.active_window:
             window.present()
         else:
+            preload_manager.start()
             self.window = OsInstallerWindow(application=self)
             self.system_caller = SystemCaller(self.window)
             self._setup_icons()
