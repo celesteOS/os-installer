@@ -6,7 +6,7 @@ import locale
 import os
 from subprocess import Popen
 
-from gi.repository import Gio
+from gi.repository import Gio, GLib
 
 from .config import config
 from .functions import execute
@@ -24,6 +24,7 @@ class SystemCaller:
 
         self._add_syscall_action('error-search', self._open_internet_search)
         self._add_syscall_action('manage-disks', self._open_disks)
+        self._add_syscall_action('reboot', self._reboot)
         self._add_syscall_action('wifi-settings', self._open_wifi_settings)
 
         app_window.insert_action_group('external', self.action_group)
@@ -51,6 +52,10 @@ class SystemCaller:
 
     def _open_wifi_settings(self, _, __):
         _run_program(config.get('commands')['wifi'].split())
+
+    def _reboot(self, _, __):
+        execute(config.get('commands')['reboot'].split())
+        GLib.idle_add(config.set_next_page, None)
 
     def _set_system_formats(self, formats):
         locale, _ = formats

@@ -10,10 +10,6 @@ def execute(args):
         subprocess.run(args)
 
 
-def reboot_system():
-    execute(config.get('commands')['reboot'].split())
-
-
 def reset_model(model, new_values):
     '''
     Reset given model to contain the passed new values.
