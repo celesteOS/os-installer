@@ -9,7 +9,11 @@ from subprocess import Popen
 from gi.repository import Gio, GLib
 
 from .config import config
-from .functions import execute
+
+
+def _execute(args):
+    if not config.is_demo() and not config.is_test():
+        subprocess.run(args)
 
 
 def _run_program(args):
@@ -54,18 +58,18 @@ class SystemCaller:
         _run_program(config.get('commands')['wifi'].split())
 
     def _reboot(self, _, __):
-        execute(config.get('commands')['reboot'].split())
+        _execute(config.get('commands')['reboot'].split())
         GLib.idle_add(config.set_next_page, None)
 
     def _set_system_formats(self, formats):
         locale, _ = formats
-        execute(['gsettings', 'set', 'org.gnome.system.locale', 'region',
-                f"'{locale}'"])
+        _execute(['gsettings', 'set', 'org.gnome.system.locale', 'region',
+                  f"'{locale}'"])
 
     def _set_system_keyboard_layout(self, keyboard):
         keyboard_layout, _ = keyboard
-        execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
-                 f"[('xkb','{keyboard_layout}')]"])
+        _execute(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
+                  f"[('xkb','{keyboard_layout}')]"])
 
     def _set_system_language(self, language_info):
         if language_info.available:
@@ -76,8 +80,8 @@ class SystemCaller:
                 print(f'Failed setting locale "{language_info.locale}", not available in system.')
 
         # TODO find correct way to set system locale without user authentication
-        execute(['localectl', '--no-ask-password', 'set-locale',
-                 f'LANG={language_info.locale}'])
+        _execute(['localectl', '--no-ask-password', 'set-locale',
+                  f'LANG={language_info.locale}'])
 
         Popen(['gsettings', 'set', 'org.gnome.system.locale',
                'region', language_info.locale])

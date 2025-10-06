@@ -5,11 +5,6 @@ import subprocess
 from .config import config
 
 
-def execute(args):
-    if not config.is_demo() and not config.is_test():
-        subprocess.run(args)
-
-
 def reset_model(model, new_values):
     '''
     Reset given model to contain the passed new values.
