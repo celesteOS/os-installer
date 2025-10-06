@@ -2,6 +2,7 @@
 
 import sys
 from threading import Lock
+import traceback
 import yaml
 
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
@@ -82,6 +83,7 @@ internal_values = {
 }
 
 fallback_values = {
+    'available_translations': ['en_US'],
     'language_use_fixed': False,
     'language_chosen': None,
     'keyboard_language': ('en_US' 'English (US)'),
@@ -237,6 +239,10 @@ class Config:
         if self.variables.get(variable, None) == new_value:
             return False
 
+        if not self.initialized and not variable in fallback_values:
+            # Non-config variables should have fallback values
+            print(f'Internal error: Setting {variable} before config was read!')
+            traceback.print_stack()
         self.variables[variable] = new_value
 
         self._update_subscribers(variable, new_value)
