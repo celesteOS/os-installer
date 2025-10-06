@@ -226,6 +226,7 @@ class Config:
         if variable in self.variables:
             return self.variables[variable]
         elif variable in fallback_values:
+            print(f'Using fallback value for {variable}')
             return fallback_values[variable]
         else:
             print(f'Requested "{variable}" not in config')
