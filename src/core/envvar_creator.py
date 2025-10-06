@@ -9,7 +9,7 @@ from .installation_step import InstallationStep
 
 
 def _get(var):
-    if not config.has(var) and not config.get('test_mode'):
+    if not config.has(var) and not config.is_test():
         print(f'Required variable {var} not set, using empty string fallback. '
               'Please report this error.')
         return ''
@@ -26,7 +26,7 @@ def _get(var):
 def _get_device_path():
     if disk := config.get('chosen_device'):
         return disk.device_path
-    elif config.get('test_mode'):
+    elif config.is_test():
         return 'test-mode-dummy-disk'
     else:
         print('FATAL: No chosen disk set!')

@@ -1,8 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from enum import Enum
 from threading import Lock
 import traceback
 import yaml
+
+
+class RunMode(Enum):
+    default = 0
+    test = 1
+    demo = 2
 
 
 default_config = {
@@ -54,9 +61,6 @@ legacy_values = {
 
 # not configurable via config file
 internal_values = {
-    # modes
-    'demo_mode': False,
-    'test_mode': False,
     # configurations
     'internet_connection': False,
     'use_encryption': False,
@@ -152,6 +156,7 @@ class Config:
         self.subscription_lock = Lock()
         self.subscriptions = {}
         self.initialized = False
+        self.run_mode = RunMode.default
 
     def _load_from_file(self, file):
         config_from_file = yaml.load(file, Loader=yaml.Loader)
@@ -222,6 +227,15 @@ class Config:
         return variable in self.variables
 
     def init(self, config_path, demo_mode, test_mode):
+        if demo_mode and test_mode:
+            print("Only one of demo and test mode can be set at a time! "
+                  "Using demo mode.")
+            self.run_mode = RunMode.demo
+        elif demo_mode:
+            self.run_mode = RunMode.demo
+        elif test_mode:
+            self.run_mode = RunMode.test
+
         use_default_error = None
         try:
             with open(config_path, 'r') as file:
@@ -239,18 +253,19 @@ class Config:
             self.variables = default_config
 
             # Test default config to assure it doesn't contain errors
-            if test_mode and not _validate(default_config):
+            if self.run_mode == RunMode.test and not _validate(default_config):
                 print('Developer error: Default config contains errors!')
-
-            demo_mode = True
-            test_mode = False
+            self.run_mode = RunMode.demo
 
         self.variables.update(internal_values)
         self._preprocess_values()
         self.initialized = True
 
-        self.variables['demo_mode'] = demo_mode
-        self.variables['test_mode'] = test_mode
+    def is_demo(self):
+        return self.run_mode == RunMode.demo
+
+    def is_test(self):
+        return self.run_mode == RunMode.test
 
     def set(self, variable, new_value):
         '''Returns whether config was changed.'''
@@ -286,7 +301,7 @@ class Config:
             return
         if variable in self.variables:
             func(self.variables[variable])
-        elif not self.variables['test_mode']:
+        elif self.run_mode != RunMode.test:
             print(f'subscribing to unknown variable {variable}')
 
     def unsubscribe(self, obj):

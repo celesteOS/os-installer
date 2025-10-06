@@ -21,7 +21,7 @@ class DiskProvider(Preloadable):
         min_disk_size = config.get('disk')['min_size']
 
         # avoids initializing udisks client in demo mode
-        self.use_dummy_implementation = config.get('demo_mode')
+        self.use_dummy_implementation = config.is_demo()
         if self.use_dummy_implementation:
             # fake it till you make it
             min_disk_size_str = f'{min_disk_size / 1000000000:.1f} GB'
@@ -127,7 +127,7 @@ class DiskProvider(Preloadable):
         if self.use_dummy_implementation:
             return self._get_dummy_disks()
 
-        if config.get('test_mode') and getrandbits(3) == 7:
+        if config.is_test() and getrandbits(3) == 7:
             print("test-mode: randomly chose that no disks are available")
             return []
 

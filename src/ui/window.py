@@ -53,7 +53,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._add_action('show-terminal', self._show_terminal, '<Ctl>t')
         self._add_action('quit', self._show_confirm_dialog, '<Ctl>q')
 
-        if config.get('test_mode'):
+        if config.is_test():
             self._add_action('fail-page', lambda _, __: self.navigation.show_failed(), '<Alt>F')
             self._add_action('skip', lambda _, __: self.navigation.advance(), '<Alt>S')
 

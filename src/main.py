@@ -65,18 +65,9 @@ class Application(Adw.Application):
         options = command_line.get_options_dict()
         options = options.end().unpack()
 
-        config_path = options.get('config', DEFAULT_CONFIG_PATH)
-
-        demo_mode = 'demo-mode' in options
-        test_mode = 'test-mode' in options
-
-        if demo_mode and test_mode:
-            print("Only one of demo and test mode can be set at a time! "
-                  "Using demo mode.")
-            test_mode = False
-
-        config.init(config_path, demo_mode, test_mode)
-
+        config.init(options.get('config', DEFAULT_CONFIG_PATH),
+                    options.get('demo-mode', False),
+                    options.get('test-mode', False))
         config.set('version', self.version)
         config.subscribe('send_notification', self._send_notification)
 

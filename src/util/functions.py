@@ -6,7 +6,7 @@ from .config import config
 
 
 def execute(args):
-    if not config.get('demo_mode') and not config.get('test_mode'):
+    if not config.is_demo() and not config.is_test():
         subprocess.run(args)
 
 

@@ -83,7 +83,7 @@ class InstallationScripting():
             self.finished_step = self.running_step
             self.running_step = InstallationStep.none
 
-            if not status == 0 and not config.get('demo_mode'):
+            if not status == 0 and not config.is_demo():
                 print(f'Failure during step "{self.finished_step.name}"')
                 self._fail_installation()
                 return
