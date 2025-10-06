@@ -123,7 +123,6 @@ def _validate(variables):
     assert not variables['fixed_language'] == True, 'Need to specify or disable fixed language.'
 
     return (
-        _validate_scripts(variables) and
         _match(variables, 'welcome_page', dict) and
         _match(variables['welcome_page'], 'usage', bool) and
         _match(variables['welcome_page'], 'logo', str, type(None)) and
@@ -242,7 +241,7 @@ class Config:
         try:
             with open(config_path, 'r') as file:
                 self._load_from_file(file)
-            if not _validate(self.variables):
+            if not _validate(self.variables) or not _validate_scripts(self.variables):
                 use_default_error = 'Config errors'
         except FileNotFoundError as e:
             use_default_error = 'Could not find config file'
