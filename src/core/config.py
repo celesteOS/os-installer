@@ -1,11 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import sys
 from threading import Lock
 import traceback
 import yaml
-
-DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
 default_config = {
@@ -110,8 +107,9 @@ def _validate_scripts(variables):
     scripts = variables.get('scripts', None)
     if (not _match(variables, 'scripts', dict) or
             (scripts['install'] is None and scripts['configure'] is None)):
-        print('Config error: Either install or configure script must exist')
-        sys.exit(1)
+        print('Config error: Either install or configure script must exist. '
+              'This setup will not be able to install anything.')
+        return False
     return True
 
 
@@ -153,19 +151,7 @@ class Config:
         self.variables = default_config
         self.subscription_lock = Lock()
         self.subscriptions = {}
-
-        try:
-            with open(DEFAULT_CONFIG_PATH, 'r') as file:
-                self._load_from_file(file)
-        except Exception as e:
-            print(f'Error loading config: {e}. Check if the config contains '
-                  'syntax errors.')
-            self.variables = default_config
-        if not _validate(self.variables):
-            print('Config errors, loading default config.')
-            self.variables = default_config
-        self.variables.update(internal_values)
-        self._preprocess_values()
+        self.initialized = False
 
     def _load_from_file(self, file):
         config_from_file = yaml.load(file, Loader=yaml.Loader)
@@ -234,6 +220,37 @@ class Config:
 
     def has(self, variable):
         return variable in self.variables
+
+    def init(self, config_path, demo_mode, test_mode):
+        use_default_error = None
+        try:
+            with open(config_path, 'r') as file:
+                self._load_from_file(file)
+            if not _validate(self.variables):
+                use_default_error = 'Config errors'
+        except FileNotFoundError as e:
+            use_default_error = 'Could not find config file'
+        except Exception as e:
+            print(f'Error loading config: {e}')
+            use_default_error = 'Check if the config contains syntax errors'
+
+        if use_default_error:
+            print(f'{use_default_error}. Running in demo mode.')
+            self.variables = default_config
+
+            # Test default config to assure it doesn't contain errors
+            if test_mode and not _validate(default_config):
+                print('Developer error: Default config contains errors!')
+
+            demo_mode = True
+            test_mode = False
+
+        self.variables.update(internal_values)
+        self._preprocess_values()
+        self.initialized = True
+
+        self.variables['demo_mode'] = demo_mode
+        self.variables['test_mode'] = test_mode
 
     def set(self, variable, new_value):
         '''Returns whether config was changed.'''

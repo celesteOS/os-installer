@@ -21,6 +21,7 @@ from .system_calls import SystemCaller
 from .window import OsInstallerWindow
 
 APP_ID = 'com.github.p3732.OS-Installer'
+DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
 class Application(Adw.Application):
@@ -29,18 +30,18 @@ class Application(Adw.Application):
     def __init__(self, version):
         super().__init__(application_id=APP_ID,
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
+        self.version = version
 
         # Connect app shutdown signal
         self.connect('shutdown', self._on_quit)
 
         # Additional command line options
+        self.add_main_option('config', b'c', GLib.OptionFlags.NONE,
+                             GLib.OptionArg.STRING, "Custom path to config file (default: {DEFAULT_CONFIG_PATH})", None)
         self.add_main_option('demo-mode', b'd', GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Run in demo mode. Does not alter the system", None)
         self.add_main_option('test-mode', b't', GLib.OptionFlags.NONE,
-                             GLib.OptionArg.NONE, "Run in testing mode. Does not alter the system, but runs scripts.", None)
-
-        config.set('version', version)
-        config.subscribe('send_notification', self._send_notification)
+                             GLib.OptionArg.NONE, "Run in testing mode. Does not alter system settings, but runs scripts.", None)
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
@@ -64,13 +65,20 @@ class Application(Adw.Application):
         options = command_line.get_options_dict()
         options = options.end().unpack()
 
-        if 'demo-mode' in options:
-            if 'test-mode' in options:
-                print("Only one of demo and test mode can be set at a time! "
-                      "Using demo mode.")
-            config.set('demo_mode', True)
-        elif 'test-mode' in options:
-            config.set('test_mode', True)
+        config_path = options.get('config', DEFAULT_CONFIG_PATH)
+
+        demo_mode = 'demo-mode' in options
+        test_mode = 'test-mode' in options
+
+        if demo_mode and test_mode:
+            print("Only one of demo and test mode can be set at a time! "
+                  "Using demo mode.")
+            test_mode = False
+
+        config.init(config_path, demo_mode, test_mode)
+
+        config.set('version', self.version)
+        config.subscribe('send_notification', self._send_notification)
 
         self.activate()
         return 0
