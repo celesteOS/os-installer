@@ -91,7 +91,10 @@ page_name_to_image = {
     'user':                 'user-symbolic',
 }
 
-special_image_pages = {'internet', 'welcome'}
+special_image_pages = {
+    'internet': 'internet_page_image',
+    'welcome': 'welcome_page_image',
+}
 
 page_name_to_type = {
     'confirm':              ConfirmPage,
@@ -146,9 +149,8 @@ class PageWrapper(Adw.NavigationPage):
         self.page = page_name_to_type[page_name]()
         self.page_name = page_name
         self.content.add(self.page)
-        if self.page_name in special_image_pages:
-            config_value = f'{self.page_name}_page_image'
-            config.subscribe(config_value, self._set_title_image)
+        if image_config_value := special_image_pages.get(self.page_name, None):
+            config.subscribe(image_config_value, self._set_title_image)
         else:
             self._set_title_image(page_name_to_image[self.page_name])
         page_title = self._get_page_title()

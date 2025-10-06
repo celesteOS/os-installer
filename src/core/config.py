@@ -92,6 +92,8 @@ fallback_values = {
     'chosen_device': None,
     'disk_is_partition': False,
     'disk_efi_partition': '/dev/null',
+    'internet_page_image': 'network-wireless-disabled-symbolic',
+    'welcome_page_image': 'weather-clear-symbolic',
 }
 
 
