@@ -302,8 +302,8 @@ class Config:
             return
         if variable in self.variables:
             func(self.variables[variable])
-        elif self.run_mode != RunMode.test:
-            print(f'subscribing to unknown variable {variable}')
+        elif not variable in fallback_values:
+            print(f'Internal error: Subscribing to unknown {variable}')
 
     def unsubscribe(self, obj):
         with self.subscription_lock:
