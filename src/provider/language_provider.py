@@ -40,6 +40,7 @@ language_to_default_locale = {
     'ug': 'ug_CN.UTF-8', 'uk': 'uk_UA.UTF-8', 'ur': 'ur_PK.UTF-8', 'uz': 'uz_UZ.UTF-8@cyrillic', 've': 've_ZA.UTF-8',
     'vi': 'vi_VN.UTF-8', 'wa': 'wa_BE.UTF-8', 'cy': 'cy_GB.UTF-8', 'wo': 'wo_SN.UTF-8', 'fy': 'fy_NL.UTF-8',
     'xh': 'xh_ZA.UTF-8', 'yi': 'yi_US.UTF-8', 'yo': 'yo_NG.UTF-8', 'za_ZA': 'zu_ZA.UTF-8', 'zu': 'zu_ZA.UTF-8',
+    'kab': 'kab_DZ.UTF-8',
     # manually added
     'pt_BR': 'pt_BR.UTF-8', 'pt_PT': 'pt_PT.UTF-8',
 }
