@@ -70,3 +70,6 @@ Example configurations of distributions (experimenting) with using OS-Installer:
 # Contact
 There is a matrix room https://matrix.to/#/#os-installer:matrix.org in which you can ask questions.
 Response time might vary.
+
+# Code of Conduct
+The project follows the [GNOME Code of Conduct](https://conduct.gnome.org/).
