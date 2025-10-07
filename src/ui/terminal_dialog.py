@@ -29,7 +29,17 @@ class TerminalDialog(Adw.Dialog):
         action = Gio.SimpleAction.new(action_name, None)
         action.connect('activate', lambda _, __: self._copy())
         self.action_group.add_action(action)
+
+        # shortcut
+        self.shortcut_controller = Gtk.ShortcutController()
+        self.shortcut_controller.set_scope(Gtk.ShortcutScope(1))
+        for keybinding in ['<Ctl>C', '<Ctl><Shift>C']:
+            named_action = Gtk.NamedAction.new(f'terminal.{action_name}')
+            trigger = Gtk.ShortcutTrigger.parse_string(keybinding)
+            shortcut = Gtk.Shortcut.new(trigger, named_action)
+            self.shortcut_controller.add_shortcut(shortcut)
         self.insert_action_group('terminal', self.action_group)
+        self.add_controller(self.shortcut_controller)
 
     def _copy(self):
         terminal = self.placeholder.get_child()
