@@ -86,7 +86,7 @@ page_name_to_image = {
     'region':               'globe-symbolic',
     'restart':              'system-reboot-symbolic',
     'software':             'system-software-install-symbolic',
-    'summary':              'checkbox-checked-symbolic',
+    'summary':              None,
     'timezone':             'map-symbolic',
     'user':                 'user-symbolic',
 }
