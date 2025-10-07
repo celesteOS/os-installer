@@ -52,7 +52,7 @@ class InstallationScripting():
             print(f'Starting step "{next_step.name}"...')
             pty = Vte.Pty.new_sync(Vte.PtyFlags.NO_CTTY, self.cancel)
             pty.spawn_async(
-                '/', ['sh', file_name], envs,
+                '/', [f'./{file_name}'], envs,
                 GLib.SpawnFlags.DEFAULT,
                 None, None, -1, self.cancel,
                 self._on_child_spawned,
