@@ -28,7 +28,7 @@ msgstr ""
 
 #. Translators: Label on button to copy terminal output.
 #: data/resources/ui/terminal_dialog.blp
-msgid "_Copy Output"
+msgid "_Copy"
 msgstr ""
 
 #. Translators: Followed by a disk or partition name
