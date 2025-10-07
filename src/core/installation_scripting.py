@@ -27,7 +27,7 @@ class InstallationScripting():
         self.running_step = InstallationStep.none
         self.finished_step = InstallationStep.none
 
-    def _fail_installation(self):
+    def _fail_installation(self, __):
         config.set('installation_running', False)
         config.set('displayed-page', 'failed')
         # Translators: Notification text
@@ -68,7 +68,7 @@ class InstallationScripting():
         elif file_name:
             print(f'Could not find configured script "{file_name}"')
             print('Stopping installation')
-            self._fail_installation()
+            GLib.idle_add(self._fail_installation, None)
         else:
             print(f'Skipping step "{next_step.name}"')
             self.finished_step = next_step
@@ -82,7 +82,7 @@ class InstallationScripting():
             GLib.child_watch_add(pid, self._on_child_exited, None)
         else:
             print(f'Error starting {self.running_step}')
-            self._fail_installation()
+            GLib.idle_add(self._fail_installation, None)
 
     def _on_child_exited(self, pid, status, data):
         with self.lock:
@@ -91,7 +91,7 @@ class InstallationScripting():
 
             if not status == 0 and not config.is_demo():
                 print(f'Failure during step "{self.finished_step.name}"')
-                self._fail_installation()
+                GLib.idle_add(self._fail_installation, None)
                 return
 
             print(f'Finished step "{self.finished_step.name}".')
