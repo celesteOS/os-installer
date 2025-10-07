@@ -159,6 +159,11 @@ class Config:
         self.initialized = False
         self.run_mode = RunMode.default
 
+    def _internal_error(self, message):
+        print(f'Internal error: {message}')
+        if self.run_mode == RunMode.test:
+            traceback.print_stack()
+
     def _load_from_file(self, file):
         config_from_file = yaml.load(file, Loader=yaml.Loader)
         for config_property in config_from_file:
@@ -275,8 +280,7 @@ class Config:
 
         if not self.initialized and not variable in fallback_values:
             # Non-config variables should have fallback values
-            print(f'Internal error: Setting {variable} before config was read!')
-            traceback.print_stack()
+            self._internal_error(f'Setting "{variable}" before config was read!')
         self.variables[variable] = new_value
 
         self._update_subscribers(variable, new_value)
@@ -303,7 +307,7 @@ class Config:
         if variable in self.variables:
             func(self.variables[variable])
         elif not variable in fallback_values:
-            print(f'Internal error: Subscribing to unknown {variable}')
+            self._internal_error(f'Subscribing to unknown variable "{variable}"')
 
     def unsubscribe(self, obj):
         with self.subscription_lock:
