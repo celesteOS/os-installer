@@ -3,6 +3,7 @@
 from gi.repository import Gtk
 
 from .buttons import TerminalButton
+from .config import config
 from .translations import translate_widgets
 
 
@@ -17,3 +18,7 @@ class FailedPage(Gtk.Box):
         super().__init__(**kwargs)
 
         translate_widgets(self.failure_page, self.search_button)
+
+        description = self.failure_page.get_description()
+        formatted = description.format(config.get('distribution_name'))
+        self.failure_page.set_description(formatted)
