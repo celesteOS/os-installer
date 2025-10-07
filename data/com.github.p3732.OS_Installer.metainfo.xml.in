@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-	<id>com.github.p3732.OS_Installer.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
-	<description>Install an Operating System</description>
+<component type="desktop-application">
+  <id>com.github.p3732.OS_Installer</id>
+
+  <name>OS-Installer</name>
+  <summary>Install an Operating System</summary>
+
+  <url type="homepage">https://gitlab.gnome.org/p3732/os-installer/</url>
+
+  <developer id="p3732">
+    <name>Peter Eisenmann</name>
+  </developer>
+  
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+
+  <description>
+    <p>
+      A simple operating system installer, intended to be used with live install systems. It provides a GNOME Adwaita-style interface with: <em> Configurable installer steps, including: Language, keyboard, internet connection, disk selection, user configuration </em> Customizability: Welcome page, desktop choice, installation slideshow, additional software options * Over 25 translations. All custom texts are fully translatable.
+    </p>
+  </description>
+  <project_group>GNOME</project_group>
+
+  <launchable type="desktop-id">com.github.p3732.OS_Installer.desktop</launchable>
 </component>
