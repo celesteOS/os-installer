@@ -83,16 +83,16 @@ class SystemCaller:
         _execute(['localectl', '--no-ask-password', 'set-locale',
                   f'LANG={language_info.locale}'])
 
-        Popen(['gsettings', 'set', 'org.gnome.system.locale',
-               'region', language_info.locale])
+        _execute(['gsettings', 'set', 'org.gnome.system.locale',
+                  'region', language_info.locale])
 
     def _set_system_timezone(self, timezone):
         # TODO find correct way to set timezone without user authentication
-        Popen(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
+        _execute(['timedatectl', '--no-ask-password', 'set-timezone', timezone])
 
 
 def start_system_timesync():
     # TODO find correct way to set enable time sync without user authentication
-    Popen(['timedatectl', '--no-ask-password', 'set-ntp', 'true'])
-    Popen(['gsettings', 'set', 'org.gnome.desktop.datetime',
-          'automatic-timezone', 'true'])
+    _execute(['timedatectl', '--no-ask-password', 'set-ntp', 'true'])
+    _execute(['gsettings', 'set', 'org.gnome.desktop.datetime',
+             'automatic-timezone', 'true'])
