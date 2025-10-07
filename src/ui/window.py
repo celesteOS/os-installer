@@ -50,7 +50,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         self._add_action('about-page', self._show_about_page, ['<Alt>Return'])
         self._add_action('show-terminal', self._show_terminal, ['<Ctl>t'])
-        self._add_action('quit', self._show_confirm_dialog, ['<Ctl>q'])
+        self._add_action('quit', self._show_confirm_dialog, ['<Ctl>q', '<Ctl>w'])
 
         if config.is_test():
             self._add_action('fail-page', lambda _, __: self.navigation.show_failed(), ['<Alt>F'])
