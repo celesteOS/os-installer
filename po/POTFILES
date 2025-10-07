@@ -2,7 +2,8 @@ data/com.github.p3732.OS-Installer.desktop.in
 data/com.github.p3732.OS-Installer.metainfo.xml.in
 data/com.github.p3732.OS-Installer.gschema.xml
 
-data/resources/ui/pages/choices.blp
+data/resources/ui/terminal_dialog.blp
+
 data/resources/ui/pages/confirm.blp
 data/resources/ui/pages/desktop.blp
 data/resources/ui/pages/disk.blp
@@ -13,7 +14,7 @@ data/resources/ui/pages/filter.blp
 data/resources/ui/pages/internet.blp
 data/resources/ui/pages/keyboard_layout.blp
 data/resources/ui/pages/keyboard_overview.blp
-data/resources/ui/pages/locale.blp
+data/resources/ui/pages/region.blp
 data/resources/ui/pages/summary.blp
 data/resources/ui/pages/user.blp
 data/resources/ui/pages/welcome.blp
@@ -27,5 +28,5 @@ src/provider/disk_provider.py
 src/ui/buttons.py
 src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py
+src/ui/pages/summary.py
 src/ui/row/device_rows.py
-src/ui/summary.py
