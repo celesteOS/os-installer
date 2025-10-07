@@ -1,5 +1,5 @@
 data/com.github.p3732.OS-Installer.desktop.in
-data/com.github.p3732.OS-Installer.appdata.xml.in
+data/com.github.p3732.OS-Installer.metainfo.xml.in
 data/com.github.p3732.OS-Installer.gschema.xml
 
 data/resources/ui/pages/choices.blp
