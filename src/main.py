@@ -20,7 +20,7 @@ from .preload_manager import preload_manager
 from .system_calls import SystemCaller
 from .window import OsInstallerWindow
 
-APP_ID = 'com.github.p3732.OS-Installer'
+APP_ID = 'com.github.p3732.OS_Installer'
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 

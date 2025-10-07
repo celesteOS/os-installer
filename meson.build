@@ -23,7 +23,7 @@ dependency('vte-2.91-gtk4', version: '>= 0.75.0')
 
 i18n = import('i18n')
 
-application_id = 'com.github.p3732.OS-Installer'
+application_id = 'com.github.p3732.OS_Installer'
 
 subdir('misc-build-files')
 subdir('data')
