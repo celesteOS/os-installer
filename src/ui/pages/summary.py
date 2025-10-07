@@ -94,8 +94,7 @@ class SummaryPage(Gtk.Box):
 
     def _update_device_row(self, device):
         if device == None:
-            if not config.is_test():
-                print('Critical: Disk was not set before summary page')
+            print('Internal error: Disk was not set before summary page')
         else:
             row = self.list.get_row_at_index(self.disk_row_index)
             if type(row) == DeviceSummaryRow:

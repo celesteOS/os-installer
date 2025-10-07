@@ -29,7 +29,6 @@ class ConfirmPage(Gtk.Box):
 
     def _update_disk_row(self, disk):
         if disk == None:
-            if not config.is_test():
-                print('Critical: Disk was not set before confirm page')
+            print('Internal: Disk was not set before confirm page')
         else:
             reset_model(self.model, [disk])
