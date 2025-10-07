@@ -37,6 +37,12 @@ class InstallationScripting():
         if self.running_step != InstallationStep.none:
             return
 
+        if self.finished_step is InstallationStep.configure:
+            config.set('installation_running', False)
+            # Translators: Notification text
+            config.set('send_notification', _("Finished Installation"))
+            GLib.idle_add(config.set_next_page, None)
+
         if self.finished_step.value >= self.ready_step.value:
             return
 
@@ -90,13 +96,7 @@ class InstallationScripting():
 
             print(f'Finished step "{self.finished_step.name}".')
 
-            if self.finished_step is InstallationStep.configure:
-                config.set('installation_running', False)
-                # Translators: Notification text
-                config.set('send_notification', _("Finished Installation"))
-                GLib.idle_add(config.set_next_page, None)
-            else:
-                self._try_start_next_script()
+            self._try_start_next_script()
 
     def _set_ok_to_start_step(self, step: InstallationStep):
         with self.lock:
