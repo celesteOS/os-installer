@@ -1,5 +1,31 @@
 # Release Notes
 
+## Version 0.5.0
+### Features
+* Working translations independent of system languages
+* Slideshow support, shown during installation
+* Support for more scripting languages, e.g. Python and Lua
+* Simpler disk/partition selection with expander rows
+* Improved output terminal, copying support
+* Faster search for timezone and region lists
+* Config can be passed as CLI parameter
+* Added translations (Farsi, Hebrew, Kabyle, Tamil, Vietnamese) and updated existing translations
+
+### Config
+* Add translation generator script
+* Adjustable script paths
+* Grouping of options for clearer structure
+* Partiton acceptance option
+
+### Internal
+* Use bindings to custom objects in many places
+* Split navigation out from main window
+* Shared code for Continue, Confirm and Terminal button
+* Make config variables lambda subscribable
+* Restructure file structure for core functionality and widgets
+* Run UI functions in GLib idle context
+* Use fallback dict lookups (very useful)
+
 ## Version 0.4.0
 * Use AdwNavigationView and other modern libadwaita widgets
 * Added Desktop selection page

@@ -26,6 +26,27 @@
     </p>
   </description>
 
+  <releases>
+    <release version="0.5.0" date="2025-10-09">
+      <url type="details">https://gitlab.gnome.org/p3732/os-installer/-/blob/main/NEWS</url>
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Working translations independent of system languages</li>
+          <li>Slideshow support, shown during installation</li>
+          <li>Support for more scripting languages, e.g. Python and Lua</li>
+          <li>Simpler disk/partition selection with expander rows</li>
+          <li>Improved output terminal, copying support</li>
+          <li>Config can be passed as CLI parameter</li>
+          <li>Extended and simplified config options</li>
+          <li>Faster search for timezone and region lists</li>
+          <li>Internal refactorings for a cleaner code base</li>
+          <li>Added translations (Farsi, Hebrew, Kabyle, Tamil, Vietnamese) and updated existing translations</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
   <content_rating type="oars-1.1" />
 
   <launchable type="desktop-id">com.github.p3732.OS_Installer.desktop</launchable>
