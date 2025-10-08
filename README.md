@@ -20,20 +20,8 @@ Alternatively you could try the autonomous way:
 # Testing
 Clone the project with [GNOME Builder](https://apps.gnome.org/Builder/) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will not make changes to your system).
 
-## Development Setup
-Install the dependencies: `blueprint-compiler gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
-Then clone and install:
-
-```
-git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
-cd os-installer
-meson setup build
-sudo meson install -C build
-```
-
-To try OS-Installer, without modifying any system settings, run it in test mode with `os-installer -t`.
-Running in GNOME Builder uses the demo mode (`os-installer -d`) and shows test dummy disks.
-Uninstall with `sudo ninja -C build uninstall `
+# Hacking
+See [`Hacking.md`](https://gitlab.gnome.org/p3732/os-installer/-/blob/main/docs/HACKING.md)
 
 # Distributions
 The following describes how to use this in a distribution.
