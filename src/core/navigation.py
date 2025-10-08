@@ -183,7 +183,8 @@ class Navigation(Adw.Bin):
             self._advance(page)
 
     def go_backward(self):
-        self.navigation_view.pop()
+        with self.navigation_lock:
+            self.navigation_view.pop()
 
     def go_forward(self):
         with self.navigation_lock:
