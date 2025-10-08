@@ -89,7 +89,7 @@ class InstallationScripting():
             self.finished_step = self.running_step
             self.running_step = InstallationStep.none
 
-            if not status == 0 and not config.is_demo():
+            if not status == 0:
                 print(f'Failure during step "{self.finished_step.name}"')
                 GLib.idle_add(self._fail_installation, None)
                 return
