@@ -1,0 +1,26 @@
+# Release Notes
+
+## Version 0.4.0
+* Use AdwNavigationView and other modern libadwaita widgets
+* Added Desktop selection page
+* Multiple-choice options for software/feature choices
+* Password/pin can have confirmation fields and minimum length
+* Optional username field added
+* Fixes and internal refactorings for performance improvements
+* Added translations (Arabic, Portuguese (Portugal), Romanian, Russian, Turkish, Urdu) and updated existing translations
+
+## Version 0.3.0
+* Lists scroll more intuitively and look nicer
+* Optional welcome page with distro-customizable text added
+* Summary page to confirm selection added
+* Optional feature page added with which distributions can provide additional options
+* Added and updated translations (Croatian, Dutch, Estonian, French, Georgian, German, Italian, Occitan, Polish, Portuguese (Brazil), Spanish, Swedish, Ukrainian)
+* Keyboard page got overhauled to be simpler
+* Many new config options for distributions, e.g. skipping the user and timezone page when using gnome-initial-setup
+
+## Version 0.2.0
+* GTK4 + libadwaita port
+* lots of other overhauls
+
+## Version 0.1.0
+* Initial version
