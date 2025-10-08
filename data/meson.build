@@ -17,12 +17,14 @@ if desktop_utils.found()
   )
 endif
 
+metainfo_file = '@0@.metainfo.xml'.format(application_id)
 appstream_file = i18n.merge_file(
-  input: '@0@.metainfo.xml.in'.format(application_id),
-  output: '@0@.metainfo.xml'.format(application_id),
-  po_dir: '../po',
+  input: metainfo_file,
+  output: metainfo_file,
+  type: 'xml',
+  po_dir: join_paths(meson.source_root(), 'po'),
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+  install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
 appstream_util = find_program('appstream-util', required: false)
