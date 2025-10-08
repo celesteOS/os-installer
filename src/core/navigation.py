@@ -28,15 +28,18 @@ class Navigation(Adw.Bin):
 
         config.subscribe('displayed-page', self._change_page, delayed=True)
 
+    def _get_next_page(self):
+        if self._current_is_last():
+            return None
+
+        if next_page_name := self._get_next_page_name():
+            return self.navigation_view.find_page(next_page_name)
+        else:
+            return None
+
     def _add_next_page(self, _):
         with self.navigation_lock:
-            if self._current_is_last():
-                return None
-
-            if next_page_name := self._get_next_page_name():
-                return self.navigation_view.find_page(next_page_name)
-            else:
-                return None
+            return self._get_next_page()
 
     def _popped_page(self, _, popped_page):
         if not popped_page.permanent:
@@ -183,7 +186,9 @@ class Navigation(Adw.Bin):
         self.navigation_view.pop()
 
     def go_forward(self):
-        self._add_next_page(None)
+        with self.navigation_lock:
+            page_to_load = self._get_next_page()
+            self.navigation_view.push(page_to_load)
 
     def reload_page(self):
         with self.navigation_lock:
