@@ -8,7 +8,7 @@ from .navigation import Navigation
 from .terminal_dialog import TerminalDialog
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/window.ui')
 class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = __qualname__
 

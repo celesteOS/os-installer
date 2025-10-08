@@ -2,7 +2,6 @@ subdir('ui')
 
 blueprints = custom_target('blueprints',
   input: files(
-    'ui/main_window.blp',
     'ui/pages/choices.blp',
     'ui/pages/confirm.blp',
     'ui/pages/desktop.blp',
@@ -33,6 +32,7 @@ blueprints = custom_target('blueprints',
     'ui/terminal_dialog.blp',
     'ui/widgets/desktop_entry.blp',
     'ui/widgets/page_wrapper.blp',
+    'ui/window.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

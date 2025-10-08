@@ -19,8 +19,8 @@
 
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/about_dialog.ui</file>
-    <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/terminal_dialog.ui</file>
+    <file preprocess="xml-stripblanks">ui/window.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/choices.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
