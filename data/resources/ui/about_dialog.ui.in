@@ -4,7 +4,7 @@
   <object class="AdwAboutDialog" id="about_window">
     <property name="width-request">360</property>
     <property name="height-request">480</property>
-    <property name="application-icon">OS-Installer</property>
+    <property name="application-icon">com.github.p3732.os_installer</property>
     <property name="application-name" translatable="true">OS-Installer</property>
     <property name="comments" translatable="true">Install an Operating System</property>
     <property name="developer-name">Peter Eisenmann (p3732)</property>

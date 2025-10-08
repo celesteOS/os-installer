@@ -1,6 +1,6 @@
-data/com.github.p3732.os_installer.metainfo.xml.in
-data/com.github.p3732.OS-Installer.desktop.in
-data/com.github.p3732.OS-Installer.gschema.xml
+data/com.github.pP3732.os_installer.metainfo.xml.in
+data/com.github.p3732.os_installer.desktop.in
+data/com.github.p3732.os_installer.gschema.xml
 
 data/resources/ui/terminal_dialog.blp
 
