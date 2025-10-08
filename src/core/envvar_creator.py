@@ -26,10 +26,8 @@ def _get(var):
 def _get_device_path():
     if disk := config.get('chosen_device'):
         return disk.device_path
-    elif config.is_test():
-        return 'test-mode-dummy-disk'
     else:
-        print('FATAL: No chosen disk set!')
+        print('Interal Error: No chosen disk set!')
         return ''
 
 
