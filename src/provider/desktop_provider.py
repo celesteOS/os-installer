@@ -29,10 +29,11 @@ class DesktopProvider(Preloadable):
             description = entry.get('description', '')
             image_path = entry['image_path']
 
-            if not os.path.exists(image_path):
+            if os.path.exists(image_path):
+                texture = Gdk.Texture.new_from_filename(image_path)
+            else:
                 print(f'Could not find desktop image "{image_path}"')
-                continue
-            texture = Gdk.Texture.new_from_filename(image_path)
+                texture = None
             desktop = Desktop(entry['name'], description,
                               texture, entry['keyword'])
             self.desktops.append(desktop)
