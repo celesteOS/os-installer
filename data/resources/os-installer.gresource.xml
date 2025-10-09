@@ -3,7 +3,7 @@
   <gresource prefix="/com/github/p3732/os-installer/">
     <!-- App Icon -->
     <file preprocess="xml-stripblanks">../app_icon/com.github.p3732.os_installer.svg</file>
-    <file preprocess="xml-stripblanks">../app_icon/com.github.p3732.os_installer-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="install-symbolic.svg">../app_icon/com.github.p3732.os_installer-symbolic.svg</file>
 
     <!-- CSS -->
     <file>style.css</file>

@@ -78,7 +78,7 @@ page_name_to_image = {
     'failed':               'computer-fail-symbolic',
     'feature':              'puzzle-piece-symbolic',
     'format':               'map-symbolic',
-    'install':              'OS-Installer-symbolic',
+    'install':              'install-symbolic',
     'keyboard-language':    'input-keyboard-symbolic',
     'keyboard-layout':      'input-keyboard-symbolic',
     'keyboard-overview':    'input-keyboard-symbolic',
