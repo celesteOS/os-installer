@@ -6,7 +6,6 @@ Exec=os-installer
 Icon=com.github.p3732.OS_Installer
 Terminal=false
 Type=Application
-Categories=GTK;
 StartupNotify=true
 Categories=GTK;Utility;
 X-GNOME-UsesNotifications=true
