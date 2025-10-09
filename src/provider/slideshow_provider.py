@@ -26,7 +26,7 @@ class SlideshowProvider(Preloadable):
 
             if not image_path:
                 print(f'Ignoring slideshow entry due to missing image: "{entry}"')
-            if not os.path.exists(image_path):
+            elif not os.path.exists(image_path):
                 print(f'Could not find slideshow image "{image_path}"')
             else:
                 image = Gdk.Texture.new_from_filename(image_path)
