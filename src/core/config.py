@@ -76,6 +76,7 @@ internal_values = {
     'software_choices': {},
     # other
     'installation_running': False,
+    'logged-error': None,
     'min_disk_size_str': '',
     'send_notification': None,
     'terminal-placeholder': None,

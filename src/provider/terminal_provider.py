@@ -2,6 +2,7 @@
 
 import ctypes
 
+from .config import config
 from .preloadable import Preloadable
 
 
@@ -13,10 +14,16 @@ class TerminalProvider(Preloadable):
         self.terminal_placeholder = terminal_placeholder
         self.terminal = self.terminal_placeholder.get_child()
         self.stashed = True
+        config.subscribe('logged-error', self._log_error)
 
         # add empty line on top for margin
         new_line = (ctypes.c_char * 1).from_buffer_copy(b'\n')
         self.terminal.feed(new_line)
+
+    def _log_error(self, error):
+        print(error)
+        if self.stashed and error:
+           self.terminal.feed(str.encode(f'{error}\n\r'))
 
     def set_pty(self, pty):
         self.assert_preloaded()

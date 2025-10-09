@@ -66,8 +66,8 @@ class InstallationScripting():
             terminal_provider.set_pty(pty)
             self.running_step = next_step
         elif file_name:
-            print(f'Could not find configured script "{file_name}"')
-            print('Stopping installation')
+            config.set('logged-error', f'Could not find configured script "{file_name}"')
+            config.set('logged-error', 'Stopping installation')
             GLib.idle_add(self._fail_installation, None)
         else:
             print(f'Skipping step "{next_step.name}"')
@@ -81,7 +81,7 @@ class InstallationScripting():
         if success:
             GLib.child_watch_add(pid, self._on_child_exited, None)
         else:
-            print(f'Error starting {self.running_step}')
+            config.set('logged-error', f'Error starting {self.running_step}')
             GLib.idle_add(self._fail_installation, None)
 
     def _on_child_exited(self, pid, status, data):
@@ -90,11 +90,11 @@ class InstallationScripting():
             self.running_step = InstallationStep.none
 
             if not status == 0:
-                print(f'Failure during step "{self.finished_step.name}"')
+                config.set('logged-error', f'Failure during step "{self.finished_step.name}"')
                 GLib.idle_add(self._fail_installation, None)
                 return
 
-            print(f'Finished step "{self.finished_step.name}".')
+            config.set('logged-error', f'Finished step "{self.finished_step.name}".')
 
             self._try_start_next_script()
 
