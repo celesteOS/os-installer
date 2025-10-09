@@ -50,7 +50,7 @@ for device in devices:
         print(f'Drive ({drive_name}) is considered optical')
         continue
     if drive.props.size <= 0:
-        print(f'ignored drive ({drive_name}) size {drive.props.size}')4
+        print(f'ignored drive ({drive_name}) size {drive.props.size}')
 
     print(f'* Disk ({drive_name}), '
           f'size {size_to_str(block.props.size)}, path {block.props.device}:')
