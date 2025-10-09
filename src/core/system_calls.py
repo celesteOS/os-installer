@@ -4,7 +4,7 @@
 
 import locale
 import os
-from subprocess import Popen
+from subprocess import Popen, run
 
 from gi.repository import Gio, GLib
 
@@ -13,7 +13,7 @@ from .config import config
 
 def _execute(args):
     if not config.is_demo() and not config.is_test():
-        subprocess.run(args)
+        run(args)
 
 
 def _run_program(args):
