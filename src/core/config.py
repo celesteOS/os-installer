@@ -186,8 +186,15 @@ class Config:
         if type(replacement) == list:
             # hardcoded for depth of 2, can be made variable if needed
             print(f'Developer hint: "{legacy_prop}" is deprecated, '
-                  f'use "{replacement[0]} -> {replacement[1]}" instead')
-            self.variables[replacement[0]][replacement[1]] = legacy_val
+                  f'use "{str.join(" -> ", replacement)}" instead')
+            vars = self.variables
+            match len(replacement):
+                case 1:
+                    self.variables[replacement[0]] = legacy_val
+                case 2:
+                    self.variables[replacement[0]][replacement[1]] = legacy_val
+                case _:
+                    print('Internal error: Unhandled legacy replacement')
         # removed
         elif replacement == None:
             match legacy_prop:
