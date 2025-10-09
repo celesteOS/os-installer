@@ -18,8 +18,9 @@ if desktop_utils.found()
 endif
 
 metainfo_file = '@0@.metainfo.xml'.format(application_id)
+metainfo_full_path = join_paths(meson.project_source_root(), 'data', metainfo_file)
 appstream_file = i18n.merge_file(
-  input: metainfo_file,
+  input: metainfo_full_path,
   output: metainfo_file,
   type: 'xml',
   po_dir: join_paths(meson.project_source_root(), 'po'),
@@ -35,7 +36,7 @@ if ascli_exe.found()
         args: ['validate',
                '--no-net',
                '--pedantic',
-               metainfo_file]
+               metainfo_full_path]
   )
 endif
 
