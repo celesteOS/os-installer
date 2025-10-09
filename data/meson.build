@@ -22,10 +22,22 @@ appstream_file = i18n.merge_file(
   input: metainfo_file,
   output: metainfo_file,
   type: 'xml',
-  po_dir: join_paths(meson.source_root(), 'po'),
+  po_dir: join_paths(meson.project_source_root(), 'po'),
   install: true,
   install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
+
+# Validate MetaInfo file
+ascli_exe = find_program('appstreamcli', required: false)
+if ascli_exe.found()
+  test('validate metainfo file',
+        ascli_exe,
+        args: ['validate',
+               '--no-net',
+               '--pedantic',
+               metainfo_file]
+  )
+endif
 
 appstream_util = find_program('appstream-util', required: false)
 if appstream_util.found()
