@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-16 14:26-0400\n"
-"PO-Revision-Date: 2024-11-23 12:50+0000\n"
-"Last-Translator: Samed ÖZDEMİR <samedozdemirr@gmail.com>\n"
+"PO-Revision-Date: 2025-10-11 08:07+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid "OS-Installer"
 msgstr "İşletim Sistemi Kurucu"
@@ -57,9 +57,8 @@ msgid "_Confirm"
 msgstr "_Kabul Et"
 
 #. Translators: On button, brackets will be replaced with desktop name.
-#, fuzzy
 msgid "_Use {}"
-msgstr "_Use {}"
+msgstr "{} K_ullan"
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"
@@ -98,9 +97,8 @@ msgid "Encryption PIN"
 msgstr "Şifreleme PIN'i"
 
 #. Translators: Disk encryption pin confirmation entry field
-#, fuzzy
 msgid "Confirm PIN"
-msgstr "Kabul Et"
+msgstr "PIN Kodunu Onayla"
 
 #. Translators: Hint for disk encryption
 msgid ""
@@ -240,9 +238,8 @@ msgid "_Name"
 msgstr "_Ad"
 
 #. Translators: Used with entry field for linux username
-#, fuzzy
 msgid "_Username"
-msgstr "Kullanıcı"
+msgstr "_Kullanıcı Adı"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
@@ -277,9 +274,8 @@ msgid "Confirmation"
 msgstr "Onayla"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Desktop Selection"
-msgstr "Disk Seçimi"
+msgstr "Masaüstü Seçimi"
 
 #. Translators: Page title
 msgid "Disk Selection"
