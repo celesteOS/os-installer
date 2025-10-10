@@ -15,12 +15,14 @@ class WelcomeProvider(Preloadable):
     def _load_image(self):
         welcome = config.get('welcome_page')
 
-        if logo := welcome['logo']:
+        page_image = 'weather-clear-symbolic'
+        if welcome and (logo := welcome['logo']):
             if os.path.exists(logo):
-                texture = Gdk.Texture.new_from_filename(logo)
-                config.set('welcome_page_image', texture)
+                page_image = Gdk.Texture.new_from_filename(logo)
             else:
                 print(f'Could not find welcome logo "{logo}"')
+
+        config.set('welcome_page_image', page_image)
 
 
 welcome_provider = WelcomeProvider()

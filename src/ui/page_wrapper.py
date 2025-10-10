@@ -174,12 +174,10 @@ class PageWrapper(Adw.NavigationPage):
             self.title_image.set_from_paintable(image)
         elif isinstance(image, Path):
             self.title_image.set_from_file(str(image))
-        elif image is None:
-            self.title_image.set_visible(False)
         else:
-            print('Developer hint: invalid title image')
-            assert self.page_name == 'welcome'
-            self.title_image.set_from_icon_name('weather-clear-symbolic')
+            if not image is None:
+                print(f"Internal error: Can't handle page image {image}")
+            self.title_image.set_visible(False)
 
     ### public methods ###
 
