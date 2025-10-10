@@ -18,17 +18,27 @@ template $DesktopEntry: Button {
       height-request: 90;
     }
 
-    Label {
-      label: bind template.name;
-      ellipsize: none;
+    Box {
+      hexpand: true;
       vexpand: true;
-      margin-start: 12;
-      margin-end: 12;
-      margin-top: 6;
-      margin-bottom: 6;
-      wrap: true;
+      halign:center;
 
-      styles ["heading"]
+      Label {
+        label: bind template.name;
+        ellipsize: none;
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 6;
+        margin-bottom: 6;
+        wrap: true;
+
+        styles ["heading"]
+      }
+
+      Image {
+        icon-name: "selection-mode-symbolic";
+        visible: bind template.is_selected;
+      }
     }
   };
 }

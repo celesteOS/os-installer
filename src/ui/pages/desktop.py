@@ -12,6 +12,8 @@ from .translations import translate_widgets
 class DesktopEntry(Gtk.Button):
     __gtype_name__ = __qualname__
 
+    is_selected = GObject.Property(type=bool, default=False)
+
     def __init__(self, desktop, **kwargs):
         self.desktop = desktop
         self._name = _(self.desktop.name)
@@ -70,7 +72,9 @@ class DesktopPage(Gtk.Box):
 
         if self.selected_entry:
             self.selected_entry.remove_css_class('selected-card')
+            self.selected_entry.set_property("is_selected", False)
             self.selected_entry.remove_css_class('suggested-action')
+        entry.set_property("is_selected", True)
         entry.add_css_class('selected-card')
         entry.add_css_class('suggested-action')
         self.selected_entry = entry
