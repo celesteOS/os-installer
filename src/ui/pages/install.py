@@ -19,13 +19,17 @@ class InstallPage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        if slideshow := slideshow_provider.get_slideshow():
+        if self._setup_slideshow():
             self.stack.set_visible_child_name('slideshow')
-            self._setup_slideshow(slideshow)
         else:
             self.stack.set_visible_child_name('spinner')
 
-    def _setup_slideshow(self, slideshow):
+    def _setup_slideshow(self):
+        slideshow = slideshow_provider.get_slideshow()
+
+        if not slideshow:
+            return False
+
         self.durations = []
         self.slideshow_position = 0
 
@@ -35,6 +39,9 @@ class InstallPage(Gtk.Box):
             picture.set_valign(Gtk.Align.CENTER)
             self.carousel.append(picture)
             self.durations.append(slide.duration)
+
+        if self.carousel.get_n_pages() == 0:
+            return False
 
         self.lock = Lock()
         self.cv = Condition(self.lock)
@@ -48,6 +55,8 @@ class InstallPage(Gtk.Box):
         self.thread = Thread(target=self._run_slideshow, daemon=True)
         self.thread.start()
         config.subscribe('displayed-page', self._stop_slideshow, delayed=True)
+
+        return True
 
     def _run_slideshow(self):
         num_slides = self.carousel.get_n_pages()
