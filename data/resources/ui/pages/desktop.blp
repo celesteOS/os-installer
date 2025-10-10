@@ -7,6 +7,14 @@ template $DesktopPage: Box {
   orientation: vertical;
   spacing:12;
 
+  Grid grid {
+    column-homogeneous: true;
+    row-homogeneous: true;
+    column-spacing: 12;
+    row-spacing: 12;
+    hexpand: true;
+  }
+
   Picture selected_image {
     content-fit: contain;
     halign: center;
@@ -31,14 +39,6 @@ template $DesktopPage: Box {
     valign: center;
     use-underline: true;
     styles ["suggested-action", "pill"]
-  }
-
-  Grid grid {
-    column-homogeneous: true;
-    row-homogeneous: true;
-    column-spacing: 12;
-    row-spacing: 12;
-    hexpand: true;
   }
 }
 
