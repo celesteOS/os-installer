@@ -28,18 +28,6 @@ class DeviceInfo(GObject.Object):
     def size(self):
         return self._size_text
 
-    @GObject.Property(type=str)
-    def device_path(self):
-        return self._device_path
-
-    @GObject.Property(type=str)
-    def name(self):
-        return self._name
-
-    @GObject.Property(type=str)
-    def size(self):
-        return self._size_text
-
 
 class Disk(DeviceInfo):
     partitions: list = []
