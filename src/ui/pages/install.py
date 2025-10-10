@@ -26,7 +26,6 @@ class InstallPage(Gtk.Box):
             self.stack.set_visible_child_name('spinner')
 
     def _setup_slideshow(self, slideshow):
-        self.num_slides = len(slideshow)
         self.durations = []
         self.slideshow_position = 0
 
@@ -51,6 +50,7 @@ class InstallPage(Gtk.Box):
         config.subscribe('displayed-page', self._stop_slideshow, delayed=True)
 
     def _run_slideshow(self):
+        num_slides = self.carousel.get_n_pages()
         with self.cv:
             while True:
                 timeout = self.durations[self.current_pos] + self.extra_timeout
@@ -63,7 +63,7 @@ class InstallPage(Gtk.Box):
                     self.reset_timeout = False
                     continue
 
-                self.current_pos = (self.current_pos + 1) % self.num_slides
+                self.current_pos = (self.current_pos + 1) % num_slides
                 GLib.idle_add(self._ui_change_slide, self.current_pos)
 
     def _stop_slideshow(self, value):
