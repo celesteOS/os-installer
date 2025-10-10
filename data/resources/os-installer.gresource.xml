@@ -9,13 +9,13 @@
     <file>style.css</file>
 
     <!-- Icons -->
-    <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/map-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/puzzle-piece-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/success-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/user-symbolic.svg</file>
+    <file>icon/scalable/actions/globe-symbolic.svg</file>
+    <file>icon/scalable/actions/language-symbolic.svg</file>
+    <file>icon/scalable/actions/map-symbolic.svg</file>
+    <file>icon/scalable/actions/puzzle-piece-symbolic.svg</file>
+    <file>icon/scalable/actions/question-round-symbolic.svg</file>
+    <file>icon/scalable/actions/success-symbolic.svg</file>
+    <file>icon/scalable/actions/user-symbolic.svg</file>
 
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/about_dialog.ui</file>
