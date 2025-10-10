@@ -21,6 +21,10 @@ class DesktopEntry(Gtk.Button):
     def texture(self):
         return self.desktop.texture
 
+    @GObject.Property(type=bool, default=False)
+    def with_texture(self):
+        return self.desktop.texture != None
+
     @GObject.Property(type=str)
     def name(self):
         return self._name
@@ -55,8 +59,11 @@ class DesktopPage(Gtk.Box):
     def _set_selected_desktop(self, entry):
         desktop = entry.desktop
         self.continue_button.set_label(self.button_label.format(desktop.name))
-        self.selected_image.set_paintable(None)
-        self.selected_image.set_paintable(desktop.texture)
+        if desktop.texture:
+            self.selected_image.set_visible(True)
+            self.selected_image.set_paintable(desktop.texture)
+        else:
+            self.selected_image.set_visible(False)
 
         description = _(desktop.description)
         self.selected_description.set_label(description)

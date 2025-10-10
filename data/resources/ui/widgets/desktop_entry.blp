@@ -7,8 +7,11 @@ template $DesktopEntry: Button {
   child: Box {
     halign: center;
     orientation: vertical;
+    height-request: 42;
+    vexpand: false;
 
     Picture {
+      visible: bind template.with_texture;
       paintable: bind template.texture;
       content-fit: cover;
       halign: center;
@@ -18,6 +21,7 @@ template $DesktopEntry: Button {
     Label {
       label: bind template.name;
       ellipsize: none;
+      vexpand: true;
       margin-start: 12;
       margin-end: 12;
       margin-top: 6;
