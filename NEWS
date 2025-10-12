@@ -1,5 +1,12 @@
 # Release Notes
 
+## Version 0.5.1
+* Adjust desktop selection
+* Improve handling of missing images
+* Log installation errors in terminal
+* Fix app icon naming
+* Updated translations
+
 ## Version 0.5.0
 ### Features
 * Working translations independent of system languages
