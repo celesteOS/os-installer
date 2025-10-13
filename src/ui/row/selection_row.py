@@ -21,7 +21,7 @@ class MultiSelectionRow(Adw.ComboRow):
         if choice.description:
             self.set_subtitle(_(choice.description))
         if choice.icon_path:
-            self.icon.set_from_file(choice.icon_path)
+            self.icon.set_from_file(str(choice.icon_path))
         else:
             self.icon.set_from_icon_name(choice.icon_name)
             self.icon.set_icon_size(Gtk.IconSize.LARGE)
@@ -59,7 +59,7 @@ class SelectionRow(Adw.ActionRow):
             self.set_subtitle(_(choice.description))
         self.switch.set_active(choice.state)
         if choice.icon_path:
-            self.icon.set_from_file(choice.icon_path)
+            self.icon.set_from_file(str(choice.icon_path))
         else:
             self.icon.set_from_icon_name(choice.icon_name)
             self.icon.set_icon_size(Gtk.IconSize.LARGE)

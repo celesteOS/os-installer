@@ -20,7 +20,10 @@ class Choice(GObject.Object):
 
         self.name = name
         self.description = description
-        self.icon_path = icon_path
+        if icon_path:
+            self.icon_path = config.base_path / icon_path
+        else:
+            self.icon_path = None
 
         self.options = options
         self.state = options[0] if options else suggested
@@ -30,7 +33,7 @@ class Choice(GObject.Object):
 def handle_choice(choice):
     name = choice['name']
     description = choice.get('description', '')
-    icon_path = choice.get('icon_path', '')
+    icon_path = choice.get('icon_path', None)
 
     if 'options' in choice:
         if 'keyword' in choice or 'suggested' in choice:

@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from typing import NamedTuple
-import os
 
 from gi.repository import Gdk
 
@@ -27,10 +26,10 @@ class DesktopProvider(Preloadable):
                 print(f'Desktop choice not correctly configured: {entry}')
                 continue
             description = entry.get('description', '')
-            image_path = entry['image_path']
+            image_path = config.base_path / entry['image_path']
 
-            if os.path.exists(image_path):
-                texture = Gdk.Texture.new_from_filename(image_path)
+            if image_path.exists():
+                texture = Gdk.Texture.new_from_filename(str(image_path))
             else:
                 print(f'Could not find desktop image "{image_path}"')
                 texture = None

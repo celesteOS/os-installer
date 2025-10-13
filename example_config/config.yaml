@@ -33,9 +33,9 @@ distribution_name: 'Debuntorarch'
 #
 # Default: None
 scripts:
-  prepare: /etc/os-installer/scripts/prepare.sh
-  install: /etc/os-installer/scripts/install.py
-  configure: /etc/os-installer/scripts/configure.sh
+  prepare: scripts/prepare.sh
+  install: scripts/install.py
+  configure: scripts/configure.sh
 
 # Configure whether an internet connection is required. Optionally set what
 # URL/IP address is used to check for an existing internet connection.
@@ -57,7 +57,7 @@ fixed_language: no
 #
 # Default: logo: None, text: None, usage: yes
 welcome_page:
-  logo    : '/etc/os-installer/distro.svg'
+  logo    : 'distro.svg'
   text    : 'A welcoming text to inform about the installation.'
   usage   : yes
 
@@ -100,19 +100,19 @@ disk_encryption:
 desktop:
   - name        : 'GNOME'
     description : 'Simple desktop that can be personalized with extensions.'
-    image_path  : '/etc/os-installer/desktops/gnome.jpg'
+    image_path  : 'desktops/gnome.jpg'
     keyword     : 'gnome'
   - name        : 'KDE Plasma'
     description : 'Configurable desktop that is similar to Windows.'
-    image_path  : '/etc/os-installer/desktops/kde.png'
+    image_path  : 'desktops/kde.png'
     keyword     : 'kde'
   - name        : 'Xfce'
     description : 'Lightweight desktop with focus on modularity.'
-    image_path  : '/etc/os-installer/desktops/xfce.png'
+    image_path  : 'desktops/xfce.png'
     keyword     : 'xfce'
   - name        : 'Enlightenment'
     description : 'Highly configurable, lightweight desktop for tinkerers.'
-    image_path  : '/etc/os-installer/desktops/enlightenment.png'
+    image_path  : 'desktops/enlightenment.png'
     keyword     : 'enlightenment'
 
 # User setup requests a printable name and a password by default.
@@ -157,7 +157,7 @@ skip_user: no
 additional_software:
   - name           : 'Firefox'
     description    : 'Popular Web Browser from Mozilla'
-    icon_path      : '/etc/os-installer/icons/firefox.png'
+    icon_path      : 'icons/firefox.png'
     keyword        : 'firefox'
     suggested      : yes
   - name           : 'Chr👁️me'
@@ -166,12 +166,12 @@ additional_software:
     suggested      : no
   - name           : 'Files'
     description    : 'Access and organize files'
-    icon_path      : '/etc/os-installer/icons/nautilus.svg'
+    icon_path      : 'icons/nautilus.svg'
     keyword        : 'nautilus'
     suggested      : yes
   - name           : 'Optional Option'
     description    : 'Select your favorite option'
-    icon_path      : '/etc/os-installer/icons/options-symbolic.svg'
+    icon_path      : 'icons/options-symbolic.svg'
     options        :
       - name       : 'Nothing'
       - name       : 'Option 1'
@@ -190,7 +190,7 @@ additional_features:
     keyword        : 'dummy'
   - name           : 'Snapshots'
     description    : 'Snapshots allow restoring a previous state of your system'
-    icon_path      : '/etc/os-installer/icons/snapshot.svg'
+    icon_path      : 'icons/snapshot.svg'
     keyword        : 'snapshots'
     suggested      : yes
   - name           : 'Background Image'
@@ -209,12 +209,12 @@ additional_features:
 #
 # Default: []
 install_slideshow:
-  - image_path: '/etc/os-installer/desktops/enlightenment.png'
+  - image_path: 'desktops/enlightenment.png'
     seconds: 1
-  - image_path: '/etc/os-installer/desktops/gnome.jpg'
+  - image_path: 'desktops/gnome.jpg'
     seconds: 3
-  - image_path: '/etc/os-installer/desktops/kde.png'
-  - image_path: '/etc/os-installer/desktops/xfce.png'
+  - image_path: 'desktops/kde.png'
+  - image_path: 'desktops/xfce.png'
     seconds: 7
 
 # Upon failure an option to search for help on the internet is given.

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import Enum
+from pathlib import Path
 from threading import Lock
 import traceback
 import yaml
@@ -250,12 +251,17 @@ class Config:
         elif test_mode:
             self.run_mode = RunMode.test
 
+        self.base_path = Path('')
+
         use_default_error = None
         try:
             with open(config_path, 'r') as file:
                 self._load_from_file(file)
             if not _validate(self.variables) or not _validate_scripts(self.variables):
                 use_default_error = 'Config errors'
+            else:
+                print(f"Config base path is '{self.base_path}'")
+                self.base_path = Path(config_path).parent.absolute()
         except FileNotFoundError as e:
             use_default_error = 'Could not find config file'
         except Exception as e:
