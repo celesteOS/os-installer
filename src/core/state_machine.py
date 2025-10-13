@@ -76,6 +76,10 @@ class StateMachine:
 
     ### public methods ###
 
+    def is_page_available(self, page):
+        self._assert_available_pages()
+        return page in self.available_pages
+
     def get_available_pages(self):
         self._assert_available_pages()
         return self.available_pages

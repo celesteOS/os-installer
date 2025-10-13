@@ -5,6 +5,7 @@ from gi.repository import Gtk
 from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
+from .state_machine import state_machine
 from .translator import config_gettext
 from .translations import translate_widgets
 
@@ -37,23 +38,23 @@ class SummaryPage(Gtk.Box):
                           self.user_autologin, self.format_row, self.timezone_row, self.software_row,
                           self.feature_row)
 
-        if config.get('desktop'):
+        if state_machine.is_page_available('desktop'):
             self.desktop_row.set_visible(True)
             config.subscribe('desktop_chosen', self._update_desktop)
-        if not config.get('fixed_language'):
+        if state_machine.is_page_available('language'):
             self.language_row.set_visible(True)
             config.subscribe('language_chosen', self._update_language)
-        if config.get('additional_features'):
+        if state_machine.is_page_available('feature'):
             self.feature_row.set_visible(True)
             config.subscribe('feature_choices', self._update_feature_choices)
-        if config.get('additional_software'):
+        if state_machine.is_page_available('software'):
             self.software_row.set_visible(True)
             config.subscribe('software_choices', self._update_software_choices)
-        if not config.get('skip_user'):
+        if state_machine.is_page_available('user'):
             self.user_row.set_visible(True)
             config.subscribe('user_autologin', self._update_user_autologin)
             config.subscribe('user_name', self._update_user_name)
-        if not config.get('skip_region'):
+        if state_machine.is_page_available('region'):
             self.format_row.set_visible(True)
             config.subscribe('formats', self._update_formats)
             self.timezone_row.set_visible(True)
