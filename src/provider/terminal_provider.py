@@ -14,7 +14,7 @@ class TerminalProvider(Preloadable):
         self.terminal_placeholder = terminal_placeholder
         self.terminal = self.terminal_placeholder.get_child()
         self.stashed = True
-        config.subscribe('logged-error', self._log_error)
+        config.subscribe('logged-error', self._log_error, delayed=True)
 
         # add empty line on top for margin
         new_line = (ctypes.c_char * 1).from_buffer_copy(b'\n')
