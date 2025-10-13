@@ -54,6 +54,12 @@ class InstallationScripting():
 
         # start script
         file_name = config.get('scripts')[next_step.name]
+        if not file_name:
+            print(f'Skipping step "{next_step.name}"')
+            self.finished_step = next_step
+            self._try_start_next_script()
+            return
+
         if file_name is not None and os.path.exists(file_name):
             print(f'Starting step "{next_step.name}"...')
             pty = Vte.Pty.new_sync(Vte.PtyFlags.NO_CTTY, self.cancel)
@@ -65,14 +71,10 @@ class InstallationScripting():
                 (None,))
             terminal_provider.set_pty(pty)
             self.running_step = next_step
-        elif file_name:
+        else:
             config.set('logged-error', f'Could not find configured script "{file_name}"')
             config.set('logged-error', 'Stopping installation')
             GLib.idle_add(self._fail_installation, None)
-        else:
-            print(f'Skipping step "{next_step.name}"')
-            self.finished_step = next_step
-            self._try_start_next_script()
 
     ### callbacks ###
 
