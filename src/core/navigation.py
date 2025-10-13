@@ -6,7 +6,7 @@ from gi.repository import Adw, Gio, Gtk
 
 from .config import config
 from .page_wrapper import PageWrapper
-from .state_machine import page_order, state_machine
+from .state_machine import state_machine
 
 
 class Navigation(Adw.Bin):
@@ -20,7 +20,7 @@ class Navigation(Adw.Bin):
         self.navigation_view.set_pop_on_escape(False)
         self.set_child(self.navigation_view)
 
-        self._determine_available_pages()
+        self.available_pages = state_machine.get_available_pages()
         self._initialize_first_page()
         self.navigation_view.connect('get-next-page', self._add_next_page)
         self.navigation_view.connect('popped', self._popped_page)
@@ -52,40 +52,6 @@ class Navigation(Adw.Bin):
     def _initialize_first_page(self):
         initial_page = PageWrapper(self.available_pages[0])
         self.navigation_view.add(initial_page)
-
-    def _determine_available_pages(self):
-        page_conditions = {
-            'language': self._offer_language_selection(),
-            'welcome': config.get('welcome_page')['usage'],
-            'internet': config.get('internet')['connection_required'],
-            'encrypt': self._offer_encryption(),
-            'desktop': config.get('desktop'),
-            'confirm': config.get('scripts')['install'],
-            'user': not config.get('skip_user'),
-            'region': not config.get('skip_region'),
-            'software': config.get('additional_software'),
-            'feature': config.get('additional_features'),
-        }
-
-        self.available_pages = [
-            page for page in page_order if page not in page_conditions or page_conditions[page]]
-
-    def _offer_language_selection(self):
-        use_fixed_language = config.get('language_use_fixed')
-        if type(use_fixed_language) is not bool:
-            use_fixed_language = use_fixed_language.result()
-            config.set('language_use_fixed', use_fixed_language)
-        return not use_fixed_language
-
-    def _offer_encryption(self):
-        encryption_settings = config.get('disk_encryption')
-        if not encryption_settings['offered']:
-            return False
-        elif encryption_settings['forced'] and encryption_settings['generated']:
-            config.set('use_encryption', True)
-            return False
-        else:
-            return True
 
     def _remove_all_pages(self, exception=None):
         for page_name in self.available_pages:
