@@ -71,21 +71,21 @@ class SummaryPage(Gtk.Box):
         config.subscribe('chosen_device', self._update_device_row)
 
     def _update_choices(self, row, choices):
-        if not choices:
-            # Translators: Shown when list of selected software is empty.
-            row.set_subtitle(_("None"))
-            return
-
         _ = config_gettext
         choice_texts = []
         for choice in choices:
             if choice.options:
-                text = f'{_(choice.name)} – {_(choice.state.display)}'
-                choice_texts.append(text)
+                if choice.state.keyword:
+                    text = f'{_(choice.name)} – {_(choice.state.display)}'
+                    choice_texts.append(text)
             elif choice.state:
                 choice_texts.append(_(choice.name))
 
-        row.set_subtitle(', '.join(choice_texts))
+        if choice_texts:
+            row.set_subtitle(', '.join(choice_texts))
+        else:
+            # Translators: Shown when list of selected software is empty.
+            row.set_subtitle(_("None"))
 
     ### callbacks ###
 
