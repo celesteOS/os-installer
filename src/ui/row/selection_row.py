@@ -28,18 +28,13 @@ class MultiSelectionRow(Adw.ComboRow):
 
         self.list.splice(0, 0, [_(option.display) for option in choice.options])
         self.set_model(self.list)
-        self.update_choice()
+        self.set_selected(self.choice.options.index(self.choice.state))
 
     def get_chosen_option(self):
         return self.choice.options[self.get_selected()]
 
     def update_choice(self):
-        display_text = self.get_selected_item().get_string()
-        for index, option in enumerate(self.choice.options):
-            if option.display == display_text:
-                self.set_selected(index)
-                self.choice.state = option
-                return
+        self.choice.state = self.choice.options[self.get_selected()]
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/row/selection_row.ui')
