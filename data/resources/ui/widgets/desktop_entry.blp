@@ -10,12 +10,27 @@ template $DesktopEntry: Button {
     height-request: 42;
     vexpand: false;
 
-    Picture {
-      visible: bind template.with_texture;
-      paintable: bind template.texture;
-      content-fit: cover;
-      halign: center;
-      height-request: 90;
+    Overlay {
+      child: Picture {
+        visible: bind template.with_texture;
+        paintable: bind template.texture;
+        content-fit: cover;
+        halign: center;
+        height-request: 90;
+      };
+
+      [overlay]
+      Button {
+        icon-name: "selection-mode-symbolic";
+        visible: bind template.is_selected;
+        focusable: false;
+        can-target: false;
+        margin-end: 6;
+        margin-bottom: 6;
+        halign: end;
+        valign: end;
+        styles ["circular", "suggested-action"]
+      }
     }
 
     Box {
@@ -35,11 +50,6 @@ template $DesktopEntry: Button {
         wrap-mode: word_char;
 
         styles ["heading"]
-      }
-
-      Image {
-        icon-name: "selection-mode-symbolic";
-        visible: bind template.is_selected;
       }
     }
   };
