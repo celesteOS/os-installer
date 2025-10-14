@@ -11,41 +11,23 @@ template $SummaryPage : Box {
     row-activated => $summary_row_activated();
     styles ["boxed-list"]
 
-    Adw.ActionRow language_row {
+    $SummaryRow language_row {
       name: "language";
-      activatable: true;
       /* Translators: Description of selected language. */
       title: _("Language");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
 
-    Adw.ActionRow keyboard_row {
+    $SummaryRow keyboard_row {
       name: "keyboard-overview";
-      activatable: true;
       /* Translators: Description of selected keyboard layout. */
       title: _("Keyboard Layout");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
+      visible: true;
     }
 
-    Adw.ActionRow desktop_row {
-      visible: false;
+    $SummaryRow desktop_row {
       name: "desktop";
-      activatable: true;
       /* Translators: Description of selected keyboard layout. */
       title: _("Desktop");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
 
     Adw.ActionRow user_row {
@@ -73,56 +55,28 @@ template $SummaryPage : Box {
       }
     }
 
-    Adw.ActionRow format_row {
+    $SummaryRow format_row {
       name: "format";
-      activatable: true;
-      visible: false;
       /* Translators: Description of selected format. */
       title: _("Formats");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
 
-    Adw.ActionRow timezone_row {
+    $SummaryRow timezone_row {
       name: "timezone";
-      activatable: true;
-      visible: false;
       /* Translators: Description of selected timezone. */
       title: _("Timezone");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
 
-    Adw.ActionRow software_row {
+    $SummaryRow software_row {
       name: "software";
-      activatable: true;
-      visible: false;
       /* Translators: Description of selected additional software. */
       title: _("Additional Software");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
 
-    Adw.ActionRow feature_row {
+    $SummaryRow feature_row {
       name: "feature";
-      activatable: true;
-      visible: false;
       /* Translators: Description of selected additional features. */
       title: _("Additional Features");
-      styles ["property"]
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
     }
   }
 

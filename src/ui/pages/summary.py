@@ -5,6 +5,7 @@ from gi.repository import Gtk
 from .buttons import ConfirmButton
 from .config import config
 from .device_rows import DeviceSummaryRow
+from .summary_row import SummaryRow
 from .state_machine import state_machine
 from .translator import config_gettext
 from .translations import translate_widgets

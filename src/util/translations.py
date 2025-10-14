@@ -5,8 +5,13 @@ from gi.repository import Adw, Gtk
 
 def translate_widgets(*widgets):
     for widget in widgets:
+        # Covers subclassed widgets such as SummaryRow but also
+        # Adw.ActionRow | Adw.EntryRow | Adw.PasswordEntryRow | Adw.SwitchRow
+        if issubclass(type(widget), Adw.PreferencesRow):
+            widget.set_title(_(widget.get_title()))
+            continue
         match type(widget):
-            case Adw.ActionRow | Adw.EntryRow | Adw.ExpanderRow | Adw.PasswordEntryRow | Adw.SwitchRow:
+            case Adw.ExpanderRow:
                 widget.set_title(_(widget.get_title()))
             case Adw.ButtonContent:
                 widget.set_label(_(widget.get_label()))

@@ -50,6 +50,7 @@
     <file preprocess="xml-stripblanks">ui/row/no_efi_partition_row.ui</file>
     <file preprocess="xml-stripblanks">ui/row/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/row/selection_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/row/summary_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/desktop_entry.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>
   </gresource>
