@@ -260,8 +260,8 @@ class Config:
             if not _validate(self.variables) or not _validate_scripts(self.variables):
                 use_default_error = 'Config errors'
             else:
-                print(f"Config base path is '{self.base_path}'")
                 self.base_path = Path(config_path).parent.absolute()
+                print(f"Config base path is '{self.base_path}'")
         except FileNotFoundError as e:
             use_default_error = 'Could not find config file'
         except Exception as e:
