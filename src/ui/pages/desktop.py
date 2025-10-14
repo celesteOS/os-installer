@@ -67,7 +67,7 @@ class DesktopPage(Gtk.Box):
         else:
             self.selected_image.set_visible(False)
 
-        description = _(desktop.description)
+        description = _(desktop.description) if desktop.description else ''
         self.selected_description.set_label(description)
 
         if self.selected_entry:
