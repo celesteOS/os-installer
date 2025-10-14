@@ -21,7 +21,8 @@ template $DesktopEntry: Button {
     Box {
       hexpand: true;
       vexpand: true;
-      halign:center;
+      orientation: vertical;
+      valign: center;
 
       Label {
         label: bind template.name;
@@ -31,6 +32,7 @@ template $DesktopEntry: Button {
         margin-top: 6;
         margin-bottom: 6;
         wrap: true;
+        wrap-mode: word_char;
 
         styles ["heading"]
       }
