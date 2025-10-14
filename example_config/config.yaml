@@ -93,7 +93,7 @@ disk_encryption:
 #
 # name        string  Name of desktop. Translatable.
 # description string  Optional. Short descripiton of the desktop. Translatable.
-# image_path  string  Absolute path of an image to display.
+# image_path  string  Optional. Absolute path of an image to display.
 # keyword     string  Forwarded to the installation script as is.
 #
 # Default: [] (no desktop selection page)
@@ -114,6 +114,8 @@ desktop:
     description : 'Highly configurable, lightweight desktop for tinkerers.'
     image_path  : 'desktops/enlightenment.png'
     keyword     : 'enlightenment'
+  - name        : 'CLI-only'
+    keyword     : 'cli'
 
 # User setup requests a printable name and a password by default.
 #

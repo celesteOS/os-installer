@@ -22,20 +22,22 @@ class DesktopProvider(Preloadable):
     def _get_desktops(self):
         self.desktops: list = []
         for entry in config.get('desktop'):
-            if not set(entry).issuperset(['name', 'keyword', 'image_path']):
+            if not set(entry).issuperset(['name', 'keyword']):
                 print(f'Desktop choice not correctly configured: {entry}')
                 continue
             description = entry.get('description', '')
-            image_path = config.base_path / entry['image_path']
+            texture = self._get_texture(entry)
+            self.desktops.append(Desktop(entry['name'], description,
+                                 texture, entry['keyword']))
 
+    def _get_texture(self, entry):
+        if 'image_path' in entry:
+            image_path = config.base_path / entry['image_path']
             if image_path.exists():
-                texture = Gdk.Texture.new_from_filename(str(image_path))
+                return Gdk.Texture.new_from_filename(str(image_path))
             else:
                 print(f'Could not find desktop image "{image_path}"')
-                texture = None
-            desktop = Desktop(entry['name'], description,
-                              texture, entry['keyword'])
-            self.desktops.append(desktop)
+        return None
 
     ### public methods ###
 
