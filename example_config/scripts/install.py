@@ -47,7 +47,7 @@ def idleAround():
 
     for i in range(20):
         sleep(1)
-        print(".", end="")
+        print(".", end="", flush=True)
 
 
 if __name__ == '__main__':
