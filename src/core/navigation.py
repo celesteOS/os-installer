@@ -74,10 +74,6 @@ class Navigation(Adw.Bin):
         else:
             return None
 
-    def _advance_wrapper(self, page=None, dummy=None):
-        with self.navigation_lock:
-            self._advance(self, page)
-
     def _advance(self, page):
         # confirm calling page is current page to prevent incorrect navigation
         current_page = self.navigation_view.get_visible_page()
