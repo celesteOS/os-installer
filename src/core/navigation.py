@@ -140,9 +140,9 @@ class Navigation(Adw.Bin):
 
     ### public methods ###
 
-    def advance(self, page=None):
+    def advance(self, _):
         with self.navigation_lock:
-            self._advance(page)
+            self._advance(None)
 
     def go_backward(self):
         with self.navigation_lock:
