@@ -76,9 +76,14 @@ class StateMachine:
 
     ### public methods ###
 
-    def is_page_available(self, page):
+    def is_page_available(self, page_name):
         self._assert_available_pages()
-        return page in self.available_pages
+        match page_name:
+            case 'format' | 'timezone':
+                searched_name = 'region'
+            case _:
+                searched_name = page_name
+        return searched_name in self.available_pages
 
     def get_available_pages(self):
         self._assert_available_pages()
