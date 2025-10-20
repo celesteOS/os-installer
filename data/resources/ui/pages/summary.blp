@@ -12,22 +12,15 @@ template $SummaryPage : Box {
     styles ["boxed-list"]
 
     $SummaryRow language_row {
-      name: "language";
-      /* Translators: Description of selected language. */
-      title: _("Language");
+      page-name: "language";
     }
 
-    $SummaryRow keyboard_row {
-      name: "keyboard-overview";
-      /* Translators: Description of selected keyboard layout. */
-      title: _("Keyboard Layout");
-      visible: true;
+    $SummaryRow {
+      page-name: "keyboard-overview";
     }
 
     $SummaryRow desktop_row {
-      name: "desktop";
-      /* Translators: Description of selected keyboard layout. */
-      title: _("Desktop");
+      page-name: "desktop";
     }
 
     Adw.ActionRow user_row {
@@ -55,28 +48,20 @@ template $SummaryPage : Box {
       }
     }
 
-    $SummaryRow format_row {
-      name: "format";
-      /* Translators: Description of selected format. */
-      title: _("Formats");
+    $SummaryRow {
+      page-name: "format";
     }
 
-    $SummaryRow timezone_row {
-      name: "timezone";
-      /* Translators: Description of selected timezone. */
-      title: _("Timezone");
+    $SummaryRow {
+      page-name: "timezone";
     }
 
-    $SummaryRow software_row {
-      name: "software";
-      /* Translators: Description of selected additional software. */
-      title: _("Additional Software");
+    $SummaryRow {
+      page-name: "software";
     }
 
-    $SummaryRow feature_row {
-      name: "feature";
-      /* Translators: Description of selected additional features. */
-      title: _("Additional Features");
+    $SummaryRow {
+      page-name: "feature";
     }
   }
 

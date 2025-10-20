@@ -31,3 +31,4 @@ src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py
 src/ui/pages/summary.py
 src/ui/row/device_rows.py
+src/ui/row/summary_row.py
