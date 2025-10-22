@@ -17,9 +17,15 @@ template $ConfirmPage : Box {
     styles ["boxed-list"]
   }
 
-  $ConfirmButton {
-    action-name: "win.advance";
-    receives-default: true;
-    styles ["destructive-action", "pill"]
+  CenterBox {
+      vexpand: true;
+
+      [center]
+      $ContinueButton {
+        action-name: "win.advance";
+        receives-default: true;
+        vexpand: true;
+        valign: end;
+      }
   }
 }

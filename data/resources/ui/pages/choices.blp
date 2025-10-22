@@ -10,8 +10,16 @@ template $ChoicesPage : Box {
     styles ["boxed-list"]
   }
 
-  $ContinueButton {
-    action-name: "win.advance";
+  CenterBox {
+      vexpand: true;
+
+      [center]
+      $ContinueButton {
+        action-name: "win.advance";
+        receives-default: true;
+        vexpand: true;
+        valign: end;
+      }
   }
 }
 

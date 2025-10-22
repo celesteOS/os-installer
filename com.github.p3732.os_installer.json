@@ -1,16 +1,16 @@
 {
-    "app-id": "com.github.p3732.os_installer",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "48",
-    "sdk": "org.gnome.Sdk",
-    "command": "os-installer-demo",
-    "finish-args": [
+    "app-id" : "com.github.p3732.os_installer",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "49",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "os-installer-demo",
+    "finish-args" : [
         "--share=network",
         "--share=ipc",
         "--socket=fallback-x11",
         "--socket=wayland"
     ],
-    "cleanup": [
+    "cleanup" : [
         "/include",
         "/lib/pkgconfig",
         "/man",
@@ -21,23 +21,25 @@
         "*.la",
         "*.a"
     ],
-    "modules": [
+    "modules" : [
         {
-            "name":"blueprint-compiler",
-            "buildsystem": "meson",
-            "cleanup": ["*"],
-            "sources": [
+            "name" : "blueprint-compiler",
+            "buildsystem" : "meson",
+            "cleanup" : [
+                "*"
+            ],
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-                    "tag": "v0.16.0"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/blueprint-compiler.git",
+                    "tag" : "v0.16.0"
                 }
             ]
         },
         {
-            "name": "vte",
-            "buildsystem": "meson",
-            "config-opts": [
+            "name" : "vte",
+            "buildsystem" : "meson",
+            "config-opts" : [
                 "-Ddocs=false",
                 "-Dglade=false",
                 "-Dgnutls=false",
@@ -46,50 +48,50 @@
                 "-Dicu=false",
                 "-Dvapi=false"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/vte.git",
-                    "tag": "0.78.2"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/vte.git",
+                    "tag" : "0.78.2"
                 }
             ]
         },
         {
-            "name": "geocode-glib",
-            "buildsystem": "meson",
-            "config-opts": [
+            "name" : "geocode-glib",
+            "buildsystem" : "meson",
+            "config-opts" : [
                 "-Denable-gtk-doc=false",
                 "-Denable-installed-tests=false",
                 "-Dsoup2=false"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/geocode-glib.git",
-                    "tag": "3.26.4"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/geocode-glib.git",
+                    "tag" : "3.26.4"
                 }
             ]
         },
         {
-            "name": "libgweather",
-            "buildsystem": "meson",
-            "config-opts": [
+            "name" : "libgweather",
+            "buildsystem" : "meson",
+            "config-opts" : [
                 "-Denable_vala=false",
                 "-Dgtk_doc=false",
                 "-Dtests=false"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libgweather.git",
-                    "tag": "4.4.4"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libgweather.git",
+                    "tag" : "4.4.4"
                 }
             ]
         },
         {
-            "name": "gnome-desktop",
-            "buildsystem": "meson",
-            "config-opts": [
+            "name" : "gnome-desktop",
+            "buildsystem" : "meson",
+            "config-opts" : [
                 "-Ddebug_tools=false",
                 "-Ddesktop_docs=false",
                 "-Dudev=disabled",
@@ -97,50 +99,54 @@
                 "-Dinstalled_tests=false",
                 "-Dlegacy_library=false"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop.git",
-                    "tag": "44.1"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-desktop.git",
+                    "tag" : "44.1"
                 }
             ]
         },
         {
-            "name": "PyYAML",
-            "buildsystem": "simple",
-            "build-commands": [
+            "name" : "PyYAML",
+            "buildsystem" : "simple",
+            "build-commands" : [
                 "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"PyYAML\" --no-build-isolation"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz",
-                    "sha256": "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "PyYAML"
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz",
+                    "sha256" : "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e",
+                    "x-checker-data" : {
+                        "type" : "pypi",
+                        "name" : "PyYAML"
                     }
                 }
             ],
-            "cleanup": [
+            "cleanup" : [
                 "/bin",
                 "/share/man/man1"
             ]
         },
         {
-            "name": "os-installer",
-            "builddir": true,
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dflatpak=true"
+            "name" : "os-installer",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dflatpak=true",
+                "--libdir=lib"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/p3732/os-installer.git",
-                    "branch": "main"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/p3732/os-installer.git",
+                    "branch" : "main"
                 }
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }

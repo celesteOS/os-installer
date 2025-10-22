@@ -71,7 +71,7 @@ internal_values = {
     'user_username': '',
     'user_autologin': False,
     'user_password': '',
-    'formats': ('en_US.UTF-8', 'United States'),
+    'formats': ('en_GB.UTF-8', 'United Kingdom'),
     'timezone': 'UTC',
     'feature_choices': {},
     'software_choices': {},
@@ -86,11 +86,11 @@ internal_values = {
 }
 
 fallback_values = {
-    'available_translations': ['en_US'],
+    'available_translations': ['en_GB'],
     'language_use_fixed': False,
     'language_chosen': None,
-    'keyboard_language': ('en_US' 'English (US)'),
-    'keyboard_layout': ('us', 'English (US)'),
+    'keyboard_language': ('en_GB' 'English (UK)'),
+    'keyboard_layout': ('uk', 'English (UK)'),
     'chosen_device': None,
     'disk_is_partition': False,
     'disk_efi_partition': '/dev/null',

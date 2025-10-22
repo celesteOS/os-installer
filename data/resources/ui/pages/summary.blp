@@ -80,8 +80,15 @@ template $SummaryPage : Box {
     }
   }
 
-  $ConfirmButton {
-    action-name: "win.advance";
-    receives-default: true;
+  CenterBox {
+      vexpand: true;
+
+      [center]
+      $ContinueButton {
+        action-name: "win.advance";
+        receives-default: true;
+        vexpand: true;
+        valign: end;
+      }
   }
 }

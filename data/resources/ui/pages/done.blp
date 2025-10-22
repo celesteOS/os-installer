@@ -3,11 +3,12 @@ using Gtk 4.0;
 template $DonePage : Box {
   orientation: vertical;
   halign: center;
-  spacing: 12;
 
   Box {
     orientation: vertical;
-    spacing: 12;
+    spacing: 24;
+    valign: center;
+    vexpand: true;
 
     Button now_button {
       action-name: "external.reboot";

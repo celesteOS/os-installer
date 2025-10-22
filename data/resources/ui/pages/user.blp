@@ -54,10 +54,16 @@ template $UserPage : Box {
       entry-activated => $continue();
     }
   }
+  CenterBox {
+    vexpand: true;
 
-  $ContinueButton continue_button {
-    sensitive: false;
-    receives-default: true;
-    clicked => $continue();
+    [center]
+    $ContinueButton continue_button {
+      sensitive: false;
+      receives-default: true;
+      clicked => $continue();
+      vexpand: true;
+      valign: end;
+    }
   }
 }

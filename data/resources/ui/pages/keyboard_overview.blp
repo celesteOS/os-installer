@@ -34,14 +34,20 @@ template $KeyboardOverviewPage : Box {
       Adw.EntryRow test_entry_row {
         activatable: true;
         /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
-        title: _("Test the Keyboard Layout Here");
+        title: _("Type here to test your layout");
         entry-activated => $continue();
       }
     }
+    CenterBox {
+        vexpand: true;
 
-    $ContinueButton {
-      action-name: "win.advance";
-      receives-default: true;
+        [center]
+        $ContinueButton {
+          action-name: "win.advance";
+          receives-default: true;
+          vexpand: true;
+          valign: end;
+        }
     }
   }
 }

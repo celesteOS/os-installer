@@ -26,47 +26,47 @@ from .welcome import WelcomePage
 
 page_name_to_page_title = {
     # Translators: Page title
-    'confirm':              _("Confirmation"),
+    'confirm':              _("Is this the right disk?"),
     # Translators: Page title
-    'desktop':              _("Desktop Selection"),
+    'desktop':              _("Choose a desktop environment"),
     # Translators: Page title
-    'disk':                 _("Disk Selection"),
+    'disk':                 _("Select a disk to install to"),
     # Translators: Page title
-    'done':                 _("Installation Complete"),
+    'done':                 _("Installation complete!"),
     # Translators: Page title
-    'encrypt':              _("Disk Encryption"),
+    'encrypt':              _("Disk encryption"),
     # Translators: Page title
-    'failed':               _("Installation Failed"),
+    'failed':               _("Installation failed"),
     # Translators: Page title
-    'feature':              _("Additional Features"),
+    'feature':              _("Additional features"),
     # Translators: Page title
-    'format':               _("Select Region"),
+    'format':               _("Choose a region"),
     # Translators: Page title
     'install':              _("Installing"),
     # Translators: Page title
-    'internet':             _("Internet Connection Check"),
+    'internet':             _("Checking internet connection"),
     # Translators: Page title
-    'keyboard-language':    _("Keyboard Language"),
+    'keyboard-language':    _("Keyboard language"),
     # Translators: Page title
-    'keyboard-layout':      _("Keyboard Layout Selection"),
+    'keyboard-layout':      _("Avaliable keyboard layouts"),
     # Translators: Page title
-    'keyboard-overview':    _("Keyboard Layout"),
+    'keyboard-overview':    _("Choose a keyboard layout"),
     # Language page has no title
     'language':             ' ',
     # Translators: Page title
-    'region':               _("Adapt to Location"),
+    'region':               _("Choose your region"),
     # Translators: Page title
     'restart':              _("Restarting"),
     # Translators: Page title
-    'software':             _("Additional Software"),
+    'software':             _("Additional software"),
     # Translators: Page title
-    'summary':              _("Summary"),
+    'summary':              _("Do you want to continue?"),
     # Translators: Page title
-    'timezone':             _("Select Location"),
+    'timezone':             _("Where do you live?"),
     # Translators: Page title
     'user':                 _("User Account"),
     # Translators: Page title
-    'welcome':              _("Welcome"),
+    'welcome':              _("Welcome!"),
 }
 
 page_name_to_image = {

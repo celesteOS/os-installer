@@ -140,12 +140,12 @@ msgstr ""
 #. Translators: Followed by a language name.
 #. Translators: Page title
 #: data/resources/ui/pages/keyboard_layout.blp src/ui/page_wrapper.py
-msgid "Keyboard Language"
+msgid "Keyboard language"
 msgstr ""
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_overview.blp
-msgid "Test the Keyboard Layout Here"
+msgid "Type here to test your layout"
 msgstr ""
 
 #. Translators: Presented next to the current Timezone.
@@ -175,7 +175,7 @@ msgstr ""
 #. Translators: Description of selected keyboard layout.
 #. Translators: Page title
 #: data/resources/ui/pages/summary.blp src/ui/page_wrapper.py
-msgid "Keyboard Layout"
+msgid "Select your keyboard layout"
 msgstr ""
 
 #. Translators: Description of selected keyboard layout.

@@ -1,20 +1,19 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $WelcomePage : Box {
+template $WelcomePage: Box {
+  hexpand: true;
   orientation: vertical;
-  spacing: 12;
+  vexpand: true;
 
   Adw.Clamp {
-    maximum-size: 280;
+    maximum-size: 360;
 
     Label description {
-      valign: center;
-      /* Translators: Default welcome text. Squiggly brackets are replaced by distribution name. */
-      label: _("This application will guide you through the installation of {} onto your system.");
-      wrap: true;
       justify: center;
-      /*styles ["heading"]*/
+      label: _("This application will guide you through the installation of {} onto your system.");
+      valign: center;
+      wrap: true;
     }
   }
 
@@ -25,15 +24,22 @@ template $WelcomePage : Box {
     $ContinueButton {
       action-name: "win.advance";
       receives-default: true;
+      vexpand: true;
+      valign: end;
     }
 
     [end]
     Button {
       action-name: "win.about-page";
-      icon-name: "help-about-symbolic";
       focusable: true;
+      halign: end;
+      icon-name: "help-about-symbolic";
       valign: end;
-      styles ["circular", "flat"]
+
+      styles [
+        "circular",
+        "flat",
+      ]
     }
   }
 }

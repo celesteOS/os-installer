@@ -5,6 +5,7 @@ template $DiskPage : Stack {
   hexpand: true;
   vhomogeneous: false;
   transition-type: crossfade;
+  vexpand: true;
 
   StackPage {
     name: "disks";
@@ -23,7 +24,10 @@ template $DiskPage : Stack {
           row-activated => $disk_selected();
           styles ["boxed-list"]
         }
+      CenterBox {
+        vexpand: true;
 
+        [center]
         Button disks_button {
           action-name: "external.manage-disks";
           /* Translators: Button label to open disk management tool. */
@@ -34,6 +38,7 @@ template $DiskPage : Stack {
           use-underline: true;
           styles ["pill"]
         }
+       }
       }
     };
   }

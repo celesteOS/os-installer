@@ -62,8 +62,16 @@ template $EncryptPage : Box {
     }
   }
 
-  $ContinueButton continue_button {
-    receives-default: true;
-    clicked => $continue();
+  CenterBox {
+    vexpand: true;
+
+    [center]
+    $ContinueButton continue_button {
+      sensitive: false;
+      receives-default: true;
+      clicked => $continue();
+      vexpand: true;
+      valign: end;
+    }
   }
 }

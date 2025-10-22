@@ -12,7 +12,7 @@ template $PageWrapper : Adw.NavigationPage {
 
       [start]
       Box {
-        spacing: 6;
+        spacing: 8;
         valign: start;
 
         WindowControls win_controls_start {
@@ -39,25 +39,27 @@ template $PageWrapper : Adw.NavigationPage {
 
       [title]
       Box {
-        margin-top: 6;
+        vexpand: true;
+        margin-top: 48;
         orientation: vertical;
         spacing: 6;
 
         Image title_image {
-          pixel-size: 128;
+          pixel-size: 48;
         }
 
         Label title_label {
           justify: center;
           wrap: true;
-          styles ["heading"]
+          vexpand: true;
+          styles ["title-1"]
         }
       }
 
       [end]
       Box {
         valign: start;
-        spacing: 6;
+        spacing: 0;
 
         Button reload_button {
           action-name: "win.reload-page";

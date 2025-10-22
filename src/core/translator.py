@@ -15,7 +15,7 @@ class Translator:
 
         self._setup_module()
 
-        self._setup_language('en_US')
+        self._setup_language('en_GB')
         config.subscribe('language_chosen',
                          lambda info: self._setup_language(info.code),
                          delayed=True)

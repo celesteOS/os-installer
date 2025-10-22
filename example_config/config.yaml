@@ -1,4 +1,4 @@
-%YAML 1.2
+	%YAML 1.2
 ---
 # This is an example config file for OS-Installer.
 # To use it either pass it as the commandline config parameter or place it at
