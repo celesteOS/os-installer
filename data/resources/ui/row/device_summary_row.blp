@@ -2,6 +2,8 @@ using Gtk 4.0;
 using Adw 1;
 
 template $DeviceSummaryRow : Adw.ExpanderRow {
+  /* Translators: Description of selected disk. */
+  title: _("Disk");
   activatable: false;
   selectable: false;
   subtitle: bind template.device as <$DeviceInfo>.name;

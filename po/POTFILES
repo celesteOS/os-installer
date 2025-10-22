@@ -20,6 +20,7 @@ data/resources/ui/pages/user.blp
 data/resources/ui/pages/welcome.blp
 
 data/resources/ui/row/device_choice_row.blp
+data/resources/ui/row/device_summary_row.blp
 data/resources/ui/row/device_too_small_row.blp
 data/resources/ui/row/no_efi_partition_row.blp
 
@@ -30,3 +31,4 @@ src/ui/confirm_quit_dialog.py
 src/ui/page_wrapper.py
 src/ui/pages/summary.py
 src/ui/row/device_rows.py
+src/ui/row/summary_row.py

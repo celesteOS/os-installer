@@ -21,13 +21,8 @@ class SummaryPage(Gtk.Box):
 
     # rows
     language_row = Gtk.Template.Child()
-    keyboard_row = Gtk.Template.Child()
     desktop_row = Gtk.Template.Child()
     user_row = Gtk.Template.Child()
-    format_row = Gtk.Template.Child()
-    timezone_row = Gtk.Template.Child()
-    software_row = Gtk.Template.Child()
-    feature_row = Gtk.Template.Child()
 
     # user row specific
     user_autologin = Gtk.Template.Child()
@@ -35,31 +30,12 @@ class SummaryPage(Gtk.Box):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        translate_widgets(self.language_row, self.keyboard_row, self.desktop_row, self.user_row,
-                          self.user_autologin, self.format_row, self.timezone_row, self.software_row,
-                          self.feature_row)
+        translate_widgets(self.user_row, self.user_autologin)
 
-        if state_machine.is_page_available('desktop'):
-            self.desktop_row.set_visible(True)
-            config.subscribe('desktop_chosen', self._update_desktop)
-        if state_machine.is_page_available('language'):
-            self.language_row.set_visible(True)
-            config.subscribe('language_chosen', self._update_language)
-        if state_machine.is_page_available('feature'):
-            self.feature_row.set_visible(True)
-            config.subscribe('feature_choices', self._update_feature_choices)
-        if state_machine.is_page_available('software'):
-            self.software_row.set_visible(True)
-            config.subscribe('software_choices', self._update_software_choices)
         if state_machine.is_page_available('user'):
             self.user_row.set_visible(True)
             config.subscribe('user_autologin', self._update_user_autologin)
             config.subscribe('user_name', self._update_user_name)
-        if state_machine.is_page_available('region'):
-            self.format_row.set_visible(True)
-            config.subscribe('formats', self._update_formats)
-            self.timezone_row.set_visible(True)
-            config.subscribe('timezone', self._update_timezone)
 
         self.has_install = config.get('scripts')['install'] is not None
         if self.has_install:
@@ -68,31 +44,9 @@ class SummaryPage(Gtk.Box):
             self.language_row.set_activatable(False)
             self.desktop_row.set_activatable(False)
 
-        config.subscribe('keyboard_layout', self._update_keyboard_layout)
         config.subscribe('chosen_device', self._update_device_row)
 
-    def _update_choices(self, row, choices):
-        _ = config_gettext
-        choice_texts = []
-        for choice in choices:
-            if choice.options:
-                if choice.state.keyword:
-                    text = f'{_(choice.name)} – {_(choice.state.display)}'
-                    choice_texts.append(text)
-            elif choice.state:
-                choice_texts.append(_(choice.name))
-
-        if choice_texts:
-            row.set_subtitle(', '.join(choice_texts))
-        else:
-            # Translators: Shown when list of selected software is empty.
-            row.set_subtitle(_("None"))
-
     ### callbacks ###
-
-    def _update_desktop(self, desktop):
-        _, name = desktop
-        self.desktop_row.set_subtitle(name)
 
     def _update_device_row(self, device):
         if device == None:
@@ -103,25 +57,6 @@ class SummaryPage(Gtk.Box):
                 self.list.remove(row)
             row = DeviceSummaryRow(device, not self.has_install)
             self.list.insert(row, self.disk_row_index)
-
-    def _update_feature_choices(self, choices):
-        self._update_choices(self.feature_row, choices)
-
-    def _update_formats(self, formats):
-        self.format_row.set_subtitle(formats[1])
-
-    def _update_keyboard_layout(self, keyboard_layout):
-        _, name = keyboard_layout
-        self.keyboard_row.set_subtitle(name)
-
-    def _update_language(self, language):
-        self.language_row.set_subtitle(language.name)
-
-    def _update_software_choices(self, choices):
-        self._update_choices(self.software_row, choices)
-
-    def _update_timezone(self, timezone):
-        self.timezone_row.set_subtitle(timezone)
 
     def _update_user_autologin(self, autologin):
         self.user_autologin.set_visible(autologin)

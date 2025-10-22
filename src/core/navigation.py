@@ -74,10 +74,6 @@ class Navigation(Adw.Bin):
         else:
             return None
 
-    def _advance_wrapper(self, page=None, dummy=None):
-        with self.navigation_lock:
-            self._advance(self, page)
-
     def _advance(self, page):
         # confirm calling page is current page to prevent incorrect navigation
         current_page = self.navigation_view.get_visible_page()
@@ -97,9 +93,17 @@ class Navigation(Adw.Bin):
             self._load_page(next_page_name)
 
     def _load_page(self, page_name: str, permanent: bool = True):
-        if self.navigation_view.find_page(page_name):
-            # reuse existing page is still in stack
-            self.navigation_view.push_by_tag(page_name)
+        if page := self.navigation_view.find_page(page_name):
+            current_page = self.navigation_view.get_visible_page()
+
+            # Reuse existing page already in stack by pushing or popping to it
+            for stack_page in self.navigation_view.get_navigation_stack():
+                if stack_page is page:
+                    self.navigation_view.pop_to_tag(page_name)
+                    break
+                elif stack_page is current_page:
+                    self.navigation_view.push_by_tag(page_name)
+                    break
         else:
             page_to_load = PageWrapper(page_name, permanent)
 
@@ -139,14 +143,13 @@ class Navigation(Adw.Bin):
                     self._advance(page)
                 case _:
                     page_name = value
-                    assert self.navigation_view.find_page(page_name) is None
                     self._load_page(page_name, permanent=False)
 
     ### public methods ###
 
-    def advance(self, page=None):
+    def advance(self, _):
         with self.navigation_lock:
-            self._advance(page)
+            self._advance(None)
 
     def go_backward(self):
         with self.navigation_lock:
